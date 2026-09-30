@@ -8,8 +8,8 @@ const {chromium}=require('playwright'),fs=require('node:fs/promises'),assert=req
  try{
  for(const [width,height] of [[1920,1080],[1366,768],[390,844],[390,667],[667,390]]){
   await page.setViewportSize({width,height});await page.goto('https://terrainfoundry.co.uk/print-order.html#'+q.id+'.'+'b'.repeat(64));await page.reload();await page.waitForSelector('.quote-summary');
-  const layout=await page.evaluate(()=>({height:document.documentElement.scrollHeight,width:document.documentElement.scrollWidth,viewport:innerHeight,actions:document.querySelector('.quote-actions').getBoundingClientRect().bottom}));
-  assert.ok(layout.height<=height+1,JSON.stringify({width,height,layout}));assert.ok(layout.width<=width);assert.ok(layout.actions<height);
+  const layout=await page.evaluate(()=>({height:document.documentElement.scrollHeight,width:document.documentElement.scrollWidth,viewport:innerHeight,actions:document.querySelector('.quote-actions').getBoundingClientRect().bottom, panelBottom:document.querySelector('#order-details').getBoundingClientRect().bottom, contentBottom:Math.max(...[...document.querySelectorAll('.quote-column:not([hidden]) > *')].map(e=>e.getBoundingClientRect().bottom))}));
+  assert.ok(layout.height<=height+1,JSON.stringify({width,height,layout}));assert.ok(layout.width<=width);assert.ok(layout.actions<height);assert.ok(layout.contentBottom<=layout.panelBottom,JSON.stringify({width,height,layout}));
   assert.doesNotMatch(await page.locator('body').innerText(),/manufacturing markup|filament cost|machine time cost/i);
   if(width<700)await page.getByRole('tab',{name:'Pieces'}).click();
   const seen=new Set();do{for(const name of await page.locator('.quote-pieces li').allTextContents())seen.add(name);if(await page.getByRole('button',{name:'Next',exact:true}).isDisabled())break;await page.getByRole('button',{name:'Next',exact:true}).click();}while(true);assert.equal(seen.size,23);

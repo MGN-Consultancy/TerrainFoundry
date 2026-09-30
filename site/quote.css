@@ -35,7 +35,7 @@
  .compact-quote .quote-actions .button{font-size:12px;padding:8px 12px;min-height:36px}
  .compact-quote footer{padding:7px 14px;font-size:10px}
 }
-@media(max-height:650px){
+@media(max-height:750px){
  .compact-quote .quote-page{gap:5px;padding-top:6px;padding-bottom:6px}
  .compact-quote .quote-row{padding:3px 0;font-size:12px}.compact-quote h2{font-size:16px;margin-bottom:4px}
  .compact-quote .quote-context{font-size:11px;margin-bottom:4px}.compact-quote .quote-total{font-size:18px;margin-top:2px;padding:5px 0}
@@ -48,4 +48,7 @@
  .compact-quote .quote-note,.compact-quote .quote-privacy{font-size:10px}
  .compact-quote .quote-actions .button{min-height:28px;padding:5px 12px}
  .compact-quote footer{padding:3px 14px;font-size:9px}
+ .compact-quote .quote-summary{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;align-content:start}
+ .compact-quote .quote-summary h2,.compact-quote .quote-summary .quote-context{grid-column:1/-1;margin-bottom:2px}
+ .compact-quote .quote-summary .quote-total{font-size:15px;margin:0;padding:3px 0}
 }

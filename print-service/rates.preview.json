@@ -1,0 +1,27 @@
+{
+  "version": "TEST-ESTIMATE-2026-09-30",
+  "currency": "GBP",
+  "basis": "estimated-filament-and-time",
+  "pencePerCm3": 0,
+  "perPiecePence": 25,
+  "setupPence": 300,
+  "minimumPrintPence": 1000,
+  "vatBasisPoints": 0,
+  "vatConfirmed": true,
+  "maximumQuotePence": 25000,
+  "buildVolumeMm": [340,320,340],
+  "shellMm": 1,
+  "infillFraction": 0.15,
+  "allowanceFraction": 0.15,
+  "markupBasisPoints": 5000,
+  "materials": [
+    {"id":"pla","label":"Basic PLA","pencePerKg":1200,"densityGPerCm3":1.24},
+    {"id":"petg","label":"PETG","pencePerKg":1600,"densityGPerCm3":1.27}
+  ],
+  "printers": [
+    {"id":"a1","label":"Bambu A1","pencePerHour":150,"gramsPerHour":12,"buildVolumeMm":[256,256,256]},
+    {"id":"h2s","label":"Bambu H2S","pencePerHour":200,"gramsPerHour":20,"buildVolumeMm":[340,320,340]}
+  ],
+  "colours":[{"id":"stone-grey","label":"Stone grey — test choice"},{"id":"bone","label":"Bone — test choice"},{"id":"forest-green","label":"Forest green — test choice"}],
+  "shipping":{"GB":{"pence":495,"maxPieces":100}}
+}

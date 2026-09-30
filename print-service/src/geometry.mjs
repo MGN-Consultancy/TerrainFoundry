@@ -1,4 +1,5 @@
 import yauzl from 'yauzl';
+import {createHash} from 'node:crypto';
 
 export class InputError extends Error { constructor(message, status=400) { super(message); this.status=status; } }
 export const LIMITS={upload:40*1024*1024,expanded:160*1024*1024,files:180,triangles:600000,pieces:500};
@@ -77,6 +78,6 @@ export function inspectSTL(bytes,buildVolume=[256,256,256]) {
 }
 
 export function inspectPack(files,buildVolume) {
- let triangles=0;return quantities(files).map(({bytes,...item})=>{const mesh=inspectSTL(bytes,buildVolume);triangles+=mesh.triangles;if(triangles>LIMITS.triangles)fail('Split this detailed scene into smaller print packs.');return {...item,...mesh};});
+ let triangles=0;return quantities(files).map(({bytes,...item})=>{const mesh=inspectSTL(bytes,buildVolume);triangles+=mesh.triangles;if(triangles>LIMITS.triangles)fail('Split this detailed scene into smaller print packs.');return {...item,...mesh,sha256:createHash('sha256').update(bytes).digest('hex')};});
 }
 

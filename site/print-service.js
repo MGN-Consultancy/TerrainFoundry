@@ -49,10 +49,13 @@ if(order){
  const [id,secret]=location.hash.slice(1).split('.');const headers={Authorization:'Bearer '+secret};
  const pay=document.querySelector('#pay-button'),confirm=document.querySelector('#confirm-payment'),testOrder=document.querySelector('#test-order-button');
  const money=p=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(p/100);
- function line(label,value){const row=document.createElement('div');row.className='quote-row';const key=document.createElement('span'),val=document.createElement('strong');key.textContent=label;val.textContent=value;row.append(key,val);order.append(row);}
+ let column=order;
+ function section(title){const panel=document.createElement('section'),heading=document.createElement('h2');panel.className='quote-column';heading.textContent=title;panel.append(heading);order.append(panel);column=panel;}
+ function line(label,value){const row=document.createElement('div');row.className='quote-row';if(label==='Total')row.classList.add('quote-total');const key=document.createElement('span'),val=document.createElement('strong');key.textContent=label;val.textContent=value;row.append(key,val);column.append(row);}
  function show(q){
-  order.replaceChildren();line('Reference',q.id);line('Filament',q.colour.label);line('Pieces (including connectors)',String(q.price.pieceCount));
-  const list=document.createElement('ul');for(const item of q.items){const li=document.createElement('li');li.textContent=`${item.quantity} × ${item.name}`;list.append(li);}order.append(list);
+  order.replaceChildren();section('Your pieces');line('Reference',q.id);line('Filament',q.colour.label);line('Pieces (including connectors)',String(q.price.pieceCount));
+  const list=document.createElement('ul');list.className='quote-pieces';for(const item of q.items){const li=document.createElement('li');li.textContent=`${item.quantity} × ${item.name}`;list.append(li);}column.append(list);
+  section('Your estimate');
   if(q.price.estimate){const e=q.price.estimate;line('Material',e.material);line('Printer',e.printer);line('Estimated filament',e.grams+' g');line('Estimated printer time',e.hours+' hours');line('Filament cost',money(e.filamentCostPence));line('Machine time cost',money(e.machineCostPence));line('Manufacturing markup',money(e.markupPence));line('Parts handling',money(q.price.piecePence));line('Setup',money(q.price.setupPence));line('Calculation note',e.notice);if(!e.assumptions.vatConfirmed)line('VAT status','Unconfirmed — test calculation only');}
   if(q.price.discountPence){line('Printing before discount',money(q.price.printBeforeDiscountPence));line('Parts discount ('+q.price.discount.code+')','−'+money(q.price.discountPence));}
   line('Printing',money(q.price.printPence));line('Shipping',money(q.price.shippingPence));line('VAT',money(q.price.vatPence));line('Total',money(q.price.totalPence));line('Quote valid until',new Date(q.expiresAt).toLocaleDateString('en-GB'));

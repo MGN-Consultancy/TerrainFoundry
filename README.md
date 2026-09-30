@@ -10,7 +10,7 @@ An offline Windows desktop workshop for designing modular tabletop terrain and e
 - Separate STL pieces, quantities and original Foundry Link connectors in print exports.
 - Small signed Windows launcher. Client and scenery downloads are cached separately and verified before activation. Offline opening remains available when an update cannot be downloaded.
 
-[Website](https://green-smoke-05d00a503.2.azurestaticapps.net) · [Downloads](https://github.com/MGN-Consultancy/TerrainFoundry/releases) · [Issues](https://github.com/MGN-Consultancy/TerrainFoundry/issues)
+[Website](https://terrainfoundry.co.uk) · [Downloads](https://github.com/MGN-Consultancy/TerrainFoundry/releases) · [Issues](https://github.com/MGN-Consultancy/TerrainFoundry/issues)
 
 ## Installation
 

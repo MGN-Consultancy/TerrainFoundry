@@ -1,0 +1,27 @@
+node_modules/
+dist/
+/release/
+test-results/
+*.log
+
+.tools/
+installer/build/
+# Release binaries belong in GitHub Releases, never source history.
+*.msi
+*.msi.sha256
+*.exe
+*.zip
+*.nupkg
+*.wixobj
+*.wixpdb
+launcher/bin/
+launcher/obj/
+release-config/*private*
+assets-source/connectors/*.stl
+work/
+third-party/openlock/
+public/dungeon-range/
+src/generated/*.json
+!src/generated/builtin-index.json
+!src/generated/dungeon-range-index.json
+

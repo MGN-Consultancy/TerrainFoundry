@@ -1,0 +1,2 @@
+const {contextBridge,ipcRenderer}=require('electron');
+contextBridge.exposeInMainWorld('desktop',{readBuiltinShape:(id,connected)=>{const result=ipcRenderer.sendSync('builtin-shape',id,connected);if(result.error)throw Error(result.error);return result;},save:(data)=>ipcRenderer.invoke('save',data),open:()=>ipcRenderer.invoke('open'),export:(data)=>ipcRenderer.invoke('export',data),loadRecovery:()=>ipcRenderer.invoke('load-recovery'),saveRecovery:(data)=>ipcRenderer.invoke('save-recovery',data),storageInfo:()=>ipcRenderer.invoke('storage-info')});

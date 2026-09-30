@@ -1,0 +1,90 @@
+name: Publish editor and scenery
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the verified release immediately (otherwise create a draft)
+        type: boolean
+        default: false
+      scenery_only:
+        description: Reuse the previous client if only existing scenery geometry changed
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  id-token: write
+concurrency:
+  group: terrainfoundry-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: windows-latest
+    environment: release
+    timeout-minutes: 90
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.19.0'
+      - run: pnpm install --frozen-lockfile
+      - name: Generate original scenery and Foundry Link from source
+        run: node scripts/release/generate-all.mjs
+      - name: Verify meshes, layouts, connector and updater
+        run: node --test tests/*.test.mjs
+      - run: pnpm build
+      - run: node scripts/package.cjs
+      - run: ./scripts/release/build-launcher.ps1
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Sign editor and launcher with MGN Consultancy
+        shell: pwsh
+        run: |
+          $v=(Get-Content package.json -Raw | ConvertFrom-Json).version
+          ./scripts/release/sign.ps1 -File "$PWD/release/desktop-$v/TerrainFoundry-win32-x64/TerrainFoundry.exe"
+          ./scripts/release/sign.ps1 -File "$PWD/launcher/TerrainFoundryLauncher.exe"
+      - name: Prepare pinned WiX tools
+        run: node scripts/release/wix.mjs
+      - run: node scripts/release/launcher-msi.mjs
+      - shell: pwsh
+        run: |
+          $v=(Get-Content release-config/product.json -Raw | ConvertFrom-Json).launcherVersion
+          ./scripts/release/sign.ps1 -File "$PWD/release/publish/TerrainFoundryLauncher-$v-win-x64.msi"
+      - name: Package client and independently cached scenery packs
+        run: python scripts/release/package.py
+      - name: Sign the update channel
+        env:
+          TERRAIN_RELEASE_KEY: ${{ secrets.TERRAIN_RELEASE_KEY }}
+          TERRAIN_SCENERY_ONLY: ${{ inputs.scenery_only }}
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          if($env:TERRAIN_SCENERY_ONLY -eq 'true'){
+            gh release download --pattern channel.json --dir release/previous --clobber
+            if($LASTEXITCODE -ne 0){throw 'A previously published signed release is required'}
+            Copy-Item release/previous/channel.json release/previous-channel.json
+          }
+          node scripts/release/publish-manifest.mjs
+          if($LASTEXITCODE -ne 0){throw 'Manifest signing failed'}
+      - name: Verify launcher rejects modified manifests and installed files
+        run: ./scripts/release/test-launcher.ps1
+      - name: Exercise first installation and cached updates with signed release fixtures
+        run: ./scripts/release/test-launcher-integration.ps1
+      - name: Publish GitHub release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $v=(Get-Content package.json -Raw | ConvertFrom-Json).version
+          $args=@('release','create',"v$v",'--target',$env:GITHUB_SHA,'--title',"Terrain Foundry $v",'--notes-file','RELEASE-NOTES.md')
+          if('${{ inputs.publish }}' -ne 'true'){$args+='--draft'}
+          $args+=(Get-ChildItem release/publish -File | Where-Object Name -ne 'package-files.json' | ForEach-Object FullName)
+          & gh @args
+          if($LASTEXITCODE -ne 0){throw 'Release publication failed'}

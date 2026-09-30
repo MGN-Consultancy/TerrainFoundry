@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import {OUTDOOR_KIT} from '../src/outdoor-kit.js';
+import {defaults,piece,outdoorDemo} from '../src/model.js';
+import {printFiles} from '../src/print-pack.js';
+const dir='deliverables/outdoor-test-pack';await fs.mkdir(dir,{recursive:true});
+const p=defaults();p.name='Outdoor test catalogue';p.items=OUTDOOR_KIT.map((k,i)=>({...piece(k.id,(i%7-3)*2,(Math.floor(i/7)-1)*2),color:'#ffffff'}));
+for(const f of printFiles(p).files)await fs.writeFile(dir+'/'+f.name,f.data);
+await fs.writeFile('examples/River of Palms.terrain',JSON.stringify(outdoorDemo(),null,2));
+await fs.writeFile(dir+'/START-TESTING.txt',`Terrain Foundry outdoor collection\n21 unique outdoor pieces, all 50.8 x 50.8 mm with four integrated OpenLOCK sockets.\nStart with one grass tile and one straight river tile plus a genuine OpenLOCK clip; check both at 100% scale.\nThen test one bridge. Inspect the bridge underside, rails and palm fronds for supports in Bambu Studio.\nThese meshes have passed geometry checks, not physical printing or fit testing.\nThis pack's project is an asset catalogue, not a continuous river layout. Open examples/River of Palms.terrain for the connected scene.\nPreview water, grass and sand colours are not encoded in STL. Surface relief, palm leaves, planks and bridge masonry are geometry.\nEach outdoor STL has quantity one for a full catalogue test. Print only the pieces you want to test first; printing the whole pack is unnecessary.\nGenuine clips are downloaded separately: https://www.printablescenery.com/product/openlock-clips/\n`);
+console.log('Exported 21-piece outdoor test catalogue and River of Palms scene.');

@@ -1,0 +1,12 @@
+const {_electron:electron}=require('playwright');
+const fs=require('node:fs/promises'),path=require('node:path'),assert=require('node:assert/strict');
+(async()=>{const dir=await fs.mkdtemp(path.join(require('node:os').tmpdir(),'terrain-caves-'));
+ const app=await electron.launch({executablePath:process.env.TERRAIN_EXECUTABLE,args:[...(process.env.TERRAIN_EXECUTABLE?[]:['.']),`--user-data-dir=${dir}/profile`]});
+ try{const page=await app.firstWindow(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());await page.waitForSelector('canvas');await page.locator('.examples summary').click();await page.locator('#cave-demo').click();assert.equal(await page.locator('#count').textContent(),'21');assert.equal(await page.locator('#kit .asset').count(),10);assert.match(await page.locator('#connection-status').textContent(),/24 matched connections · 0 overlapping/);
+ await page.locator('#fit').click();await page.waitForTimeout(700);await page.screenshot({path:path.resolve('test-results/caves-scene.png')});
+ await app.evaluate(({dialog},dir)=>{dialog.showSaveDialog=async()=>({canceled:false,filePath:dir+'/cave.terrain'});dialog.showOpenDialog=async(_,o)=>({canceled:false,filePaths:[o.properties.includes('openDirectory')?dir:dir+'/cave.terrain']});},dir);
+ await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready'));assert.equal(JSON.parse(await fs.readFile(dir+'/cave.terrain','utf8')).items.length,21);
+ await page.locator('#export').click();assert.match(await page.locator('#export-summary').textContent(),/25 clips/);await page.locator('#confirm-print').click();await page.waitForFunction(()=>!document.querySelector('#print-dialog').open);const pack=(await fs.readdir(dir)).find(x=>x.startsWith('TerrainFoundry-'));assert.ok((await fs.stat(path.join(dir,pack,'n-entrance.stl'))).size>1000);
+ await page.locator('#new').click();await page.locator('#open').click();await page.waitForFunction(()=>document.querySelector('#count').textContent==='21');assert.deepEqual(errors,[]);console.log('PASS: 10 cave assets, 21-piece scene, no footprint overlaps, save/reopen, entrance STL and 25-clip export.');
+ }finally{await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows().forEach(w=>w.destroy()));await app.close();}
+})().catch(e=>{console.error(e);process.exit(1);});

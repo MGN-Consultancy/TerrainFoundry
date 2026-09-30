@@ -1,0 +1,11 @@
+{
+  "repository": "MGN-Consultancy/TerrainFoundry",
+  "publisher": "MGN CONSULTANCY LIMITED",
+  "channel": "stable",
+  "minimumWindows": "10",
+  "connector": "Foundry Link",
+  "assetLicense": "CC0-1.0",
+  "sourceLicense": "MIT",
+  "schema": 1,
+  "launcherVersion": "1.0.0"
+}

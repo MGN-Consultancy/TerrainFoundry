@@ -43,3 +43,7 @@ See [PUBLISHING.md](PUBLISHING.md). GitHub Actions builds and checks the client/
 ## Privacy
 
 The editor saves locally and has no telemetry, cloud project storage or account system. The launcher contacts GitHub for release downloads and Windows verifies certificate trust for newly downloaded executables. The website queries public release metadata. GitHub, Microsoft and hosting providers process ordinary network requests.
+
+## Optional print and ship service
+
+The website now includes a print-pack quote form, separate from the offline editor. The service reads STL geometry and quantities, offers a chosen PLA colour, calculates a quote and integrates with PayPal and workshop email notifications. Ordering stays disabled until commercial rates, shipping/VAT, customer terms and the payment/email providers are configured. See [print-service/README.md](print-service/README.md) for local tests, the no-payment demo, hosting and activation requirements. Normal editor use never uploads a scene.

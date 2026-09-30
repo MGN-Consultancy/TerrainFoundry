@@ -1,0 +1,23 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "PRINT_SITE_ORIGIN": "https://terrainfoundry.co.uk",
+    "PRINT_SERVICE_ENABLED": "false",
+    "PRINT_RATES_APPROVED": "false",
+    "PRINT_TERMS_APPROVED": "false",
+    "PRINT_OPERATOR_EMAIL": "nigel.webster@mgnconsultancy.co.uk",
+    "PRINT_EMAIL_SENDER": "",
+    "ACS_EMAIL_CONNECTION_STRING": "",
+    "PRINT_TOKEN_SECRET": "",
+    "PRINT_RATES_JSON": "",
+    "PAYPAL_ENV": "sandbox",
+    "PAYPAL_CLIENT_ID": "",
+    "PAYPAL_CLIENT_SECRET": "",
+    "PAYPAL_MERCHANT_ID": "",
+    "PAYPAL_WEBHOOK_ID": "",
+    "TURNSTILE_SITE_KEY": "",
+    "TURNSTILE_SECRET_KEY": ""
+  }
+}

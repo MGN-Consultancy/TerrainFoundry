@@ -1,3 +1,4 @@
+import {readUpload} from './uploads.mjs';
 import {randomBytes,createHmac,timingSafeEqual} from 'node:crypto';
 import {zipSync} from 'fflate';
 import {InputError,readPack,inspectPack,LIMITS} from './geometry.mjs';
@@ -20,14 +21,14 @@ export function makeService({store,paypal,env=process.env,rates,discounts=[],now
  const quoteUrl=id=>env.PRINT_SITE_ORIGIN+'/print-order.html#'+id+'.'+token(id);
  const publicQuote=q=>({id:q.id,createdAt:q.createdAt,expiresAt:q.expiresAt,status:q.status,fulfilment:q.fulfilment||null,paymentTestReceipt:q.paymentTestReceipt?{status:q.paymentTestReceipt.status,amountPence:10,reference:q.paymentTestReceipt.reference}:null,colour:q.colour,items:q.items,price:customerPrice(q.price),emailStatus:q.email.quote?.sentAt?'sent':'pending',preview:!!q.preview,sandbox:env.PAYPAL_ENV!=='live'});
  async function get(id,secret){authorize(id,secret);const q=await store.get(quotePath(id));if(!q)throw new InputError('This quote is no longer available.',404);return publicQuote(q);}
- async function create(buffer,details,humanToken){ready(true);const preview=!!previewConfigured();
+ async function create(buffer,details,humanToken,filename='pack.zip'){ready(true);const preview=!!previewConfigured();
   if(preview){const supplied=String(details.testAccessCode||'');const expected=env.PRINT_PREVIEW_ACCESS_CODE;const a=Buffer.from(supplied),b=Buffer.from(expected);if(a.length!==b.length||!timingSafeEqual(a,b))throw new InputError('Enter the private test access code.',403);}
   else await verifyHuman(humanToken);
   const customer=customerDetails(details,rates);
   const hour=Math.floor(now()/3600000),emailKey=createHmac('sha256',env.PRINT_TOKEN_SECRET).update(customer.email.toLowerCase()).digest('hex');
   await store.budget('global-'+hour,30);await store.budget(emailKey+'-'+hour,3);
   const buildVolume=rates.printers?.find(p=>p.id===customer.printer)?.buildVolumeMm||rates.buildVolumeMm;
-  const files=await readPack(buffer),items=inspectPack(files,buildVolume),cost=price(items,customer,rates,{code:details.discountCode??'',discounts,now:now()});
+  const files=await readUpload(buffer,details,filename),items=inspectPack(files,buildVolume),cost=price(items,customer,rates,{code:details.discountCode??'',discounts,now:now()});
   const id=randomBytes(16).toString('hex'),createdAt=now();const q={id,createdAt,expiresAt:createdAt+ttl,status:'quoted',preview,sandbox:env.PAYPAL_ENV!=='live',customer,colour:rates.colours.find(c=>c.id===customer.colour),items,price:cost,email:{quote:{pending:true}},rateSnapshot:rates};
   // Rebuild the archive from the validated manufacturing files only. Editable scenes stay private.
   const clean={};for(const {name,bytes} of files.values())clean[name]=bytes;

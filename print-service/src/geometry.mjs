@@ -6,7 +6,7 @@ export const LIMITS={upload:40*1024*1024,expanded:160*1024*1024,files:180,triang
 const fail=message=>{throw new InputError(message);};
 
 // Never extract untrusted archives to disk. Bound both declared and actual sizes.
-export function readPack(buffer) {
+export function readPack(buffer,{strictModels=false}={}) {
  if(buffer.length>LIMITS.upload) fail('The print pack must be smaller than 40 MB. Split larger scenes into separate packs.');
  return new Promise((resolve,reject)=>yauzl.fromBuffer(buffer,{lazyEntries:true,validateEntrySizes:true},(error,zip)=>{
   if(error)return reject(new InputError('Choose a valid ZIP print pack.'));
@@ -21,7 +21,7 @@ export function readPack(buffer) {
    if(path.endsWith('/'))return zip.readEntry();
    const name=segments.at(-1);
    if(!/^[a-zA-Z0-9_. -]{1,120}$/.test(name))return stop(new InputError('Unsupported filename in the pack.'));
-   if(!/\.stl$/i.test(name)&&name!=='quantities.csv')return zip.readEntry();
+   if(!/\.stl$/i.test(name)&&name!=='quantities.csv'){if(strictModels)return stop(new InputError('Model ZIPs may contain STL files only. Remove scripts, textures, documents and nested archives.'));return zip.readEntry();}
    if(files.has(name.toLowerCase()))return stop(new InputError('Duplicate filenames in the pack.'));
    zip.openReadStream(entry,(err,stream)=>{
     if(err)return stop(err);const chunks=[];let size=0;

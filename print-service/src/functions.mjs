@@ -7,6 +7,7 @@ import {PayPal} from './paypal.mjs';
 import {makeService} from './service.mjs';
 import {InputError,LIMITS} from './geometry.mjs';
 import {processNotifications,cleanup} from './notifications.mjs';
+import {createHmac} from 'node:crypto';
 import {isIP} from 'node:net';
 
 const env=process.env;let runtime;
@@ -51,10 +52,16 @@ export async function handler(request,context){
    result=await paymentTests.webhook(request.headers,await request.json());
   }else if(request.method==='POST'&&path==='quotes'){
    const length=Number(request.headers.get('content-length'));if(!length||length>LIMITS.upload+100000)throw new InputError('Upload is missing or larger than 40 MB.',413);
+   const uploadHour=Math.floor(Date.now()/3600000);
+   const forwarded=(request.headers.get('x-forwarded-for')||'').split(',').at(-1).trim();
+   const peer=forwarded.startsWith('[')?forwarded.slice(1,forwarded.indexOf(']')):isIP(forwarded)?forwarded:forwarded.replace(/:\d+$/,'');
+   const uploadKey=createHmac('sha256',env.PRINT_TOKEN_SECRET).update(isIP(peer)?peer:'unknown').digest('hex');
+   await store.budget('upload-ip-'+uploadKey+'-'+uploadHour,10);
+   await store.budget('upload-global-'+uploadHour,100);
    const form=await request.formData(),file=form.get('pack');if(!file||typeof file.arrayBuffer!=='function'||file.size>LIMITS.upload)throw new InputError('Choose a ZIP print pack under 40 MB.');
    const details=form.get('details');if(typeof details!=='string'||details.length>5000)throw new InputError('Invalid form details.');
    let parsed;try{parsed=JSON.parse(details);}catch{throw new InputError('Invalid form details.');}
-   result=await service.create(Buffer.from(await file.arrayBuffer()),parsed,form.get('cf-turnstile-response'));
+   result=await service.create(Buffer.from(await file.arrayBuffer()),parsed,form.get('cf-turnstile-response'),file.name);
   }else if(request.method==='GET'&&path==='quote')result={...await service.get(id,secret),paymentTestAvailable:paymentTests.available(),paypalClientId:env.PAYPAL_CLIENT_ID||null};
   else if(request.method==='POST'&&path==='checkout')result=await service.checkout(id,secret);
   else if(request.method==='POST'&&path==='confirm')result=await service.confirm(id,secret);

@@ -121,3 +121,24 @@ Customer quote tokens cannot operate workshop endpoints. Preview, sandbox,
 unpaid and payment-review orders cannot enter fulfilment. Keep workshop links
 private; their authority is tied to PRINT_TOKEN_SECRET, independently derived
 from customer quote capabilities. No customer account is needed.
+
+
+## General STL printing and filament-only promotions
+
+The upload selector accepts Terrain Foundry ZIP manifests, Meshy STL exports,
+and other standalone STL models or STL-only ZIPs. General uploads create their
+own quantity manifest from the chosen copies-per-model value. They follow the
+same closed-geometry, finite-coordinate, build-volume, triangle, byte and copy
+limits. General ZIPs reject unrelated files and nested archives. No G-code,
+script, executable, external resource or renderer is executed. Uploaded texture
+files and third-party project formats are not supported: export STL in mm.
+Before reading multipart uploads, apply global and per-peer hourly budgets;
+after authorization, existing email budgets and geometric checks still apply.
+Public ordering remains gated on server-side Turnstile and business readiness.
+
+A versioned discount with mode `filament-only` waives the minimum print charge,
+machine time, handling, markup and postage. It charges the estimated raw
+filament cost (and configured VAT, currently zero), rounded up to a penny.
+It is a server-side discount, never a client-supplied price override. Existing
+quotes retain their frozen totals. Codes have UTC validity windows and can be
+disabled in PRINT_DISCOUNTS_JSON. The operator knowingly absorbs postage.

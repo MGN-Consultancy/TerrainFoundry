@@ -57,6 +57,7 @@ jobs:
         run: |
           $v=(Get-Content release-config/product.json -Raw | ConvertFrom-Json).launcherVersion
           ./scripts/release/sign.ps1 -File "$PWD/release/publish/TerrainFoundryLauncher-$v-win-x64.msi"
+          ./scripts/release/test-launcher-msi.ps1 -File "$PWD/release/publish/TerrainFoundryLauncher-$v-win-x64.msi"
       - name: Package client and independently cached scenery packs
         run: python scripts/release/package.py
       - name: Sign the update channel

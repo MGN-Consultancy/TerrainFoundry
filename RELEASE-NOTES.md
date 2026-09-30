@@ -1,9 +1,10 @@
-# Terrain Foundry 1.0.0 â€” open-source desktop release
+# Terrain Foundry 1.0.1 — desktop launcher shortcut
 
-- 644 original scenery pieces, with locally saved editable scenes and STL print packs.
-- Original CC0 Foundry Link connector; non-commercial legacy OpenLOCK files excluded.
-- Small MGN CONSULTANCY LIMITED signed launcher MSI and executable.
-- Separately downloaded client and scenery packs, signed update manifests, hash verification and atomic activation.
-- Offline opening after initial installation; no account, signup or cloud saves.
+- Adds a gold castle icon to the launcher, Windows desktop shortcut and Start menu shortcut.
+- Both shortcuts open the launcher, which automatically checks the signed GitHub update channel on every start.
+- Reuses the verified 1.0.0 editor and all 15 scenery packs. Existing installations do not download unchanged packs again.
+- Existing local scenes and recovery files remain outside update folders.
 
-This release installs alongside the older standalone editor. Existing scene layouts are retained. Legacy printed OpenLOCK parts are not claimed compatible with Foundry Link. Print a small fit test and inspect supports in your slicer. Physical printing remains unverified.
+Install this MSI once to add the desktop shortcut, including when upgrading from the 1.0.0 MSI. Subsequent launcher executable, client and scenery updates are fetched through the launcher. The first installation needs internet; the installed editor can be opened offline.
+
+Official Windows binaries are timestamp-signed by MGN CONSULTANCY LIMITED. Foundry Link remains the connector for this release; physical print fit is not yet verified.

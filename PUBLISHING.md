@@ -45,3 +45,7 @@ Hosting uses Azure Static Web Apps **Free**. Large client/scenery downloads are 
 ## Website domain
 
 The public website uses https://terrainfoundry.co.uk/ with Azure Static Web Apps hosting and Cloudflare DNS. Keep the Azure ownership TXT record in DNS so certificate renewal can verify the domain. Website deployments continue through the website workflow; the desktop update channel remains on GitHub Releases.
+
+## Launcher-only releases
+
+For launcher, icon or installer-only changes, advance both the package version and `launcherVersion`, update release notes, and run **Publish launcher update** on main. It verifies the previous signed channel and reuses its immutable client and scenery references, avoiding unnecessary downloads. Keep all older releases whose packages are referenced by the current channel. Use the full editor/scenery workflow when changing client or scenery content. Install the 1.0.1 MSI once to add the desktop shortcut to an older installation; executable self-updates preserve existing shortcuts.

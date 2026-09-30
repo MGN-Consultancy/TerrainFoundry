@@ -44,31 +44,3 @@ form?.addEventListener('submit',async event=>{
 });
 if(form)setup();
 
-const order=document.querySelector('#order-details');
-if(order){
- const [id,secret]=location.hash.slice(1).split('.');const headers={Authorization:'Bearer '+secret};
- const pay=document.querySelector('#pay-button'),confirm=document.querySelector('#confirm-payment'),testOrder=document.querySelector('#test-order-button');
- const money=p=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(p/100);
- let column=order;
- function section(title){const panel=document.createElement('section'),heading=document.createElement('h2');panel.className='quote-column';heading.textContent=title;panel.append(heading);order.append(panel);column=panel;}
- function line(label,value){const row=document.createElement('div');row.className='quote-row';if(label==='Total')row.classList.add('quote-total');const key=document.createElement('span'),val=document.createElement('strong');key.textContent=label;val.textContent=value;row.append(key,val);column.append(row);}
- function show(q){
-  order.replaceChildren();section('Your pieces');line('Reference',q.id);line('Filament',q.colour.label);line('Pieces (including connectors)',String(q.price.pieceCount));
-  const list=document.createElement('ul');list.className='quote-pieces';for(const item of q.items){const li=document.createElement('li');li.textContent=`${item.quantity} × ${item.name}`;list.append(li);}column.append(list);
-  section('Your estimate');
-  if(q.price.estimate){const e=q.price.estimate;line('Material',e.material);line('Printer',e.printer);line('Estimated filament',e.grams+' g');line('Estimated printer time',e.hours+' hours');line('Filament cost',money(e.filamentCostPence));line('Machine time cost',money(e.machineCostPence));line('Manufacturing markup',money(e.markupPence));line('Parts handling',money(q.price.piecePence));line('Setup',money(q.price.setupPence));line('Calculation note',e.notice);if(!e.assumptions.vatConfirmed)line('VAT status','Unconfirmed — test calculation only');}
-  if(q.price.discountPence){line('Printing before discount',money(q.price.printBeforeDiscountPence));line('Parts discount ('+q.price.discount.code+')','−'+money(q.price.discountPence));}
-  line('Printing',money(q.price.printPence));line('Shipping',money(q.price.shippingPence));line('VAT',money(q.price.vatPence));line('Total',money(q.price.totalPence));line('Quote valid until',new Date(q.expiresAt).toLocaleDateString('en-GB'));
-  const expired=Date.now()>q.expiresAt;pay.hidden=q.status!=='quoted'||expired||q.demo||q.preview;confirm.hidden=pay.hidden;
-  testOrder.hidden=!q.preview||q.status!=='quoted'||expired;
-  if(q.preview){say(q.demo?'LOCAL DEMO — '+(q.status==='test-requested'?'Test request recorded. ':'')+'No email, payment, printing or shipping.':q.status==='test-requested'?'Test request recorded. No payment, printing or shipping will take place. Confirmation emails are queued.':expired?'This test quote has expired. Please request another.':'TEST ESTIMATE — no payment, printing or shipping. '+(q.emailStatus==='sent'?'Your estimate email was accepted by the email provider.':'Your estimate email is queued.'));return;}
-  say(q.demo?'LOCAL DEMO — example price only. No email was sent; checkout is disabled.':q.status==='paid'?'Payment received. Your order is queued for printing checks. We will email your confirmation.':q.status==='payment-review'?'This order needs a payment review. Please contact us.':expired?'This quote has expired. Please request a new quote.':`${q.sandbox?'SANDBOX — test payment only. ':''}Your quote is ready. ${q.emailStatus==='sent'?'A copy has been emailed to you.':'Your quote email is queued.'}`);
- }
- async function load(){try{if(!base||!/^[a-f0-9]{32}$/.test(id||'')||!/^[a-f0-9]{64}$/.test(secret||''))throw Error('Please open the complete private link from your quote email.');show(await api('quote/'+id,{headers}));}catch(error){say(error.message);}}
- pay.addEventListener('click',async()=>{pay.disabled=true;try{const result=await api('checkout/'+id,{method:'POST',headers});if(result.paid)return load();const url=new URL(result.url);if(url.protocol!=='https:'||!['www.paypal.com','www.sandbox.paypal.com'].includes(url.hostname))throw Error('Invalid payment link.');location.assign(url.href);}catch(error){say(error.message);}finally{pay.disabled=false;}});
- confirm.addEventListener('click',async()=>{confirm.disabled=true;try{const q=await api('confirm/'+id,{method:'POST',headers});show(q);if(q.paymentPending)say('PayPal has not confirmed a completed payment yet. You can try checking again shortly.');}catch(error){say(error.message);}finally{confirm.disabled=false;}});
- testOrder.addEventListener('click',async()=>{testOrder.disabled=true;try{show(await api('test-order/'+id,{method:'POST',headers}));}catch(error){say(error.message);}finally{testOrder.disabled=false;}});
- load();
- // PayPal return parameters are not proof of payment. Confirmation is checked server-side.
- if(new URLSearchParams(location.search).has('PayerID'))confirm.click();
-}

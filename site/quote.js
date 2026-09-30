@@ -35,7 +35,7 @@ function renderQuote(){
  const total=element('div','','quote-row quote-total');total.append(element('span','Total'),element('strong',quoteMoney(p.totalPence)));summary.append(total);
  summary.append(element('p',`Valid until ${new Date(q.expiresAt).toLocaleDateString('en-GB')}${!p.vatPence?' · No VAT charged':''}`,'quote-context'));
  pieces.hidden=innerWidth<700&&activeTab!=='parts';summary.hidden=innerWidth<700&&activeTab!=='summary';quotePanel.append(pieces,summary);
- for(const button of document.querySelectorAll('[data-quote-tab]'))button.setAttribute('aria-selected',String(button.dataset.quoteTab===activeTab));
+ for(const button of document.querySelectorAll('[data-quote-tab]'))button.setAttribute('aria-pressed',String(button.dataset.quoteTab===activeTab));
  const expired=Date.now()>q.expiresAt;
  buttons.pay.hidden=q.status!=='quoted'||expired||q.demo||q.preview;
  buttons['confirm-payment'].hidden=buttons.pay.hidden;
@@ -43,8 +43,13 @@ function renderQuote(){
  buttons['save-quote'].disabled=false;buttons['copy-quote'].disabled=false;
  document.getElementById('quote-reference').textContent='Reference '+q.id.slice(0,8).toUpperCase();
 }
-function showQuote(q){currentQuote=q;renderQuote();quoteSay(q.preview?(q.status==='test-requested'?'Test request saved — no payment or printing.':Date.now()>q.expiresAt?'This test quote has expired.':'TEST ESTIMATE — no payment, printing or shipping.'):(q.status==='paid'?'Payment received.':Date.now()>q.expiresAt?'This quote has expired.':'Your private quotation is ready.'));}
-for(const button of document.querySelectorAll('[data-quote-tab]'))button.onclick=()=>{activeTab=button.dataset.quoteTab;renderQuote();};
+function showQuote(q){
+ currentQuote=q;renderQuote();
+ if(q.preview){quoteSay(q.status==='test-requested'?'Test request saved — no payment or printing.':Date.now()>q.expiresAt?'This test quote has expired.':'TEST ESTIMATE — no payment, printing or shipping.');return;}
+ const prefix=q.sandbox?'SANDBOX — test payment only. ':'';
+ quoteSay(prefix+(q.status==='paid'?'Payment received.':q.status==='payment-review'?'This order needs a payment review. Please contact the workshop.':Date.now()>q.expiresAt?'This quote has expired.':'Your private quotation is ready.'));
+}
+for(const button of document.querySelectorAll('[data-quote-tab]'))button.onclick=()=>{if(!currentQuote)return;activeTab=button.dataset.quoteTab;renderQuote();};
 addEventListener('resize',()=>{if(currentQuote)renderQuote();});
 const privateQuoteLink=()=>location.origin+location.pathname+'#'+quoteId+'.'+quoteSecret;
 buttons['copy-quote'].onclick=async()=>{try{await navigator.clipboard.writeText(privateQuoteLink());quoteSay('Private link copied. Keep it safe to reopen this quotation.');}catch{quoteSay('Copy is unavailable. Use Save quotation to keep your private link.');}};

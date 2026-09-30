@@ -29,7 +29,7 @@
  .compact-quote header{padding:10px 14px;font-size:12px}
  .compact-quote .quote-page{padding:10px 14px;gap:8px}
  .quote-title{display:block}.compact-quote h1{font-size:26px}
- .quote-tabs{display:flex;gap:8px}.quote-tabs button{flex:1}.quote-tabs [aria-selected=true]{border-color:var(--gold);color:var(--gold)}
+ .quote-tabs{display:flex;gap:8px}.quote-tabs button{flex:1}.quote-tabs [aria-pressed=true]{border-color:var(--gold);color:var(--gold)}
  .compact-quote #order-details{display:flex;padding:12px;gap:0}.compact-quote .quote-column{width:100%}
  .compact-quote .quote-row{font-size:14px;padding:6px 0}.compact-quote .quote-total{font-size:23px}
  .compact-quote .quote-actions .button{font-size:12px;padding:8px 12px;min-height:36px}

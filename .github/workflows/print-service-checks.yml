@@ -1,10 +1,10 @@
 name: Check print service
 on:
   pull_request:
-    paths: ['print-service/**', 'site/**', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
+    paths: ['print-service/**', 'site/**', 'tests/quote-ui.cjs', 'package.json', 'pnpm-lock.yaml', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
   push:
     branches: [main]
-    paths: ['print-service/**', 'site/**', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
+    paths: ['print-service/**', 'site/**', 'tests/quote-ui.cjs', 'package.json', 'pnpm-lock.yaml', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
 permissions:
   contents: read
 jobs:
@@ -21,4 +21,23 @@ jobs:
       - run: pnpm --dir print-service install --ignore-workspace --frozen-lockfile --ignore-scripts
       - run: node --test print-service/test/*.test.mjs
       - run: node --check site/print-service.js
+      - run: node --check site/quote.js
       - run: pnpm --dir print-service audit --prod --audit-level high
+  quote-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.19.0'
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: node tests/quote-ui.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quote-layout-evidence
+          path: test-results/compact-quote-*.png

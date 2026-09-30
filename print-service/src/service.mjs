@@ -77,10 +77,10 @@ export function makeService({store,paypal,env=process.env,rates,discounts=[],now
   await store.budget('estimate-client-'+clientKey+'-'+hour,60);
   await store.budget('estimates-'+hour,600);
   if(!input||typeof input!=='object')throw new InputError('Invalid estimate.');
-  const selection=input.selection||{},printer=rates.printers?.find(p=>p.id===selection.printer);
+  const selection=input.selection||{},printer=rates.printers?.find(p=>p.id==='h2s')||rates.printers?.find(p=>p.id===selection.printer);
   if(!rates.colours.some(c=>c.id===selection.colour))throw new InputError('Choose an available colour.');
   const items=estimateItems(input.items,printer?.buildVolumeMm||rates.buildVolumeMm);
-  const result=price(items,{material:selection.material,printer:selection.printer,address:{country:selection.country}},rates,{code:selection.discountCode||'',discounts,now:now()});
+  const result=price(items,{material:selection.material,printer:rates.printers?.some(p=>p.id==='h2s')?'h2s':selection.printer,finish:selection.finish,address:{country:selection.country}},rates,{code:selection.discountCode||'',discounts,now:now()});
   return {price:customerPrice(result),preview:!!previewConfigured(),estimatedAt:now(),notice:'Advisory estimate only. The website rechecks uploaded models and current prices before any request. No models or scene layout were uploaded.'};
  }
  return {create,get,checkout,confirm,reconcile,webhook,requestTestOrder,estimate,config,quoteUrl};

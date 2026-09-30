@@ -19,8 +19,9 @@ async function setup(){
   config=await api('config');
   if(!config.enabled){closed('Paid print orders are paused while service setup is completed.');return;}
   for(const c of config.colours){const option=new Option(c.label,c.id);form.elements.colour.add(option);}
+  if(config.colours.some(c=>c.id==='stone-grey'))form.elements.colour.value='stone-grey';
   const countries=new Intl.DisplayNames(['en-GB'],{type:'region'});for(const c of config.countries)form.elements.country.add(new Option(countries.of(c),c));
-  for(const [field,choices] of [['material',config.materials||[]],['printer',config.printers||[]]]){
+  for(const [field,choices] of [['material',config.materials||[]]]){
    document.querySelector('#'+field+'-field').hidden=!choices.length;form.elements[field].required=!!choices.length;
    for(const choice of choices)form.elements[field].add(new Option(choice.label,choice.id));
   }

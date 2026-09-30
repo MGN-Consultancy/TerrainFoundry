@@ -1,0 +1,24 @@
+name: Publish website
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/website.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: website-production
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish static site to the free Azure hosting plan
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: upload
+          app_location: site
+          skip_app_build: true
+          skip_api_build: true

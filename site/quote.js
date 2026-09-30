@@ -42,7 +42,7 @@ function showPiecePreview(item,asset){
 }
 function chargeRows(p){
  // Older stored quotes and cached responses retain their agreed total.
- const rows=Number.isInteger(p.filamentPence)?[['Filament',p.filamentPence],['Machine time',p.machinePence],['Handling (includes setup)',p.handlingPence]]:[['Printing (saved quote)',p.printBeforeDiscountPence??p.printPence]];
+ const rows=Number.isInteger(p.filamentPence)?[['Filament',p.filamentPence],[Number.isInteger(p.estimate?.hourlyRatePence)?`Machine time (${quoteMoney(p.estimate.hourlyRatePence)}/hour)`:'Machine time',p.machinePence],['Handling (includes setup)',p.handlingPence]]:[['Printing (saved quote)',p.printBeforeDiscountPence??p.printPence]];
  if(p.minimumAdjustmentPence)rows.push(['Minimum print charge adjustment',p.minimumAdjustmentPence]);
  if(p.discountPence)rows.push(['Parts discount'+(p.discount?.code?' ('+p.discount.code+')':''),-p.discountPence]);
  rows.push(['UK postage',p.shippingPence]);if(p.vatPence)rows.push(['VAT',p.vatPence]);return rows;

@@ -7,6 +7,6 @@ export function customerPrice(p){
  const before=p.printBeforeDiscountPence??p.printPence;
  return {currency:p.currency,rateVersion:p.rateVersion,basis:p.basis,pieceCount:p.pieceCount,filamentPence,machinePence,handlingPence,legacyTariff,
   minimumAdjustmentPence:filamentPence===null?0:Math.max(0,before-filamentPence-machinePence-handlingPence),minimumApplied:p.minimumApplied,
-  printBeforeDiscountPence:before,printPence:p.printPence,discountPence:p.discountPence||0,discount:p.discount?{code:p.discount.code}:null,shippingPence:p.shippingPence,vatPence:p.vatPence,totalPence:p.totalPence,
+  printBeforeDiscountPence:before,printPence:p.printPence,discountPence:p.discountPence||0,discount:p.discount?{code:p.discount.code,...(p.discount.mode?{mode:p.discount.mode}:{})}:null,shippingPence:p.shippingPence,vatPence:p.vatPence,totalPence:p.totalPence,
   estimate:e?{estimated:true,material:e.material,printer:e.printer,grams:e.grams,hours:e.hours,hourlyRatePence:!legacyTariff&&Number.isSafeInteger(e.assumptions?.machinePencePerHour)?e.assumptions.machinePencePerHour:null,notice:e.notice}:null};
 }

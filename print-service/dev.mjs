@@ -7,7 +7,7 @@ import {MemoryStore,FakePayPal,env} from './test/helpers.mjs';
 import {makeService} from './src/service.mjs';
 const port=Number(process.env.PORT||4175),origin='http://127.0.0.1:'+port;
 const rates=JSON.parse(await readFile(new URL('./rates.preview.json',import.meta.url),'utf8'));
-const discounts=[{code:'TEST10',enabled:true,percentBasisPoints:1000,startsAt:'2026-01-01T00:00:00Z',expiresAt:'2099-01-01T00:00:00Z'}];
+const discounts=[{code:'FILAMENTONLY',mode:'filament-only',enabled:true,startsAt:'2026-01-01T00:00:00Z',expiresAt:'2099-01-01T00:00:00Z'},{code:'TEST10',enabled:true,percentBasisPoints:1000,startsAt:'2026-01-01T00:00:00Z',expiresAt:'2099-01-01T00:00:00Z'}];
 const store=new MemoryStore(),service=makeService({store,paypal:new FakePayPal(),env:{...env,PRINT_SITE_ORIGIN:origin,PRINT_PREVIEW_ENABLED:'true',PRINT_PREVIEW_ACCESS_CODE:'LOCAL-PRINT-PREVIEW',PRINT_SERVICE_ENABLED:'false'},rates,discounts,verifyHuman:async()=>{}});
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../site');
 http.createServer(async(req,res)=>{
@@ -20,7 +20,7 @@ http.createServer(async(req,res)=>{
    else if(action==='quotes'&&req.method==='POST'){
     const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>41*1024*1024)throw Error('File too large');chunks.push(chunk);}
     const request=new Request(origin+req.url,{method:'POST',headers:req.headers,body:Buffer.concat(chunks)});const form=await request.formData();
-    result=await service.create(Buffer.from(await form.get('pack').arrayBuffer()),JSON.parse(form.get('details')),'demo');result.demo=true;
+    result=await service.create(Buffer.from(await form.get('pack').arrayBuffer()),JSON.parse(form.get('details')),'demo',form.get('pack').name);result.demo=true;
     }else if(action==='quote')result={...await service.get(id,req.headers.authorization?.replace(/^Bearer /,'')),demo:true};
     else if(action==='test-order'&&req.method==='POST')result={...await service.requestTestOrder(id,req.headers.authorization?.replace(/^Bearer /,'')),demo:true};
    else throw Error('Payments are disabled in the local demo.');

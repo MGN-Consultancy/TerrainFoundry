@@ -47,7 +47,7 @@ export function validateDiscounts(discounts=[]) {
  if(!Array.isArray(discounts)||discounts.length>100)throw new Error('Invalid discount configuration.');
  const codes=new Set();
  for(const d of discounts){
-  if(!d||typeof d.code!=='string'||!/^[A-Z0-9_-]{3,32}$/.test(d.code)||codes.has(d.code)||typeof d.enabled!=='boolean'||!Number.isInteger(d.percentBasisPoints)||d.percentBasisPoints<1||d.percentBasisPoints>10000)throw new Error('Invalid discount code.');
+  if(!d||typeof d.code!=='string'||!/^[A-Z0-9_-]{3,32}$/.test(d.code)||codes.has(d.code)||typeof d.enabled!=='boolean'||(d.mode!=='filament-only'&&(!Number.isInteger(d.percentBasisPoints)||d.percentBasisPoints<1||d.percentBasisPoints>10000))||(d.mode!==undefined&&d.mode!=='filament-only'))throw new Error('Invalid discount code.');
   codes.add(d.code);
   for(const key of ['startsAt','expiresAt'])if(typeof d[key]!=='string'||!/^\d{4}-\d\d-\d\dT.*Z$/.test(d[key])||!Number.isFinite(Date.parse(d[key])))throw new Error('Discount dates must be UTC timestamps.');
   if(Date.parse(d.expiresAt)<=Date.parse(d.startsAt))throw new Error('Invalid discount period.');
@@ -70,6 +70,12 @@ export function price(items,details,rates,{code='',discounts=[],now=Date.now()}=
  if(code){
   const d=discounts.find(d=>d.code===code&&d.enabled&&now>=Date.parse(d.startsAt)&&now<Date.parse(d.expiresAt));
   if(!d)throw new InputError('This discount code is invalid or has expired.');
+  if(d.mode==='filament-only'){
+   if(!estimate||d.sha256)throw new InputError('This code requires a filament estimate for the whole order.');
+   const filament=estimate.filamentCostPence;
+   if(filament>rates.maximumQuotePence)throw new InputError('This order is above the automatic quote limit.');
+   return {currency:'GBP',rateVersion:rates.version,basis:rates.basis,estimate,pieceCount:count,volumeCm3:+volumeCm3.toFixed(3),modelPence,piecePence,partsPence,setupPence:rates.setupPence,minimumApplied:false,printBeforeDiscountPence,discountPence:printBeforeDiscountPence-filament,discount:{code,mode:'filament-only'},printPence:filament,shippingPence:0,vatBasisPoints:rates.vatBasisPoints,vatPence:Math.round(filament*rates.vatBasisPoints/10000),totalPence:filament+Math.round(filament*rates.vatBasisPoints/10000)};
+  }
   const eligible=items.filter(item=>!d.sha256||d.sha256.includes(item.sha256));
   const eligibleModels=estimate?estimateParts(eligible,details,rates).chargePence:Math.ceil(eligible.reduce((n,item)=>n+item.volumeCm3*item.quantity,0)*rates.pencePerCm3);
   const eligiblePartsPence=Math.min(partsPence,eligibleModels+eligible.reduce((n,item)=>n+item.quantity,0)*rates.perPiecePence);

@@ -75,6 +75,8 @@ jobs:
           if($LASTEXITCODE -ne 0){throw 'Manifest signing failed'}
       - name: Verify launcher rejects modified manifests and installed files
         run: ./scripts/release/test-launcher.ps1
+      - name: Exercise first installation and cached updates with signed release fixtures
+        run: ./scripts/release/test-launcher-integration.ps1
       - name: Publish GitHub release assets
         env:
           GH_TOKEN: ${{ github.token }}

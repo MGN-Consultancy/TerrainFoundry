@@ -12,6 +12,8 @@ assert(verify('RSA-SHA256',previousBytes,await fs.readFile('release-config/updat
 const old=JSON.parse(previousBytes);
 assert.equal(old.repository,repo);
 const product=JSON.parse(await fs.readFile('release-config/product.json','utf8'));
+const expectedConnector=product.connector==='OpenLOCK'?'openlock-cc-by-nc-4.0':'foundry-link-v1';
+assert.equal(old.connector,expectedConnector,'Connector transition requires a full editor/scenery release before a launcher-only update');
 const version=product.launcherVersion;
 assert.match(version,/^\d+\.\d+\.\d+$/);
 assert.equal(JSON.parse(await fs.readFile('package.json','utf8')).version,version);

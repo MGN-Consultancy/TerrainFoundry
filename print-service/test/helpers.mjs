@@ -25,5 +25,5 @@ export class FakePayPal{
  async capture(id){this.captures++;const o=this.orders.get(id);o.status='COMPLETED';o.purchase_units[0].payments={captures:[{id:'CAPTURE-1',status:'COMPLETED',final_capture:true,amount:{...o.purchase_units[0].amount}}]};return o;}
  async verifiedEvent(){return this.validWebhook;}
 }
-export function fixture(){const store=new MemoryStore(),paypal=new FakePayPal();let time=Date.now();const service=makeService({store,paypal,env:{...env},rates:structuredClone(rates),now:()=>time,verifyHuman:async t=>{if(t!=='human')throw Error('Invalid anti-spam token');}});return {store,paypal,service,advance:n=>time+=n};}
+export function fixture(){const store=new MemoryStore(),paypal=new FakePayPal();let time=Date.now();const service=makeService({store,paypal,env:{...env,PRINT_COMMERCIAL_RIGHTS_APPROVED:'true'},rates:structuredClone(rates),now:()=>time,verifyHuman:async t=>{if(t!=='human')throw Error('Invalid anti-spam token');}});return {store,paypal,service,advance:n=>time+=n};}
 export async function quoted(f=fixture()){const quote=await f.service.create(pack(),details,'human');const secret=new URL(quote.url).hash.split('.')[1];return {...f,quote,secret};}

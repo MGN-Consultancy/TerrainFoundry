@@ -12,11 +12,12 @@ for(const k of KIT)test(k.id+': integrated geometry is closed and declared ports
  const geo=geometry(k.id,25.4,{},true),spec=connectionSpec(k.id),solid=meshSolid(wasm,geo);
  assert.equal(solid.status(),'NoError');const parts=solid.decompose();assert.equal(parts.length,1);parts.forEach(s=>s.delete());assert.ok(solid.volume()>0);
  geo.computeBoundingBox();assert.ok(Math.abs(geo.boundingBox.min.y)<.00001);if(spec.revision===3)assert.ok(spec.ports.length>0);else assert.equal(spec.ports.length,spec.kind==='floor'?4:spec.kind==='wall'?1:0);
- const cut=socketCut(wasm).translate([0,-3.5,0]).scale([.995,.995,.995]).translate([0,3.5,0]);
+ // A concave latch recess cannot be inset by uniform scaling: it moves notches into solid.
+ const cut=socketCut(wasm);
  for(const port of spec.ports){const transformed=cut.translate([0,-3.5,0]).rotate([port.roll||0,0,0]).rotate([0,port.angle,0]).translate([port.x,port.y??3.5,port.z]);const obstructed=solid.intersect(transformed);assert.ok(Math.abs(obstructed.volume())<.01,'port cavity is empty');obstructed.delete();transformed.delete();}
- // Independent round throat and blind-depth gauges for original Foundry Link.
- for(const port of spec.ports){for(const shape of [wasm.Manifold.cylinder(6.8,2.05,2.05,24,true).rotate([0,90,0]).translate([-3.5,3.5,0]),wasm.Manifold.cube([.5,1,1],true).translate([-7,3.5,0])]){
- const gauge=shape.translate([0,-3.5,0]).rotate([port.roll||0,0,0]).rotate([0,port.angle,0]).translate([port.x,port.y??3.5,port.z]);const hit=solid.intersect(gauge);assert.ok(Math.abs(hit.volume())<.01,'Foundry Link throat and blind depth');hit.delete();gauge.delete();shape.delete();
+ // Independent rectangular entrance and underside latch-relief gauges from the OpenLOCK dimensions.
+ for(const port of spec.ports){for(const shape of [wasm.Manifold.cube([1.8,4,13.8],true).translate([-.9,3.5,0]),wasm.Manifold.cube([4.5,5,13.8],true).translate([-8.35,3,0])]){
+ const gauge=shape.translate([0,-3.5,0]).rotate([port.roll||0,0,0]).rotate([0,port.angle,0]).translate([port.x,port.y??3.5,port.z]);const hit=solid.intersect(gauge);assert.ok(Math.abs(hit.volume())<.01,'OpenLOCK throat and blind depth');hit.delete();gauge.delete();shape.delete();
  }}
  cut.delete();solid.delete();geo.dispose();
 });
@@ -39,7 +40,7 @@ test('imported asset conversion is embedded and round-trips',()=>{
 test('print pack contains a physical coupon, assembly checks and honest clip instructions',()=>{
  const p=defaults();p.items=[piece('floor-small',0,0),piece('floor-small',1,0)];const pack=printFiles(p),files=Object.fromEntries(pack.files.map(f=>[f.name,f.data]));
  for(const name of ['fit-floor.stl','fit-wall.stl','floor-small.stl']){const v=new DataView(files[name].buffer);assert.equal(files[name].length,84+v.getUint32(80,true)*50);}
- const report=JSON.parse(files['connections.json']);assert.equal(report.clipCount,1);assert.equal(report.physicalFitVerified,false);assert.match(files['README.txt'],/Included foundry-link-pin.stl/);assert.match(files['quantities.csv'],/fit-floor.stl,1/);
+ const report=JSON.parse(files['connections.json']);assert.equal(report.clipCount,1);assert.equal(report.physicalFitVerified,false);assert.match(files['README.txt'],/Included openlock-clip.stl/);assert.match(files['quantities.csv'],/fit-floor.stl,1/);
 });
 
 test('standard floors reach 8mm without stacked slabs; walls retain height and half-inch footprint',()=>{

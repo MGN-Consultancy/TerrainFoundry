@@ -1,1 +1,1 @@
-import './generate-foundry-link.mjs';
+import './generate-clip.mjs';

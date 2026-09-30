@@ -1,6 +1,7 @@
-// Foundry Link: original cylindrical friction socket, CC0-1.0.
-// Historical function/field names remain only for saved-scene compatibility.
-// This profile is not OpenLOCK and does not claim physical compatibility.
+// Assembly code: MIT. The imported OpenLOCK socket profile and socketed
+// derivatives are CC BY-NC 4.0; see third-party/openlock/NOTICE.md.
+import {socketCut} from './openlock-profile.js';
+export {socketCut} from './openlock-profile.js';
 export const OPENLOCK_GRID=25.4;
 export const BASE_HEIGHT=8;
 export function meshSolid(wasm,geo){
@@ -10,10 +11,6 @@ export function meshSolid(wasm,geo){
  mesh.merge();const solid=new wasm.Manifold(mesh);
  if(solid.status()!=='NoError')throw Error('The model could not be converted to a closed printable solid: '+solid.status());
  return solid;
-}
-export function socketCut(wasm){
- const M=wasm.Manifold;
- return M.cylinder(10.4,2.2,2.2,48,true).rotate([0,90,0]).translate([-2.3,3.5,0]);
 }
 export function baseSpec(geo,category='Props',type=''){
  geo.computeBoundingBox();const b=geo.boundingBox;
@@ -57,12 +54,13 @@ export function connectAsset(wasm,geo,category,type=''){
  const cut=socketCut(wasm),cuts=spec.ports.map(p=>cut.rotate([0,p.angle,0]).translate([p.x,0,p.z]));
  const cavity=M.union(cuts);let solid=body.subtract(cavity);const components=solid.decompose();
  components.sort((a,b)=>Math.abs(b.volume())-Math.abs(a.volume()));
- const dust=components.slice(1);const connected=components.length===1||(dust.every(s=>Math.abs(s.volume())<.1)&&dust.reduce((v,s)=>v+Math.abs(s.volume()),0)<.1);
+ const componentVolumes=components.map(s=>s.volume());const dust=components.slice(1);const connected=components.length===1||(dust.every(s=>Math.abs(s.volume())<.1)&&dust.reduce((v,s)=>v+Math.abs(s.volume()),0)<.1);
  if(connected&&components.length>1){solid.delete();solid=components[0];dust.forEach(s=>s.delete());}else if(connected)components.forEach(s=>s.delete());
- if(solid.status()!=='NoError'||!connected)throw Error(type+': integrated connector is not one solid '+components.map(s=>s.volume()).join(','));
+ if(solid.status()!=='NoError'||!connected)throw Error(type+': integrated connector is not one solid ('+solid.status()+') '+componentVolumes.join(','));
  const data={...solidData(solid),openlock:spec,volume:solid.volume()};
  solid.delete();body.delete();cavity.delete();cut.delete();cuts.forEach(c=>c.delete());original.delete();return data;
 }
+
 
 
 

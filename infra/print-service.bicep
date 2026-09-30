@@ -38,6 +38,7 @@ resource function 'Microsoft.Web/sites@2023-12-01' = {
         { name: 'PRINT_ALLOWED_ORIGINS', value: '${siteOrigin},https://www.terrainfoundry.co.uk' }
         { name: 'PRINT_OPERATOR_EMAIL', value: 'nigel.webster@mgnconsultancy.co.uk' }
         { name: 'PRINT_SERVICE_ENABLED', value: 'false' }
+        { name: 'PRINT_COMMERCIAL_RIGHTS_APPROVED', value: 'false' }
         { name: 'PRINT_RATES_APPROVED', value: 'false' }
         { name: 'PRINT_TERMS_APPROVED', value: 'false' }
         { name: 'PAYPAL_ENV', value: 'sandbox' }

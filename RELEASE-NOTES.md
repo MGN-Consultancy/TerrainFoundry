@@ -1,10 +1,11 @@
-# Terrain Foundry 1.0.3 — simpler launcher
+# Terrain Foundry 1.1.0 — OpenLOCK non-commercial edition
 
-- Automatically checks for updates when opened, with a compact Update now / Not now offer only when needed.
-- A clear Open Editor button lets you continue with the installed editor after declining an update or when offline.
-- A progress bar shows downloads, unpacking and verification; Open Editor is enabled when ready.
-- First installation requires explicit Install now approval. No downloads start just from opening the launcher.
-- Preserves the selected installation folder, saved scenes, update verification and consent across launcher restarts.
-- Reuses the verified 1.0.0 editor and 15 scenery packs.
+- Restores the attributed OpenLOCK socket profile throughout all connected scenery, including the 431-piece dungeon range and 72 curved walls.
+- Replaces the round Foundry Link pin in new exports with Printable Scenery OpenLOCK Clip 5.4, preserving original attribution and the full CC BY-NC 4.0 licence.
+- Keeps scene layouts, stable asset IDs, sculpted detail and integrated wall/floor footings. Saved scenes use the restored sockets when opened with this release.
+- Labels the editor, installer, scenery packs and print exports accurately: MIT application code, CC0 original connector-free sculpts, CC BY-NC OpenLOCK profile/derivatives/clip.
+- Paid print ordering remains disabled unless separate commercial rights are obtained and verified.
 
-Published by MGN CONSULTANCY LIMITED, with timestamped Windows signatures. Source is MIT; original scenery and Foundry Link are CC0. Physical connector fit remains unverified.
+Use this edition for non-commercial printing under its supplied licence terms. Preserve attribution when sharing files. Previously printed round-pin parts are a different physical system. Print the included floor/wall/clip fit test first: CAD checks do not establish physical printer tolerances or certify OpenLOCK compatibility.
+
+The signed launcher continues to ask before installing updates. Local saved projects are preserved.

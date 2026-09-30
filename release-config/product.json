@@ -3,10 +3,9 @@
   "publisher": "MGN CONSULTANCY LIMITED",
   "channel": "stable",
   "minimumWindows": "10",
-  "connector": "Foundry Link",
-  "assetLicense": "CC0-1.0",
+  "connector": "OpenLOCK",
+  "assetLicense": "CC0-1.0 original sculpts; CC-BY-NC-4.0 OpenLOCK derivatives",
   "sourceLicense": "MIT",
   "schema": 1,
-  "launcherVersion": "1.0.3"
+  "launcherVersion": "1.1.0"
 }
-

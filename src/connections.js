@@ -1,6 +1,6 @@
 import {footprintsOverlap} from './footprints.js';
 import {connectionSpec} from './geometry.js';
-export const CONNECTOR_NOTICE='Foundry Link original connector / CC0-1.0. New circular friction-pin system; no OpenLOCK compatibility claim. Print a fit test before a full scene.';
+export const CONNECTOR_NOTICE='OpenLOCK socket profile adapted from https://github.com/caitlynb/OpenSCAD-OpenLock (caitlynb); clip by Printable Scenery: https://www.thingiverse.com/thing:1833963 . Socketed derivatives and clips: CC BY-NC 4.0, non-commercial use only, with attribution. https://creativecommons.org/licenses/by-nc/4.0/ . Print a fit test first; physical fit is not yet verified.';
 export function worldPorts(item,assets={}){
  const s=connectionSpec(item.type,assets);if(!s)return [];
  const r=item.rotation*Math.PI/180,c=Math.cos(r),sn=Math.sin(r);

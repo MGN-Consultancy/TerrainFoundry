@@ -1,5 +1,6 @@
 import {app} from '@azure/functions';
 import {Store} from './storage.mjs';
+import {fulfilment} from './fulfilment.mjs';
 import {paymentTests} from './payment-test.mjs';
 import {quotePath} from './service.mjs';
 import {PayPal} from './paypal.mjs';
@@ -19,21 +20,23 @@ function dependencies(){
   const result=await response.json();if(!result.success||result.hostname!==new URL(env.PRINT_SITE_ORIGIN).hostname||result.action!=='print-quote')throw new InputError('The anti-spam check expired. Please try again.');
  };
  let discounts;try{discounts=JSON.parse(env.PRINT_DISCOUNTS_JSON||'[]');}catch{discounts=null;}
- runtime={store,paymentTests:paymentTests({store,paypal:new PayPal({...env,PAYPAL_WEBHOOK_ID:env.PAYPAL_TEST_WEBHOOK_ID}),env}),service:makeService({store,paypal,env,rates,discounts,verifyHuman})};return runtime;
+ runtime={store,fulfilment:fulfilment({store,env}),paymentTests:paymentTests({store,paypal:new PayPal({...env,PAYPAL_WEBHOOK_ID:env.PAYPAL_TEST_WEBHOOK_ID}),env}),service:makeService({store,paypal,env,rates,discounts,verifyHuman})};return runtime;
 }
 const headers={'Cache-Control':'no-store','Content-Type':'application/json','X-Content-Type-Options':'nosniff'};
 export async function handler(request,context){
  const path=request.params.action||'config',id=request.params.id;
  try{
   if(path==='config'&&!env.PRINT_STORAGE_CONNECTION_STRING&&!env.AzureWebJobsStorage)return {jsonBody:{enabled:false,contact:'nigel.webster@mgnconsultancy.co.uk'},headers};
-  const {store,service,paymentTests}=dependencies();let result;
+  const {store,service,paymentTests,fulfilment}=dependencies();let result;
   if(request.method==='GET'&&path==='config')return {jsonBody:service.config(),headers};
   // Non-browser webhook uses PayPal's signature verification. All browser writes require the site origin.
   const origins=(env.PRINT_ALLOWED_ORIGINS||env.PRINT_SITE_ORIGIN||'').split(',');
   if(request.method==='POST'&&!['webhook','test-webhook'].includes(path)&&!origins.includes(request.headers.get('origin')))throw new InputError('Unapproved request origin.',403);
   await store.init();
   const secret=request.headers.get('authorization')?.replace(/^Bearer /,'');
-  if(request.method==='POST'&&path==='estimate'){
+  if(path==='workshop'&&request.method==='GET')result=await fulfilment.get(id,secret);
+  else if(path==='workshop'&&request.method==='POST'){if(Number(request.headers.get('content-length'))>2000)throw new InputError('Request too large.',413);result=await fulfilment.update(id,secret,await request.json());}
+  else if(request.method==='POST'&&path==='estimate'){
    const length=Number(request.headers.get('content-length'));if(!length||length>150000)throw new InputError('Invalid estimate size.',413);
    // App Service appends the observed peer; never trust a caller's leftmost forwarded address.
    const forwarded=(request.headers.get('x-forwarded-for')||'').split(',').at(-1).trim();

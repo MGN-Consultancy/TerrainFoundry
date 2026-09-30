@@ -1,9 +1,12 @@
+import {fulfilment} from './fulfilment.mjs';
 import {EmailClient} from '@azure/communication-email';
 import {customerPrice} from './customer-price.mjs';
 import {quotePath} from './service.mjs';
 
 const money=p=>'£'+(p/100).toFixed(2);
-export function emailFor(kind,q,{siteUrl,downloadUrl,operator}) {
+export function emailFor(kind,q,{siteUrl,downloadUrl,operator,workshopUrl}) {
+ if(['paymentTestCustomer','paymentTestOperator'].includes(kind))return {to:kind==='paymentTestOperator'?operator:q.customer.email,subject:'TEST PAYMENT RECEIVED — £0.10 — Terrain Foundry',text:`Your real £0.10 PayPal test payment completed successfully.\nReference: ${q.paymentTestReceipt.reference}\n\nNo printing or shipping will take place. This payment does not settle the scenery quotation.\nView confirmation: ${siteUrl}\nQuestions: ${operator}`};
+ if(['inProgress','shipped'].includes(kind))return {to:q.customer.email,subject:kind==='shipped'?'Your Terrain Foundry order has shipped':'Your Terrain Foundry order is in progress',text:`Order ${q.id}\n${kind==='shipped'?'Your order has shipped.':'Your order is now in progress.'}\n${kind==='shipped'&&q.fulfilment?.tracking?'Tracking: '+q.fulfilment.tracking+'\n':''}View your order: ${siteUrl}\nQuestions: ${operator}`};
  const summary=q.items.map(p=>`${p.quantity} × ${p.name}`).join('\n');
  const prefix=q.preview?'TEST ONLY — ':q.sandbox?'TEST ORDER — ':'';
  const reduction=q.price.discountPence?`Printing before discount: ${money(q.price.printBeforeDiscountPence)}\nParts discount (${q.price.discount.code}): -${money(q.price.discountPence)}\n`:'';
@@ -18,7 +21,7 @@ export function emailFor(kind,q,{siteUrl,downloadUrl,operator}) {
  if(kind==='paid')return {to:q.customer.email,subject:prefix+'Payment received — Terrain Foundry',text:`${common}\n\n${delivery}\n\nPayment received. We will check the sliced pieces in Bambu Studio before printing. We will contact you if there is a printability issue.\n\nOrder status: ${siteUrl}\nQuestions: ${operator}`};
  if(kind==='review')return {to:operator,subject:prefix+'ACTION REQUIRED — payment change '+q.id,text:`Do not start or ship this order until the payment has been reviewed in PayPal.\n\n${common}`};
  const a=q.customer.address;
- return {to:operator,subject:prefix+'PAID — print and ship '+q.id,text:`${common}\n\nCustomer: ${q.customer.email}\nShip to:\n${[a.name,a.line1,a.line2,a.city,a.region,a.postcode,a.country].filter(Boolean).join('\n')}\n\nCapture: ${q.captureId}\n\nDownload the manufacturing pack (private link, valid 24 hours):\n${downloadUrl}\n\n${q.manufacturingFormat==='3mf-v1'?'Open OPEN-IN-BAMBU.3mf once in Bambu Studio: all ordered copies, including listed connectors and fit-test pieces, are already included. Do not also import the fallback STLs.':'This older pack contains STLs: import them together and apply quantities.csv copy counts.'} Choose the requested printer, material and colour, use Arrange All across plates, slice and inspect supports before printing. This is a paid work order, not a remote printer command. Check payment has not been refunded before dispatch.\n\nFiles remain in the private print-orders storage container under packs/${q.id}.zip.`};
+ return {to:operator,subject:prefix+'PAID — print and ship '+q.id,text:`${common}\n\nCustomer: ${q.customer.email}\nShip to:\n${[a.name,a.line1,a.line2,a.city,a.region,a.postcode,a.country].filter(Boolean).join('\n')}\n\nCapture: ${q.captureId}\n\nDownload the manufacturing pack (private link, valid 24 hours):\n${downloadUrl}\n\n${q.manufacturingFormat==='3mf-v1'?'Open OPEN-IN-BAMBU.3mf once in Bambu Studio: all ordered copies, including listed connectors and fit-test pieces, are already included. Do not also import the fallback STLs.':'This older pack contains STLs: import them together and apply quantities.csv copy counts.'} Choose the requested printer, material and colour, use Arrange All across plates, slice and inspect supports before printing. This is a paid work order, not a remote printer command. Check payment has not been refunded before dispatch.\n\nManage this order (private workshop link; do not forward to customers):\n${workshopUrl}\n\nFiles remain in the private print-orders storage container under packs/${q.id}.zip.`};
 }
 
 export async function processNotifications({store,service,env=process.env,emailClient}) {
@@ -29,9 +32,9 @@ export async function processNotifications({store,service,env=process.env,emailC
   await store.lock(quotePath(current.id),async(q,save)=>{
    for(const [kind,state] of Object.entries(q.email)){
     if(!state.pending||state.retryAfter>Date.now())continue;
-     if((kind==='workshop'&&q.status!=='paid')||(q.preview&&['paid','workshop','review'].includes(kind))){state.pending=false;await save(q);continue;}
+     if((['inProgress','shipped'].includes(kind)&&(q.preview||q.sandbox||q.status!=='paid'))||(kind==='workshop'&&q.status!=='paid')||(q.preview&&['paid','workshop','review'].includes(kind))){state.pending=false;await save(q);continue;}
     try{
-     const mail=emailFor(kind,q,{operator:env.PRINT_OPERATOR_EMAIL,siteUrl:service.quoteUrl(q.id),downloadUrl:kind==='workshop'?store.downloadLink('packs/'+q.id+'.zip'):''});
+     const mail=emailFor(kind,q,{workshopUrl:fulfilment({store,env}).url(q.id),operator:env.PRINT_OPERATOR_EMAIL,siteUrl:service.quoteUrl(q.id),downloadUrl:kind==='workshop'?store.downloadLink('packs/'+q.id+'.zip'):''});
      // Persist the resumable provider operation, so retries poll the same email rather than resending it.
      const poller=await client.beginSend({senderAddress:env.PRINT_EMAIL_SENDER,replyTo:[{address:env.PRINT_OPERATOR_EMAIL,displayName:'Terrain Foundry'}],recipients:{to:[{address:mail.to}]},content:{subject:mail.subject,plainText:mail.text}},{...(state.operation?{resumeFrom:state.operation}:{}),updateIntervalInMs:1000});
      state.operation=poller.toString();await save(q);

@@ -13,7 +13,7 @@ test('10p payment settles only the separate test record, never the print quote o
  const f=await setup();const original=structuredClone(f.q);await f.tests.start(f.q,code,'https://example.test/return');await f.tests.start(f.q,code,'https://example.test/return');assert.equal(f.paypal.creates,1);
  const record=await f.store.get(paymentTestPath(f.q.id));assert.equal(record.price.totalPence,10);assert.equal(record.id,'test-'+f.q.id);
  f.paypal.orders.get(record.paypalOrderId).status='APPROVED';assert.equal((await f.tests.reconcile(f.q.id,true)).status,'paid');await f.tests.reconcile(f.q.id,true);assert.equal(f.paypal.captures,1);
- assert.deepEqual(await f.store.get(quotePath(f.q.id)),original);assert.equal((await f.store.get(paymentTestPath(f.q.id))).email,undefined);
+ const parent=await f.store.get(quotePath(f.q.id));assert.deepEqual(parent.price,original.price);assert.equal(parent.status,original.status);assert.equal(parent.email.workshop,undefined);assert.equal(parent.paymentTestReceipt.amountPence,10);assert.equal(parent.email.paymentTestCustomer.pending,true);assert.equal((await f.store.get(paymentTestPath(f.q.id))).email,undefined);
 });
 test('wrong code, other customer, expired code, disabled mode and sandbox fail closed',async()=>{
  const f=await setup();await assert.rejects(f.tests.start(f.q,'wrong','https://example.test'),/unavailable/);

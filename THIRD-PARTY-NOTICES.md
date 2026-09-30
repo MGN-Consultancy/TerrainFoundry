@@ -14,3 +14,28 @@ This release restores OpenLOCK for non-commercial use. The socket profile in src
 No commercial Terrain Tinker meshes or textures are included. Scenery is generated from the original procedural modelling source in this repository. Generic architectural dimensions and shapes are used; this audit is not a legal opinion or a guarantee that no third-party intellectual-property claims could ever exist.
 
 Terrain Foundry is independent of Wizards of the Coast, Printable Scenery, Terrain Tinker and Bambu Lab. Their names and trademarks are not licensed by CC0. Bambu Studio is a separate application; STL files are exported for the user to open and slice in it.
+
+
+## fflate (desktop ZIP export)
+
+MIT License
+
+Copyright (c) 2023 Arjun Barrett
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

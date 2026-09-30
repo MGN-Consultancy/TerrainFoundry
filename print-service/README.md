@@ -62,3 +62,23 @@ As of 1.1.0 the scenery uses attributed CC BY-NC OpenLOCK profiles and clips. Pa
 ## Invited quote testing
 
 See [PRICING.md](PRICING.md) for the A1/H2S PLA/PETG draft model, calibration, private test access and discount configuration. The dedicated email resources are defined in `infra/print-email.bicep`. Preview mode supports real quote emails and test requests, but cannot create PayPal orders, take money or queue production. Keep all commercial enablement flags false. Test records remain non-payable even after future live activation.
+
+
+## Single-file workshop import
+
+New quote packs include `OPEN-IN-BAMBU.3mf`, generated only from validated STL
+geometry and server-checked quantities. Open this file once in Bambu Studio;
+all copies, including listed OpenLOCK clips and fit tests, are present. The
+STLs and quantities.csv remain as fallback originals. Do not import both.
+This is unsliced millimetre geometry, with objects separated in a staging grid.
+Select printer/nozzle/material, Arrange All across plates, and inspect slicing
+before printing. It intentionally contains no machine profile or G-code.
+Older saved packs are unchanged; their workshop email retains STL instructions.
+Only verified paid orders receive a workshop download link; preview requests
+remain non-paying and cannot queue production.
+
+The operator reported obtaining separate OpenLOCK commercial permission on
+2026-09-30, including supplying clips. This does not relicense the public assets
+or grant commercial permission to other users. Keep the agreement privately
+with business records and follow its terms. Payment/rate/terms approvals and
+provider configuration remain separate from commercial-rights approval.

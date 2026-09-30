@@ -1,0 +1,30 @@
+import {zipSync,strToU8} from 'fflate';
+export function setupPrintEstimate({getProject,makePrintFiles}){
+ const dialog=document.createElement('dialog');dialog.id='estimate-dialog';dialog.innerHTML=`<div class="eyebrow">PRINT FOR ME</div><h2>Estimate print costs</h2><p>Compare the current website price for this scene. Only part measurements, identifiers and quantities are sent for the estimate. Your models and scene layout stay on this computer.</p><div class="estimate-options"><label>Material<select id="estimate-material"></select></label><label>Printer<select id="estimate-printer"></select></label><label>Colour<select id="estimate-colour"></select></label><label>Delivery country<select id="estimate-country"></select></label><label>Discount code (optional)<input id="estimate-discount" maxlength="32" placeholder="Enter code"></label></div><p id="estimate-status" role="status" aria-live="polite"></p><div id="estimate-result" hidden></div><p>These are estimates, not Bambu Studio sliced grams or hours. The website rechecks your uploaded pack and prices before a request. Saving a ZIP does not upload anything; choose that file on the website when you are ready.</p><div class="estimate-actions"><button id="close-estimate">Close</button><button id="calculate-estimate" class="primary" disabled>Calculate estimate</button><button id="estimate-website" hidden>Save pack & open website</button></div>`;document.body.append(dialog);
+ const $=id=>document.getElementById(id),status=$('estimate-status'),calculate=$('calculate-estimate'),website=$('estimate-website'),result=$('estimate-result');let files,sequence=0;
+ const money=p=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(p/100);
+ const selection=()=>Object.fromEntries(['material','printer','colour','country'].map(k=>[k,$('estimate-'+k).value]).concat([['discountCode',$('estimate-discount').value.trim()]]));
+ function row(label,value,total=false){const r=document.createElement('div');r.className='estimate-row'+(total?' estimate-total':'');const a=document.createElement('span'),b=document.createElement('strong');a.textContent=label;b.textContent=value;r.append(a,b);result.append(r);}
+ for(const field of dialog.querySelectorAll('input,select'))field.addEventListener('input',()=>{result.hidden=true;website.hidden=true;});
+ $('close-estimate').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{sequence++;files=null;});
+ $('estimate-print').onclick=async()=>{
+  const token=++sequence;result.hidden=true;website.hidden=true;calculate.disabled=true;status.textContent='Loading current pricing options…';dialog.showModal();
+  try{
+   if(!window.desktop?.printEstimateConfig)throw Error('Print estimates are available in the installed desktop client.');
+   if(!getProject().items.length)throw Error('Add some terrain to your scene first.');
+   const config=await window.desktop.printEstimateConfig();if(token!==sequence)return;
+   if(!config.enabled)throw Error('The website is not offering print estimates right now.');
+   for(const [key,options] of [['material',config.materials],['printer',config.printers],['colour',config.colours],['country',config.countries.map(id=>({id,label:id==='GB'?'United Kingdom':id}))]]){const select=$('estimate-'+key);select.replaceChildren(...options.map(o=>new Option(o.label,o.id)));if(!options.length)throw Error('No print options are currently available.');}
+   status.textContent='Preparing measurements from the current scene…';await new Promise(resolve=>setTimeout(resolve,20));if(token!==sequence)return;files=makePrintFiles(getProject()).files;
+   status.textContent=(config.cached?'Offline pricing options from '+new Date(config.fetchedAt).toLocaleString()+'. Only previously fetched estimates are available. ': 'Ready to calculate using the website’s current prices. ')+(config.preview?'Website requests are test-only: no payment, printing or shipping.':'');calculate.disabled=false;
+  }catch(error){if(token===sequence)status.textContent=error.message;}
+ };
+ calculate.onclick=async()=>{const token=sequence;calculate.disabled=true;website.hidden=true;result.hidden=true;status.textContent='Measuring your pieces and checking website prices…';
+  try{const estimate=await window.desktop.printEstimate(files,selection());if(token!==sequence)return;const p=estimate.price,e=p.estimate;result.replaceChildren();row('Estimated total',money(p.totalPence),true);row('Printed pieces, including connectors',String(p.pieceCount));
+   if(e){row('Estimated filament',e.grams+' g · '+e.material);row('Estimated print time',e.hours+' hours · '+e.printer);row('Filament cost',money(e.filamentCostPence));row('Machine time cost',money(e.machineCostPence));row('Manufacturing markup',money(e.markupPence));row('Parts handling',money(p.piecePence));row('Setup',money(p.setupPence));}
+   if(p.minimumApplied)row('Minimum charge','Applied');if(p.discountPence){row('Before discount',money(p.printBeforeDiscountPence));row('Parts discount ('+p.discount.code+')','−'+money(p.discountPence));}row('Printing',money(p.printPence));row('Postage',money(p.shippingPence));row('VAT',money(p.vatPence));result.hidden=false;website.hidden=false;
+   status.textContent=(estimate.cached?'OFFLINE — saved estimate from ':'Checked website prices at ')+new Date(estimate.estimatedAt).toLocaleString()+'. '+(estimate.preview?'Test estimate only. No payment or production.':'Advisory price; the website rechecks your pack.');
+  }catch(error){if(token===sequence)status.textContent=error.message;}finally{if(token===sequence)calculate.disabled=false;}
+ };
+ website.onclick=async()=>{website.disabled=true;try{const entries=Object.fromEntries(files.map(f=>[f.name,typeof f.data==='string'?strToU8(f.data):f.data]));const saved=await window.desktop.printWebsitePack(zipSync(entries));if(saved)status.textContent='Saved '+saved+'. Select this ZIP on the website. Nothing has been uploaded by the editor.';}catch(error){status.textContent=error.message;}finally{website.disabled=false;}};
+}

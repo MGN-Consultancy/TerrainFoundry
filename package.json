@@ -1,12 +1,12 @@
 {
   "name": "dnd-terrain-builder",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "description": "Offline tabletop terrain designer",
   "main": "desktop/main.cjs",
   "scripts": {
     "start": "electron .",
-    "build": "vite build",
+    "build": "node scripts/sync-estimate-geometry.mjs && vite build",
     "dev": "vite --host 127.0.0.1",
     "test": "node --test tests/*.test.mjs",
     "package": "pnpm build && node scripts/package.cjs",
@@ -22,6 +22,7 @@
     "generate:all": "node scripts/release/generate-all.mjs"
   },
   "dependencies": {
+    "fflate": "0.8.2",
     "three": "0.180.0"
   },
   "devDependencies": {

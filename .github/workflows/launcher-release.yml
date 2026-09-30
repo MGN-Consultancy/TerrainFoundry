@@ -23,6 +23,8 @@ jobs:
         with:
           node-version: '24'
       - run: ./scripts/release/build-launcher.ps1
+      - name: Check interactive startup and custom installation root
+        run: ./scripts/release/test-launcher-ui.ps1
       - uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}

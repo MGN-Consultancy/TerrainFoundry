@@ -1,5 +1,5 @@
 using System;using System.IO;using System.IO.Compression;using System.Net;using System.Net.Http;using System.Linq;using System.Text;using System.Collections.Generic;using System.Security.Cryptography;using System.Diagnostics;using System.Threading;using System.Threading.Tasks;using System.Web.Script.Serialization;using System.Windows.Forms;
-[assembly:System.Reflection.AssemblyVersion("1.0.1.0")]
+[assembly:System.Reflection.AssemblyVersion("1.0.2.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
  public class Launcher:Form {
@@ -7,18 +7,36 @@ namespace TerrainFoundry {
   #if TEST_TRANSPORT
   static string Root=Environment.GetEnvironmentVariable("TERRAIN_TEST_ROOT"),StateFile=Path.Combine(Root,"state.json");
 #else
-  static string Root=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"TerrainFoundryLauncher"),StateFile=Path.Combine(Root,"state.json");
+  static string Root=ResolveRoot(AppDomain.CurrentDomain.BaseDirectory),StateFile=Path.Combine(Root,"state.json");
+  static string ResolveRoot(string executableDirectory){return File.Exists(Path.Combine(executableDirectory,"installation.json"))?Path.GetFullPath(executableDirectory):Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"TerrainFoundryLauncher");}
 #endif
   static JavaScriptSerializer Json=new JavaScriptSerializer{MaxJsonLength=4194304};
   Label status=new Label{Dock=DockStyle.Fill,Text="Your worlds stay on this computer.",Padding=new Padding(24),AutoSize=false};
   Button update=new Button{Text="Install / check for updates",Dock=DockStyle.Bottom,Height=48},play=new Button{Text="Open installed editor (offline)",Dock=DockStyle.Bottom,Height=48};
+  Button install=new Button{Text="Install",Dock=DockStyle.Bottom,Height=48,Enabled=false};
+  string pendingEnvelope;Dictionary<string,object> pendingRelease;
+  static string approvedChannel;
   bool busy,launchAfterCancel,closeAfterCancel; CancellationTokenSource cancellation=new CancellationTokenSource(); static HttpClient http=new HttpClient{Timeout=TimeSpan.FromMinutes(30)};
-  [STAThread] public static void Main(string[] args){ServicePointManager.SecurityProtocol=SecurityProtocolType.Tls12;Directory.CreateDirectory(Root);using(var mutex=new Mutex(false,"Local\\TerrainFoundryLauncher")){if(!mutex.WaitOne(0))return;Application.EnableVisualStyles();Application.Run(new Launcher());}}
-  Launcher(){Icon=System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);Text="Terrain Foundry — MGN Consultancy";Width=560;Height=275;StartPosition=FormStartPosition.CenterScreen;Controls.Add(status);Controls.Add(play);Controls.Add(update);play.Enabled=File.Exists(StateFile);play.Click+=(s,e)=>{if(busy){launchAfterCancel=true;cancellation.Cancel();status.Text="Stopping the update; your installed editor will open offline…";}else Launch();};update.Click+=async(s,e)=>await Update();FormClosing+=(s,e)=>{if(busy){e.Cancel=true;closeAfterCancel=true;cancellation.Cancel();}};Shown+=async(s,e)=>{await Update();
+  [STAThread] public static void Main(string[] args){approvedChannel=args.FirstOrDefault(x=>x.StartsWith("--approved-channel="));ServicePointManager.SecurityProtocol=SecurityProtocolType.Tls12;Directory.CreateDirectory(Root);using(var mutex=new Mutex(false,"Local\\TerrainFoundryLauncher")){if(!mutex.WaitOne(0))return;Application.EnableVisualStyles();Application.Run(new Launcher());}}
+  Launcher(){
+   Icon=System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+   Text="Terrain Foundry - MGN Consultancy";Width=660;Height=480;MinimumSize=new System.Drawing.Size(600,440);StartPosition=FormStartPosition.CenterScreen;
+   Font=new System.Drawing.Font("Segoe UI",10);BackColor=System.Drawing.Color.FromArgb(16,39,31);ForeColor=System.Drawing.Color.FromArgb(244,220,160);
+   status.Padding=new Padding(24);status.Text="Checking for updates. Nothing will be downloaded without your approval.";
+   var publisher=new Label{Dock=DockStyle.Top,Height=68,Padding=new Padding(24,12,24,0),Text="TERRAIN FOUNDRY\nMGN CONSULTANCY LIMITED - Local projects - MIT / CC0"};
+   var location=new Label{Dock=DockStyle.Bottom,Height=44,Padding=new Padding(8,2,8,2),AutoEllipsis=true,Text="Installation folder:\n"+Root};
+   Controls.Add(status);Controls.Add(location);Controls.Add(install);Controls.Add(play);Controls.Add(update);Controls.Add(publisher);
+   foreach(var button in new[]{install,play,update}){button.FlatStyle=FlatStyle.Flat;button.BackColor=System.Drawing.Color.FromArgb(216,182,111);button.ForeColor=System.Drawing.Color.FromArgb(16,39,31);}
+   update.Text="Check for updates";play.Text="Open installed editor / continue offline";play.Enabled=File.Exists(StateFile);
+   play.Click+=(sender,e)=>{if(busy){launchAfterCancel=true;cancellation.Cancel();status.Text="Stopping the update; your installed editor will open offline-";}else Launch();};
+   update.Click+=async(sender,e)=>await Update();install.Click+=async(sender,e)=>await ApplyUpdate();
+   FormClosing+=(sender,e)=>{if(busy){e.Cancel=true;closeAfterCancel=true;cancellation.Cancel();}};
+   Shown+=async(sender,e)=>{await Update();
 #if TEST_TRANSPORT
- File.WriteAllText(Path.Combine(Root,"integration-result.txt"),status.Text);Environment.ExitCode=File.Exists(StateFile)?0:1;Close();
+    await ApplyUpdate();File.WriteAllText(Path.Combine(Root,"integration-result.txt"),status.Text);Environment.ExitCode=File.Exists(StateFile)?0:1;Close();
 #endif
-};}
+   };
+  }
   static Dictionary<string,object> Obj(object v){return (Dictionary<string,object>)v;}
   static string Str(Dictionary<string,object> o,string k){return Convert.ToString(o[k]);}
   static string Hash(string f){using(var s=File.OpenRead(f))using(var h=SHA256.Create())return BitConverter.ToString(h.ComputeHash(s)).Replace("-","").ToLowerInvariant();}
@@ -54,16 +72,60 @@ throw new Exception("The package does not have a valid MGN Consultancy publisher
  using(var limited=CancellationTokenSource.CreateLinkedTokenSource(cancellation.Token)){limited.CancelAfter(TimeSpan.FromSeconds(12));using(var response=await http.GetAsync("https://github.com/"+Repo+"/releases/latest/download/channel.json",HttpCompletionOption.ResponseHeadersRead,limited.Token)){response.EnsureSuccessStatusCode();using(var input=await response.Content.ReadAsStreamAsync())using(var output=new MemoryStream()){byte[] b=new byte[16384];int n;while((n=await input.ReadAsync(b,0,b.Length,limited.Token))>0){if(output.Length+n>4194304)throw new Exception("Manifest too large.");output.Write(b,0,n);}return Encoding.UTF8.GetString(output.ToArray());}}}
 #endif
 }
-  new async Task Update(){if(busy)return;busy=true;cancellation=new CancellationTokenSource();update.Enabled=false;play.Enabled=File.Exists(StateFile);try{status.Text="Checking the signed GitHub release…";http.DefaultRequestHeaders.UserAgent.ParseAdd("TerrainFoundryLauncher/1.0");string envelope=await FetchManifest();if(envelope.Length>4194304)throw new Exception("Manifest too large.");var outer=Json.Deserialize<Dictionary<string,object>>(envelope);byte[] payload=Convert.FromBase64String(Str(outer,"payload")),signature=Convert.FromBase64String(Str(outer,"signature"));using(var rsa=new RSACryptoServiceProvider()){using(var stream=typeof(Launcher).Assembly.GetManifestResourceStream("update-public.xml"))using(var reader=new StreamReader(stream))rsa.FromXmlString(reader.ReadToEnd());if(!rsa.VerifyData(payload,"SHA256",signature))throw new Exception("Release signature invalid.");}
-    var release=VerifyEnvelope(envelope);if(Convert.ToInt32(release["schema"])!=1||Str(release,"repository")!=Repo)throw new Exception("Unsupported release.");long sequence=Convert.ToInt64(release["sequence"]);if(File.Exists(StateFile)&&sequence<Convert.ToInt64(ReadState()["sequence"]))throw new Exception("Refusing an older update manifest.");
-    var launcher=Obj(release["launcher"]);if(new Version(Str(launcher,"version"))>typeof(Launcher).Assembly.GetName().Version){string next=Path.Combine(Root,"TerrainFoundryLauncher-next.exe");await Download(launcher,next);await Task.Run(()=>VerifyPublisher(next));if(System.Reflection.AssemblyName.GetAssemblyName(next).Version!=new Version(Str(launcher,"version")))throw new Exception("Launcher version mismatch.");string destination=Path.Combine(Root,"TerrainFoundryLauncher.exe");File.Copy(next,destination+".pending",true);WriteRestart(destination);status.Text="Launcher update verified. Restarting…";busy=false;Close();return;}
-    string client=await Install(Obj(release["client"]),true);var assets=new Dictionary<string,string>();foreach(var p in (System.Collections.IEnumerable)release["assets"]){var asset=Obj(p);assets.Add(Str(asset,"id"),await Install(asset,false));}
-    var state=new Dictionary<string,object>{{"schema",1},{"sequence",sequence},{"version",release["version"]},{"client",client},{"assets",assets},{"envelope",envelope}};Atomic(StateFile,Json.Serialize(state));status.Text="Ready — "+Str(release,"version")+". Your scenes remain on this PC. Updates apply the next time you open the editor.";
-   }catch(Exception e){status.Text="Update unavailable: "+e.Message+(File.Exists(StateFile)?"\nYour installed editor is still available offline.":"\nFirst installation requires a published release and an internet connection.");}finally{busy=false;update.Enabled=true;play.Enabled=File.Exists(StateFile);if(closeAfterCancel){Close();}else if(launchAfterCancel){launchAfterCancel=false;Launch();}}}
-  static void WriteRestart(string target){string script=Path.Combine(Root,"finish-launcher-update.ps1");string t=target.Replace("'","''");File.WriteAllText(script,"$ErrorActionPreference='Stop';Wait-Process -Id "+Process.GetCurrentProcess().Id+" -ErrorAction SilentlyContinue;Move-Item -LiteralPath '"+t+".pending' -Destination '"+t+"' -Force;Start-Process -FilePath '"+t+"'");var restart=new ProcessStartInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System),"WindowsPowerShell","v1.0","powershell.exe"),"-NoProfile -NonInteractive -WindowStyle Hidden -File \""+script+"\""){UseShellExecute=false,CreateNoWindow=true};restart.EnvironmentVariables["PSModulePath"]=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System),"WindowsPowerShell","v1.0","Modules");Process.Start(restart);}
+  static string EnvelopeHash(string envelope){using(var h=SHA256.Create())return BitConverter.ToString(h.ComputeHash(Encoding.UTF8.GetBytes(envelope))).Replace("-","").ToLowerInvariant();}
+  static string Summarize(Dictionary<string,object> release){
+   long bytes=0;int packs=0;bool clientNeeded=!File.Exists(Path.Combine(Root,"packages",SafeHash(Str(Obj(release["client"]),"sha256")),"verified.json"));
+   if(clientNeeded)bytes+=Convert.ToInt64(Obj(release["client"])["size"]);
+   foreach(var p in (System.Collections.IEnumerable)release["assets"]){var asset=Obj(p);if(!File.Exists(Path.Combine(Root,"packages",SafeHash(Str(asset,"sha256")),"verified.json"))){packs++;bytes+=Convert.ToInt64(asset["size"]);}}
+   bool launcherNeeded=new Version(Str(Obj(release["launcher"]),"version"))>typeof(Launcher).Assembly.GetName().Version;
+   if(launcherNeeded)bytes+=Convert.ToInt64(Obj(release["launcher"])["size"]);
+   return "Release "+Str(release,"version")+" is available.\n\n"+(launcherNeeded?"Launcher update included.\n":"")+(clientNeeded?"Editor download included.\n":"Your cached editor will be reused.\n")+packs+" scenery packs to download.\nDownload size: "+(bytes/1048576.0).ToString("0.0")+" MB.\n\nChoose Install / update to continue. Your saved scenes are preserved.";
+  }
+  new async Task Update(){
+   if(busy)return;busy=true;cancellation=new CancellationTokenSource();update.Enabled=false;install.Enabled=false;pendingRelease=null;pendingEnvelope=null;
+   try{
+    status.Text="Checking the signed GitHub release- No packages are being downloaded.";
+    http.DefaultRequestHeaders.UserAgent.ParseAdd("TerrainFoundryLauncher/"+typeof(Launcher).Assembly.GetName().Version);
+    string envelope=await FetchManifest();var release=VerifyEnvelope(envelope);
+    if(Convert.ToInt32(release["schema"])!=1||Str(release,"repository")!=Repo)throw new Exception("Unsupported release.");
+    if(File.Exists(StateFile)&&Convert.ToInt64(release["sequence"])<Convert.ToInt64(ReadState()["sequence"]))throw new Exception("Refusing an older update manifest.");
+    pendingEnvelope=envelope;pendingRelease=release;
+    bool current=File.Exists(StateFile)&&Str(ReadState(),"envelope")==envelope&&new Version(Str(Obj(release["launcher"]),"version"))<=typeof(Launcher).Assembly.GetName().Version;
+    status.Text=current?"You are up to date - "+Str(release,"version")+".\n\nOpen the installed editor to start building. Your projects stay on this computer.":Summarize(release);
+    install.Text=File.Exists(StateFile)?"Install / update":"Install editor and scenery";install.Enabled=!current;
+   }catch(Exception e){status.Text="Update check unavailable: "+e.Message+(File.Exists(StateFile)?"\nYour installed editor is still available offline.":"\nFirst installation requires internet.");}
+   finally{busy=false;update.Enabled=true;play.Enabled=File.Exists(StateFile);}
+   if(closeAfterCancel){Close();return;}if(launchAfterCancel){launchAfterCancel=false;Launch();return;}
+   if(pendingEnvelope!=null&&approvedChannel=="--approved-channel="+EnvelopeHash(pendingEnvelope)){approvedChannel=null;await ApplyUpdate();}
+  }
+  async Task ApplyUpdate(){
+   if(busy||pendingRelease==null)return;busy=true;cancellation=new CancellationTokenSource();update.Enabled=false;install.Enabled=false;
+   try{
+    var release=pendingRelease;string envelope=pendingEnvelope;var launcher=Obj(release["launcher"]);
+    if(new Version(Str(launcher,"version"))>typeof(Launcher).Assembly.GetName().Version){
+     string next=Path.Combine(Root,"TerrainFoundryLauncher-next.exe");await Download(launcher,next);await Task.Run(()=>VerifyPublisher(next));
+     if(System.Reflection.AssemblyName.GetAssemblyName(next).Version!=new Version(Str(launcher,"version")))throw new Exception("Launcher version mismatch.");
+     string destination=Path.Combine(Root,"TerrainFoundryLauncher.exe");File.Copy(next,destination+".pending",true);
+     WriteRestart(destination,EnvelopeHash(envelope));status.Text="Launcher update verified. Restarting to finish your approved update-";busy=false;Close();return;
+    }
+    string client=await Install(Obj(release["client"]),true);var assets=new Dictionary<string,string>();
+    foreach(var p in (System.Collections.IEnumerable)release["assets"]){var asset=Obj(p);assets.Add(Str(asset,"id"),await Install(asset,false));}
+    var state=new Dictionary<string,object>{{"schema",1},{"sequence",release["sequence"]},{"version",release["version"]},{"client",client},{"assets",assets},{"envelope",envelope}};
+    Atomic(StateFile,Json.Serialize(state));status.Text="Ready - "+Str(release,"version")+".\n\nOpen the installed editor. Your scenes remain on this PC. Updates apply the next time you open the editor.";
+    pendingRelease=null;pendingEnvelope=null;
+   }catch(Exception e){status.Text="Update not applied: "+e.Message+(File.Exists(StateFile)?"\nYour installed editor is still available offline.":"\nYou can retry the installation.");}
+   finally{busy=false;update.Enabled=true;install.Enabled=pendingRelease!=null;play.Enabled=File.Exists(StateFile);if(closeAfterCancel)Close();else if(launchAfterCancel){launchAfterCancel=false;Launch();}}
+  }
+static void WriteRestart(string target,string approvedHash){string script=Path.Combine(Root,"finish-launcher-update.ps1");string t=target.Replace("'","''");File.WriteAllText(script,"$ErrorActionPreference='Stop';Wait-Process -Id "+Process.GetCurrentProcess().Id+" -ErrorAction SilentlyContinue;Move-Item -LiteralPath '"+t+".pending' -Destination '"+t+"' -Force;Start-Process -FilePath '"+t+"' -ArgumentList '--approved-channel="+approvedHash+"'");var restart=new ProcessStartInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System),"WindowsPowerShell","v1.0","powershell.exe"),"-NoProfile -NonInteractive -WindowStyle Hidden -File \""+script+"\""){UseShellExecute=false,CreateNoWindow=true};restart.EnvironmentVariables["PSModulePath"]=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System),"WindowsPowerShell","v1.0","Modules");Process.Start(restart);}
   async void Launch(){if(busy)return;busy=true;play.Enabled=false;try{var state=ReadState();string client=Str(state,"client");var release=VerifyEnvelope(Str(state,"envelope"));await Task.Run(()=>CheckInventory(client,Obj(release["client"])));var assets=Obj(state["assets"]);foreach(var a in (System.Collections.IEnumerable)release["assets"]){var pack=Obj(a);await Task.Run(()=>CheckInventory(Convert.ToString(assets[Str(pack,"id")]),pack));}var start=new ProcessStartInfo(Path.Combine(client,"TerrainFoundry.exe")){UseShellExecute=false,WorkingDirectory=client};start.EnvironmentVariables["TERRAIN_ASSET_PACKS"]=Json.Serialize(assets);Process.Start(start);status.Text="Editor opened. Projects are saved locally.";}catch(Exception e){status.Text=e.Message;}finally{busy=false;play.Enabled=File.Exists(StateFile);}}
  }
 }
+
+
+
+
+
+
 
 
 

@@ -41,7 +41,7 @@ function renderQuote(){
  buttons['confirm-payment'].hidden=buttons.pay.hidden;
  buttons['test-order'].hidden=!q.preview||q.status!=='quoted'||expired;
  buttons['save-quote'].disabled=false;buttons['copy-quote'].disabled=false;
- document.getElementById('quote-reference').textContent='Reference '+q.id.slice(0,8).toUpperCase();
+ document.getElementById('quote-reference').textContent=q.status==='payment-review'?'Payment review required'+(q.sandbox?' · Sandbox':''):(q.preview?'Test only · ':q.sandbox?'Sandbox · ':'')+'Reference '+q.id.slice(0,8).toUpperCase();
 }
 function showQuote(q){
  currentQuote=q;renderQuote();

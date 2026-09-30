@@ -4,6 +4,7 @@ import {PayPal} from './paypal.mjs';
 import {makeService} from './service.mjs';
 import {InputError,LIMITS} from './geometry.mjs';
 import {processNotifications,cleanup} from './notifications.mjs';
+import {isIP} from 'node:net';
 
 const env=process.env;let runtime;
 function dependencies(){
@@ -32,7 +33,10 @@ export async function handler(request,context){
   const secret=request.headers.get('authorization')?.replace(/^Bearer /,'');
   if(request.method==='POST'&&path==='estimate'){
    const length=Number(request.headers.get('content-length'));if(!length||length>150000)throw new InputError('Invalid estimate size.',413);
-   result=await service.estimate(await request.json());
+   // App Service appends the observed peer; never trust a caller's leftmost forwarded address.
+   const forwarded=(request.headers.get('x-forwarded-for')||'').split(',').at(-1).trim();
+   const peer=forwarded.startsWith('[')?forwarded.slice(1,forwarded.indexOf(']')):isIP(forwarded)?forwarded:forwarded.replace(/:\d+$/,'');
+   result=await service.estimate(await request.json(),isIP(peer)?peer:'unknown');
   }else if(request.method==='POST'&&path==='quotes'){
    const length=Number(request.headers.get('content-length'));if(!length||length>LIMITS.upload+100000)throw new InputError('Upload is missing or larger than 40 MB.',413);
    const form=await request.formData(),file=form.get('pack');if(!file||typeof file.arrayBuffer!=='function'||file.size>LIMITS.upload)throw new InputError('Choose a ZIP print pack under 40 MB.');

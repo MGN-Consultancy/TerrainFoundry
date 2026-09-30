@@ -7,11 +7,11 @@ const connectedCache=new Map();
 export function connectionSpec(type,assets={}){return builtinIndex[type]?.openlock;}
 export function geometry(type,g,assets={},openlock=false){
  if(!openlock)return original(type,g,assets);
- if(Math.abs(g-25.4)>.00001)throw Error('Foundry Link requires a 25.4 mm grid. Do not scale connectors.');
+ if(Math.abs(g-25.4)>.00001)throw Error('OpenLOCK requires a 25.4 mm grid. Do not scale connectors.');
  if(assets[type])return original(type,g,assets);
  if(connectedCache.has(type))return connectedCache.get(type).clone();
  const data=builtinData(type,true)||builtinData({'fit-floor':'floor','fit-wall':'wall-low'}[type],true);
- if(!data)throw Error('This imported model needs an Foundry Link base.');
+ if(!data)throw Error('This imported model needs an OpenLOCK base.');
  const geo=new THREE.BufferGeometry();
  geo.setAttribute('position',new THREE.Float32BufferAttribute(data.positions,3));
  geo.setAttribute('color',new THREE.Float32BufferAttribute(data.colors,3));geo.setIndex(new THREE.Uint32BufferAttribute(data.indices,1));

@@ -10,13 +10,13 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=r
   await page.locator('#confirm-print').click();await page.waitForFunction(()=>!document.querySelector('#print-dialog').open);
   const pack=(await fs.readdir(dir)).find(n=>n.startsWith('TerrainFoundry-'));
   const report=JSON.parse(await fs.readFile(path.join(dir,pack,'connections.json')));assert.equal(report.totalClipQuantity,13);
-  const clip=await fs.readFile(path.join(dir,pack,'foundry-link-pin.stl'));assert.equal(clip.length,37284);
-  assert.match(await fs.readFile(path.join(dir,pack,'quantities.csv'),'utf8'),/foundry-link-pin.stl,13,/);
+  const clip=await fs.readFile(path.join(dir,pack,'openlock-clip.stl'));assert.equal(clip.length,37284);
+  assert.match(await fs.readFile(path.join(dir,pack,'quantities.csv'),'utf8'),/openlock-clip.stl,13,/);
   await page.locator('#fit-test').click();await page.waitForFunction(()=>document.querySelector('.toast')?.textContent.startsWith('Fit test exported:'));
   const fit=(await fs.readdir(dir)).find(n=>n.startsWith('TerrainFoundry-')&&n!==pack);
-  assert.deepEqual(await fs.readFile(path.join(dir,fit,'foundry-link-pin.stl')),clip);
-  assert.match(await fs.readFile(path.join(dir,fit,'quantities.csv'),'utf8'),/foundry-link-pin.stl,1,/);
-  assert.match(await fs.readFile(path.join(dir,fit,'FOUNDRY-LINK-NOTICE.txt'),'utf8'),/Printable Scenery/);
+  assert.deepEqual(await fs.readFile(path.join(dir,fit,'openlock-clip.stl')),clip);
+  assert.match(await fs.readFile(path.join(dir,fit,'quantities.csv'),'utf8'),/openlock-clip.stl,1,/);
+  assert.match(await fs.readFile(path.join(dir,fit,'OPENLOCK-CLIP-NOTICE.txt'),'utf8'),/Printable Scenery/);
   assert.deepEqual(errors,[]);console.log('PASS: packaged offline scene export includes clip, count 13, attribution; fit-test export includes clip, count 1. '+dir);
  }finally{await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows().forEach(w=>w.destroy()));await app.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

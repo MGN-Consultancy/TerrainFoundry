@@ -42,6 +42,6 @@ for(const [id,name,category,build]of specs){let solid=build();if(solid.status()!
  connected[id]=cleanMeshData(connectAsset(wasm,geo,category,id));geo.dispose();solid.delete();console.log(id,data.indices.length/3);
 }
 await fs.writeFile('src/generated/caves.json',JSON.stringify(raw));await fs.writeFile('src/generated/openlock.json',JSON.stringify(connected));
-await fs.writeFile('src/cave-kit.js','export const CAVE_KIT = '+JSON.stringify(specs.map(([id,name,category])=>({id,name,category,icon:'',hint:'Caverns / sculpted rock / integrated Foundry Link'})),null,2)+';\n');
+await fs.writeFile('src/cave-kit.js','export const CAVE_KIT = '+JSON.stringify(specs.map(([id,name,category])=>({id,name,category,icon:'',hint:'Caverns / sculpted rock / integrated OpenLOCK'})),null,2)+';\n');
 
 

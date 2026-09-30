@@ -7,7 +7,9 @@ import {settled} from './paypal.mjs';
 export const quotePath=id=>'quotes/'+id+'.json';
 export function makeService({store,paypal,env=process.env,rates,now=()=>Date.now(),verifyHuman}) {
  const ttl=7*86400000;
- const configured=()=>env.PRINT_SERVICE_ENABLED==='true'&&env.PRINT_RATES_APPROVED==='true'&&env.PRINT_TOKEN_SECRET?.length>=32&&env.PRINT_TERMS_APPROVED==='true'&&['PAYPAL_MERCHANT_ID','PAYPAL_WEBHOOK_ID','PAYPAL_CLIENT_ID','PAYPAL_CLIENT_SECRET','PRINT_SITE_ORIGIN','ACS_EMAIL_CONNECTION_STRING','PRINT_EMAIL_SENDER','PRINT_OPERATOR_EMAIL','TURNSTILE_SITE_KEY','TURNSTILE_SECRET_KEY'].every(k=>!!env[k]);
+ // This edition includes CC BY-NC OpenLOCK assets. Enabling payments requires
+ // separately documented commercial permissions covering every relevant right.
+ const configured=()=>env.PRINT_COMMERCIAL_RIGHTS_APPROVED==='true'&&env.PRINT_SERVICE_ENABLED==='true'&&env.PRINT_RATES_APPROVED==='true'&&env.PRINT_TOKEN_SECRET?.length>=32&&env.PRINT_TERMS_APPROVED==='true'&&['PAYPAL_MERCHANT_ID','PAYPAL_WEBHOOK_ID','PAYPAL_CLIENT_ID','PAYPAL_CLIENT_SECRET','PRINT_SITE_ORIGIN','ACS_EMAIL_CONNECTION_STRING','PRINT_EMAIL_SENDER','PRINT_OPERATOR_EMAIL','TURNSTILE_SITE_KEY','TURNSTILE_SECRET_KEY'].every(k=>!!env[k]);
  const token=id=>createHmac('sha256',env.PRINT_TOKEN_SECRET).update('quote:'+id).digest('hex');
  function authorize(id,secret){if(!/^[a-f0-9]{32}$/.test(id)||!secret||!/^[a-f0-9]{64}$/.test(secret)||!timingSafeEqual(Buffer.from(token(id)),Buffer.from(secret)))throw new InputError('This quote link is invalid.',404);}
  function ready(){if(!configured())throw new InputError('Print orders are not open yet. Please check back soon.',503);validateRates(rates);}

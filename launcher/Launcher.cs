@@ -1,5 +1,5 @@
 using System;using System.IO;using System.IO.Compression;using System.Net;using System.Net.Http;using System.Linq;using System.Text;using System.Collections.Generic;using System.Security.Cryptography;using System.Diagnostics;using System.Threading;using System.Threading.Tasks;using System.Web.Script.Serialization;using System.Windows.Forms;
-[assembly:System.Reflection.AssemblyVersion("1.0.3.0")]
+[assembly:System.Reflection.AssemblyVersion("1.1.0.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
  public class Launcher:Form {
@@ -25,7 +25,7 @@ namespace TerrainFoundry {
    Icon=System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
    Text="Terrain Foundry - MGN Consultancy";Width=620;Height=420;MinimumSize=new System.Drawing.Size(620,420);StartPosition=FormStartPosition.CenterScreen;
    Font=new System.Drawing.Font("Segoe UI",10);BackColor=System.Drawing.Color.FromArgb(16,39,31);ForeColor=System.Drawing.Color.FromArgb(244,220,160);
-   var publisher=new Label{Dock=DockStyle.Top,Height=68,Padding=new Padding(24,12,24,0),Text="TERRAIN FOUNDRY\nMGN CONSULTANCY LIMITED - Local projects - MIT / CC0"};
+   var publisher=new Label{Dock=DockStyle.Top,Height=68,Padding=new Padding(24,12,24,0),Text="TERRAIN FOUNDRY\nMGN CONSULTANCY LIMITED - Local projects - OpenLOCK: non-commercial"};
    var location=new Label{Dock=DockStyle.Bottom,Height=44,Padding=new Padding(24,2,24,2),AutoEllipsis=true,Text="Installation folder:\n"+Root};
    var actions=new FlowLayoutPanel{Dock=DockStyle.Bottom,Height=60,Padding=new Padding(24,8,0,8)};actions.Controls.Add(play);
    var progressArea=new Panel{Dock=DockStyle.Bottom,Height=28,Padding=new Padding(24,6,24,6)};progressArea.Controls.Add(progress);
@@ -60,7 +60,7 @@ throw new Exception("The package does not have a valid MGN Consultancy publisher
    #if TEST_TRANSPORT
    string fixture=Path.Combine(Environment.GetEnvironmentVariable("TERRAIN_TEST_RELEASE"),Path.GetFileName(new Uri(url).AbsolutePath));await Task.Run(()=>File.Copy(fixture,destination,true));if(new FileInfo(destination).Length!=size||Hash(destination)!=hash)throw new Exception("Fixture checksum mismatch.");return null;
 #else
-   using(var response=await http.GetAsync(url,HttpCompletionOption.ResponseHeadersRead,cancellation.Token)){response.EnsureSuccessStatusCode();using(var input=await response.Content.ReadAsStreamAsync())using(var output=new FileStream(destination,FileMode.Create,FileAccess.Write)){byte[] buffer=new byte[131072];long total=0;int n;while((n=await input.ReadAsync(buffer,0,buffer.Length,cancellation.Token))>0){total+=n;if(total>size)throw new Exception("Package exceeds signed size.");await output.WriteAsync(buffer,0,n,cancellation.Token);Progress("Downloading "+Str(p,"name")+" — "+(total*100/size)+"%",(int)(total*100/size));}if(total!=size)throw new Exception("Incomplete package.");}}
+   using(var response=await http.GetAsync(url,HttpCompletionOption.ResponseHeadersRead,cancellation.Token)){response.EnsureSuccessStatusCode();using(var input=await response.Content.ReadAsStreamAsync())using(var output=new FileStream(destination,FileMode.Create,FileAccess.Write)){byte[] buffer=new byte[131072];long total=0;int n;while((n=await input.ReadAsync(buffer,0,buffer.Length,cancellation.Token))>0){total+=n;if(total>size)throw new Exception("Package exceeds signed size.");await output.WriteAsync(buffer,0,n,cancellation.Token);Progress("Downloading "+Str(p,"name")+" â€” "+(total*100/size)+"%",(int)(total*100/size));}if(total!=size)throw new Exception("Incomplete package.");}}
    if(await Task.Run(()=>Hash(destination))!=hash)throw new Exception("Package checksum mismatch.");return null;
 #endif
   }
@@ -128,6 +128,7 @@ static void WriteRestart(string target,string approvedHash){string script=Path.C
   async void Launch(){if(busy)return;busy=true;play.Enabled=false;offer.Visible=false;Progress("Checking installed editor and scenery...");try{var state=ReadState();string client=Str(state,"client");var release=VerifyEnvelope(Str(state,"envelope"));await Task.Run(()=>CheckInventory(client,Obj(release["client"])));var assets=Obj(state["assets"]);foreach(var a in (System.Collections.IEnumerable)release["assets"]){var pack=Obj(a);await Task.Run(()=>CheckInventory(Convert.ToString(assets[Str(pack,"id")]),pack));}var start=new ProcessStartInfo(Path.Combine(client,"TerrainFoundry.exe")){UseShellExecute=false,WorkingDirectory=client};start.EnvironmentVariables["TERRAIN_ASSET_PACKS"]=Json.Serialize(assets);Process.Start(start);status.Text="Editor opened. Projects are saved locally.";}catch(Exception e){status.Text=e.Message;}finally{busy=false;StopProgress();play.Enabled=File.Exists(StateFile);}}
  }
 }
+
 
 
 

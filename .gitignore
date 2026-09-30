@@ -23,7 +23,6 @@ launcher/generated/
 release-config/*private*
 assets-source/connectors/*.stl
 work/
-third-party/openlock/
 public/dungeon-range/
 src/generated/*.json
 !src/generated/builtin-index.json

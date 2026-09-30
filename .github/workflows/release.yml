@@ -32,7 +32,7 @@ jobs:
         with:
           version: '11.19.0'
       - run: pnpm install --frozen-lockfile
-      - name: Generate original scenery and Foundry Link from source
+      - name: Generate scenery with attributed non-commercial OpenLOCK connections
         run: node scripts/release/generate-all.mjs
       - name: Verify meshes, layouts, connector and updater
         run: node --test tests/*.test.mjs
@@ -89,3 +89,4 @@ jobs:
           $args+=(Get-ChildItem release/publish -File | Where-Object Name -ne 'package-files.json' | ForEach-Object FullName)
           & gh @args
           if($LASTEXITCODE -ne 0){throw 'Release publication failed'}
+

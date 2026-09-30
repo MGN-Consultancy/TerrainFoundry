@@ -11,7 +11,7 @@ Before accepting live orders, supply the actual volume/piece/setup/minimum tarif
 ## Pricing and file interpretation
 
 - The server reads binary or ASCII STL geometry and the exact exported `quantities.csv` contract. CSV dimensions and client-supplied prices are never trusted. Quantity counts include clips and fit-test parts.
-- The tariff is based on **enclosed model volume**, per-piece handling, setup/minimum price, shipping and VAT, calculated in integer pence. This is not sliced filament usage or predicted printer hours. It needs commercial calibration with representative Bambu Studio slices before approval. Example rates are 8p/cm³ + 25p/copy + £3 setup, £10 minimum print price, £4.95 GB shipping and 0% VAT; these are deliberately unapproved.
+- The tariff is based on **enclosed model volume**, per-piece handling, setup/minimum price, shipping and VAT, calculated in integer pence. This is not sliced filament usage or predicted printer hours. It needs commercial calibration with representative Bambu Studio slices before approval. Example rates are 8p/cmÂ³ + 25p/copy + Â£3 setup, Â£10 minimum print price, Â£4.95 GB shipping and 0% VAT; these are deliberately unapproved.
 - Validate finite geometry, build-volume limits, nondegenerate triangles and closed consistently oriented edges. This does not detect every self-intersection, internal overlap, support requirement or fit issue. Operators must inspect the Bambu Studio slice before printing and contact/refund customers if a model cannot be manufactured.
 - Limits: 40 MB compressed, 160 MB expanded, 180 archive entries, 600,000 distinct-model triangles and 500 total copies. Larger scenes must be split. An invalid pack is rejected before checkout. No archive entries are extracted to the filesystem or executed.
 - Only validated STLs and `quantities.csv` are retained in a rebuilt manufacturing ZIP. `.terrain`, README files and other documents are not instructions and are discarded.
@@ -53,3 +53,7 @@ The dedicated storage container denies public access. Download URLs are issued o
 3. Verify real quote, paid customer and workshop email delivery, including a downloadable manufacturing ZIP, delivery address and copy counts.
 4. Confirm Azure Blob leases/concurrent requests and email outbox retries on the deployed environment. Test upload limits and Turnstile denial.
 5. Review the configured retention and monitor failed notifications. Only then enable live PayPal and publish the active service.
+
+## OpenLOCK edition licensing gate
+
+As of 1.1.0 the scenery uses attributed CC BY-NC OpenLOCK profiles and clips. Paid ordering additionally requires `PRINT_COMMERCIAL_RIGHTS_APPROVED=true`, which must remain unset/false until written permissions covering every relevant model and connector contribution have been verified. A Printable Scenery permission alone must not be assumed to cover a separate community profile contribution. The public site reports paid printing paused. Local test fixtures exercise payment logic on original test geometry; they do not establish commercial rights.

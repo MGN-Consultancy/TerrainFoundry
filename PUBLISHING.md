@@ -22,7 +22,7 @@ For a scenery-only update, change existing geometry, bump the release version in
 
 ## Signing and access
 
-- Azure workload identity: `terrainfoundry-github-release`, restricted to `repo:MGN-Consultancy/TerrainFoundry:environment:release`.
+- Azure workload identity: `terrainfoundry-github-release`, restricted to `repo:MGN-Consultancy@196059455/TerrainFoundry@1397243331:environment:release`.
 - Azure role: Artifact Signing Certificate Profile Signer, scoped to the existing `dotrsigningb0f36990/dotr-public` profile. It cannot provision Azure infrastructure.
 - GitHub `release` environment only permits `main`.
 - `TERRAIN_RELEASE_KEY` is an encrypted environment secret, separate from the Microsoft publisher certificate. It signs update manifests. The public verification key is committed; the private key is not.
@@ -41,3 +41,7 @@ The source repository and release packages exclude the old non-commercial OpenLO
 
 Hosting uses Azure Static Web Apps **Free**. Large client/scenery downloads are served from GitHub Releases. The existing Azure Artifact Signing account remains on its existing billing plan; no new paid signing account or hosting tier was provisioned.
 
+
+## Website domain
+
+The public website uses https://terrainfoundry.co.uk/ with Azure Static Web Apps hosting and Cloudflare DNS. Keep the Azure ownership TXT record in DNS so certificate renewal can verify the domain. Website deployments continue through the website workflow; the desktop update channel remains on GitHub Releases.

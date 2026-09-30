@@ -1,20 +1,12 @@
-# Test pricing and calibration
+# Draft print pricing — test only
 
-This is an invited test service, not a commercial checkout. No payment, printing or shipping is authorised by a test request. Existing OpenLOCK commercial-rights gates remain closed. Test records cannot later be converted to payable orders.
+Paid printing remains disabled pending OpenLOCK commercial permission and final rate approval.
 
-## Confirmed inputs
+PLA costs GBP 12/kg and PETG GBP 16/kg. New quotes charge material at cost plus 30 percent, rounded up to whole pence. Machine time is charged separately at GBP 1.50/hour for A1 or GBP 2/hour for H2S, with no additional markup. Handling combines GBP 3 setup and GBP 0.25 per copy. The minimum print charge is GBP 10, provisional UK postage GBP 4.95, and no VAT is added (not VAT registered).
 
-- Printers: Bambu A1 and H2S.
-- Basic PLA: GBP 12/kg; PETG: GBP 16/kg.
-- UK delivery only; no VAT added because the operator is not VAT registered.
+Customer responses expose filament, machine time, combined handling, minimum adjustment, discounts, postage and total only. Underlying costs and markup assumptions remain in the private quote record. Existing quotes preserve frozen prices and show a saved printing total when their tariff predates this breakdown. Saving a quotation keeps its private capability link and original seven-day expiry; it does not reserve production or extend validity.
 
-## Proposed settings, awaiting print calibration
-
-The versioned test tariff is `rates.preview.json`. It estimates material from STL enclosed volume and surface area, using a 1 mm shell, 15% infill, PLA density 1.24 g/cm3 or PETG 1.27 g/cm3, and a 15% material allowance. These assumptions do not replace a slicer and do not accurately predict every support, internal overlap, thin wall, purge or failed print.
-
-Provisional throughput is 12 g/hour for A1 and 20 g/hour for H2S. These are assumptions, not measured printer specifications or speed guarantees. Estimated grams divided by throughput gives machine hours; multiply by GBP 1.50/hour for A1 or GBP 2/hour for H2S. The hourly charge is intended to cover power, wear and machine use; do not add those costs again without revising the tariff.
-
-Parts charge = (filament cost + machine-time cost) x 1.5, rounded up in integer pence, plus 25p handling per printed copy. Add GBP 3 setup, apply a GBP 10 minimum printing charge, then GBP 4.95 provisional UK postage. A 50% markup is not a 50% gross margin. Postage, packaging, time rates, colour availability and profitability remain unconfirmed. Every copy in quantities.csv counts, including clips and fit-test parts. Split unusually large orders for manual review.
+Geometry estimates use a 1 mm shell, 15 percent infill, 15 percent material allowance and PLA/PETG densities of 1.24/1.27 g/cm3. Draft throughput is 12 g/hour on A1 and 20 g/hour on H2S. These are not Bambu Studio sliced results. Calibrate before offering firm prices.
 
 ## Calibrate before offering firm prices
 
@@ -22,8 +14,6 @@ Parts charge = (filament cost + machine-time cost) x 1.5, rounded up in integer 
 2. Record total sliced grams and total machine hours for **all plates and all copies**, including supports, purge and clips. Keep the exact nozzle, layer height, walls, infill and support settings.
 3. Compare with the website estimate and adjust shell/infill/allowance/throughput conservatively. Record actual material use, hands-on time, failed prints and packaging after test prints.
 4. Confirm the UK shipping service and parcel limits. Publish trading/delivery/returns terms and obtain the necessary commercial permissions before enabling payments.
-
-For the supplied 56-copy sample, the initial estimate gives 387.91 g PLA: A1 32.33 hours / GBP 101.68 delivered; H2S 19.40 hours / GBP 87.14 delivered. PETG estimates are 397.29 g: A1 GBP 106.00; H2S GBP 91.09. These are illustrative test calculations, not sliced times or firm offers.
 
 ## Discount codes
 

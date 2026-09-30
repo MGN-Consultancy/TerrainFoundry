@@ -1,12 +1,14 @@
 import {InputError} from './geometry.mjs';
 
 export function validateRates(rates) {
+ // Allow the prior tariff during a rolling deployment; preserve its arithmetic.
+ if(rates && rates.materialMarkupBasisPoints === undefined && rates.markupBasisPoints !== undefined) rates={...rates,materialMarkupBasisPoints:rates.markupBasisPoints};
  if(!rates||rates.currency!=='GBP'||!['enclosed-model-volume','estimated-filament-and-time'].includes(rates.basis)||!rates.version)throw new Error('A versioned GBP tariff is required.');
  for(const key of ['pencePerCm3','perPiecePence','setupPence','minimumPrintPence','vatBasisPoints','maximumQuotePence'])if(!Number.isSafeInteger(rates[key])||rates[key]<0)throw new Error('Invalid pricing: '+key);
  if((rates.basis==='enclosed-model-volume'&&!rates.pencePerCm3)||!rates.maximumQuotePence||rates.vatBasisPoints>10000||!Array.isArray(rates.buildVolumeMm)||rates.buildVolumeMm.length!==3||rates.buildVolumeMm.some(n=>!Number.isFinite(n)||n<=0||n>1000))throw new Error('Invalid pricing limits.');
  if(rates.basis==='estimated-filament-and-time'){
-  for(const key of ['shellMm','infillFraction','allowanceFraction','markupBasisPoints'])if(!Number.isFinite(rates[key])||rates[key]<0)throw new Error('Invalid estimate assumptions.');
-  if(!rates.shellMm||rates.shellMm>5||rates.infillFraction>1||rates.allowanceFraction>1||!Number.isInteger(rates.markupBasisPoints)||rates.markupBasisPoints>10000)throw new Error('Invalid estimate assumptions.');
+  for(const key of ['shellMm','infillFraction','allowanceFraction','materialMarkupBasisPoints'])if(!Number.isFinite(rates[key])||rates[key]<0)throw new Error('Invalid estimate assumptions.');
+  if(!rates.shellMm||rates.shellMm>5||rates.infillFraction>1||rates.allowanceFraction>1||!Number.isInteger(rates.materialMarkupBasisPoints)||rates.materialMarkupBasisPoints>10000)throw new Error('Invalid estimate assumptions.');
   if(!Array.isArray(rates.materials)||!rates.materials.length||rates.materials.some(m=>!m.id||!m.label||!Number.isSafeInteger(m.pencePerKg)||m.pencePerKg<=0||!Number.isFinite(m.densityGPerCm3)||m.densityGPerCm3<=0))throw new Error('Invalid materials.');
   if(!Array.isArray(rates.printers)||!rates.printers.length||rates.printers.some(p=>!p.id||!p.label||!Number.isFinite(p.gramsPerHour)||p.gramsPerHour<=0||!Number.isSafeInteger(p.pencePerHour)||p.pencePerHour<=0||!Array.isArray(p.buildVolumeMm)||p.buildVolumeMm.length!==3||p.buildVolumeMm.some(n=>!Number.isFinite(n)||n<=0)))throw new Error('Invalid printers.');
  }
@@ -37,8 +39,8 @@ function estimateParts(items,details,rates){
  });
  const grams=lines.reduce((n,l)=>n+l.grams,0),hours=lines.reduce((n,l)=>n+l.hours,0);
  const filamentCostPence=Math.ceil(grams*material.pencePerKg/1000),machineCostPence=Math.ceil(hours*printer.pencePerHour);
- const manufacturingPence=filamentCostPence+machineCostPence,markupPence=Math.ceil(manufacturingPence*rates.markupBasisPoints/10000);
- return {estimated:true,material:material.label,printer:printer.label,grams:+grams.toFixed(2),hours:+hours.toFixed(2),filamentCostPence,machineCostPence,markupPence,manufacturingPence,chargePence:manufacturingPence+markupPence,lines,assumptions:{shellMm:rates.shellMm,infillFraction:rates.infillFraction,allowanceFraction:rates.allowanceFraction,gramsPerHour:printer.gramsPerHour,materialPencePerKg:material.pencePerKg,machinePencePerHour:printer.pencePerHour,markupBasisPoints:rates.markupBasisPoints,vatConfirmed:rates.vatConfirmed===true},notice:'Geometry estimate, not a Bambu Studio slice. Actual filament, supports and print time require slicing and review before a firm price.'};
+ const manufacturingPence=filamentCostPence+machineCostPence,markupPence=Math.ceil((rates.materialMarkupBasisPoints===undefined?manufacturingPence:filamentCostPence)*(rates.materialMarkupBasisPoints??rates.markupBasisPoints)/10000);
+ return {estimated:true,material:material.label,printer:printer.label,grams:+grams.toFixed(2),hours:+hours.toFixed(2),filamentCostPence,machineCostPence,markupPence,manufacturingPence,chargePence:manufacturingPence+markupPence,lines,assumptions:{shellMm:rates.shellMm,infillFraction:rates.infillFraction,allowanceFraction:rates.allowanceFraction,gramsPerHour:printer.gramsPerHour,materialPencePerKg:material.pencePerKg,machinePencePerHour:printer.pencePerHour,...(rates.materialMarkupBasisPoints===undefined?{markupBasisPoints:rates.markupBasisPoints}:{materialMarkupBasisPoints:rates.materialMarkupBasisPoints}),vatConfirmed:rates.vatConfirmed===true},notice:'Geometry estimate, not a Bambu Studio slice. Actual filament, supports and print time require slicing and review before a firm price.'};
 }
 
 export function validateDiscounts(discounts=[]) {

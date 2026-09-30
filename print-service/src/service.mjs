@@ -4,6 +4,7 @@ import {InputError,readPack,inspectPack,LIMITS} from './geometry.mjs';
 import {validateRates,validateDiscounts,customerDetails,price} from './pricing.mjs';
 import {settled} from './paypal.mjs';
 import {estimateItems} from './estimate.mjs';
+import {customerPrice} from './customer-price.mjs';
 
 export const quotePath=id=>'quotes/'+id+'.json';
 export function makeService({store,paypal,env=process.env,rates,discounts=[],now=()=>Date.now(),verifyHuman}) {
@@ -16,7 +17,7 @@ export function makeService({store,paypal,env=process.env,rates,discounts=[],now
  function authorize(id,secret){if(!/^[a-f0-9]{32}$/.test(id)||!secret||!/^[a-f0-9]{64}$/.test(secret)||!timingSafeEqual(Buffer.from(token(id)),Buffer.from(secret)))throw new InputError('This quote link is invalid.',404);}
  function ready(allowPreview=false){if(!configured()&&!(allowPreview&&previewConfigured()))throw new InputError('Print orders are not open. Payments and production are disabled. This service is available for invited test quotes only.',503);validateRates(rates);validateDiscounts(discounts);}
  const quoteUrl=id=>env.PRINT_SITE_ORIGIN+'/print-order.html#'+id+'.'+token(id);
- const publicQuote=q=>({id:q.id,createdAt:q.createdAt,expiresAt:q.expiresAt,status:q.status,colour:q.colour,items:q.items,price:q.price,emailStatus:q.email.quote?.sentAt?'sent':'pending',preview:!!q.preview,sandbox:env.PAYPAL_ENV!=='live'});
+ const publicQuote=q=>({id:q.id,createdAt:q.createdAt,expiresAt:q.expiresAt,status:q.status,colour:q.colour,items:q.items,price:customerPrice(q.price),emailStatus:q.email.quote?.sentAt?'sent':'pending',preview:!!q.preview,sandbox:env.PAYPAL_ENV!=='live'});
  async function get(id,secret){authorize(id,secret);const q=await store.get(quotePath(id));if(!q)throw new InputError('This quote is no longer available.',404);return publicQuote(q);}
  async function create(buffer,details,humanToken){ready(true);const preview=!!previewConfigured();
   if(preview){const supplied=String(details.testAccessCode||'');const expected=env.PRINT_PREVIEW_ACCESS_CODE;const a=Buffer.from(supplied),b=Buffer.from(expected);if(a.length!==b.length||!timingSafeEqual(a,b))throw new InputError('Enter the private test access code.',403);}
@@ -75,7 +76,7 @@ export function makeService({store,paypal,env=process.env,rates,discounts=[],now
   if(!rates.colours.some(c=>c.id===selection.colour))throw new InputError('Choose an available colour.');
   const items=estimateItems(input.items,printer?.buildVolumeMm||rates.buildVolumeMm);
   const result=price(items,{material:selection.material,printer:selection.printer,address:{country:selection.country}},rates,{code:selection.discountCode||'',discounts,now:now()});
-  return {price:result,preview:!!previewConfigured(),estimatedAt:now(),notice:'Advisory estimate only. The website rechecks uploaded models and current prices before any request. No models or scene layout were uploaded.'};
+  return {price:customerPrice(result),preview:!!previewConfigured(),estimatedAt:now(),notice:'Advisory estimate only. The website rechecks uploaded models and current prices before any request. No models or scene layout were uploaded.'};
  }
  return {create,get,checkout,confirm,reconcile,webhook,requestTestOrder,estimate,config,quoteUrl};
 }

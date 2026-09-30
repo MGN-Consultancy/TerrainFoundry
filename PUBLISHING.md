@@ -1,6 +1,6 @@
 # Publishing Terrain Foundry
 
-Official repository: `MGN-Consultancy/TerrainFoundry`. It remains private until the owner changes its visibility. Public downloads and anonymous launcher updates require a public repository and a published, non-prerelease GitHub Release. The Azure website is already public and handles an unavailable release gracefully.
+Official repository: `MGN-Consultancy/TerrainFoundry`. The repository is public. Public downloads and anonymous launcher updates become available when a non-prerelease GitHub Release is published. The Azure website is already public and handles an unavailable release gracefully.
 
 ## Normal release
 

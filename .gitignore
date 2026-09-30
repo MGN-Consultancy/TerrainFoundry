@@ -16,6 +16,7 @@ installer/build/
 *.wixpdb
 launcher/bin/
 launcher/obj/
+launcher/generated/
 release-config/*private*
 assets-source/connectors/*.stl
 work/

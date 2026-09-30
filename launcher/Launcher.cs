@@ -1,5 +1,5 @@
 using System;using System.IO;using System.IO.Compression;using System.Net;using System.Net.Http;using System.Linq;using System.Text;using System.Collections.Generic;using System.Security.Cryptography;using System.Diagnostics;using System.Threading;using System.Threading.Tasks;using System.Web.Script.Serialization;using System.Windows.Forms;
-[assembly:System.Reflection.AssemblyVersion("1.0.0.0")]
+[assembly:System.Reflection.AssemblyVersion("1.0.1.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
  public class Launcher:Form {
@@ -14,7 +14,7 @@ namespace TerrainFoundry {
   Button update=new Button{Text="Install / check for updates",Dock=DockStyle.Bottom,Height=48},play=new Button{Text="Open installed editor (offline)",Dock=DockStyle.Bottom,Height=48};
   bool busy,launchAfterCancel,closeAfterCancel; CancellationTokenSource cancellation=new CancellationTokenSource(); static HttpClient http=new HttpClient{Timeout=TimeSpan.FromMinutes(30)};
   [STAThread] public static void Main(string[] args){ServicePointManager.SecurityProtocol=SecurityProtocolType.Tls12;Directory.CreateDirectory(Root);using(var mutex=new Mutex(false,"Local\\TerrainFoundryLauncher")){if(!mutex.WaitOne(0))return;Application.EnableVisualStyles();Application.Run(new Launcher());}}
-  Launcher(){Text="Terrain Foundry — MGN Consultancy";Width=560;Height=275;StartPosition=FormStartPosition.CenterScreen;Controls.Add(status);Controls.Add(play);Controls.Add(update);play.Enabled=File.Exists(StateFile);play.Click+=(s,e)=>{if(busy){launchAfterCancel=true;cancellation.Cancel();status.Text="Stopping the update; your installed editor will open offline…";}else Launch();};update.Click+=async(s,e)=>await Update();FormClosing+=(s,e)=>{if(busy){e.Cancel=true;closeAfterCancel=true;cancellation.Cancel();}};Shown+=async(s,e)=>{await Update();
+  Launcher(){Icon=System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);Text="Terrain Foundry — MGN Consultancy";Width=560;Height=275;StartPosition=FormStartPosition.CenterScreen;Controls.Add(status);Controls.Add(play);Controls.Add(update);play.Enabled=File.Exists(StateFile);play.Click+=(s,e)=>{if(busy){launchAfterCancel=true;cancellation.Cancel();status.Text="Stopping the update; your installed editor will open offline…";}else Launch();};update.Click+=async(s,e)=>await Update();FormClosing+=(s,e)=>{if(busy){e.Cancel=true;closeAfterCancel=true;cancellation.Cancel();}};Shown+=async(s,e)=>{await Update();
 #if TEST_TRANSPORT
  File.WriteAllText(Path.Combine(Root,"integration-result.txt"),status.Text);Environment.ExitCode=File.Exists(StateFile)?0:1;Close();
 #endif
@@ -64,6 +64,7 @@ throw new Exception("The package does not have a valid MGN Consultancy publisher
   async void Launch(){if(busy)return;busy=true;play.Enabled=false;try{var state=ReadState();string client=Str(state,"client");var release=VerifyEnvelope(Str(state,"envelope"));await Task.Run(()=>CheckInventory(client,Obj(release["client"])));var assets=Obj(state["assets"]);foreach(var a in (System.Collections.IEnumerable)release["assets"]){var pack=Obj(a);await Task.Run(()=>CheckInventory(Convert.ToString(assets[Str(pack,"id")]),pack));}var start=new ProcessStartInfo(Path.Combine(client,"TerrainFoundry.exe")){UseShellExecute=false,WorkingDirectory=client};start.EnvironmentVariables["TERRAIN_ASSET_PACKS"]=Json.Serialize(assets);Process.Start(start);status.Text="Editor opened. Projects are saved locally.";}catch(Exception e){status.Text=e.Message;}finally{busy=false;play.Enabled=File.Exists(StateFile);}}
  }
 }
+
 
 
 

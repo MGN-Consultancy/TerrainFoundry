@@ -9,3 +9,10 @@ test('advisory desktop measurements use the same price as the website upload wit
  await assert.rejects(service.estimate({items:[{...items[0],quantity:501}],selection}),/500/);
  await assert.rejects(service.estimate({items:[{...items[0],sizeMm:[1000,1,1]}],selection}),/build volume/);
 });
+test('estimate client limits are independent and apply before price calculation',async()=>{
+ const store=new MemoryStore(),service=makeService({store,paypal:new FakePayPal(),rates,env:{...env,PRINT_PREVIEW_ENABLED:'true',PRINT_PREVIEW_ACCESS_CODE:'test-access-123456789'},verifyHuman:async()=>{}});
+ const input={items:inspectPack(await readPack(pack()),rates.buildVolumeMm),selection:{country:'GB',colour:details.colour,discountCode:''}};
+ for(let i=0;i<60;i++)await service.estimate(input,'198.51.100.1');
+ await assert.rejects(service.estimate(input,'198.51.100.1'),e=>e.status===429);
+ assert.equal((await service.estimate(input,'198.51.100.2')).price.currency,'GBP');
+});

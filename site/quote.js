@@ -71,7 +71,7 @@ function renderQuote(){
  document.getElementById('quote-reference').textContent=q.status==='payment-review'?'Payment review required'+(q.sandbox?' · Sandbox':''):(q.preview?'Test only · ':q.sandbox?'Sandbox · ':'')+'Reference '+q.id.slice(0,8).toUpperCase();
 }
 function showQuote(q){
- currentQuote=q;renderQuote();
+ currentQuote=q;renderQuote();paymentTestButton.hidden=!q.paymentTestAvailable;
  if(q.preview){quoteSay(q.status==='test-requested'?'Test request saved — no payment or printing.':Date.now()>q.expiresAt?'This test quote has expired.':'TEST ESTIMATE — no payment, printing or shipping.');return;}
  const prefix=q.sandbox?'SANDBOX — test payment only. ':'';
  quoteSay(prefix+(q.status==='paid'?'Payment received.':q.status==='payment-review'?'This order needs a payment review. Please contact the workshop.':Date.now()>q.expiresAt?'This quote has expired.':'Your private quotation is ready.'));
@@ -86,6 +86,18 @@ buttons['save-quote'].onclick=()=>{
 };
 async function action(button,path){button.disabled=true;try{const result=await quoteApi(path+'/'+quoteId,'POST');if(result.url){const url=new URL(result.url);if(url.protocol!=='https:'||!['www.paypal.com','www.sandbox.paypal.com'].includes(url.hostname))throw Error('Invalid payment address.');location.assign(url.href);}else if(result.paid)showQuote(await quoteApi('quote/'+quoteId));else{showQuote(result);if(result.paymentPending)quoteSay('PayPal has not confirmed payment yet.');}}catch(error){quoteSay(error.message);}finally{button.disabled=false;}}
 buttons.pay.onclick=()=>action(buttons.pay,'checkout');buttons['test-order'].onclick=()=>action(buttons['test-order'],'test-order');buttons['confirm-payment'].onclick=()=>action(buttons['confirm-payment'],'confirm');
-(async()=>{try{if(!window.TERRAIN_PRINT_API||!/^[a-f0-9]{32}$/.test(quoteId||'')||!/^[a-f0-9]{64}$/.test(quoteSecret||''))throw Error('Open the complete private link from your quote email.');showQuote(await quoteApi('quote/'+quoteId));if(new URLSearchParams(location.search).has('PayerID')&&!buttons['confirm-payment'].hidden)buttons['confirm-payment'].click();}catch(error){quoteSay(error.message);}})();
+(async()=>{try{if(!window.TERRAIN_PRINT_API||!/^[a-f0-9]{32}$/.test(quoteId||'')||!/^[a-f0-9]{64}$/.test(quoteSecret||''))throw Error('Open the complete private link from your quote email.');showQuote(await quoteApi('quote/'+quoteId));if(new URLSearchParams(location.search).get('paymentTest')==='1'){const result=await quoteApi('payment-test-confirm/'+quoteId,'POST');quoteSay(result.status==='paid'?'Real £0.10 test payment received — no printing or shipping. This quotation remains unpaid.':'Test payment status: '+result.status+'. No printing or shipping.');return;}if(new URLSearchParams(location.search).has('PayerID')&&!buttons['confirm-payment'].hidden)buttons['confirm-payment'].click();}catch(error){quoteSay(error.message);}})();
 
 window.TerrainQuoteCatalog?.ready.then(()=>{if(currentQuote)renderQuote();});
+
+
+const paymentTestButton=element('button','Test a 10p PayPal payment');paymentTestButton.hidden=true;
+buttons['save-quote'].parentElement.append(paymentTestButton);
+paymentTestButton.onclick=()=>{
+ const dialog=document.createElement('dialog');dialog.className='piece-preview-dialog';
+ const title=element('h2','Real £0.10 payment test'),notice=element('p','This charges 10p through live PayPal. It does not pay for this quotation and will never trigger printing or shipping.');
+ const label=element('label','Private testing code'),input=document.createElement('input');input.type='password';input.autocomplete='off';input.maxLength=128;label.append(input);
+ const status=element('p',''),pay=element('button','Continue to PayPal · £0.10'),close=element('button','Cancel');close.onclick=()=>dialog.close();
+ pay.onclick=async()=>{pay.disabled=true;try{const r=await fetch(window.TERRAIN_PRINT_API+'/api/print/payment-test/'+quoteId,{method:'POST',headers:{...quoteHeaders,'Content-Type':'application/json'},body:JSON.stringify({code:input.value}),credentials:'omit'});const result=await r.json();if(!r.ok)throw Error(result.error);if(result.url){const url=new URL(result.url);if(url.protocol!=='https:'||url.hostname!=='www.paypal.com')throw Error('Invalid PayPal address.');location.assign(url.href);}else status.textContent=result.status==='paid'?'This quotation already has a successful 10p test payment. No printing or shipping.':'This test transaction needs review.';}catch(e){status.textContent=e.message;}finally{pay.disabled=false;}};
+ dialog.append(title,notice,label,status,pay,close);dialog.addEventListener('close',()=>dialog.remove());document.body.append(dialog);dialog.showModal();input.focus();
+};

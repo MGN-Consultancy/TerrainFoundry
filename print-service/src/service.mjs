@@ -44,7 +44,7 @@ export function makeService({store,paypal,env=process.env,rates,discounts=[],now
   if(!q.paypalOrderId){const order=await paypal.create(q,quoteUrl(id));const approval=order.links?.find(l=>['approve','payer-action'].includes(l.rel))?.href;
    const url=new URL(approval);const expected=env.PAYPAL_ENV==='live'?'www.paypal.com':'www.sandbox.paypal.com';if(url.protocol!=='https:'||url.hostname!==expected)throw Error('Payment provider returned an invalid checkout link.');
    q.paypalOrderId=order.id;q.approvalUrl=approval;await save(q);
-  }return {url:q.approvalUrl};
+  }return {url:q.approvalUrl,orderId:q.paypalOrderId};
  });}
  async function confirm(id,secret){ready();authorize(id,secret);return reconcile(id,true);}
  async function reconcile(id,capture=false){return store.lock(quotePath(id),async(q,save)=>{

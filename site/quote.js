@@ -66,14 +66,14 @@ function renderQuote(){
  pieces.hidden=innerWidth<700&&activeTab!=='parts';summary.hidden=innerWidth<700&&activeTab!=='summary';quotePanel.append(pieces,summary);
  for(const button of document.querySelectorAll('[data-quote-tab]'))button.setAttribute('aria-pressed',String(button.dataset.quoteTab===activeTab));
  const expired=Date.now()>q.expiresAt;
- buttons.pay.hidden=q.status!=='quoted'||expired||q.demo||q.preview;
- buttons['confirm-payment'].hidden=buttons.pay.hidden;
+ buttons.pay.hidden=true;
+ buttons['confirm-payment'].hidden=q.status!=='quoted'||expired||q.demo||q.preview;
  buttons['test-order'].hidden=!q.preview||q.status!=='quoted'||expired;
  buttons['save-quote'].disabled=false;buttons['copy-quote'].disabled=false;
  document.getElementById('quote-reference').textContent=q.status==='payment-review'?'Payment review required'+(q.sandbox?' · Sandbox':''):(q.preview?'Test only · ':q.sandbox?'Sandbox · ':'')+'Reference '+q.id.slice(0,8).toUpperCase();
 }
 function showQuote(q){
- currentQuote=q;renderQuote();paymentTestButton.hidden=!q.paymentTestAvailable;
+ currentQuote=q;renderQuote();paymentTestButton.hidden=!q.paymentTestAvailable||!!q.paymentTestReceipt;setupPayPal(q);
  if(q.paymentTestReceipt?.status==='paid'){document.querySelector('h1').textContent='Test payment confirmed';document.querySelector('.quote-note').textContent='Real 10p test payment only. No printing or shipping. Your scenery quotation remains separate.';quoteSay('£0.10 test payment received · '+q.paymentTestReceipt.reference+' · No printing or shipping. Scenery quotation remains unpaid.');return;}
  if(q.preview){quoteSay(q.status==='test-requested'?'Test request saved — no payment or printing.':Date.now()>q.expiresAt?'This test quote has expired.':'TEST ESTIMATE — no payment, printing or shipping.');return;}
  if(q.status==='paid'){document.querySelector('h1').textContent='Your print order';document.querySelector('.quote-note').textContent='Your order status appears above. We will email you when printing starts and when it ships.';}
@@ -100,8 +100,21 @@ buttons['save-quote'].parentElement.append(paymentTestButton);
 paymentTestButton.onclick=()=>{
  const dialog=document.createElement('dialog');dialog.className='piece-preview-dialog';
  const title=element('h2','Real £0.10 payment test'),notice=element('p','This charges 10p through live PayPal. It does not pay for this quotation and will never trigger printing or shipping.');
- const label=element('label','Private testing code'),input=document.createElement('input');input.type='password';input.autocomplete='off';input.maxLength=128;label.append(input);
- const status=element('p',''),pay=element('button','Continue to PayPal · £0.10'),close=element('button','Cancel');close.onclick=()=>dialog.close();
- pay.onclick=async()=>{pay.disabled=true;try{const r=await fetch(window.TERRAIN_PRINT_API+'/api/print/payment-test/'+quoteId,{method:'POST',headers:{...quoteHeaders,'Content-Type':'application/json'},body:JSON.stringify({code:input.value}),credentials:'omit'});const result=await r.json();if(!r.ok)throw Error(result.error);if(result.url){const url=new URL(result.url);if(url.protocol!=='https:'||url.hostname!=='www.paypal.com')throw Error('Invalid PayPal address.');location.assign(url.href);}else status.textContent=result.status==='paid'?'This quotation already has a successful 10p test payment. No printing or shipping.':'This test transaction needs review.';}catch(e){status.textContent=e.message;}finally{pay.disabled=false;}};
+ const label=element('label','Private testing code'),input=document.createElement('input');input.className='payment-test-code';input.type='password';input.autocomplete='off';input.maxLength=128;label.append(input);
+ const status=element('p',''),pay=element('div','','official-paypal'),close=element('button','Cancel','button secondary');close.onclick=()=>dialog.close();
  dialog.append(title,notice,label,status,pay,close);dialog.addEventListener('close',()=>dialog.remove());document.body.append(dialog);dialog.showModal();input.focus();
+ window.TerrainPayPal.render(pay,currentQuote.paypalClientId,{
+  create:async()=>{if(!input.value.trim())throw Error('Enter your private testing code.');const r=await fetch(window.TERRAIN_PRINT_API+'/api/print/payment-test/'+quoteId,{method:'POST',headers:{...quoteHeaders,'Content-Type':'application/json'},body:JSON.stringify({code:input.value}),credentials:'omit'});const result=await r.json();if(!r.ok)throw Error(result.error);if(!result.orderId)throw Error('This test has already been paid or needs review.');return result.orderId;},
+  approve:async()=>{const result=await quoteApi('payment-test-confirm/'+quoteId,'POST');if(result.status!=='paid')throw Error('Payment is awaiting confirmation. Please check again shortly.');dialog.close();showQuote(await quoteApi('quote/'+quoteId));},
+  message:text=>{status.textContent=text;}
+ });
 };
+let checkoutKey;
+function setupPayPal(q){
+ const host=document.getElementById('paypal-checkout');if(!host)return;
+ const eligible=!q.preview&&q.status==='quoted'&&q.expiresAt>Date.now()&&!!q.paypalClientId;
+ host.hidden=!eligible;buttons.pay.hidden=true;
+ if(!eligible){checkoutKey=null;host.replaceChildren();return;}if(checkoutKey===q.id)return;checkoutKey=q.id;
+ window.TerrainPayPal.render(host,q.paypalClientId,{create:async()=>{const result=await quoteApi('checkout/'+quoteId,'POST');if(!result.orderId)throw Error('This order has already been paid.');return result.orderId;},approve:async()=>{const result=await quoteApi('confirm/'+quoteId,'POST');showQuote(result);if(result.paymentPending)quoteSay('PayPal payment is awaiting confirmation.');},message:quoteSay});
+}
+

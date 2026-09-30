@@ -19,7 +19,7 @@ export function paymentTests({store,paypal,env=process.env,now=()=>Date.now()}){
    if(!q.paypalOrderId){const order=await paypal.create(q,returnUrl),approval=order.links?.find(l=>['approve','payer-action'].includes(l.rel))?.href;
     const url=new URL(approval);if(url.protocol!=='https:'||url.hostname!=='www.paypal.com')throw Error('Invalid live checkout address.');
     q.paypalOrderId=order.id;q.approvalUrl=approval;await save(q);
-   }return {...publicResult(q),url:q.approvalUrl};
+   }return {...publicResult(q),url:q.approvalUrl,orderId:q.paypalOrderId};
   });
  }
  async function queueReceipt(payment){

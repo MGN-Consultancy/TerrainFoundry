@@ -55,7 +55,7 @@ export async function handler(request,context){
    const details=form.get('details');if(typeof details!=='string'||details.length>5000)throw new InputError('Invalid form details.');
    let parsed;try{parsed=JSON.parse(details);}catch{throw new InputError('Invalid form details.');}
    result=await service.create(Buffer.from(await file.arrayBuffer()),parsed,form.get('cf-turnstile-response'));
-  }else if(request.method==='GET'&&path==='quote')result={...await service.get(id,secret),paymentTestAvailable:paymentTests.available()};
+  }else if(request.method==='GET'&&path==='quote')result={...await service.get(id,secret),paymentTestAvailable:paymentTests.available(),paypalClientId:env.PAYPAL_CLIENT_ID||null};
   else if(request.method==='POST'&&path==='checkout')result=await service.checkout(id,secret);
   else if(request.method==='POST'&&path==='confirm')result=await service.confirm(id,secret);
   else if(request.method==='POST'&&path==='test-order')result=await service.requestTestOrder(id,secret);

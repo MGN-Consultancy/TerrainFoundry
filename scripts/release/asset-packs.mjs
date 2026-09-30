@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';import path from 'node:path';import {createHash} from 'node:crypto';
+import {KIT} from '../../src/model.js';import {geometry} from '../source-geometry.mjs';
+const connected=JSON.parse(await fs.readFile('src/generated/openlock.json','utf8')),range=JSON.parse(await fs.readFile('src/generated/dungeon-range-index.json','utf8')),bin=await fs.readFile('public/dungeon-range/meshes.bin'),packs=new Map();
+function encode(d){const p=Float32Array.from(d.positions),c=Float32Array.from(d.colors),i=Uint32Array.from(d.indices);const bytes=Buffer.concat([Buffer.from(p.buffer),Buffer.from(c.buffer),Buffer.from(i.buffer)]);return {bytes,vertices:p.length/3,indices:i.length,length:bytes.length};}
+for(const k of [...KIT,{id:'fit-coupon'}]){const family=k.id.startsWith('r-')?'underkeep':k.id.startsWith('a-')?'curves':k.id.split('-').length>1?k.id.split('-')[0]:'starter',pack=packs.get(family)||{index:{},chunks:[],offset:0};packs.set(family,pack);let raw,final,bytes,spec;
+ if(range[k.id]){const m=range[k.id];raw=m.raw;final=m.connected;bytes=bin.subarray(m.offset,m.offset+m.raw.length+m.connected.length);spec=m.openlock;}
+ else{let d;if(k.id==='fit-coupon')d=connected[k.id];else{const g=geometry(k.id,25.4),p=g.attributes.position,c=g.attributes.color;d={positions:Array.from(p.array),colors:Array.from(c.array),indices:g.index?Array.from(g.index.array):Array.from({length:p.count},(_,i)=>i)};g.dispose();}raw=encode(d);final=encode(connected[k.id]);bytes=Buffer.concat([raw.bytes,final.bytes]);delete raw.bytes;delete final.bytes;spec=connected[k.id].openlock;}
+ pack.index[k.id]={offset:pack.offset,raw,connected:final,openlock:spec,sha256:createHash('sha256').update(bytes).digest('hex')};pack.offset+=bytes.length;pack.chunks.push(bytes);
+}
+const all={};for(const [id,p]of packs){const dir='release/asset-packs/'+id;await fs.mkdir(dir,{recursive:true});await fs.writeFile(dir+'/meshes.bin',Buffer.concat(p.chunks));await fs.writeFile(dir+'/index.json',JSON.stringify(p.index));await fs.copyFile('ASSET-LICENSE.txt',dir+'/LICENSE.txt');for(const [key,m]of Object.entries(p.index))all[key]={...m,pack:id};console.log(id,p.offset);}
+await fs.writeFile('src/generated/builtin-index.json',JSON.stringify(all));await fs.writeFile('desktop/builtin-index.json',JSON.stringify(all));

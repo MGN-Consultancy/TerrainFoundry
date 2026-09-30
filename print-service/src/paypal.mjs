@@ -1,0 +1,16 @@
+export class PayPal {
+ constructor(env=process.env){this.env=env;this.base=env.PAYPAL_ENV==='live'?'https://api-m.paypal.com':'https://api-m.sandbox.paypal.com';}
+ async token(){const r=await fetch(this.base+'/v1/oauth2/token',{method:'POST',headers:{Authorization:'Basic '+Buffer.from(this.env.PAYPAL_CLIENT_ID+':'+this.env.PAYPAL_CLIENT_SECRET).toString('base64'),'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=client_credentials',signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('Payment service is temporarily unavailable.');return (await r.json()).access_token;}
+ async call(path,method='GET',body,requestId){const token=await this.token();const r=await fetch(this.base+path,{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',...(requestId?{'PayPal-Request-Id':requestId}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('PayPal could not complete this request. Please try again.');return r.json();}
+ async create(q,returnUrl){const a=q.customer.address;return this.call('/v2/checkout/orders','POST',{intent:'CAPTURE',purchase_units:[{reference_id:q.id,custom_id:q.id,invoice_id:q.id,payee:{merchant_id:this.env.PAYPAL_MERCHANT_ID},amount:{currency_code:'GBP',value:(q.price.totalPence/100).toFixed(2)},shipping:{name:{full_name:a.name},address:{address_line_1:a.line1,...(a.line2?{address_line_2:a.line2}:{}),admin_area_2:a.city,...(a.region?{admin_area_1:a.region}:{}),postal_code:a.postcode,country_code:a.country}}}],payment_source:{paypal:{experience_context:{brand_name:'Terrain Foundry',shipping_preference:'SET_PROVIDED_ADDRESS',user_action:'PAY_NOW',return_url:returnUrl,cancel_url:returnUrl}}}},'create-'+q.id);}
+ get(orderId){return this.call('/v2/checkout/orders/'+encodeURIComponent(orderId));}
+ capture(orderId,qid){return this.call('/v2/checkout/orders/'+encodeURIComponent(orderId)+'/capture','POST',{},'capture-'+qid);}
+ async verifiedEvent(headers,event){const result=await this.call('/v1/notifications/verify-webhook-signature','POST',{auth_algo:headers.get('paypal-auth-algo'),cert_url:headers.get('paypal-cert-url'),transmission_id:headers.get('paypal-transmission-id'),transmission_sig:headers.get('paypal-transmission-sig'),transmission_time:headers.get('paypal-transmission-time'),webhook_id:this.env.PAYPAL_WEBHOOK_ID,webhook_event:event});return result.verification_status==='SUCCESS';}
+}
+
+export function settled(order,quote,merchantId) {
+ const units=order.purchase_units;if(order.id!==quote.paypalOrderId||order.status!=='COMPLETED'||!Array.isArray(units)||units.length!==1)return false;
+ const unit=units[0],captures=unit.payments?.captures;
+ if(unit.custom_id!==quote.id||unit.payee?.merchant_id!==merchantId||unit.amount?.currency_code!=='GBP'||unit.amount.value!==(quote.price.totalPence/100).toFixed(2)||!Array.isArray(captures)||captures.length!==1)return false;
+ const capture=captures[0];return capture.status==='COMPLETED'&&capture.amount?.currency_code==='GBP'&&capture.amount.value===(quote.price.totalPence/100).toFixed(2)&&capture.final_capture===true;
+}

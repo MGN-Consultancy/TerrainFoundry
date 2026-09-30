@@ -1,0 +1,14 @@
+{
+  "version": "EXAMPLE-NOT-APPROVED-1",
+  "currency": "GBP",
+  "basis": "enclosed-model-volume",
+  "pencePerCm3": 8,
+  "perPiecePence": 25,
+  "setupPence": 300,
+  "minimumPrintPence": 1000,
+  "vatBasisPoints": 0,
+  "maximumQuotePence": 25000,
+  "buildVolumeMm": [256,256,256],
+  "colours": [{"id":"stone-grey","label":"Stone grey PLA"},{"id":"bone","label":"Bone PLA"},{"id":"forest-green","label":"Forest green PLA"}],
+  "shipping": {"GB":{"pence":495,"maxPieces":100}}
+}

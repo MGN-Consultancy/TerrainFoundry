@@ -1,0 +1,7 @@
+test/**
+node_modules/.cache/**
+dev.mjs
+local.settings.json
+*.example.json
+README.md
+*.zip

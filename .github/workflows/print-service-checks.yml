@@ -1,0 +1,24 @@
+name: Check print service
+on:
+  pull_request:
+    paths: ['print-service/**', 'site/**', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
+  push:
+    branches: [main]
+    paths: ['print-service/**', 'site/**', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '10'
+      - run: pnpm --dir print-service install --ignore-workspace --frozen-lockfile --ignore-scripts
+      - run: node --test print-service/test/*.test.mjs
+      - run: node --check site/print-service.js
+      - run: pnpm --dir print-service audit --prod --audit-level high

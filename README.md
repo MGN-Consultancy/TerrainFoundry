@@ -47,3 +47,9 @@ The editor saves locally and has no telemetry, cloud project storage or account 
 ## Optional print and ship service
 
 The website now includes a print-pack quote form, separate from the offline editor. The service reads STL geometry and quantities, offers a chosen PLA colour, calculates a quote and integrates with PayPal and workshop email notifications. Paid ordering stays disabled: this OpenLOCK edition includes non-commercial parts. Commercial permissions covering the relevant model and connector rights, followed by rates, terms and provider configuration, are required before any paid printing. See [print-service/README.md](print-service/README.md) for local tests, the no-payment demo, hosting and activation requirements. Normal editor use never uploads a scene.
+
+## Estimate printing from the editor
+
+Click **Estimate print costs**, choose material, printer, colour, delivery country and an optional discount code, then calculate. The website prices locally measured part summaries; it receives no models, scene layout or personal details for this step. The estimate includes export quantities, clips and fit-test pieces. Weight and hours are estimates, not sliced measurements.
+
+If offline, only an identical previously checked pack and print selection can show a cached, dated estimate. **Save pack & open website** saves a ZIP and opens the website; you choose whether to upload it. Current requests are test-only and cannot collect payment or start production.

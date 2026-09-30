@@ -1,4 +1,4 @@
-const {app,BrowserWindow,dialog,ipcMain,Menu}=require('electron');
+const {app,BrowserWindow,dialog,ipcMain,Menu,shell}=require('electron');
 const fs=require('node:fs/promises');const path=require('node:path');
 const {createProjectStore}=require('./project-store.cjs');
 const {createSceneryReader}=require('./scenery-store.cjs');
@@ -8,6 +8,9 @@ app.setAppUserModelId('TerrainFoundry.Desktop');
 app.whenReady().then(async()=>{
  const store=createProjectStore({userData:app.getPath('userData'),documents:app.getPath('documents'),installRoot:app.getAppPath().endsWith('.asar')?path.dirname(process.execPath):app.getAppPath()});
  await store.init();
+ const estimator=require('./print-estimate.cjs').createPrintEstimator({userData:app.getPath('userData'),fetchImpl:(...args)=>require('electron').net.fetch(...args)});
+ ipcMain.handle('print-estimate-config',()=>estimator.config());
+ ipcMain.handle('print-estimate',(_,files,selection)=>estimator.estimate(files,selection));
  const readBuiltin=createSceneryReader(path.join(__dirname,'..'));
  ipcMain.on('builtin-shape',(event,id,connected)=>{try{event.returnValue=readBuiltin(id,connected);}catch(error){event.returnValue={error:error.message};}});
  let finishing=false;app.on('before-quit',e=>{if(!finishing){e.preventDefault();store.flush().finally(()=>{finishing=true;app.quit();});}});
@@ -18,6 +21,7 @@ app.whenReady().then(async()=>{
  const win=new BrowserWindow({width:1500,height:960,minWidth:1100,minHeight:720,title:'Terrain Foundry',backgroundColor:'#111820',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
  win.webContents.setWindowOpenHandler(()=>({action:'deny'}));
  win.webContents.on('will-navigate',e=>e.preventDefault());
+ ipcMain.handle('print-website-pack',async(_,data)=>{if(!(data instanceof Uint8Array)||data.length>40*1024*1024||data[0]!==80||data[1]!==75)throw Error('Print pack must be a ZIP under 40 MB.');const result=await dialog.showSaveDialog(win,{title:'Save the print pack to upload on the website',defaultPath:path.join(app.getPath('documents'),'TerrainFoundry-print-quote.zip'),filters:[{name:'ZIP print pack',extensions:['zip']}]});if(result.canceled)return null;await fs.writeFile(result.filePath,data);await shell.openExternal('https://terrainfoundry.co.uk/#print-service');return result.filePath;});
  win.webContents.on('will-prevent-unload',e=>{const response=dialog.showMessageBoxSync(win,{type:'question',buttons:['Keep editing','Close window'],defaultId:0,cancelId:0,title:'Unsaved project',message:'Close with unsaved changes?',detail:'Save a project file to keep all changes. Recovery is kept separately, but named project files are the best way to keep multiple scenes.'});if(response===1)e.preventDefault();else finishing=false;});
  win.loadFile(path.join(__dirname,'../dist/index.html'),{query:process.argv.includes('--castle-demo')?{demo:'castle'}:process.argv.includes('--outdoor-demo')?{demo:'outdoor'}:process.argv.includes('--openlock-demo')?{demo:'openlock'}:process.argv.includes('--benchmarks')?{demo:'benchmarks'}:process.argv.includes('--dungeon-demo')?{demo:'dungeon'}:process.argv.includes('--village-demo')?{demo:'village'}:{}});
  ipcMain.handle('save',async(_,data)=>{if(typeof data!=='string'||data.length>100000000)throw Error('Invalid project');const r=await dialog.showSaveDialog(win,{defaultPath:path.join(store.projects,'My dungeon.terrain'),filters:[{name:'Terrain project',extensions:['terrain']}]});if(r.canceled)return null;await store.save(r.filePath,data);await store.saveRecovery(data);return r.filePath;});

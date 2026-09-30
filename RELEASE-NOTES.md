@@ -1,11 +1,10 @@
-# Terrain Foundry 1.1.0 — OpenLOCK non-commercial edition
+# Terrain Foundry 1.2.0 — print cost estimates
 
-- Restores the attributed OpenLOCK socket profile throughout all connected scenery, including the 431-piece dungeon range and 72 curved walls.
-- Replaces the round Foundry Link pin in new exports with Printable Scenery OpenLOCK Clip 5.4, preserving original attribution and the full CC BY-NC 4.0 licence.
-- Keeps scene layouts, stable asset IDs, sculpted detail and integrated wall/floor footings. Saved scenes use the restored sockets when opened with this release.
-- Labels the editor, installer, scenery packs and print exports accurately: MIT application code, CC0 original connector-free sculpts, CC BY-NC OpenLOCK profile/derivatives/clip.
-- Paid print ordering remains disabled unless separate commercial rights are obtained and verified.
+- Adds **Estimate print costs** beside **Prepare print pack** in the desktop editor.
+- Uses the website's current pricing calculation for PLA/PETG, A1/H2S, colour, UK delivery and optional parts discounts. Website rate/calculation changes take effect without a client rebuild while the estimate API remains compatible.
+- Measures the scene's export locally, including connectors and fit-test quantities. Only part measurements, identifiers and quantities are sent; STL geometry, scene layouts and personal details are not uploaded for estimates.
+- Shows the website breakdown and a clearly dated cached estimate when offline, only for an identical pack and print options. A new scene or option needs an online calculation first.
+- Saves a ready-to-upload ZIP and opens the print website when requested. The user chooses whether to upload it there.
+- Print requests remain test-only. No payment, printing or shipping is enabled. Estimated weight/time are not Bambu Studio slice results.
 
-Use this edition for non-commercial printing under its supplied licence terms. Preserve attribution when sharing files. Previously printed round-pin parts are a different physical system. Print the included floor/wall/clip fit test first: CAD checks do not establish physical printer tolerances or certify OpenLOCK compatibility.
-
-The signed launcher continues to ask before installing updates. Local saved projects are preserved.
+Existing OpenLOCK scenery, non-commercial licensing, sculpted detail and saved scene layouts are unchanged. Physical connector fit still requires the supplied test print. The signed launcher offers the new client as an interactive update.

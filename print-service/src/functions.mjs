@@ -30,7 +30,10 @@ export async function handler(request,context){
   if(request.method==='POST'&&path!=='webhook'&&!origins.includes(request.headers.get('origin')))throw new InputError('Unapproved request origin.',403);
   await store.init();
   const secret=request.headers.get('authorization')?.replace(/^Bearer /,'');
-  if(request.method==='POST'&&path==='quotes'){
+  if(request.method==='POST'&&path==='estimate'){
+   const length=Number(request.headers.get('content-length'));if(!length||length>150000)throw new InputError('Invalid estimate size.',413);
+   result=await service.estimate(await request.json());
+  }else if(request.method==='POST'&&path==='quotes'){
    const length=Number(request.headers.get('content-length'));if(!length||length>LIMITS.upload+100000)throw new InputError('Upload is missing or larger than 40 MB.',413);
    const form=await request.formData(),file=form.get('pack');if(!file||typeof file.arrayBuffer!=='function'||file.size>LIMITS.upload)throw new InputError('Choose a ZIP print pack under 40 MB.');
    const details=form.get('details');if(typeof details!=='string'||details.length>5000)throw new InputError('Invalid form details.');

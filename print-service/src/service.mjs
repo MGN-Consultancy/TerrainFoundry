@@ -3,6 +3,7 @@ import {zipSync} from 'fflate';
 import {InputError,readPack,inspectPack,LIMITS} from './geometry.mjs';
 import {validateRates,validateDiscounts,customerDetails,price} from './pricing.mjs';
 import {settled} from './paypal.mjs';
+import {estimateItems} from './estimate.mjs';
 
 export const quotePath=id=>'quotes/'+id+'.json';
 export function makeService({store,paypal,env=process.env,rates,discounts=[],now=()=>Date.now(),verifyHuman}) {
@@ -64,5 +65,15 @@ export function makeService({store,paypal,env=process.env,rates,discounts=[],now
   q.status='test-requested';q.requestedAt=now();q.email.testCustomer={pending:true};q.email.testOperator={pending:true};await save(q);return publicQuote(q);
  });}
  function config(){let enabled=false;try{enabled=!!(configured()||previewConfigured());if(enabled){validateRates(rates);validateDiscounts(discounts);}}catch{enabled=false;}return {enabled,preview:!!previewConfigured(),sandbox:env.PAYPAL_ENV!=='live',colours:enabled?rates.colours:[],materials:enabled?rates.materials?.map(({id,label})=>({id,label}))||[]:[],printers:enabled?rates.printers?.map(({id,label})=>({id,label}))||[]:[],countries:enabled?Object.keys(rates.shipping):[],maxUploadBytes:LIMITS.upload,turnstileSiteKey:env.TURNSTILE_SITE_KEY||'',contact:'nigel.webster@mgnconsultancy.co.uk',pricingBasis:rates?.basis||'enclosed-model-volume'};}
- return {create,get,checkout,confirm,reconcile,webhook,requestTestOrder,config,quoteUrl};
+ async function estimate(input){
+  ready(true);
+  if(!input||typeof input!=='object')throw new InputError('Invalid estimate.');
+  const selection=input.selection||{},printer=rates.printers?.find(p=>p.id===selection.printer);
+  if(!rates.colours.some(c=>c.id===selection.colour))throw new InputError('Choose an available colour.');
+  const items=estimateItems(input.items,printer?.buildVolumeMm||rates.buildVolumeMm);
+  const result=price(items,{material:selection.material,printer:selection.printer,address:{country:selection.country}},rates,{code:selection.discountCode||'',discounts,now:now()});
+  await store.budget('estimates-'+Math.floor(now()/3600000),300);
+  return {price:result,preview:!!previewConfigured(),estimatedAt:now(),notice:'Advisory estimate only. The website rechecks uploaded models and current prices before any request. No models or scene layout were uploaded.'};
+ }
+ return {create,get,checkout,confirm,reconcile,webhook,requestTestOrder,estimate,config,quoteUrl};
 }

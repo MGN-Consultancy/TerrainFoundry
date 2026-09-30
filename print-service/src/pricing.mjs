@@ -23,9 +23,10 @@ export function customerDetails(input,rates) {
  const email=clean('email',254);if(!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email))throw new InputError('Enter a valid email address.');
  const colour=clean('colour',50),country=clean('country',2);if(!rates.colours.some(c=>c.id===colour))throw new InputError('Choose an available filament colour.');if(!rates.shipping[country])throw new InputError('Shipping is not available to this country.');
  if(input.consent!==true)throw new InputError('Please agree to the print-service terms and upload privacy notice.');
- const material=String(input.material||''),printer=String(input.printer||'');
+ const material=String(input.material||''),printer=rates.printers?.some(p=>p.id==='h2s')?'h2s':String(input.printer||'');
+ const finish=input.finish??'unprimed';if(!['unprimed','primed'].includes(finish))throw new InputError('Choose an available finish.');
  if(rates.basis==='estimated-filament-and-time'&&(!rates.materials.some(m=>m.id===material)||!rates.printers.some(p=>p.id===printer)))throw new InputError('Choose an available material and printer.');
- return {email,colour,material,printer,address:{name:clean('name',120),line1:clean('line1',180),line2:clean('line2',180,false),city:clean('city',100),region:clean('region',100,false),postcode:clean('postcode',20),country},consentVersion:'print-service-v1'};
+ return {email,colour,material,printer,finish,address:{name:clean('name',120),line1:clean('line1',180),line2:clean('line2',180,false),city:clean('city',100),region:clean('region',100,false),postcode:clean('postcode',20),country},consentVersion:'print-service-v1'};
 }
 
 function estimateParts(items,details,rates){
@@ -58,7 +59,7 @@ export function validateDiscounts(discounts=[]) {
 }
 
 export function price(items,details,rates,{code='',discounts=[],now=Date.now()}={}) {
- validateRates(rates);const count=items.reduce((n,p)=>n+p.quantity,0);const shipping=rates.shipping[details.address.country];
+ validateRates(rates);const finish=details.finish??'unprimed';if(!['unprimed','primed'].includes(finish))throw new InputError('Choose an available finish.');const primerPence=finish==='primed'?1000:0;const count=items.reduce((n,p)=>n+p.quantity,0);const shipping=rates.shipping[details.address.country];
  if(!shipping||count>shipping.maxPieces)throw new InputError('This order needs a shipping quote from us. Please split it into smaller orders.');
  const volumeCm3=items.reduce((n,p)=>n+p.volumeCm3*p.quantity,0);
  const estimate=rates.basis==='estimated-filament-and-time'?estimateParts(items,details,rates):null;
@@ -73,8 +74,9 @@ export function price(items,details,rates,{code='',discounts=[],now=Date.now()}=
   if(d.mode==='filament-only'){
    if(!estimate||d.sha256)throw new InputError('This code requires a filament estimate for the whole order.');
    const filament=estimate.filamentCostPence;
-   if(filament>rates.maximumQuotePence)throw new InputError('This order is above the automatic quote limit.');
-   return {currency:'GBP',rateVersion:rates.version,basis:rates.basis,estimate,pieceCount:count,volumeCm3:+volumeCm3.toFixed(3),modelPence,piecePence,partsPence,setupPence:rates.setupPence,minimumApplied:false,printBeforeDiscountPence,discountPence:printBeforeDiscountPence-filament,discount:{code,mode:'filament-only'},printPence:filament,shippingPence:0,vatBasisPoints:rates.vatBasisPoints,vatPence:Math.round(filament*rates.vatBasisPoints/10000),totalPence:filament+Math.round(filament*rates.vatBasisPoints/10000)};
+   const subtotal=filament+primerPence,vat=Math.round(subtotal*rates.vatBasisPoints/10000);
+   if(subtotal+vat>rates.maximumQuotePence)throw new InputError('This order is above the automatic quote limit.');
+   return {currency:'GBP',rateVersion:rates.version,basis:rates.basis,estimate,pieceCount:count,volumeCm3:+volumeCm3.toFixed(3),modelPence,piecePence,partsPence,setupPence:rates.setupPence,minimumApplied:false,printBeforeDiscountPence,discountPence:printBeforeDiscountPence-filament,discount:{code,mode:'filament-only'},printPence:filament,primerPence,finish,shippingPence:0,vatBasisPoints:rates.vatBasisPoints,vatPence:vat,totalPence:subtotal+vat};
   }
   const eligible=items.filter(item=>!d.sha256||d.sha256.includes(item.sha256));
   const eligibleModels=estimate?estimateParts(eligible,details,rates).chargePence:Math.ceil(eligible.reduce((n,item)=>n+item.volumeCm3*item.quantity,0)*rates.pencePerCm3);
@@ -86,7 +88,7 @@ export function price(items,details,rates,{code='',discounts=[],now=Date.now()}=
   discount={code,percentBasisPoints:d.percentBasisPoints,eligiblePartsPence,requestedPence,appliedPence:discountPence};
  }
  const printPence=printBeforeDiscountPence-discountPence;
- const subtotalPence=printPence+shipping.pence,vatPence=Math.round(subtotalPence*rates.vatBasisPoints/10000),totalPence=subtotalPence+vatPence;
+ const subtotalPence=printPence+primerPence+shipping.pence,vatPence=Math.round(subtotalPence*rates.vatBasisPoints/10000),totalPence=subtotalPence+vatPence;
  if(!Number.isSafeInteger(totalPence)||totalPence>rates.maximumQuotePence)throw new InputError('This order is above the automatic quote limit. Please split it into smaller orders.');
- return {currency:'GBP',rateVersion:rates.version,basis:rates.basis,estimate,pieceCount:count,volumeCm3:+volumeCm3.toFixed(3),modelPence,piecePence,partsPence,setupPence:rates.setupPence,minimumApplied:printPence>partsPence+rates.setupPence-(discount?.requestedPence||0),printBeforeDiscountPence,discountPence,discount,printPence,shippingPence:shipping.pence,vatBasisPoints:rates.vatBasisPoints,vatPence,totalPence};
+ return {currency:'GBP',rateVersion:rates.version,basis:rates.basis,estimate,pieceCount:count,volumeCm3:+volumeCm3.toFixed(3),modelPence,piecePence,partsPence,setupPence:rates.setupPence,minimumApplied:printPence>partsPence+rates.setupPence-(discount?.requestedPence||0),printBeforeDiscountPence,discountPence,discount,printPence,primerPence,finish,shippingPence:shipping.pence,vatBasisPoints:rates.vatBasisPoints,vatPence,totalPence};
 }

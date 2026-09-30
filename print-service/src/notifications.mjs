@@ -10,7 +10,7 @@ export function emailFor(kind,q,{siteUrl,downloadUrl,operator,workshopUrl}) {
  const summary=q.items.map(p=>`${p.quantity} × ${p.name}`).join('\n');
  const prefix=q.preview?'TEST ONLY — ':q.sandbox?'TEST ORDER — ':'';
  const reduction=q.price.discountPence?`Printing before discount: ${money(q.price.printBeforeDiscountPence)}\n${q.price.discount.mode==='filament-only'?'Filament-only discount':'Parts discount'} (${q.price.discount.code}): -${money(q.price.discountPence)}\n`:'';
- const common=`Terrain Foundry reference: ${q.id}\nColour: ${q.colour.label}\n\n${summary}\n\n${reduction}Printing: ${money(q.price.printPence)}\nShipping: ${money(q.price.shippingPence)}\nVAT: ${money(q.price.vatPence)}\nTotal: ${money(q.price.totalPence)} GBP`;
+ const common=`Terrain Foundry reference: ${q.id}\nColour: ${q.colour.label}\n\n${summary}\n\n${reduction}Printing: ${money(q.price.printPence)}\nFinish: ${q.price.finish==='primed'?'Spray primed before posting':'Unprimed'}\nSpray primer: ${money(q.price.primerPence||0)}\nShipping: ${money(q.price.shippingPence)}\nVAT: ${money(q.price.vatPence)}\nTotal: ${money(q.price.totalPence)} GBP`;
  const address=q.customer.address;const delivery='Ship to:\n'+[address.name,address.line1,address.line2,address.city,address.region,address.postcode,address.country].filter(Boolean).join('\n');
  const estimate=customerPrice(q.price).estimate;const calculation=estimate?`\n\nEstimated material: ${estimate.material}, ${estimate.grams} g\nPrinter: ${estimate.printer}, approximately ${estimate.hours} hours${Number.isInteger(estimate.hourlyRatePence)?' at '+money(estimate.hourlyRatePence)+'/hour':''}\n${estimate.notice}`:'';
  if(q.preview){

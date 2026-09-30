@@ -10,7 +10,7 @@ An offline Windows desktop workshop for designing modular tabletop terrain and e
 - Separate STL pieces, quantities and attributed non-commercial OpenLOCK clips in print exports.
 - Small signed Windows launcher. Client and scenery downloads are cached separately and verified before activation. Offline opening remains available when an update cannot be downloaded.
 
-[Website](https://terrainfoundry.co.uk) Â· [Downloads](https://github.com/MGN-Consultancy/TerrainFoundry/releases) Â· [Issues](https://github.com/MGN-Consultancy/TerrainFoundry/issues)
+[Website](https://terrainfoundry.co.uk) · [Downloads](https://github.com/MGN-Consultancy/TerrainFoundry/releases) · [Issues](https://github.com/MGN-Consultancy/TerrainFoundry/issues)
 
 ## Installation
 
@@ -29,7 +29,7 @@ This edition restores the OpenLOCK socket profile and Printable Scenery Clip 5.4
 Requires Windows, Node.js 24, pnpm 11, and Python 3 for deterministic release archives. The launcher uses the Windows .NET Framework compiler; official publication additionally uses Azure Artifact Signing.
 
 1. `pnpm install --frozen-lockfile`
-2. `node scripts/release/generate-all.mjs` â€” builds original scenery from procedural source.
+2. `node scripts/release/generate-all.mjs` — builds original scenery from procedural source.
 3. `node --test tests/*.test.mjs`
 4. `pnpm build`
 5. `pnpm start`

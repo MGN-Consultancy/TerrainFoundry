@@ -1,6 +1,6 @@
 # OpenLOCK socket attribution
 
-Socket geometry in `src/openlock-build.js` is adapted from `clipcut()` in
+Socket geometry in `src/openlock-profile.js` is adapted from `clipcut()` in
 [OpenSCAD-OpenLock by caitlynb](https://github.com/caitlynb/OpenSCAD-OpenLock),
 commit `2dc0e67caffe73901902541d93baaa5d804d961c`.
 The unmodified source and its README are included here.
@@ -13,7 +13,9 @@ not CC0. Imported sculpts also retain their original licensing requirements.
 OpenLOCK is a system by Printable Scenery. This community-profile implementation
 is not an official certification or a claim of tested physical compatibility.
 Use genuine clips from https://www.printablescenery.com/product/openlock-clips/.
-Printable Scenery OpenLOCK Clip 5.4 is bundled separately with its attribution and CC BY-NC 4.0 licence; see CLIP-NOTICE.md.
+Printable Scenery OpenLOCK Clip 5.4 is bundled separately with its attribution and CC BY-NC 4.0 licence; see third-party/openlock/CLIP-NOTICE.md in the source or OPENLOCK-CLIP-NOTICE.txt in an exported print pack.
 Printable Scenery also provides templates and commercial license information:
 https://www.printablescenery.com/product/open-lock/
 https://www.printablescenery.com/2020/02/10/the-openlock-license/
+
+The pinned upstream support SCAD files are included. Upstream DemoSurface.scad is stored as demosurface.scad to match polyhedronhelper.scad on case-sensitive systems; its contents are unchanged. These are reference sources; the editor builds sockets using the attributed Manifold port.

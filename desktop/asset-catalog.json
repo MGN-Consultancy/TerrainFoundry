@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "release": "1.0.0",
+  "release": "1.1.0",
   "policy": "Built-in asset IDs resolve to this installed catalogue; imported geometry stays in the project.",
   "assets": {
     "a-001": {
@@ -639,7 +639,7 @@
           ]
         ]
       },
-      "sha256": "f0ba6ef24782250aa34a1dde5544f7b0cd32317af5694b1c4eafcefcb4c5a801"
+      "sha256": "0bb197cc655ab8033830964f83f2bd893fffb0c655c7abd7c6b5460aec89305f"
     },
     "a-002": {
       "name": "Fortress curved wall · 1.50 tile radius",
@@ -1277,7 +1277,7 @@
           ]
         ]
       },
-      "sha256": "3b25d0dabc49d41d3cee8565f2310417cd76962796462b25e10257c8789e594b"
+      "sha256": "3046b19919fe77bc3d2398edd695f956d3cb0c99d8019f1ebdbd999bafedc162"
     },
     "a-003": {
       "name": "Fortress curved wall · 1.25 tile radius",
@@ -1906,7 +1906,7 @@
           ]
         ]
       },
-      "sha256": "0cb1d65694e1ecfa02911712e64ae2f1effd3efa18ac695427550bc29b5920f0"
+      "sha256": "4fa4bf40ea82fe20dfa7d4b353429670edba87f0a5bbfec59362c1ce30cc09ac"
     },
     "a-004": {
       "name": "Fortress curved wall · 0.50 tile radius",
@@ -2544,7 +2544,7 @@
           ]
         ]
       },
-      "sha256": "529e295342ed0bf2d273a58102c403d3f97a7101abb97ca163ea8f427aecbce6"
+      "sha256": "54d781482076d9c2dd92a97baa9b6d01fb33ba785ebde7705814728e84e02ca1"
     },
     "a-005": {
       "name": "Fortress curved wall · 1.25 tile radius",
@@ -3182,7 +3182,7 @@
           ]
         ]
       },
-      "sha256": "716d6282217381d04043d85a1cf31741439de5b5404b2e61f7fd1e5c130dbdb1"
+      "sha256": "1c8b2f9e38e55d2b61dbf62a95d43077cf8ace2628f91d039822a626f4c4c212"
     },
     "a-006": {
       "name": "Sewer curved wall · 1 tile radius",
@@ -3820,7 +3820,7 @@
           ]
         ]
       },
-      "sha256": "45da0fd54d2eb6e6bf2c7bc3eb5139c4f6b4cdc7df5ba6425aea7a5f68ae932a"
+      "sha256": "d11120ea701aaf6a69db2684714c601d8f3c012d970220d0532e23d1ae33ff2c"
     },
     "a-007": {
       "name": "Mine curved wall · 1 tile radius",
@@ -4458,7 +4458,7 @@
           ]
         ]
       },
-      "sha256": "88ef42e24db3656301a749e53866c01733a5ddef2e99dc220d206623cc2d26d0"
+      "sha256": "129c3e8b17368dda481aad5c7593047867e7bfa9057dea2eb290dcbaa4ebbb74"
     },
     "a-008": {
       "name": "Crypt curved wall · 1 tile radius",
@@ -5096,7 +5096,7 @@
           ]
         ]
       },
-      "sha256": "0ffeccb20bd09c419ae6cafdd6d9a40a2a8af7cdb52019f88032807483c2b78f"
+      "sha256": "1738272a360af47ec4c2d8e357d14c8e46f145a455f3fe65af4decc4603ad3c9"
     },
     "a-009": {
       "name": "Crypt curved wall · 1.25 tile radius",
@@ -5734,7 +5734,7 @@
           ]
         ]
       },
-      "sha256": "dba471785a30fa75b5e4a48da90ee251bb0dd94a2379c9b9584fb1cba09d21de"
+      "sha256": "737920e9b2336ade0b7b41e83c1aae2b8ee110844f050f1390adf538bfa5f7d3"
     },
     "a-010": {
       "name": "Ossuary wide curved wall · 2 tile radius",
@@ -6372,7 +6372,7 @@
           ]
         ]
       },
-      "sha256": "abaadc7d29678299c3193901f63ac88e3f52dbc213ff26ea14cb9ec9696ac757"
+      "sha256": "74f7f6c7a3f0d2b89de4c997ecc2cd37f930858495fcca22242d17f067e2dd78"
     },
     "a-011": {
       "name": "Ossuary curved wall · 1 tile radius",
@@ -7010,7 +7010,7 @@
           ]
         ]
       },
-      "sha256": "c7206b56a1edf42d0edccdd0dde4ff80559b62a1d4fc5af396795fd53755c8cd"
+      "sha256": "7cf58fe130d5ac0639dbf779b7145490b9a6efbf0e55e35d563e3fcd42c350b7"
     },
     "a-012": {
       "name": "Fortress wide curved wall · 2 tile radius",
@@ -7648,7 +7648,7 @@
           ]
         ]
       },
-      "sha256": "63eca4bcedd575e400bcce71256799d62a75aca4317649808e10cbd294b61d1c"
+      "sha256": "ece1f37da26f89b0aa1e652b233af3edefe2f07bb0ec7674890af7f054407965"
     },
     "a-013": {
       "name": "Ruins curved wall · 1 tile radius",
@@ -8286,7 +8286,7 @@
           ]
         ]
       },
-      "sha256": "93bdf8c403247432b8ecb9ea92d0d1876dbddeffdb1892143fffaf7d6c5f9486"
+      "sha256": "5f9f7dcbc980ea825fadef742ce89e79dc2c68cd8031e0c20b43116cbb7b30a1"
     },
     "a-014": {
       "name": "Timber curved wall · 1 tile radius",
@@ -8924,7 +8924,7 @@
           ]
         ]
       },
-      "sha256": "916f08031447dec24b8c0404d5bcde1afe0bfe0da90d20296ac03894fdb5f07e"
+      "sha256": "63c29c88b77ea0c4bf634fb1949adfa902bafd93f11721128c5163e4ad349c90"
     },
     "a-015": {
       "name": "Timber wide curved wall · 2 tile radius",
@@ -9562,7 +9562,7 @@
           ]
         ]
       },
-      "sha256": "e1a178829272f36a2351226f183d9acd135f61f647f77880e1a84617c14a0040"
+      "sha256": "da2df3ada0c7ece0702f11ad8a278fe356be7a2aec2723eabab26cd6c5f8961e"
     },
     "a-016": {
       "name": "Timber curved wall · 1.25 tile radius",
@@ -10200,7 +10200,7 @@
           ]
         ]
       },
-      "sha256": "5219bfb36a4ece0151f16dec6add480b2bd7cfe7d3af2cba7ef5e3dd45690a13"
+      "sha256": "139a79a2dad89b869d5d2a7c5a516debb31d5e17e4d24f22ced376feaee3dd31"
     },
     "a-017": {
       "name": "Cavern curved wall · 1 tile radius",
@@ -10838,7 +10838,7 @@
           ]
         ]
       },
-      "sha256": "b92c1de0ed80e71c43da211cc015f70bd624bbafcc29e1017a737241c5d50938"
+      "sha256": "56d9f31eef336ff7cb9b7ed301fc91a9d178cdf3fa1e57f63a92303c80c13dd8"
     },
     "a-018": {
       "name": "Cavern curved wall · 1.50 tile radius",
@@ -11476,7 +11476,7 @@
           ]
         ]
       },
-      "sha256": "af7c6bb1ecc4bba328e2d4eeb31433f0c25a7aac5b082979f30e8aa4a4c89861"
+      "sha256": "035da407e866a2dd1ece5ac736f807f217a4d95dad6fb72d629c841338f105d0"
     },
     "a-019": {
       "name": "Grating wide curved wall · 2 tile radius",
@@ -12114,7 +12114,7 @@
           ]
         ]
       },
-      "sha256": "27c47230c86deabeb68bbc83aa3753964338b6245a736176a4e0da16eef85a4c"
+      "sha256": "2a4048af16112a4d6b7a862893e99aa2550937dbf590f45f641985f22b708025"
     },
     "a-020": {
       "name": "Grating curved wall · 1 tile radius",
@@ -12752,7 +12752,7 @@
           ]
         ]
       },
-      "sha256": "e7b1e8542f40833e3a0f4995392ebbfe82830d1aaba3f8441294f242c99c5357"
+      "sha256": "c72280f450ff5b5053200d50f0571ec5b80d807d8d1e278888c91a5dc1bca6e8"
     },
     "a-021": {
       "name": "Grating curved wall · 1.25 tile radius",
@@ -13390,7 +13390,7 @@
           ]
         ]
       },
-      "sha256": "4cafc8f94c7c8f9203f170b43676120cbebc779d03fdc37a3613ec936edd06ea"
+      "sha256": "d423698d2d6695cc7973981318b8ce2844918c14c79dfe1c830a29e6aee90ea1"
     },
     "a-022": {
       "name": "Grating curved wall · 1.50 tile radius",
@@ -14028,7 +14028,7 @@
           ]
         ]
       },
-      "sha256": "aff9e65a175d6f46674e4c577daa372c47e0bc0df1a5cbf92cb78d378815a21f"
+      "sha256": "2b5b493323bc791106593b9184f97c4f1e61ceed5036b26f1e33267c2655f95e"
     },
     "a-023": {
       "name": "Grating wide curved wall · 2.25 tile radius",
@@ -14666,7 +14666,7 @@
           ]
         ]
       },
-      "sha256": "372039af20c1de1e1b86721cbebd95012ac49dfceadf066951d71cc8412c7c2a"
+      "sha256": "8e7e3231eb135faa6542cf84e8a68208aad270ae7550c7a261c06ad647508de4"
     },
     "a-024": {
       "name": "Ossuary curved wall · 1.25 tile radius",
@@ -15304,7 +15304,7 @@
           ]
         ]
       },
-      "sha256": "cdadad6ba52de56cf760bf3ea8dd52a5356c79e58a3449145fed4518058c5aac"
+      "sha256": "e872efcb2a9a7017e4b0c68a074d2077f6c21c5f9769b06f480bc864b042bd71"
     },
     "a-025": {
       "name": "Smallstone wide curved wall · 2 tile radius",
@@ -15942,7 +15942,7 @@
           ]
         ]
       },
-      "sha256": "4afd338d23d62e01b87fa8c9cb39c72271d71ce8b2e0c3aebab673a150d2907a"
+      "sha256": "092e93e39e82606e4f7b7e76e511960510de7e0c6280f99772f33c57316051e3"
     },
     "a-026": {
       "name": "Smallstone curved wall · 1 tile radius",
@@ -16580,7 +16580,7 @@
           ]
         ]
       },
-      "sha256": "225c2e1040a60379893dc56f771a470c8e13b71f278dcb7b581bca0a78680953"
+      "sha256": "c76699e606202d2af84e91006522120ca1adbfded4d39c0ad9e6d50f3c0b9a0c"
     },
     "a-027": {
       "name": "Smallstone curved wall · 1.50 tile radius",
@@ -17218,7 +17218,7 @@
           ]
         ]
       },
-      "sha256": "a9936df8a0420a5c1f9ea5c95f34437458b4451ee3300ae216d1409380637b40"
+      "sha256": "101ae99e8f87651c35f4c0bdb6a78084f186d88668fc2ca9847745878f5a8bbc"
     },
     "a-028": {
       "name": "Smallstone wide curved wall · 2.25 tile radius",
@@ -17856,7 +17856,7 @@
           ]
         ]
       },
-      "sha256": "f61917e7097e5618313cf53b5d37ce584bed394ae588764e5e20315755ede710"
+      "sha256": "98ab0596ab0b0e069f45f899db1ae870e15b9d44ed5f7d26a56dab416330a42c"
     },
     "a-029": {
       "name": "Smallstone curved wall · 1.25 tile radius",
@@ -18494,7 +18494,7 @@
           ]
         ]
       },
-      "sha256": "98a86a8f2008a23ed0a2f20f091eae0646fb86baab52670f0ba8bc242a250b31"
+      "sha256": "89a43be13ddb97788ecce1fe1a085992137bb40eab667387f5ddbcd2c1854178"
     },
     "a-030": {
       "name": "Fortress wide curved wall · 2.25 tile radius",
@@ -19132,7 +19132,7 @@
           ]
         ]
       },
-      "sha256": "f580a260ee8e2bf42707dcb60b95b205d655dd028ceda5a1806e1102ac0dd4c6"
+      "sha256": "be59f21010a47189abd42b578a07108e28dba86fd6e2de983ac8968ad77bfabe"
     },
     "a-031": {
       "name": "Fortress gentle 45° wall · 2 tile radius",
@@ -19482,7 +19482,7 @@
           ]
         ]
       },
-      "sha256": "c9d7d37f18dcd9f04df5d1336c5c1057c8e4b5228fd3fbf060b8bb1bef8f2b73"
+      "sha256": "7eb1c960889878251dcca5437f4b9e7fd2dace1e4b05c42bf227bf0ac7da07dc"
     },
     "a-032": {
       "name": "Sewer wide curved wall · 2 tile radius",
@@ -20120,7 +20120,7 @@
           ]
         ]
       },
-      "sha256": "696bc08fe767b41ea1f219ddb95c84f85fa90127682bf392cd4ee58221e3d025"
+      "sha256": "ffe339ad9a80efa7d0ba147bf21505f713a71c80d4a7610cf7975c9b56b8e001"
     },
     "a-033": {
       "name": "Sewer gentle 45° wall · 2 tile radius",
@@ -20470,7 +20470,7 @@
           ]
         ]
       },
-      "sha256": "70fdaf702f54875d2ecaf9c1f09fd35543bd6bb962b4106eb4c949759bec1b6a"
+      "sha256": "579675952232238d9f0fdca7baf714b2f97dd18cc81b6f1cc1fedd169c652963"
     },
     "a-034": {
       "name": "Crypt wide curved wall · 2 tile radius",
@@ -21108,7 +21108,7 @@
           ]
         ]
       },
-      "sha256": "6eac7f504d1ea956d591ace528910cc052a41525e0247d9a058bafe4b0ac2c6a"
+      "sha256": "7b5289c559569fd802c1689a94e9583238ffdcef2331a34921c45578527a167a"
     },
     "a-035": {
       "name": "Crypt gentle 45° wall · 2 tile radius",
@@ -21458,7 +21458,7 @@
           ]
         ]
       },
-      "sha256": "47f8e8b1f691a98791868701f5cdea5bcc6fb31829a49d0cbc402e12b7a1881c"
+      "sha256": "14ae510437add795b17a4a5fba04582de97dddbeae907ee0a3ad1b909efd7f7f"
     },
     "a-036": {
       "name": "Ossuary gentle 45° wall · 2 tile radius",
@@ -21808,7 +21808,7 @@
           ]
         ]
       },
-      "sha256": "9b84704df3ae0e4bee08821938d837994080e310a96fa1a6e1d1bcff5d6ceff3"
+      "sha256": "d4dc1f9ff5395c0239ea4fb9db32d6201c0c33b61ce9017304e08cfdbd81dc99"
     },
     "a-037": {
       "name": "Mine wide curved wall · 2 tile radius",
@@ -22446,7 +22446,7 @@
           ]
         ]
       },
-      "sha256": "47cda149dfe267ca4d740b3e5a1a44bd6d9c904edd74ae9f671372f725dc0b9c"
+      "sha256": "5fe95fcb6f78405c5d3bbd8ee50a918f3bddcc927c7a6e4eca5e8a0dacf90805"
     },
     "a-038": {
       "name": "Mine gentle 45° wall · 2 tile radius",
@@ -22796,7 +22796,7 @@
           ]
         ]
       },
-      "sha256": "10f6a8ab4560d598cd3a398990bda629d00750948a326ff4dbfe75aebc085edc"
+      "sha256": "860b542c5aff29067a2cd91da44bb394cb5595f0ae597e332ff39862845df133"
     },
     "a-039": {
       "name": "Baths curved wall · 1 tile radius",
@@ -23434,7 +23434,7 @@
           ]
         ]
       },
-      "sha256": "52a4b42d2ad3a3312f572dc7a427a027864638eee01ace7efd912166d43761c9"
+      "sha256": "9616b80d19f5dc02c6c45b1bc24b4bea5ccdbd603bf0556802225fe55c0eb173"
     },
     "a-040": {
       "name": "Baths wide curved wall · 2 tile radius",
@@ -24072,7 +24072,7 @@
           ]
         ]
       },
-      "sha256": "d423c13da2f57ad132ad47bb9a2f2ccec5457f3d6ec52c9d241f4c2e91a28e78"
+      "sha256": "73de913f5ea5f91b2000023da7ae4abe64bd61b2599225a765c757e13c5f229b"
     },
     "a-041": {
       "name": "Baths gentle 45° wall · 2 tile radius",
@@ -24422,7 +24422,7 @@
           ]
         ]
       },
-      "sha256": "6897fb1c13362252c00336077cce7e5b8b434ec60380b7a63c8023bcb47fefe5"
+      "sha256": "aa0dfd351847f82b4bd5d3a4aa1629706d48e720a33c7ebe19e0eaa1351fc467"
     },
     "a-042": {
       "name": "Ruins wide curved wall · 2 tile radius",
@@ -25060,7 +25060,7 @@
           ]
         ]
       },
-      "sha256": "2466aca9740ffa61636714df58be1745603a84ce21e91465ab7fc2dbef79f5b0"
+      "sha256": "5dc298b1a52971f095b7b889f1315b38bdf8d24a3e11913528d17d7d29d5f18b"
     },
     "a-043": {
       "name": "Ruins gentle 45° wall · 2 tile radius",
@@ -25410,7 +25410,7 @@
           ]
         ]
       },
-      "sha256": "b718b700e5b8b86886eab402181d5fd366b9093c2b355b914149f10e05e1c738"
+      "sha256": "3285ca6c5e57036cd774b4c4bbda15e741a5aeef11e2d3ef8694a696e64ef77a"
     },
     "a-044": {
       "name": "Timber gentle 45° wall · 2 tile radius",
@@ -25760,7 +25760,7 @@
           ]
         ]
       },
-      "sha256": "06c968313bbfab251c9684fe402a0c198af94f74b45e2d4b7c9ad9c0b68e015e"
+      "sha256": "b82fdc99b72cb51a23990f638e3c6b25815942ea11d0d04bf8b2bb735c7f6357"
     },
     "a-045": {
       "name": "Cavern wide curved wall · 2 tile radius",
@@ -26398,7 +26398,7 @@
           ]
         ]
       },
-      "sha256": "b8f81933ad7cdb2f4f933a3377514eef44ce630c8c7c61a8e025cd1575bd1597"
+      "sha256": "ff6ecba55cd2d0d38299b8334eb7dc93c2ed17bcee2bffed654b1540b281425b"
     },
     "a-046": {
       "name": "Cavern gentle 45° wall · 2 tile radius",
@@ -26748,7 +26748,7 @@
           ]
         ]
       },
-      "sha256": "9d2c04ce8b9b9dfa4006c985300d1334f807d9adc2ff4ed215efddf1d54c37e9"
+      "sha256": "9784967f5d326e251531ef7d11e1e03466d336886446f229baf2fc748b105568"
     },
     "a-047": {
       "name": "Gothic curved wall · 1 tile radius",
@@ -27386,7 +27386,7 @@
           ]
         ]
       },
-      "sha256": "7553de99559ae2c2ebde0349dd1b59a2cce4fd98a2096576edccda7b4e813ee6"
+      "sha256": "387fbcc05dfbcc2b11c4fd22001d00b46c12306a92042dd2c8f66ff58b5abe19"
     },
     "a-048": {
       "name": "Gothic wide curved wall · 2 tile radius",
@@ -28024,7 +28024,7 @@
           ]
         ]
       },
-      "sha256": "0bb20590fc1ac70f527dcebf3deeb38b1ca81d0d1cd22c2fcbae5abb797440b2"
+      "sha256": "40b1bce2c4b30c6d7de0f7a2706cf86404db12074ee9dffdf0e62e1f03310130"
     },
     "a-049": {
       "name": "Gothic gentle 45° wall · 2 tile radius",
@@ -28374,7 +28374,7 @@
           ]
         ]
       },
-      "sha256": "bea00fed423a91c4cf8215bfd076e69d45f62a272ad323802fa8483270dc24d2"
+      "sha256": "de31e8203ec18be0b5a89f57a58eaf9381e2c1aef46af0b355bf49b68608dd9a"
     },
     "a-050": {
       "name": "Grating gentle 45° wall · 2 tile radius",
@@ -28724,7 +28724,7 @@
           ]
         ]
       },
-      "sha256": "0901116e83e5fe081541155906669966ced3fd8e202cd7c50ae30d6c52052d01"
+      "sha256": "0cf04a443a4bebefdec60d43c0f047b3e724d066bebe0a319b491211ff4d2ce2"
     },
     "a-051": {
       "name": "Manor curved wall · 1 tile radius",
@@ -29362,7 +29362,7 @@
           ]
         ]
       },
-      "sha256": "1c9396f67578d68665f0a3bbb5274e121e2f55cae98a4c0bc58cf0e8fafd1967"
+      "sha256": "927613e07757f4e6bb1c82910035b2a31840d53c65a15588a2bbe90fa24aacaa"
     },
     "a-052": {
       "name": "Manor wide curved wall · 2 tile radius",
@@ -30000,7 +30000,7 @@
           ]
         ]
       },
-      "sha256": "b45cb229b44e8ea101480ef5b0a41074ff5dd80073da4e100614c2057327ee02"
+      "sha256": "ceded816fffe9d27134b671a935fc460d11ca49d766a462980f7e5c9805229ec"
     },
     "a-053": {
       "name": "Manor gentle 45° wall · 2 tile radius",
@@ -30350,7 +30350,7 @@
           ]
         ]
       },
-      "sha256": "d752a3f75a8ad275e4259821aa32a55f30501c14ed0aa9b7836feb50750a7ae2"
+      "sha256": "3a4a47019762863d146c5de2cbf7a2eb71a59f6b9eda24845bc7b7c23ebb2a49"
     },
     "a-054": {
       "name": "Smallstone gentle 45° wall · 2 tile radius",
@@ -30700,7 +30700,7 @@
           ]
         ]
       },
-      "sha256": "2491fb1af46e16e4f6b81fac9684c088a0aeb0c3054f66223873174c29a07fde"
+      "sha256": "a8ed95aa2a4596ce199d0ef0c5308272a75f230052d149394f6d89c0ecd8cbde"
     },
     "a-055": {
       "name": "Hollowdeep curved wall · 1 tile radius",
@@ -31338,7 +31338,7 @@
           ]
         ]
       },
-      "sha256": "3e5242cffb371a1c206ab419fcfb7df79e9f3e07dd7c3b3559a999868d573c6d"
+      "sha256": "bc36c10189d6225a85480b230b2b8cf45fc562bef9f29e69945932ae4f8fd555"
     },
     "a-056": {
       "name": "Hollowdeep wide curved wall · 2 tile radius",
@@ -31976,7 +31976,7 @@
           ]
         ]
       },
-      "sha256": "99cc18732e5332171f58c7c8effde369df226e45185d2424983faf77c660c9c9"
+      "sha256": "ecd784b26f91c171255d7452015b8af65fff9cb171fe66c93c72682732130d0f"
     },
     "a-057": {
       "name": "Hollowdeep gentle 45° wall · 2 tile radius",
@@ -32326,7 +32326,7 @@
           ]
         ]
       },
-      "sha256": "0e4ecae718d97670bbe00b9357cef808c7f7c9d71937dbefa70e379169e74540"
+      "sha256": "04e99ff7cfee45c4a685a49afb31323b71062a90e878347fdf0e22a668f39650"
     },
     "a-058": {
       "name": "Blackwater curved wall · 1 tile radius",
@@ -32964,7 +32964,7 @@
           ]
         ]
       },
-      "sha256": "b9d313bd22450cb87b54c38bd1a5d9ab3392daa8c15fc8d26d664853bb30423c"
+      "sha256": "4d8e92ff73eb421e4a5dcd1cf739e95c40303a7f7e4f09214caf8c868c4cb459"
     },
     "a-059": {
       "name": "Blackwater wide curved wall · 2 tile radius",
@@ -33602,7 +33602,7 @@
           ]
         ]
       },
-      "sha256": "4fd85857eb2a9d02f04556926b932950a542b34b9c9dd84362c5e748a4c1ac93"
+      "sha256": "b29ed39e182bb6a6d58831075768121e5f9a18d19d4ed252ca3f99db4f57f6ed"
     },
     "a-060": {
       "name": "Blackwater gentle 45° wall · 2 tile radius",
@@ -33952,7 +33952,7 @@
           ]
         ]
       },
-      "sha256": "f8c18368420e7daf74668ff5c239a14548323d642b6819e73f72974626e2d618"
+      "sha256": "1bcfec55f1df3ca7b1cac0670800458a9980628867e11b81dced3570350662ea"
     },
     "a-061": {
       "name": "Greywatch curved wall · 1 tile radius",
@@ -34590,7 +34590,7 @@
           ]
         ]
       },
-      "sha256": "10756b47862cbc786fffad7153dedf62809b479ce8ca4f9fc34bb03691d7692a"
+      "sha256": "595c1fb208d25647b5177f00861998aea812194ef92f03e1e73be41e1387951f"
     },
     "a-062": {
       "name": "Greywatch wide curved wall · 2 tile radius",
@@ -35228,7 +35228,7 @@
           ]
         ]
       },
-      "sha256": "d8b5b72e0a1efe61f16799119a5c29e1bc2d9e48fab607c17eb972f44d2869c5"
+      "sha256": "51c973166e8a5aeef18be40fa40541072fc9d1f89c0d81244388325318a0e358"
     },
     "a-063": {
       "name": "Greywatch gentle 45° wall · 2 tile radius",
@@ -35578,7 +35578,7 @@
           ]
         ]
       },
-      "sha256": "d2f5a2bfeb426a936bfddfa929af6f7d57ea930cfef32c508311f5580a944c11"
+      "sha256": "233756212be68198828817e52ef3553a683483b07ccd86de9e833e7d0bd9084f"
     },
     "a-064": {
       "name": "Quarry curved wall · 1 tile radius",
@@ -36216,7 +36216,7 @@
           ]
         ]
       },
-      "sha256": "96577f55a6efa04dd596c0b6aceac407fd66aa6731bb7a1d141f448133e84fcf"
+      "sha256": "ce04194043102d632c7cd58b42c823d2496d150584e6a6640fa6f88f9264c3fb"
     },
     "a-065": {
       "name": "Quarry wide curved wall · 2 tile radius",
@@ -36854,7 +36854,7 @@
           ]
         ]
       },
-      "sha256": "7b1b2f000636b7e5dab71d0ff1bd7088a1ad9184afd0ca0c39a9b7f5c89e80e7"
+      "sha256": "035a8e7271fafc29020259572d2778a4bd0702f55eac3b24b7fa36253d306332"
     },
     "a-066": {
       "name": "Quarry gentle 45° wall · 2 tile radius",
@@ -37204,7 +37204,7 @@
           ]
         ]
       },
-      "sha256": "3a070776c016504aab264d60e3ae5d668d74718c055be4d60ff8288cb2844b78"
+      "sha256": "30edb7fcbf1346b88e06a04144f67293467dbd7441bee14345be6cbf5079e7ec"
     },
     "a-067": {
       "name": "Village stone curved wall · 1 tile radius",
@@ -37842,7 +37842,7 @@
           ]
         ]
       },
-      "sha256": "29db3d9f6adfad8e92db0d7279b70b455598e6d46ed9b7ce8db7db3aef7a65c9"
+      "sha256": "d9e912f48044e4db71e3650997fbcdf8b59af68cffd3e93b12021baf58bbe9f8"
     },
     "a-068": {
       "name": "Village stone wide curved wall · 2 tile radius",
@@ -38480,7 +38480,7 @@
           ]
         ]
       },
-      "sha256": "fbc03811cf8acdc51e341dbb65e821bf59ec84187fa86f3886586e7d9eb94047"
+      "sha256": "0c57394753c8af5f201f8017871fc92b3338bc1f77a2302220297b27cca7e5c4"
     },
     "a-069": {
       "name": "Village stone gentle 45° wall · 2 tile radius",
@@ -38830,7 +38830,7 @@
           ]
         ]
       },
-      "sha256": "04218a4639f465f0f80d7a7b801dd68b4719938829c34613105a97195d93347c"
+      "sha256": "c544d24a401085e9d4120d1a17f79fe6df4afe4abcaeca948d2b717b4b2a02b6"
     },
     "a-070": {
       "name": "Village timber curved wall · 1 tile radius",
@@ -39468,7 +39468,7 @@
           ]
         ]
       },
-      "sha256": "28b3e077daa48330e9551f6736f82640d836783d4db68057051fcc859f69477c"
+      "sha256": "a1316cf6482f2c122ea95de680caac899dfd72ecc48420dc14e0f544c95c9c9e"
     },
     "a-071": {
       "name": "Village timber wide curved wall · 2 tile radius",
@@ -40106,7 +40106,7 @@
           ]
         ]
       },
-      "sha256": "6f8d80565cf2d68acc6a02fe0474f62416dcc6b1d570bc74c88e061d784bdccd"
+      "sha256": "8d19a9f29bcbfc4e272b432302b445a20f2202359316a840766eb9771f3ac2ca"
     },
     "a-072": {
       "name": "Village timber gentle 45° wall · 2 tile radius",
@@ -40456,7 +40456,7 @@
           ]
         ]
       },
-      "sha256": "47d166ce9750fe8948cd281c64e844953045fd922fe5010486f4d56f8b4c65e7"
+      "sha256": "99874126ce5fe84abc45bb26e816d455e078d370bf94703092afb2c2eb755495"
     },
     "w-oak": {
       "name": "Broad oak",
@@ -40604,7 +40604,7 @@
           ]
         ]
       },
-      "sha256": "88c56376527aadb70a1e61d9e8959b56a442466598eb03db81a0ac4615e4a84d"
+      "sha256": "74ab8c72707f104d6a5eaf90a2c517ea62c5f1973026755b7f290aa905c77bd7"
     },
     "r-002": {
       "name": "Fortress wall 2x2 · 002",
@@ -40683,7 +40683,7 @@
           ]
         ]
       },
-      "sha256": "233d2a50d0d3efa1239863a463205ee80d0b832a2f318f5fa2d44ade7a046461"
+      "sha256": "b6a004ad19eef4151cb460f95ca784b307a8561edae5cc1a0394e22d7e014cda"
     },
     "r-003": {
       "name": "Fortress arch 2x2 · 003",
@@ -40762,7 +40762,7 @@
           ]
         ]
       },
-      "sha256": "b3ee2d4fa52841394ea675fc18a8ff84c1f218102bbf8afee2ceeed2d1c47378"
+      "sha256": "a343656186f2e8f1006ca8d4cb58c96d26c981282fc6070fd0640101489b3db1"
     },
     "r-004": {
       "name": "Fortress column End 0.5x2 · 004",
@@ -40814,7 +40814,7 @@
           ]
         ]
       },
-      "sha256": "fd064829ccf6924ab60d76f2b860f0625b47fce89ab5fd0dcfbda900b4543e18"
+      "sha256": "88d374af40cea590b82852464e9cd2364d281ad8e4cd1919050dd55124cd2bf5"
     },
     "r-005": {
       "name": "Fortress column 0.5x2 · 005",
@@ -40884,7 +40884,7 @@
           ]
         ]
       },
-      "sha256": "4dbe53d3e15a9e39c7932ed10a734d045a3feb5922325669a0be74f96d8886c0"
+      "sha256": "50998343d38e1356eb6f948b1b9f7159d3ac55af647483dcd89099a7c57a3ea0"
     },
     "r-006": {
       "name": "Fortress wall 1.5x2 · 006",
@@ -40963,7 +40963,7 @@
           ]
         ]
       },
-      "sha256": "3e5b1c963ea756b0d66df982608aecd952c6da43096667906bb30453461d8a86"
+      "sha256": "a418f06847cc8b7d47e049aec61fd33e88085e096ddc378540643f6bd8ea12d5"
     },
     "r-007": {
       "name": "Fortress floor 2x0.5 · 007",
@@ -41006,7 +41006,7 @@
           ]
         ]
       },
-      "sha256": "e989dd3627fdf25aa840bee1604b23cd81928f76424cfbaebcdaadad399fac14"
+      "sha256": "de1e506a37174b49260df41fcc353616ced2079d51948d7ef4ed62164096d6b9"
     },
     "r-008": {
       "name": "Fortress floor 2x0.5 · 008",
@@ -41049,7 +41049,7 @@
           ]
         ]
       },
-      "sha256": "e84f18bb3f573b568470fc6190d245d1a37bab5e81a81acb29000e515ea5eadb"
+      "sha256": "d0b3b65f875aa2b77a896ff4b50b366dba7e49746ece0d0d2c7c7df1ad669443"
     },
     "r-009": {
       "name": "Fortress column Corner 0.5x2 · 009",
@@ -41119,7 +41119,7 @@
           ]
         ]
       },
-      "sha256": "baac487fe8bce8062d15d24bcfe8c208c73d19f2667fe9587dafbd0c0888ef5d"
+      "sha256": "53b19bf0f2896e6075d6847be83c15b449e317db5984a98c90483cff7b66e9d0"
     },
     "r-010": {
       "name": "Sewer wall 2x2x1 · 010",
@@ -41207,7 +41207,7 @@
           ]
         ]
       },
-      "sha256": "219f27fc297cb91148519645eb6af116257d7cc1d708d1a096a2c233681e2949"
+      "sha256": "d869c723759c9204c7855f967be76514640b19e49ee61b45c62a12974b4e1eba"
     },
     "r-011": {
       "name": "Sewer column 1x2x1 · 011",
@@ -41277,7 +41277,7 @@
           ]
         ]
       },
-      "sha256": "58d5dd3cbd44aa28588f38cb44efa48f1cb72e2a2d270fd2e9280be3ff50af85"
+      "sha256": "dddbf8155d91557efd4981c5c8130be6ac511b19c8c632fde6ac831322755485"
     },
     "r-012": {
       "name": "Sewer outfall 2x2x1 · 012",
@@ -41365,7 +41365,7 @@
           ]
         ]
       },
-      "sha256": "17f7470bada57ac4cdceffdb79c63aae779d42aec36627f5db987f9b78771a10"
+      "sha256": "a379068a732a4294537faef838bbe66f7fdcd2b3e54a0c73c42cbb882c06d1ad"
     },
     "r-013": {
       "name": "Sewer ladder 2x2x1 · 013",
@@ -41453,7 +41453,7 @@
           ]
         ]
       },
-      "sha256": "a13673259c4e8283ccb5e5d6a6771dd936c560da690bbfa3a440b42cab91f70b"
+      "sha256": "d2e2ed5b6ae7b5fce46ede1c66497ecf507555bdf6b8c4519a4b76971f50f0f6"
     },
     "r-014": {
       "name": "Sewer wall 1x2x1 · 014",
@@ -41541,7 +41541,7 @@
           ]
         ]
       },
-      "sha256": "d97de05c8438226feb5fc5f14a45749da339de9663c0c3b4fb037c58e5cb6bd3"
+      "sha256": "b3ff3457a93bd601f870b529d700cb4ab0a65fae89ee287c9dfd2e4e101766f5"
     },
     "r-015": {
       "name": "Sewer wall 1x2x1 · 015",
@@ -41629,7 +41629,7 @@
           ]
         ]
       },
-      "sha256": "ed0ed1db886ec08a3797e6cef601f460666ab7b0fb2adde8d21bba9636024951"
+      "sha256": "e6c3ecadb99e6e07fa944984eab69ba568be7363c5c61d433a9eb36d62ab5370"
     },
     "r-016": {
       "name": "Sewer valve 2x2x1 · 016",
@@ -41717,7 +41717,7 @@
           ]
         ]
       },
-      "sha256": "659bbe4ae1efd206c7abfc55f69e66f70e807a8a51a9854c136c90e21a08ef79"
+      "sha256": "7a86c9575cfde009fccdcc4ea2a8b1a0aefaa6ae56b25e021fe89838d7ffc6fe"
     },
     "r-017": {
       "name": "Sewer wall 2x2x1 · 017",
@@ -41805,7 +41805,7 @@
           ]
         ]
       },
-      "sha256": "b13d12072240276da8b941b8ee6c762e08458cd6eb49d6be2fa5afd5e5aa5ee6"
+      "sha256": "9ca5f0a8454e8889c69fc2b88e1d3478b2b105e77d169375c8015e2244f6e34d"
     },
     "r-018": {
       "name": "Sewer wall 1x2x1 · 018",
@@ -41893,7 +41893,7 @@
           ]
         ]
       },
-      "sha256": "a664e279ab545ac73ef0d4e02cace5d475bee9c4f56fadcdb6bbcdcd9f5a769b"
+      "sha256": "eff01c6b2dc9505b31ef5b75c036ed33244aa75a003b80e7f9fc3dd866fb8ed9"
     },
     "r-019": {
       "name": "Sewer wall 2x2x1 Curved · 019",
@@ -42548,7 +42548,7 @@
           ]
         ]
       },
-      "sha256": "9c4e026f170341ccd8822cd982902abd573030295c6b9dc1ed7eec981450ed00"
+      "sha256": "8b7fc67230e072acf3ad36584ca42386ec1045178f5c8d842d083d5ba6ce6708"
     },
     "r-020": {
       "name": "Sewer wall 1x2x1 · 020",
@@ -42636,7 +42636,7 @@
           ]
         ]
       },
-      "sha256": "6c372954b4285fd1d0c48a185417dae3e34cda85a9162bc0643ca08eece1943f"
+      "sha256": "491cfe2cfbf03070da065f1e7a2dd69fbde9c915b29d275481104265730045e8"
     },
     "r-021": {
       "name": "Sewer wall 2x2x1 · 021",
@@ -42724,7 +42724,7 @@
           ]
         ]
       },
-      "sha256": "646ea1757e49b7a0bd8649278426c9ac44347a01740426c54c9c10e5d44f2330"
+      "sha256": "3a0d70aa038f2527bcae5c1fb35cb9f4d5c822ce18f4c3fdcea114883b9f00ed"
     },
     "r-022": {
       "name": "Fortress wall 2x2 · 022",
@@ -42803,7 +42803,7 @@
           ]
         ]
       },
-      "sha256": "f813855c1a547114c4739d9415d2dc5196155ee3d9070e80bfce6449251b46f3"
+      "sha256": "3425777b614ee534b21d4114a9f0ba9d23e4db12557881f51852f9ad0eec0d43"
     },
     "r-023": {
       "name": "Fortress wall 1x2 · 023",
@@ -42882,7 +42882,7 @@
           ]
         ]
       },
-      "sha256": "8e4d5b214550239d6cb6a4b345d4be57d8d592a67fed19c21ddb1c3041fd77ec"
+      "sha256": "ff2d85f03bc59149ff5246f3a5c94d26a831d83c31a1743fa28263f2fca2c5a0"
     },
     "r-024": {
       "name": "Fortress wall 4x2 · 024",
@@ -42961,7 +42961,7 @@
           ]
         ]
       },
-      "sha256": "7b1e4ca1e0fc917b92cd411b24c37c890bb75776964621c3814e08ed1ef92343"
+      "sha256": "c928adb88eb63e782193e8943157852c6eb660da93950ebbc11305e48f12675c"
     },
     "r-025": {
       "name": "Fortress wall 1.5x2 · 025",
@@ -43040,7 +43040,7 @@
           ]
         ]
       },
-      "sha256": "b156e94d366aec09f8f1ab674db99c6e7ea7b7fd6adb96e5f331b9aabe2fac40"
+      "sha256": "0a5863cf1ab882ab4f8bfd93b3885d1b809bf50b1cee2d5da8d0f658960935ab"
     },
     "r-026": {
       "name": "Fortress wall 2x2 · 026",
@@ -43119,7 +43119,7 @@
           ]
         ]
       },
-      "sha256": "9b043863d282b300b1d7aa5833b8b4c0fd48ad4d5f220f235675c0f2af771ec0"
+      "sha256": "c7069128b2d4c92197804e4113fd297dd36c2276308afb7c81a9f908c57b5685"
     },
     "r-027": {
       "name": "Fortress wall 3x2 · 027",
@@ -43198,7 +43198,7 @@
           ]
         ]
       },
-      "sha256": "4c2a4055eeb494b5062016a7187cf917f4e60ec52eb4d67be84bc071df6d17e8"
+      "sha256": "6ceaf83bb90d8d490e0b0b226d641c90299816651638d5bfaabaa6740f9d331f"
     },
     "r-028": {
       "name": "Fortress wall 2.5x2 · 028",
@@ -43277,7 +43277,7 @@
           ]
         ]
       },
-      "sha256": "b5e3cb11459cb28af559b1051610f4b460d69d0d3812091eccf172ce3e4e40e9"
+      "sha256": "32342d084ad8027c305ecfa692aa70df4b2f0bf3f44552665968104aab07903d"
     },
     "r-029": {
       "name": "Fortress wall 2x2 Curved · 029",
@@ -43914,7 +43914,7 @@
           ]
         ]
       },
-      "sha256": "03fba9d0a763b674e3e0ff3ff4e7e959102cf630643934133105c322aac408bc"
+      "sha256": "ebfb545c8569b10a2dca83438dd0f68ebed2274cff8a184b36b363edbe29d04c"
     },
     "r-030": {
       "name": "Fortress wall 5x2 · 030",
@@ -43993,7 +43993,7 @@
           ]
         ]
       },
-      "sha256": "3d6af85a2f7d0bbc8389328d130d1e415c94ed4111e4e52e4617d166d093f98c"
+      "sha256": "59058345d64039a12e2d443e44298c768c9c8abd4653efc565fe4bd8ead5fac7"
     },
     "r-031": {
       "name": "Fortress wall 1x2x1 · 031",
@@ -44081,7 +44081,7 @@
           ]
         ]
       },
-      "sha256": "5e82b4cbbb71b9bbea079b740f4a588340f92a14f948bb89c9939906d1c098c5"
+      "sha256": "6ed8c7898a6b5453abdf25fa63e49a8df3a0b89e6760c44d9d0b9d2423d9873a"
     },
     "r-032": {
       "name": "Fortress wall 4.5x2 · 032",
@@ -44160,7 +44160,7 @@
           ]
         ]
       },
-      "sha256": "35794901c8cc115a8cff64a1f12ebf3708fd45b9cb1afe79e2a8375e22f7695c"
+      "sha256": "86172fba9985df653fa65454a2e562627d3cf5c25a1175e7157007b13e5c12ed"
     },
     "r-033": {
       "name": "Fortress wall 4x4 Curved · 033",
@@ -44797,7 +44797,7 @@
           ]
         ]
       },
-      "sha256": "b2e35f40ef75c567092863e68c3a5c5a6f765d87bd791a8d2acb3a9500a87e8f"
+      "sha256": "52a38af392aebd4dec8bb1fce6209d28b1336021979f36b166f457a3588bd5e4"
     },
     "r-034": {
       "name": "Fortress wall 2x2x1 Curved · 034",
@@ -45452,7 +45452,7 @@
           ]
         ]
       },
-      "sha256": "abe86100b24c003bb310c37d880412905f7309cfcca860c6fc86864f02e29925"
+      "sha256": "e9d8f3e375ac40786e8c9874c36837559c572c9baf492f8001dcc7cf3eccfeb2"
     },
     "r-035": {
       "name": "Fortress floor 2x2 · 035",
@@ -45522,7 +45522,7 @@
           ]
         ]
       },
-      "sha256": "140aa205262ea368351996eb512a2a0d1810d9c3a31bb573412df59566d688e1"
+      "sha256": "59fce0267753e2df576f27b78e6fa89f39bb6f420a4746a091d637e4a24d4d8b"
     },
     "r-036": {
       "name": "Fortress floor 2x1 · 036",
@@ -45592,7 +45592,7 @@
           ]
         ]
       },
-      "sha256": "196031673fc6911e1979b2694d431f971bde9b2f68f897f232e7125d34ecbfac"
+      "sha256": "692fa9fd73a2948b4ca9e1b6b1b9bf94f4b4cce0a353746f15578442a415287d"
     },
     "r-037": {
       "name": "Fortress floor 1x1 · 037",
@@ -45662,7 +45662,7 @@
           ]
         ]
       },
-      "sha256": "28e86da7105db25eca23edbc4c4f6c508028600db502be11907d8188473522b0"
+      "sha256": "bdec194bfd78aac52c211c057a3dd5065a48f99a962a954a2d9c99436fd64618"
     },
     "r-038": {
       "name": "Fortress floor 2x1 · 038",
@@ -45732,7 +45732,7 @@
           ]
         ]
       },
-      "sha256": "362398718c55d1c09f42601dde38cd26ccc7a5f293f0a91144b0c2980c4e4db9"
+      "sha256": "f9a5d23684685abb3f9a9dd4eeb4e452be53349f21345e98fac72968f6c970f3"
     },
     "r-039": {
       "name": "Fortress floor 1x1 · 039",
@@ -45802,7 +45802,7 @@
           ]
         ]
       },
-      "sha256": "6421f6d54fc3467d3aca216b41e7f063a2ffa6a254f55f5eb3fbc3840254166a"
+      "sha256": "16661e3d8b6dad8b2d8e6599d0049b522f95171b6fab325763a158f67008be76"
     },
     "r-040": {
       "name": "Fortress floor 2x0.5 · 040",
@@ -45845,7 +45845,7 @@
           ]
         ]
       },
-      "sha256": "6f5c1cd799e0f84cbf2060e63f3ebd98912570397c81ca614e8f1575bc8d51b7"
+      "sha256": "6c7ea60894eb475434a332e2d9c54ca27321eb2cd6c5d8316567d027b0389178"
     },
     "r-041": {
       "name": "Fortress floor 2x2 Curved · 041",
@@ -46336,7 +46336,7 @@
           ]
         ]
       },
-      "sha256": "0660448d5cedba5243cc4edef9aab26da1f8a4c991b22e6771ddded3dbd84098"
+      "sha256": "820ca55d99f8ed09b9d4d0cb798a0c2f78b9cc49c06052efd6a3fba639936669"
     },
     "r-042": {
       "name": "Fortress floor 1x0.5 · 042",
@@ -46379,7 +46379,7 @@
           ]
         ]
       },
-      "sha256": "ce025ea6c5b4f36cf491881744889c50511a5d61b31e645a004291989f7c5a23"
+      "sha256": "25f01ad8dc8f328dd372397b13d898ea0a4a863c8497d8f1d8668f0937760e71"
     },
     "r-043": {
       "name": "Fortress floor 2x0.5 · 043",
@@ -46422,7 +46422,7 @@
           ]
         ]
       },
-      "sha256": "624a586f01a48fa6028dc9add9f771de06bea2e30ae0a5c7a977ca9aff8095bf"
+      "sha256": "a97fadeb290b2fd212147ec8a38a70d6e626c101adcfcf4721257a59b7bdeb30"
     },
     "r-044": {
       "name": "Fortress floor 2x1.5 · 044",
@@ -46492,7 +46492,7 @@
           ]
         ]
       },
-      "sha256": "8ac94c8f78fe228f2bbdd09b75e07c63bf8c45ffcf91da61e0fd6cfbc507b0bb"
+      "sha256": "0dad23ceb9babdbffe4877b76e7f53f7b348f0141e38823a022b395e7105e246"
     },
     "r-045": {
       "name": "Fortress floor 1.5x0.5 · 045",
@@ -46535,7 +46535,7 @@
           ]
         ]
       },
-      "sha256": "404ef1d7fc7ce9fd75fe720338f8beb7fc88065d5b64b49f0f19778f56202c92"
+      "sha256": "2bba9823b0968103f7904746ac95456050285c0cc28cb2b93a8a33d6102ead4a"
     },
     "r-046": {
       "name": "Fortress floor 1.5x1.5 · 046",
@@ -46605,7 +46605,7 @@
           ]
         ]
       },
-      "sha256": "c2c0dfea7e351b8e831747e883226d0c4293aa56b039ffa283ab7118d85a748d"
+      "sha256": "2b090e1cb0cfea410b5f4b29a1fd67c39e86b8a2ee703feaa75050b7a1dee752"
     },
     "r-047": {
       "name": "Fortress floor 2x2x1 Curved · 047",
@@ -47224,7 +47224,7 @@
           ]
         ]
       },
-      "sha256": "2604d69bbbf634fc0a97c6b11f1589e629064f43599fffe3ca1b76ca8de7f0f1"
+      "sha256": "4631d641e8e2947dbb6f2f6b974683a13ee7735b16d0101d3a692eaba88b37cc"
     },
     "r-048": {
       "name": "Fortress floor 2.5x2 Curved · 048",
@@ -47706,7 +47706,7 @@
           ]
         ]
       },
-      "sha256": "fd50cd5cd087b4039bd6c18c129014a1c478158c48a26c2dd882c57802371c71"
+      "sha256": "37ad8b997a0a687521a2edaba151f21936695267db142b05151b65966702c716"
     },
     "r-049": {
       "name": "Fortress floor 1x1 Curved · 049",
@@ -48197,7 +48197,7 @@
           ]
         ]
       },
-      "sha256": "77a7abaebda0bab7a856f11dbf0119d598e2d0277664cad35ff1438960b20976"
+      "sha256": "85cfbbcbab0f9a984845fcf282c05f951a88b29a37c5ee6e18dce39b0feebb3e"
     },
     "r-050": {
       "name": "Fortress floor 2x2x0.5 Curved · 050",
@@ -48798,7 +48798,7 @@
           ]
         ]
       },
-      "sha256": "157cb1a05952c84ba7bd690b9d120e37e49d9b2cc106a3b00e7bbd716e4e9bd5"
+      "sha256": "5e8328d7fcea4c9da271b33b868cf5ef69805e465b7a6f63aa441268e6974d6c"
     },
     "r-051": {
       "name": "Crypt column Corner 0.5x2 · 051",
@@ -48868,7 +48868,7 @@
           ]
         ]
       },
-      "sha256": "ed2aadd3facd4387da9fcc271fc806f1085baef5bd6c70e482842ffdf251ed45"
+      "sha256": "bc218d7af6bb65d85b428af270b3d56ce224bc8d952e3b25fcd9bc3c7aaf423f"
     },
     "r-052": {
       "name": "Crypt wall 2x2 · 052",
@@ -48947,7 +48947,7 @@
           ]
         ]
       },
-      "sha256": "10a2d0873bdd41cf74fc0629a56169a3cc155fa8420a31bfa7d47472bfdd5c53"
+      "sha256": "d7a835764cc4ea3eed36382d81029078dad67412aed5008b6c79974be7ac8e26"
     },
     "r-053": {
       "name": "Crypt column 0.5x2 · 053",
@@ -49017,7 +49017,7 @@
           ]
         ]
       },
-      "sha256": "de1d8554fd9c1f3fa0aebd58069e3b8ac930afb706b71f16686763ecc400e1cb"
+      "sha256": "4d6904d9c4ff501281516a28e5caa9bd6275af07a48be18e25749320e9c8dc72"
     },
     "r-054": {
       "name": "Crypt wall 1.5x2 · 054",
@@ -49096,7 +49096,7 @@
           ]
         ]
       },
-      "sha256": "cd974df81d64d5f94b6e13ff2ca112381f1fdd0e462aeadf41837263baf584f0"
+      "sha256": "301450b193d98be229d7f6a89ed2d260345f7be5d7bc2fa80d560575f3479e78"
     },
     "r-055": {
       "name": "Crypt door 3x2 · 055",
@@ -49175,7 +49175,7 @@
           ]
         ]
       },
-      "sha256": "4a6da1c1560cabe4dd2f64da6314c91a97c324b6ace97e432943ba6711881fca"
+      "sha256": "4a1f7d9ff49eb8546744c1127817e84bbdaf369f6ac450ba7923cb53a440a428"
     },
     "r-056": {
       "name": "Crypt corpses 3x2 · 056",
@@ -49254,7 +49254,7 @@
           ]
         ]
       },
-      "sha256": "45934f5104fe165f217ea6add7a96824f25d4e0df112efdc27b9e3ec5b333214"
+      "sha256": "04dacac2c2f38ec93f583dc77a47d4f7cdb645c48484a6b5fb6e744eda71cb40"
     },
     "r-057": {
       "name": "Crypt arch 2x2 · 057",
@@ -49333,7 +49333,7 @@
           ]
         ]
       },
-      "sha256": "77bcd51c8e233a935b573708a821a26d4df118b2b95942d6c659112116a25635"
+      "sha256": "ffadb99ab895828fbe399cca2b8340f897ee6517cad54c39a686069324b8c9c0"
     },
     "r-058": {
       "name": "Crypt corpses 3x2 · 058",
@@ -49412,7 +49412,7 @@
           ]
         ]
       },
-      "sha256": "72d08be55c4a49580efa9221287c4cdc696ab4245bfb157cae851e4a248dcf94"
+      "sha256": "e24bd43270c2d65b4998b9d65a8c15f839e5f812b9c71de5b5c9ceabd3603a66"
     },
     "r-059": {
       "name": "Crypt wall 3x2 · 059",
@@ -49491,7 +49491,7 @@
           ]
         ]
       },
-      "sha256": "ba42af1e0df56b2cbff8b426536538ec4a842e954bdc44fe699f01ac17527042"
+      "sha256": "af546ae65449d7bc0544856ad0a58e0eb67fc98afcc5929ee3f033f009c86007"
     },
     "r-060": {
       "name": "Crypt gate 3x2 · 060",
@@ -49570,7 +49570,7 @@
           ]
         ]
       },
-      "sha256": "0e7ece10a62a78f7269b85acae863b54af74e7f0539360285b7d46a65c608ebc"
+      "sha256": "57774e5bea77fe23d4f8c580e457c4371b236ec038c988f5c68365aae01ddb1b"
     },
     "r-061": {
       "name": "Crypt column End 0.5x2 · 061",
@@ -49622,7 +49622,7 @@
           ]
         ]
       },
-      "sha256": "34f3727940e926a76da301c29e424d67c7773fbd29a188b999aa3185cff180aa"
+      "sha256": "4b27c001fb10e21e8b298bd21f1bf6a326c58a908b8f8e5626fbcaf81da4e709"
     },
     "r-062": {
       "name": "Crypt wall 3x2 · 062",
@@ -49701,7 +49701,7 @@
           ]
         ]
       },
-      "sha256": "476f2672c6a73d8040281a48b18bb6c00890379c0c8e388b20c178d3027e6e67"
+      "sha256": "bc207452848b0469e6a0ea99c0298b5d31eac0224fce5c6d77a3054098d0b08f"
     },
     "r-063": {
       "name": "Fortress stairs 2x1 · 063",
@@ -49771,7 +49771,7 @@
           ]
         ]
       },
-      "sha256": "a03feed7fc986c75a2fb8d1fae58f10cb52d960c2adc3977c0be4bda389a7150"
+      "sha256": "39dc6dd77676dc6eb10001b64dee0ad778f1637152da26be5db7369bffd62ea6"
     },
     "r-064": {
       "name": "Fortress stairs 2x1 · 064",
@@ -49841,7 +49841,7 @@
           ]
         ]
       },
-      "sha256": "16c84f2f268b4693e6ee0b26687c0b70dac88b56ccebc7234f65228872bc13a0"
+      "sha256": "418110efe68c9ed35cc28dedf2b39fab01a6e5d41a460e066d1c40108cb1f06a"
     },
     "r-065": {
       "name": "Fortress stairs 2x2 · 065",
@@ -49911,7 +49911,7 @@
           ]
         ]
       },
-      "sha256": "93e33709f734735c857ff220a4fadfe8fbc136611a086b9bb2178bcb0256267f"
+      "sha256": "8f70ca4abf691d0b731f055782945435b669544e988a2d5186b85fd84ecd99ef"
     },
     "r-066": {
       "name": "Fortress stairs 2x1 · 066",
@@ -49981,7 +49981,7 @@
           ]
         ]
       },
-      "sha256": "1807edb4ea63433bae68548543af74877ad3c6b1c7a5ee12d89c20e4633129d7"
+      "sha256": "502640a8cea952867c6f7e917519f6018fb75e1905637ba94f156b3a4168ccff"
     },
     "r-067": {
       "name": "Fortress stairs 2x2 · 067",
@@ -50051,7 +50051,7 @@
           ]
         ]
       },
-      "sha256": "86b1fb9b072b167bd07c7a62009ebaf226ed43c500cb73f7031e30f7496b21c6"
+      "sha256": "cc3ffb0fbe556838ff2cb0384c030a2f82665a77a3c16bcc0a314e67565764d2"
     },
     "r-068": {
       "name": "Fortress stairs 2x2 · 068",
@@ -50121,7 +50121,7 @@
           ]
         ]
       },
-      "sha256": "627854391511e17d403d9b0c82b42d2a697c44330e8e0809c50e0e85cd59ae0b"
+      "sha256": "8053805ba9f54cc3b500e94a4eb8f246484f136f583abb842a90741e0490c2ad"
     },
     "r-069": {
       "name": "Fortress stairs 2x1 · 069",
@@ -50191,7 +50191,7 @@
           ]
         ]
       },
-      "sha256": "3f1a6dad0ba52cddbb0bf3ee7522a2b38e8b171551ff584bad120096e49cc0f1"
+      "sha256": "a5cf09e52a3363877a173e1cc508971051652dfdd02037d1b88dee4baee7452e"
     },
     "r-070": {
       "name": "Fortress stairs 2x2 · 070",
@@ -50261,7 +50261,7 @@
           ]
         ]
       },
-      "sha256": "e9beab6014b79b464c4b0ee53101f9033e122230abc79c09fdd2cd7f59bfc25b"
+      "sha256": "b43f2f8dd41c1aa6a91856f0cf3ff98c7ce2bebfb193a48565e31392fa9bb406"
     },
     "r-071": {
       "name": "Sewer floor 2x2 · 071",
@@ -50331,7 +50331,7 @@
           ]
         ]
       },
-      "sha256": "d6c921a966edb712604374555f991d9d788450082e336a30315c3a16fb7e2a87"
+      "sha256": "d135c1d70d05bbcaa0122cd51322ab92d81ef87eae93904da7ed21b83057b06f"
     },
     "r-072": {
       "name": "Sewer floor 2x1 · 072",
@@ -50401,7 +50401,7 @@
           ]
         ]
       },
-      "sha256": "5b9a1e702ec2d5c6349379be0c39f23351402fabed3aad9e2089c9c871d5babe"
+      "sha256": "05fd3c9729089c00ad627afad322bb7f9cf1baaaeab50072899524dd510e3d54"
     },
     "r-073": {
       "name": "Sewer floor 2x2 · 073",
@@ -50471,7 +50471,7 @@
           ]
         ]
       },
-      "sha256": "6dba0a1c486e017a2da4c44d06f46d8a4643d17174d4f7ffc47b46f70af14978"
+      "sha256": "75519d6275da27b18c42c516add0665063c36e13b07028d328148461a2d64a35"
     },
     "r-074": {
       "name": "Sewer floor 2x2 · 074",
@@ -50541,7 +50541,7 @@
           ]
         ]
       },
-      "sha256": "051c2c886835660e94a17312524827c6d8678eac97560e3d8a245e0521fa2805"
+      "sha256": "5e9faa791c4bf187ed0862d273e35ddb87bfcde32299e1fd2c3741d1bdbe6a76"
     },
     "r-075": {
       "name": "Sewer floor 2x2 · 075",
@@ -50611,7 +50611,7 @@
           ]
         ]
       },
-      "sha256": "d2cdc2bff0bf685e477bbec090209776e8f94ab04c3317df520963cf29cbcf01"
+      "sha256": "a377b211fa5db2361860e4aaac43f632b7e6c5fdb004135a656b2f3933547ed3"
     },
     "r-076": {
       "name": "Sewer floor 2x1 · 076",
@@ -50681,7 +50681,7 @@
           ]
         ]
       },
-      "sha256": "c56e99bcca71ba54029fff4d0c1ccbd5ac5ab0842cb8775d6a9688321afdf8c6"
+      "sha256": "c2d61dd8784357d8c601cbe50df3315cd6f911f11b84df01463c0806139d039a"
     },
     "r-077": {
       "name": "Sewer floor 2x2 · 077",
@@ -50751,7 +50751,7 @@
           ]
         ]
       },
-      "sha256": "18c9172c37822a5c18e949c667f81c1924682364f94e17635dbd1953c2064705"
+      "sha256": "75f050241d07d14db06fb48362e72ef90d68a3890a7dcf8cd05d67ffcbfbb961"
     },
     "r-078": {
       "name": "Sewer floor 2x2 Curved · 078",
@@ -51242,7 +51242,7 @@
           ]
         ]
       },
-      "sha256": "24768797df30105efaaab8206aa816e918c40a43bbb5740222d8cd40ef65eddf"
+      "sha256": "d981943681dc56c9679661a3bb6f3c97e313d83f53a0e910e3f937bd67005aaf"
     },
     "r-079": {
       "name": "Sewer floor 2x2 · 079",
@@ -51312,7 +51312,7 @@
           ]
         ]
       },
-      "sha256": "ead47f322473582ace60b451da7dc6584638b8ecd5518a18b8bfdcb4393fcf89"
+      "sha256": "1803e927a22967e80920dd22136691c7e61f78e8e193fd5fa3f8892884877765"
     },
     "r-080": {
       "name": "Sewer floor 2x2 · 080",
@@ -51382,7 +51382,7 @@
           ]
         ]
       },
-      "sha256": "f61c4a9c89370c835888bec02f1d82c2d59bdf91c35a7aa7669d880599b9a770"
+      "sha256": "b9084021e6735334712e6f85c060b3f178c1e14cc8316461edcdc09f46846549"
     },
     "r-081": {
       "name": "Sewer floor 2x1 · 081",
@@ -51452,7 +51452,7 @@
           ]
         ]
       },
-      "sha256": "3eb4eca22cb57cb05183546aad9282dc29cc75691058d559c0ae7056b946b0fb"
+      "sha256": "9dceb4a3c92a39adc03fedac055fd5c212dca00dd8ebe2fe2f33da04d9c03040"
     },
     "r-082": {
       "name": "Sewer floor 2x2 · 082",
@@ -51522,7 +51522,7 @@
           ]
         ]
       },
-      "sha256": "625b9827e2a09ca5ddf2354d77fa06add8fa124bf060379efee07941cd54623a"
+      "sha256": "b7131324f3bd484a412ef6dd3496b16bc4f5d22b1acca299fa54a450240979a3"
     },
     "r-083": {
       "name": "Sewer floor 2x2 · 083",
@@ -51592,7 +51592,7 @@
           ]
         ]
       },
-      "sha256": "accb5ff042dcb5c3909015da1f6bbf0f49109a994eb47a663ab0e83ff06bf1c1"
+      "sha256": "0203468c9fd704a2f80cffb5c396de24361b2f0a57530aa98fc8251dd5cb21ea"
     },
     "r-084": {
       "name": "Sewer floor 2x2 · 084",
@@ -51662,7 +51662,7 @@
           ]
         ]
       },
-      "sha256": "338d69b0becedbd890aa207b067867519d5347f5aec4f80ed94c5835138e4750"
+      "sha256": "90811d9f8a7be20b8901000cff1d66c8a2cfa094f0257af5855e6554f0c461c7"
     },
     "r-085": {
       "name": "Sewer floor 2x1 · 085",
@@ -51732,7 +51732,7 @@
           ]
         ]
       },
-      "sha256": "dac0ca913452ae0eca70d3da1041c79ac635bda57003405cc2da9667e068c2c9"
+      "sha256": "6cb828d2353fd02ccba0485817cdfb1b962cf78ef39c3809de85a67fe1dfec7b"
     },
     "r-086": {
       "name": "Sewer floor 2x2 · 086",
@@ -51802,7 +51802,7 @@
           ]
         ]
       },
-      "sha256": "152286ea474090ca97220a738a59da90298d837c6f8109368df580f77727cefd"
+      "sha256": "3de7c06180d99aed64559986e87cf2541415ee0748d9860cf6d0f98bdf6b742b"
     },
     "r-087": {
       "name": "Sewer floor 1x1 · 087",
@@ -51872,7 +51872,7 @@
           ]
         ]
       },
-      "sha256": "721b6fa63e8a367823c3de6e6335dd06c657bf610e82c07868d3115a29ec84a3"
+      "sha256": "a5a5e1d55f8ceab7c0978910c933861123be1af302c07356851a42f36fd1a606"
     },
     "r-088": {
       "name": "Sewer floor 2x2 Curved · 088",
@@ -52363,7 +52363,7 @@
           ]
         ]
       },
-      "sha256": "a81e6b6470747376134618d61ba3c70a77e0cff5ed80b3175c64771073a0acb9"
+      "sha256": "db0d3974a4e39cc5c9b423b8ab35819a591c1929dcc3d9277e7579aed827da1f"
     },
     "r-089": {
       "name": "Sewer floor 1x0.5 · 089",
@@ -52406,7 +52406,7 @@
           ]
         ]
       },
-      "sha256": "4699cc5398c19617211326a3be6ba466a2cd89085cd98c7848ef1265504009fd"
+      "sha256": "dd0a27a5b80c42c6bb42fe36521c2c7b65f8d9cdd7f395f9f3c616b2d386aaba"
     },
     "r-090": {
       "name": "Sewer floor 2x0.5 · 090",
@@ -52449,7 +52449,7 @@
           ]
         ]
       },
-      "sha256": "b17e67f59727d2c80a728d178601af0d9ddc9c0c700a424d0023263d2b0d7e73"
+      "sha256": "1dd24a5e76734d6be2491e69c73939688082d81b6ab6e3653b135247228dd0f6"
     },
     "r-091": {
       "name": "Sewer floor 2x0.5 · 091",
@@ -52492,7 +52492,7 @@
           ]
         ]
       },
-      "sha256": "ba602b25514beb22895a501b2f05604cdbcab4137d21dc58000af9384c25d123"
+      "sha256": "4147732952e8cdf24addd874205560122e0fbb1008bef5705ff3295146c46441"
     },
     "r-092": {
       "name": "Sewer floor 1x0.5 · 092",
@@ -52535,7 +52535,7 @@
           ]
         ]
       },
-      "sha256": "2a2a1da512afa78e526da25b6a7f8a9b3fb99b43a41248a791869be3ccb13835"
+      "sha256": "d38b4b4d0db50f9fd9cc2d4efa825e5811d20da3c0178363239318d8d3f8ef05"
     },
     "r-093": {
       "name": "Sewer floor 2x0.5 · 093",
@@ -52578,7 +52578,7 @@
           ]
         ]
       },
-      "sha256": "dc9afb19f69a568eaae3302c14a1f0c33bb44b6aee1dba2e6cdff5328ca7401d"
+      "sha256": "fc1bea11c6d4d5bfb4229f8f94ffb4922efc235a3ed1093c5eaa4be6df1de45b"
     },
     "r-094": {
       "name": "Sewer floor 1x0.5 · 094",
@@ -52621,7 +52621,7 @@
           ]
         ]
       },
-      "sha256": "411e6ec662ab78b67efa4fd4f1d959e64f998cb786e98a2e89e7bd5cde7c5ade"
+      "sha256": "66ef2ed7b59e9f0939a373b49c19d8eeb1f422a2feb08ebab1a261723087b8c5"
     },
     "r-095": {
       "name": "Sewer floor 1.5x0.5 · 095",
@@ -52664,7 +52664,7 @@
           ]
         ]
       },
-      "sha256": "86ad6e34e5fec1a62320e8e6dd3a3737986100b4674837edc255585a0426cbac"
+      "sha256": "282348dc2f8d4ab97fbe45fb6270e684f9edf1f597a916a53fee127bde41d42c"
     },
     "r-096": {
       "name": "Sewer floor 1.5x0.5 · 096",
@@ -52707,7 +52707,7 @@
           ]
         ]
       },
-      "sha256": "5cd661bb1ffba514e33ed92e5906b330a18933af4c6868e656c6e355395ecc2b"
+      "sha256": "5e02adb508a2c21905334515a82a719ce7ed84ec1d071ddf87d346c7b1f20bd4"
     },
     "r-097": {
       "name": "Sewer floor 2x0.5 · 097",
@@ -52750,7 +52750,7 @@
           ]
         ]
       },
-      "sha256": "1130dd6f48f360ca32d2d846c0f97d966854f998c2a80a3606b17386a036e2db"
+      "sha256": "263eaaa6635e6ceb8153d15d2982ffd091916665b9afea8314d63eea631f694f"
     },
     "r-098": {
       "name": "Ossuary wall 2x2 · 098",
@@ -52829,7 +52829,7 @@
           ]
         ]
       },
-      "sha256": "2164d585f5b201a7a3f4432c43cd5e7bfa548f1815a2bc8c55aa19f0d4d85b87"
+      "sha256": "573145919cb55cf26531c12a9b489f6e34d8d30b08b371b30bed51a06616be23"
     },
     "r-099": {
       "name": "Mine floor 2x2 · 099",
@@ -52899,7 +52899,7 @@
           ]
         ]
       },
-      "sha256": "f057d632ac39719c7f97a7d930b6bfcbb2d87bf1809792d551edaef413bc0352"
+      "sha256": "610b0f32a788b3dc6665a802372dba498b23cc2d9d4e5cd5aaa2b010836a5f37"
     },
     "r-100": {
       "name": "Mine track 2x2 · 100",
@@ -52969,7 +52969,7 @@
           ]
         ]
       },
-      "sha256": "839618fc9455563b2b7ebbcc0f617be0f92b835afe4014cd7af70df63c77d7be"
+      "sha256": "b916fdc97ae538aeaf88f56168555af01df6f8cb6e55cd09b3fc0bd658dd854d"
     },
     "r-101": {
       "name": "Mine floor 2x1 · 101",
@@ -53039,7 +53039,7 @@
           ]
         ]
       },
-      "sha256": "b35679f73b20106583344a1defdd9f892e81ae4de50eba41a097e60878ea6367"
+      "sha256": "d4cec4fbe0f461447461cac5ed39b8f23af1d5330db37ba9d7a6c011243de9d9"
     },
     "r-102": {
       "name": "Mine track 2x2 · 102",
@@ -53109,7 +53109,7 @@
           ]
         ]
       },
-      "sha256": "3792a71ea3e04d6a21a8cc33b752e192bd3d3dd58a540a98824f8bf32bb6f183"
+      "sha256": "1e91c83e8101e6577034d0d4764dd5cffc2503ea69b521f30d5fd78404262750"
     },
     "r-103": {
       "name": "Mine track 2x1 · 103",
@@ -53179,7 +53179,7 @@
           ]
         ]
       },
-      "sha256": "afb00f658ae15f10226a4080678c87a09ed7b38a59200ebf8d9f242a9bc58031"
+      "sha256": "d7113103ad71b900a7ac704ea4c846087109e8498ff8412c4188e472b1157c64"
     },
     "r-104": {
       "name": "Mine floor 1x1 · 104",
@@ -53249,7 +53249,7 @@
           ]
         ]
       },
-      "sha256": "3b29cbbfbb9907844e81b37b8ea65460d2fed1e8e2866c131baf5ffc2c92c4cd"
+      "sha256": "4d174fff04b0fb88e3bc11b8f839d92cd152b788d8c689a5625470a56efd6246"
     },
     "r-105": {
       "name": "Mine track 2x2 · 105",
@@ -53319,7 +53319,7 @@
           ]
         ]
       },
-      "sha256": "03a340da34b933cdbf35d69c4ce6cea60f478b090029d629e3dcfbb9d090bcc5"
+      "sha256": "8a5ad7f5006580813a3332f85fc57ef2f8b40dfc28e9c09f38ceef0ea4e0e5e7"
     },
     "r-106": {
       "name": "Mine track 2x2 · 106",
@@ -53389,7 +53389,7 @@
           ]
         ]
       },
-      "sha256": "9f80e9f371c534b04a91ea4a259f3b5b3239068bd8fb87c5bba3fe4cae555251"
+      "sha256": "6f8c8eb78c4b2e18237b6b07edc964fa0bc3058917836862c8be9523fab92cad"
     },
     "r-107": {
       "name": "Mine floor 2x2 Curved · 107",
@@ -53880,7 +53880,7 @@
           ]
         ]
       },
-      "sha256": "9c6596cf3024fbe2df77c4630f0c56a81b5ba7d1c084f338fadf29e05b210f58"
+      "sha256": "78f42c60a363c1de5edda124e68e6d4eb8fcd4739779505b9bb7b36ecd71e99a"
     },
     "r-108": {
       "name": "Mine track 2x2 Curved · 108",
@@ -54371,7 +54371,7 @@
           ]
         ]
       },
-      "sha256": "e13252c74349e545d0250a34b5fe1054b1e306eb787a51aa21a4345d514fc24c"
+      "sha256": "07011688c6fabc25e9d79e7486db15f2caf8ec3ce7544e351a09dc7e3251d0ec"
     },
     "r-109": {
       "name": "Mine cart scatter · 109",
@@ -54441,7 +54441,7 @@
           ]
         ]
       },
-      "sha256": "0fac8fdb37fa8cdd5085cc094c2bdd418b4261ababdaec3dedfd84bb7f60ce7d"
+      "sha256": "2ceaaf09f50be4d39b87d3bb8c17195e83fae70da325c701bebac2b574d70847"
     },
     "r-110": {
       "name": "Ossuary bones scatter · 110",
@@ -54511,7 +54511,7 @@
           ]
         ]
       },
-      "sha256": "7291d4155c94a358aaea4dfb7aca6857d3a60aa36e9deba2029e19ad0962411b"
+      "sha256": "9a948030e4ae089d61e02b382b5d2cf8633a93156af0ffcc24a45ac1ccdcd451"
     },
     "r-111": {
       "name": "Ossuary bones scatter · 111",
@@ -54581,7 +54581,7 @@
           ]
         ]
       },
-      "sha256": "14db7e252bd23b93bbf83ea8e09338fcb15c9b06178250564c097a0581258e07"
+      "sha256": "c7b837c27d39af8690e093cb7ba4e922dd813ae97b83fae08309b617c0c7aa6d"
     },
     "r-112": {
       "name": "Ossuary bones scatter · 112",
@@ -54651,7 +54651,7 @@
           ]
         ]
       },
-      "sha256": "d143be1e8a0caa652e8496838c72e03d2c823e82b4dd1725fe112c3264b64a86"
+      "sha256": "a08ede58eb831fb638f5a022a9ce140addfb958d4f363e45484c5e874b1e9aed"
     },
     "r-113": {
       "name": "Ossuary bones scatter · 113",
@@ -54721,7 +54721,7 @@
           ]
         ]
       },
-      "sha256": "31238c322b82dba39c97d3fdbdc2bdbf4f8c00b86443910c28bee77beac59e2a"
+      "sha256": "95a0d5d4d09b70b8f3c30de58af093d0c116e68ac3dc5e11e693b7cccc234825"
     },
     "r-114": {
       "name": "Ossuary bones scatter · 114",
@@ -54791,7 +54791,7 @@
           ]
         ]
       },
-      "sha256": "bf61289d7b9ae930f2f2b8aa3539b42aceb6b974d79ca7635849ebe985012ff8"
+      "sha256": "b2ae0319f46cd6f105f3ab3b0bbf89758a17356dc924d4a8e93f05c820490058"
     },
     "r-115": {
       "name": "Fortress door 2x2 · 115",
@@ -54870,7 +54870,7 @@
           ]
         ]
       },
-      "sha256": "81acb8f14f31d30305417d53848dbc9d7293bc85802e3fd42364390b55e5345e"
+      "sha256": "d4dfd8c91931077fe468cc9cef787523545c0f837e2e0ade01bc4aa24a43caa0"
     },
     "r-116": {
       "name": "Fortress door 4x2 · 116",
@@ -54949,7 +54949,7 @@
           ]
         ]
       },
-      "sha256": "9f20fafe06f6c42894fdf3a59ed02ec3683385a2f5435347faa68d4168d4a250"
+      "sha256": "df4c61e35fa655a955c5c8acd629f429bd4bb46237448f985ffae609675ff81c"
     },
     "r-117": {
       "name": "Fortress door 3x2 · 117",
@@ -55028,7 +55028,7 @@
           ]
         ]
       },
-      "sha256": "182ca1b06e484490f34655348ea2f349ee1e8ecdc9ef129b5d9cccc1f968fa86"
+      "sha256": "42ef3cef18515ad89c67385d945c6a13f149f70856ea4f711fdb6a61d318aff8"
     },
     "r-118": {
       "name": "Fortress door 2x2x1 · 118",
@@ -55116,7 +55116,7 @@
           ]
         ]
       },
-      "sha256": "978dfaddfbb26013a77ccb5831873513ca059f147018418c4ce7a537a674f345"
+      "sha256": "2cf010261979c09bbdc9c1c0e67ac744ba2fee7b0b89632cae9c027a33e048dc"
     },
     "r-119": {
       "name": "Fortress door 4x2 Curved · 119",
@@ -55753,7 +55753,7 @@
           ]
         ]
       },
-      "sha256": "8b9128959cfe2af5accf4af6aa108153c31da9294144dc7a7964a56fbeacb244"
+      "sha256": "fde268605e3750d728660b67c3b3cf1e2666297d0a105faf92aca1d1c3917cdf"
     },
     "r-120": {
       "name": "Fortress door 2.5x2 · 120",
@@ -55832,7 +55832,7 @@
           ]
         ]
       },
-      "sha256": "9909dc0d71b1db59c2916ba252c37cedbb63915c051b9784069620def6ab6a31"
+      "sha256": "49e33774c785015d3801f5ac6efa9b892dad697454cb6d229b6a13aa655af9c2"
     },
     "r-121": {
       "name": "Fortress fire 2x2 · 121",
@@ -55911,7 +55911,7 @@
           ]
         ]
       },
-      "sha256": "2c11d0c3054bd88468d6b4c2bf35839828d4781fffe013bdbe198fc3c55477c9"
+      "sha256": "e315edf2f99d1739065c717dcf88d9dfd45393ad63b6c22c4aa4d24040e9059b"
     },
     "r-122": {
       "name": "Mine wall 2x2x1 · 122",
@@ -55999,7 +55999,7 @@
           ]
         ]
       },
-      "sha256": "da2263fb40cb4ae9d30fa42cdabfee259195dca6555a4eb296e2a26a46ab8641"
+      "sha256": "94c480e348c4bbe1e07b515b0d129eac233f00a29ed7c349fe4338271ca031e5"
     },
     "r-123": {
       "name": "Mine column Corner 1x2x1 · 123",
@@ -56069,7 +56069,7 @@
           ]
         ]
       },
-      "sha256": "61f50f19c93f5b7286e43afe41727f8ea7094ff56d4bc9734a566c944eec0ca7"
+      "sha256": "caf8d119171140e484afc6841425adc296aa0d73ce30fda02ecaefa0d76a6a56"
     },
     "r-124": {
       "name": "Mine wall 3x2x1 · 124",
@@ -56157,7 +56157,7 @@
           ]
         ]
       },
-      "sha256": "a09822ff24346d700b829bd8a64e79fff846d227a8f49fdccbcbfdc8c6ee8fb2"
+      "sha256": "cde86721d5eaf501973800b91675bb4b1ac1aa612bc2ae746395e8a56cf3c76e"
     },
     "r-125": {
       "name": "Mine column 1x2x1 · 125",
@@ -56227,7 +56227,7 @@
           ]
         ]
       },
-      "sha256": "70781f82bdf782644fdb5be82f05d7023ba3bd6033724a33f15ab7afa21caad0"
+      "sha256": "272eae56285c5ddc851751328546df5ce9c809ab8eab045ebb643b332bb5e776"
     },
     "r-126": {
       "name": "Mine gate 2x2x1 · 126",
@@ -56315,7 +56315,7 @@
           ]
         ]
       },
-      "sha256": "288edd891a03bbcc1f26a0f1c20397df5cb8ebf6efd1eb926fac38d1d8c1eb8e"
+      "sha256": "d2a92bd700eb9e78701e101985e927dc4f970c24b31783b6f3647d800143a812"
     },
     "r-127": {
       "name": "Mine wall 2x2x1 Curved · 127",
@@ -56970,7 +56970,7 @@
           ]
         ]
       },
-      "sha256": "d9ced52c8f50737376f805819674c4f3bb23e9e44c187b6c9dc9f6bdd24a12d0"
+      "sha256": "053b492131a3aab940e78054e61e80bb6aa043ebebb4687de75724d6a34eb211"
     },
     "r-128": {
       "name": "Mine column End 1x2x1 · 128",
@@ -57022,7 +57022,7 @@
           ]
         ]
       },
-      "sha256": "9bb5793b8fca884044b67ffe55ed2d24660a3e4dba8c3c7786c60fd26294d8b2"
+      "sha256": "efa1d2ad6634a75d359f56eee7fb9dd4d6eba42c213873cb9a609bb09418dc1b"
     },
     "r-129": {
       "name": "Mine column T-junction 1x2x1 · 129",
@@ -57110,7 +57110,7 @@
           ]
         ]
       },
-      "sha256": "ee384caf7dea21f3e0b0463dd432392ebc0dda46d1883be18bc27d158948ec42"
+      "sha256": "238d88a145f948feb6b4987c2fd63bfc8333e91d384115d8d14d236216788be8"
     },
     "r-130": {
       "name": "Mine column X-junction 1x2x1 · 130",
@@ -57216,7 +57216,7 @@
           ]
         ]
       },
-      "sha256": "d3cf427986151bda648e1cd2ca8029770c97c8b45d4db4c8ea02cc14c2275320"
+      "sha256": "a2ddffb0300b9a75a643c19303b9433989bbebc86cd2b9e4e7770d6b27d9eb98"
     },
     "r-131": {
       "name": "Fortress door 2x2 · 131",
@@ -57295,7 +57295,7 @@
           ]
         ]
       },
-      "sha256": "7f3bd696861f84d317fa29ea889c884859207a142c4cff45b6c061d793e7ad3b"
+      "sha256": "ab4a2cb7c5fa3e9148a4a647d926567f9c14818dfce6da7e28599c017070f334"
     },
     "r-132": {
       "name": "Fortress door 2x2 Internal · 132",
@@ -57374,7 +57374,7 @@
           ]
         ]
       },
-      "sha256": "9f453c972a5d9915195f80fa6250b29fa180195facc79f6b9c804e2e5dfd9e41"
+      "sha256": "39621c652f59205fbbb9b588ea8056508b1d68f539f370a561cbe1323e08176e"
     },
     "r-133": {
       "name": "Fortress door 2x2x1 · 133",
@@ -57462,7 +57462,7 @@
           ]
         ]
       },
-      "sha256": "c2320552fc250c6c4c0464d458b76055596657db520a4f39da2219293ae157de"
+      "sha256": "9a20b10ffb5aca2a683f41d9b661fa892e627d0f16c2859647c65994e24c8e1a"
     },
     "r-134": {
       "name": "Fortress door 2.5x2 · 134",
@@ -57541,7 +57541,7 @@
           ]
         ]
       },
-      "sha256": "aa081aa2251bd324ad29f110ab227308b1811c140aa9bae0db9cc7973f982ebb"
+      "sha256": "b6341f336f553021e1a81230a4cac2d833f4735f7179fb10e76d406534217510"
     },
     "r-135": {
       "name": "Fortress door 2x2 Curved · 135",
@@ -58178,7 +58178,7 @@
           ]
         ]
       },
-      "sha256": "3a72218c5825442dbcd6893bea55891379fb2012a182ed69ae4ad77b8eda0382"
+      "sha256": "14775ad183cc7cf804d7b63f83e0358eede6906a86401887b8229977a9b18f7c"
     },
     "r-136": {
       "name": "Crypt floor 2x2 · 136",
@@ -58248,7 +58248,7 @@
           ]
         ]
       },
-      "sha256": "3190d6e90741d46b918f930a5465e0bbcc231dd7fd7fe5418799dd142c3cb653"
+      "sha256": "66b550557aaa3c7e2fb71b3b1c192412d9496d62b65af26a7b3cfcc8673334c6"
     },
     "r-137": {
       "name": "Crypt brazier 2x2x2 · 137",
@@ -58318,7 +58318,7 @@
           ]
         ]
       },
-      "sha256": "ea577e316711c1c7733f3c05588f9d89f6253f843c5d8a5f0168cedb0eec37a0"
+      "sha256": "372cdc6a499cebd1f858e9a38e36a1b80c3977ef847aebfadd09c1b2ab0763e9"
     },
     "r-138": {
       "name": "Crypt floor 2x1 · 138",
@@ -58388,7 +58388,7 @@
           ]
         ]
       },
-      "sha256": "61876d2bb0c2a3d6d089dc0136430c17bc0b08ada83daeb3c7bc4847600d1ff6"
+      "sha256": "3da4481ae87cb6b845581ddb02c7c23ac6354c7f8a74bac7689ca078f2901a01"
     },
     "r-139": {
       "name": "Crypt column 0.5x2 · 139",
@@ -58458,7 +58458,7 @@
           ]
         ]
       },
-      "sha256": "72af88520b797cf332e80afd506dfaf0e3266f9066ae242140778e1ec957bd59"
+      "sha256": "45df692245ce2dabe1ec5ccd68c7b010688e1264fe00eb3de2463bc7dee0e003"
     },
     "r-140": {
       "name": "Crypt tomb E-D - Special · 140",
@@ -58528,7 +58528,7 @@
           ]
         ]
       },
-      "sha256": "ad562bf789e11d94321078a97923efe9d488add54f01e90dce39daf120f50c35"
+      "sha256": "fc3d64c0e0220e1e3502a0fd07611de9bdd1d8d87d5277b1d58387bf8ae5331c"
     },
     "r-141": {
       "name": "Crypt tomb S - Special · 141",
@@ -58598,7 +58598,7 @@
           ]
         ]
       },
-      "sha256": "e2152999b9c11a36194282cdbfcde3effe05799801245d870404dbf1dbda268a"
+      "sha256": "491c55186a342e5c33a9c09e1a850dc6865a48424c0f3a8fae11af464675434b"
     },
     "r-142": {
       "name": "Crypt floor 2x2 · 142",
@@ -58668,7 +58668,7 @@
           ]
         ]
       },
-      "sha256": "23615fa544c992dbb6fe4a32cc3990ad64eca79b951ed0749bb0a48105347de3"
+      "sha256": "cc16d53ba8764b42e60bf8d1ec373be09f99f1cbf4f31b0760970806d65d0238"
     },
     "r-143": {
       "name": "Crypt corner wall F-A - Special · 143",
@@ -58738,7 +58738,7 @@
           ]
         ]
       },
-      "sha256": "601eaeb6cafc20342684b55f757f4f538f10da108db79b080b0ae3737f667e23"
+      "sha256": "de499d8481fbdd91e85cc44c992ca8b64bdf9621d358c084269609dab4c34de7"
     },
     "r-144": {
       "name": "Crypt floor 2x1 · 144",
@@ -58808,7 +58808,7 @@
           ]
         ]
       },
-      "sha256": "78c2b083b2467111e93c560bba0080a5569d74f3860e2dcc9a04dd0a5c284c48"
+      "sha256": "962adf7692a327322aad45f857fec52bd3b98189ce5d266a6ea85a007a80b26a"
     },
     "r-145": {
       "name": "Crypt brazier 2x2x2 · 145",
@@ -58878,7 +58878,7 @@
           ]
         ]
       },
-      "sha256": "84682295a63e045c31466035e7e1f67379b63430137c9dc7003dfcdbd3898035"
+      "sha256": "ef7841e3759b33c523477a25eb5f73efe9eb183a27207ae11c52f6da4a5352ec"
     },
     "r-146": {
       "name": "Crypt floor 2x2 Curved · 146",
@@ -59369,7 +59369,7 @@
           ]
         ]
       },
-      "sha256": "d5a8915b31d3b606f6555d3aabca432d1e42311f2538731551bd9565a5622f68"
+      "sha256": "a144ccc06c12174b35c287be8355579e94fd4ec781b7d055642c1ef0417385ff"
     },
     "r-147": {
       "name": "Crypt floor 2x2x0.5 Curved · 147",
@@ -59970,7 +59970,7 @@
           ]
         ]
       },
-      "sha256": "3b50465e0fc931dd8c12b0b1d89bb50cde4a9defc2a1ea21f58259762b8b0479"
+      "sha256": "129e9c4aee3191468d399dcdb6f39b449c8ace7c35d042b05781e42cf1767fcb"
     },
     "r-148": {
       "name": "Crypt low wall 2x1 · 148",
@@ -60031,7 +60031,7 @@
           ]
         ]
       },
-      "sha256": "25921b490dce96e44170e4b85d6d4e44e931880113d7be273c6957f2554cc56c"
+      "sha256": "fac279566ed0610f762d869d23ec5d65750ed2fb0f31e7976be0d77312beaf2a"
     },
     "r-149": {
       "name": "Crypt low wall 2x1 Internal · 149",
@@ -60092,7 +60092,7 @@
           ]
         ]
       },
-      "sha256": "bbcdc8765558914806215ab029aa2c1b4312a9272f0752b138cedd2118b3cfda"
+      "sha256": "eac0e6696e1cf777b8546b8ddf268172867082004be5699cc538170577dcf2f4"
     },
     "r-150": {
       "name": "Crypt wall 1x1 · 150",
@@ -60153,7 +60153,7 @@
           ]
         ]
       },
-      "sha256": "abb96d8dd56465be76bcec1da72dce76253aa1a6b9737c606b643ea569fb5b72"
+      "sha256": "17f085a50734089c556ef0fe1825c69410cc0117098b239465beee14df0759e6"
     },
     "r-151": {
       "name": "Crypt riser 2x2 Corner · 151",
@@ -60223,7 +60223,7 @@
           ]
         ]
       },
-      "sha256": "3a1cbb96e2b0bd0647d5dd0f9eb9c9a3c956b43b38b28799b68c95e228e43866"
+      "sha256": "44cf2c4537aa1da179cfb2f5dcf23fa3fde4090f5f6cbd92859ec5405c1a5c0d"
     },
     "r-152": {
       "name": "Crypt low wall 2x1 · 152",
@@ -60284,7 +60284,7 @@
           ]
         ]
       },
-      "sha256": "1f63ade42586a8110a21de7c12b5b193ab119c568e0beacb90347fc07fc6532d"
+      "sha256": "c24a2e0d7970a53a304798758b4010774853c22bde4eb9b14a8563cec39aedd2"
     },
     "r-153": {
       "name": "Fortress switch 2x2 · 153",
@@ -60363,7 +60363,7 @@
           ]
         ]
       },
-      "sha256": "e7c8e9c1bb68f1d9610256cccc9b4cd92d585cc9bd72769d04b6bb9e9d3eb21f"
+      "sha256": "81991d1d4386579a882cdc06406028762bcdef9eb1362918952291ba651a9624"
     },
     "r-154": {
       "name": "Fortress falling 2x2 · 154",
@@ -60442,7 +60442,7 @@
           ]
         ]
       },
-      "sha256": "228f397e779288464b33bb08abeb20509ab01e745b9056a86ff9e82c0f1d9334"
+      "sha256": "da671c8058fdf89836ea35b530d935f7749d776097afe5d90be78b66118a6dbf"
     },
     "r-155": {
       "name": "Fortress low wall 2x1 · 155",
@@ -60503,7 +60503,7 @@
           ]
         ]
       },
-      "sha256": "1621202408fbaacda1a4ba3b52691e9672382eeb70b29be39243c95e879f513b"
+      "sha256": "b6feaca0a7d21bf1867905f751e40899f22a65e0c875d6d5e6b435562c2f15f7"
     },
     "r-156": {
       "name": "Fortress low wall 4x1 · 156",
@@ -60564,7 +60564,7 @@
           ]
         ]
       },
-      "sha256": "c7281fedc775f82533f17dde27b76be9ab7af18ddd01ed8c0d3aae34e106a797"
+      "sha256": "b9cffc5531d0b99588fc3bc9c580c7884e46ae0f6a4661c2de6436fa320db9e7"
     },
     "r-157": {
       "name": "Fortress low wall 1.5x1 · 157",
@@ -60625,7 +60625,7 @@
           ]
         ]
       },
-      "sha256": "fefe03d2cc69965cc64c20fb8acbd5911331cbe35c8d2dbd88462906fe0f4f6f"
+      "sha256": "4b6ae317f791262e6046813b0d0f58682bac75b1bc2714d704d23135704f7970"
     },
     "r-158": {
       "name": "Fortress spikes 2x2 · 158",
@@ -60695,7 +60695,7 @@
           ]
         ]
       },
-      "sha256": "9dea61b7af8160a3df38688183789a04c6af6af9046ba1bcf254f468c69999f6"
+      "sha256": "a72666be6446d5d9f2902e347243eb38c8223e17790cdda82ebcb67ef54a5354"
     },
     "r-159": {
       "name": "Fortress plates 2x2 · 159",
@@ -60765,7 +60765,7 @@
           ]
         ]
       },
-      "sha256": "3a007b9e9c6147a3a8b5e84a4873ba1ca4ccd3b0848a748cb2f70aad8368e3a4"
+      "sha256": "3818b2a3724948db2abe0e40a7bf843f039e7996c002677e5643f1573851895f"
     },
     "r-160": {
       "name": "Fortress pit 2x2 · 160",
@@ -60835,7 +60835,7 @@
           ]
         ]
       },
-      "sha256": "3c0433cdd3bf147b0f83ffaa52d0b09287b7c0297fa7169ba5d08c6e91454d3e"
+      "sha256": "4c47001a7b156a76884419b593299fe9f65470de615385d517dec19af276ec81"
     },
     "r-161": {
       "name": "Fortress column End 0.5x1 · 161",
@@ -60878,7 +60878,7 @@
           ]
         ]
       },
-      "sha256": "ab305bb391f8761af3816fbf24f6249182f8eeea18166a23ab9233af67fbbb24"
+      "sha256": "80329894b9b4072af56f7079b1ed011f92b53ba6c7ac510ce0d18010c6bced05"
     },
     "r-162": {
       "name": "Fortress low wall 3x1 · 162",
@@ -60939,7 +60939,7 @@
           ]
         ]
       },
-      "sha256": "0cdba642382f1155eadf89f21416a047b84e5427884c7bf8036e44845446e00f"
+      "sha256": "2880242ea794d4369e75143bcc5033c892c6456980ad36797d1369faa6828a30"
     },
     "r-163": {
       "name": "Fortress low wall 1x1 · 163",
@@ -61000,7 +61000,7 @@
           ]
         ]
       },
-      "sha256": "348dbf9815ea6d2028eba6880273343e84268b998149fde811f7398f06821fa0"
+      "sha256": "a464fffcd0f669e1e7ee55828a1f84cbe6e2d77c6599395aee5d4189980894d6"
     },
     "r-164": {
       "name": "Fortress low wall 2x1 · 164",
@@ -61061,7 +61061,7 @@
           ]
         ]
       },
-      "sha256": "dda470cab1749cbe97c3b32063f95d5fcdc36f2368fe396c8ea955912c2d787d"
+      "sha256": "fd621c63cbba9efbd800c9b3acd5b9a5f64ce1da0a85023f3eaf0433aa35a395"
     },
     "r-165": {
       "name": "Fortress low wall 2.5x1 · 165",
@@ -61122,7 +61122,7 @@
           ]
         ]
       },
-      "sha256": "5459d3c7765fc8d9d1d652533d5d543a1e2f9e7c39fb80062a1ef64bb67d90f5"
+      "sha256": "718a6b7fad0e9e78360fc5cce00a32ac00381f2e2b6f3da5e090c8848a40c4f7"
     },
     "r-166": {
       "name": "Fortress low wall 5x1 · 166",
@@ -61183,7 +61183,7 @@
           ]
         ]
       },
-      "sha256": "b630e702182bdfbbf6eb8e306e162d98dfc8ca8bcf88cdf9f3682545acbd24e5"
+      "sha256": "38be76b5d538ffb57ff8492f48f589fe4e2db495d41a367272b91a5001be294d"
     },
     "r-167": {
       "name": "Fortress spikes 2x2 · 167",
@@ -61253,7 +61253,7 @@
           ]
         ]
       },
-      "sha256": "34e91e06d0620cc990a1cbe8f1b325832d7ff32ca7b466453bf8512254a7a567"
+      "sha256": "a2ed492b5f1c0c2f411f0085935e7c785897b017161739182d9ca455157f5d94"
     },
     "r-168": {
       "name": "Fortress low wall 1.5x1 · 168",
@@ -61314,7 +61314,7 @@
           ]
         ]
       },
-      "sha256": "606b4ddd24fe4d9f9a2ce43a10c349cd86134bc71b08f06f9590a84fb16937e6"
+      "sha256": "61f2f6999cf5c24da33460fc05ace48eb575c26e06d247e2b735d92166512b12"
     },
     "r-169": {
       "name": "Fortress low wall 4.5x1 · 169",
@@ -61375,7 +61375,7 @@
           ]
         ]
       },
-      "sha256": "0d31ba0013a17ee2699795da3813b6ff1f95a7f0d207ec42b2705741404e07c8"
+      "sha256": "41ff5ab5a24edf9e57260b5f404bd5ba68bfb167daf52279173bf18e2873bbc9"
     },
     "r-170": {
       "name": "Fortress low wall 2x1x1 · 170",
@@ -61445,7 +61445,7 @@
           ]
         ]
       },
-      "sha256": "72b5813ea4129303c2c1695ae8c74889777e4707a7ddff561cab36f225dc2c52"
+      "sha256": "d979079c564f53f9f7147ba94566decbc675dc5c649edd37602664845c81ab77"
     },
     "r-171": {
       "name": "Fortress low wall 2x1 Curved · 171",
@@ -62064,7 +62064,7 @@
           ]
         ]
       },
-      "sha256": "e54aa72c666dd1c092f1cef3a18c40c9cbfc4adbf162bb245d6e7cfb329781e8"
+      "sha256": "d26e3eaf1f32b4d80825d4ab2370e503dc9a564b853cbae0c8c72b81f6668111"
     },
     "r-172": {
       "name": "Fortress axe 2x2 · 172",
@@ -62134,7 +62134,7 @@
           ]
         ]
       },
-      "sha256": "cc55f3bb643c14dc632ca3574e1674b27b04c3ede2c24911292097dbd3b44212"
+      "sha256": "1600f0aa16170e60e6a0d64583a9e8a8690ec2c91b5f5471b953ed02b22cfec3"
     },
     "r-173": {
       "name": "Fortress low wall 4x1 Curved · 173",
@@ -62753,7 +62753,7 @@
           ]
         ]
       },
-      "sha256": "d0805f584bcecbf3d571a378015f1e18944c26f8a22df19d9c61fb2392e28b9e"
+      "sha256": "ed6bedae9392ec503f2e77205122e050a0d4d2cf71a92975bb501ccb5e88c529"
     },
     "r-174": {
       "name": "Fortress secret 2x2 · 174",
@@ -62832,7 +62832,7 @@
           ]
         ]
       },
-      "sha256": "f3e19f62a2a024f5d8c5a40c93543e89607b0bcb7ccd684e437500df3938d477"
+      "sha256": "5d31be824d6d31d2bf81077539e32e6008c15834516ba6bb062e38d8518f1bfd"
     },
     "r-175": {
       "name": "Fortress secret 2.5x2 · 175",
@@ -62911,7 +62911,7 @@
           ]
         ]
       },
-      "sha256": "254e0f00e0493200c276b3ffd78caafaf48623e124dd9270701b3991053050cb"
+      "sha256": "21db89b774c63a636977c5f3f99fd5600ca8975f785a3592fbee5d990390a7fd"
     },
     "r-176": {
       "name": "Fortress secret 2x2x1 · 176",
@@ -62999,7 +62999,7 @@
           ]
         ]
       },
-      "sha256": "c31f391fb5906e9082652d718b3b5a63586453b79e7f573fb28f62976728ffa9"
+      "sha256": "cd83c23b0171a6f27a77db8510afa5dbc1e2f1aaed0da05b8f026648a96f634c"
     },
     "r-177": {
       "name": "Baths floor 2x2 · 177",
@@ -63069,7 +63069,7 @@
           ]
         ]
       },
-      "sha256": "40b69cef066c65252024349cea7583ccb3b35f386cd80973c4ea1e0ecd4f43ff"
+      "sha256": "3ea19f84ce891bdb342fe0535810967dd776ac84e42d2af1402d6872c2008173"
     },
     "r-178": {
       "name": "Baths floor 2x2 · 178",
@@ -63139,7 +63139,7 @@
           ]
         ]
       },
-      "sha256": "7ecf84ea69faa43d32cc8a05d4f365c15571367534b4077e0701f6fee951fc50"
+      "sha256": "e67a1fe333daadf8a3ac396a29cb08545cfc9248811765527a2622157dcafb7f"
     },
     "r-179": {
       "name": "Baths floor 2x2 · 179",
@@ -63209,7 +63209,7 @@
           ]
         ]
       },
-      "sha256": "f32cc04cae1f77d77981a143a8f279b94e965b2297f4ee7529a5822a883dca8b"
+      "sha256": "803e5c367cbb44fb1315358ee46fae60d510e20442380ac8bcfded98b596642e"
     },
     "r-180": {
       "name": "Baths floor 2x2 · 180",
@@ -63279,7 +63279,7 @@
           ]
         ]
       },
-      "sha256": "80dc1715e6404e67d5d8b87d38147cc1e1385d1579a65e88f43633fe6d2b8504"
+      "sha256": "f58933b4e1b5be78d1832dc5b2d79a6163740e75eb469369abab1675e57e6e67"
     },
     "r-181": {
       "name": "Baths floor 4x4 · 181",
@@ -63349,7 +63349,7 @@
           ]
         ]
       },
-      "sha256": "c7c1f6899047bdc2b97c6366a162b722606a6100449313c89ab51e1ae04cd7dd"
+      "sha256": "6a05bf8f0b35a89c65ecf2cbc839525ecd7675e8c180b447ba32008434b94136"
     },
     "r-182": {
       "name": "Baths floor 2x2 · 182",
@@ -63419,7 +63419,7 @@
           ]
         ]
       },
-      "sha256": "02271ae0e7d5f976ea9551b84f6937c9ee84a66cafe2d15f7a0053b1c7cacde7"
+      "sha256": "62230fad3c9f78ec370dd9be5cbc32448f4b90e5d4a43e27da0db570dfdd6ced"
     },
     "r-183": {
       "name": "Baths floor 2x2 · 183",
@@ -63489,7 +63489,7 @@
           ]
         ]
       },
-      "sha256": "ebc054dea54cd847c08a10346cb7fb17628b74adcd9594ec81abeeab04e54256"
+      "sha256": "82025ec36e5a4e244d97efaf9a951ecdc842e8ca8ebb7f1a56794af729f12cf6"
     },
     "r-184": {
       "name": "Ossuary floor 2x1 · 184",
@@ -63559,7 +63559,7 @@
           ]
         ]
       },
-      "sha256": "edc0dd06768c3b3d200cdb3bae7fcf158b9ce2ef32efe5fb747efb829696237f"
+      "sha256": "fd750b4e7b314e2c914e70237a96ce6a809322af5e98e4359307be08e2ea3a58"
     },
     "r-185": {
       "name": "Ossuary floor 2x2 · 185",
@@ -63629,7 +63629,7 @@
           ]
         ]
       },
-      "sha256": "b88c1e1293156e4b6f009374cef9e75fcb2afcc2e099119d06872005469bc58d"
+      "sha256": "bcd2f5a2e3ded06ce6eb7686954afde06ce2beb51ec9b48be169805c6594fe56"
     },
     "r-186": {
       "name": "Ossuary floor 1x1 · 186",
@@ -63699,7 +63699,7 @@
           ]
         ]
       },
-      "sha256": "f21eaaef41f8793c90e4c14d756be8cee7c6747bf29a80658d3e9c47f19b6886"
+      "sha256": "1e0cc9a6cd4abc5341b8045f15bd0f89949aba8f8f2d6d07a0dc2ccb033a94af"
     },
     "r-187": {
       "name": "Ossuary floor 4x4 Curved · 187",
@@ -64190,7 +64190,7 @@
           ]
         ]
       },
-      "sha256": "8bde836caae2c0c48083818af63c5a5060f988b0a9ca69678fc1086688322e35"
+      "sha256": "f091fe60afdea770e92734c20823677f77e698c9a4c51932f4aeac5b00a5680f"
     },
     "r-188": {
       "name": "Ossuary floor 2x2 Curved · 188",
@@ -64681,7 +64681,7 @@
           ]
         ]
       },
-      "sha256": "707de9233f6458b43681c3eedb0cf44259b3c1f978e8455a8a07cc0c9b19a450"
+      "sha256": "ae674620969cc34a25b3b009edb6d24f04f7051bf4a51ea76b1872047198a351"
     },
     "r-189": {
       "name": "Crypt gate 4x2x1 · 189",
@@ -64769,7 +64769,7 @@
           ]
         ]
       },
-      "sha256": "46ef83d35fecfa7386c35ff82d4b3f82a3c3af6e36b7eec9ea8e4dcc59274c24"
+      "sha256": "0d0e1dc8e1a0faa4403681218e40fb2a36fbcd7bce8e583fe5039205afc004a7"
     },
     "r-190": {
       "name": "Crypt wall 2x2x1 · 190",
@@ -64857,7 +64857,7 @@
           ]
         ]
       },
-      "sha256": "e418cb0131bc0bcfd17066c603f63fdb720a2dd165c6e7f4663883cecfa75063"
+      "sha256": "3576a0a743176956f58cc4d9edf68f5128a844abb2af7a640b79f1d7ed2747ec"
     },
     "r-191": {
       "name": "Crypt wall 2x2x1 · 191",
@@ -64945,7 +64945,7 @@
           ]
         ]
       },
-      "sha256": "e552640c53cbcd48dac031341c0b5db5581d3c840c17f4ca747d396129fa65c4"
+      "sha256": "32724a4c5996b56f107129ca6575c995bc1ba78a756c2698d71ed1ecc7816e3f"
     },
     "r-192": {
       "name": "Crypt arch 2x2x1 · 192",
@@ -65033,7 +65033,7 @@
           ]
         ]
       },
-      "sha256": "439dcd6188c6b10bff21a576fa37f33d13311b5875f13f3dbebb23ec4a63cac1"
+      "sha256": "2d8ebc1a009b545295c0dbb649684a6493edcaeb1bd12205ce64feb95fc0cd92"
     },
     "r-193": {
       "name": "Crypt wall 2x2x1 · 193",
@@ -65121,7 +65121,7 @@
           ]
         ]
       },
-      "sha256": "cf8aa2661582f977570e882350e428d7815204b48588376eeb8f913cd512020c"
+      "sha256": "a9340c4f02f5f5378a00929501c93b4a8b8299028f02c8cc6e23ee76fa82ebe8"
     },
     "r-194": {
       "name": "Crypt wall 4x2x1 · 194",
@@ -65209,7 +65209,7 @@
           ]
         ]
       },
-      "sha256": "6fcbd138a270b1e28c8e63a06588bd18fc4e83b928da19974d5a8419fa85d12d"
+      "sha256": "eafd865ac522d298135a84ef9f02cc768c6df3ef51306544dabfb5f2f9e9521c"
     },
     "r-195": {
       "name": "Crypt wall 2x2x1 · 195",
@@ -65297,7 +65297,7 @@
           ]
         ]
       },
-      "sha256": "b8eb236960ace783f13384a08d250bf9e663fd3019c08c4f30846b6420c8de4e"
+      "sha256": "8a0eb9555ccd447305e55090a24d29ade29c08c093388f03ec8cbd754b9304a8"
     },
     "r-196": {
       "name": "Crypt wall 4x2x1 · 196",
@@ -65385,7 +65385,7 @@
           ]
         ]
       },
-      "sha256": "50ca777a6c3a855a8c825c079d4ba96cbfb62ec44e8d973083fa1b8673f92add"
+      "sha256": "d804f44db1e226329d1a9dd214aeaf9970f3b38a086cb42b9619e87802b762fa"
     },
     "r-197": {
       "name": "Crypt wall 3x2x1 · 197",
@@ -65473,7 +65473,7 @@
           ]
         ]
       },
-      "sha256": "e846cbae422f75c664a7ad1b18d4ad031825e8b437ea7c2ba71dd3aca27b42cf"
+      "sha256": "8f3d08a71455e703b90238d16639fef8cc8824a681dc66cb40929b48f8c56094"
     },
     "r-198": {
       "name": "Fortress riser 2x2x2 · 198",
@@ -65543,7 +65543,7 @@
           ]
         ]
       },
-      "sha256": "88191b94a455050a5ad49f269ba574103650caed258162cf04f49f12f3b9c734"
+      "sha256": "8925f50e13f312a7db81eb6f9ee53f1d5949027aaa826a27c5473e20c0026d89"
     },
     "r-199": {
       "name": "Fortress riser 1x2x1 · 199",
@@ -65613,7 +65613,7 @@
           ]
         ]
       },
-      "sha256": "440bb4a036d2a36cbeefebef1fe86b0d5e6e78a04109c3039b73de6ddc35c6af"
+      "sha256": "26787c427c3365c1c2e28328f8648fc899d34500d4eb7fb0af6fe73a17211e4c"
     },
     "r-200": {
       "name": "Fortress riser 2x2x1 · 200",
@@ -65683,7 +65683,7 @@
           ]
         ]
       },
-      "sha256": "22015aebdce6f079e0522c2611211f3ba14c93a75db56e64b268d32f84a99f37"
+      "sha256": "aa26dde21f905365df080d5abcb2df770c9c23d2ebced667004c4a01a9d18cde"
     },
     "r-201": {
       "name": "Fortress riser 4x2x1 · 201",
@@ -65753,7 +65753,7 @@
           ]
         ]
       },
-      "sha256": "716b8b05b0bd79c47b6ba079d0a972b3b614cdb873d5761b6b0cec2bc04fc47d"
+      "sha256": "3a7313dea00fa47dfb1af0295e37f8943536bfd8e00d99b93d4c628358912c73"
     },
     "r-202": {
       "name": "Fortress riser 2x2x1 · 202",
@@ -65823,7 +65823,7 @@
           ]
         ]
       },
-      "sha256": "77220eac12499b1160c98a6062731f6edafadad86cc9528143ffaef6a7ebc1b6"
+      "sha256": "b6fff5a6cb26d0003a63d21469173910de8e688f6212cfec84b16299d95ac598"
     },
     "r-203": {
       "name": "Fortress riser 4x2x4 · 203",
@@ -65893,7 +65893,7 @@
           ]
         ]
       },
-      "sha256": "7c881003cde7bccbfea1add1a422c166c42fa21d12e7a718a64d84bf38a791a8"
+      "sha256": "521143eeaa0236ddc61dec531542d24810812f36df1625c38d3b53f494d29368"
     },
     "r-204": {
       "name": "Fortress riser 3x2x1 · 204",
@@ -65963,7 +65963,7 @@
           ]
         ]
       },
-      "sha256": "12a0414b48d958b5f27e2d1f66d396b8ea37114fdf23491e617b72c5975436ed"
+      "sha256": "51d28332fa631a7fc6ee6b8f89b0bb137d52f9a69d0b30628033f1d40edd4a96"
     },
     "r-205": {
       "name": "Fortress riser 4x2x2 · 205",
@@ -66033,7 +66033,7 @@
           ]
         ]
       },
-      "sha256": "0de414daf4561671b73f8460672de52c37d9dd1b90e2a07d4546decb16fb0dcd"
+      "sha256": "c005f68c90cfc545560ccb59f771f5dd5fd4c922956e646411cd0ea64f5fd2d7"
     },
     "r-206": {
       "name": "Fortress riser 2x2x2 Curved · 206",
@@ -66524,7 +66524,7 @@
           ]
         ]
       },
-      "sha256": "d200bbb24e6e11e0bde1444230cd8289799449e9f58f35bbf13dcf052c647392"
+      "sha256": "53cb823886fc77cd164e240b3e5c93f3192d69ed8995433a20f065893bcd32ba"
     },
     "r-207": {
       "name": "Fortress riser 4x2x4 Curved · 207",
@@ -67015,7 +67015,7 @@
           ]
         ]
       },
-      "sha256": "cd2ef432b950cc74eb4a8dbd807d88e1af9369581ea734b44a3fc9efa87fd197"
+      "sha256": "c1a1fb6d92d88499a71a2bae72005d142b1b371c5ea0b93127fa94d58fa2be51"
     },
     "r-208": {
       "name": "Fortress riser 2.5x2x1 · 208",
@@ -67085,7 +67085,7 @@
           ]
         ]
       },
-      "sha256": "a39e8992353f351c6a5ecd968e446dd9072469ddacbadcc888e46d9c2b8db4ce"
+      "sha256": "3ffe2d3c49ebb0b51e083920b823c410d8d513f407d564140def5ed41cb1d674"
     },
     "r-209": {
       "name": "Ruins floor 2x2 · 209",
@@ -67155,7 +67155,7 @@
           ]
         ]
       },
-      "sha256": "9605ff5a33afa6f318a5ae385ad92ee823624dcd56921ea8e3547bfa395424e8"
+      "sha256": "59452b03b162481f35a5511bba67a255419a6cfb71c0aae8e425b9ceaf908a37"
     },
     "r-210": {
       "name": "Ruins floor 2x2 · 210",
@@ -67225,7 +67225,7 @@
           ]
         ]
       },
-      "sha256": "9cc71fd90cae17125fcce17f582b5b8ee6cafa9b231ad28c7ae66718553b7e98"
+      "sha256": "3ccf000d1936215f26409068f307db97604a3a89ddc1806b9054b5844beb4f8a"
     },
     "r-211": {
       "name": "Ruins floor 2x0.5 · 211",
@@ -67268,7 +67268,7 @@
           ]
         ]
       },
-      "sha256": "2c818f805cfa73789e2ade21cb3bfcb5d2991f1a8dd90b74d0047b476740f5fb"
+      "sha256": "d9b455a201256349fb1bd301309b3c6b2bee40d4f2287e75d0254d2a5054348f"
     },
     "r-212": {
       "name": "Ruins floor 2x2 · 212",
@@ -67338,7 +67338,7 @@
           ]
         ]
       },
-      "sha256": "6c13f07c6b5cd5144c28699c6cd09085a6fb4317ee2e286ae28a558461ac1557"
+      "sha256": "0c336f524404ef7da3dafeb1c27572dd37f014ae39a4caa394a3002d5c49969c"
     },
     "r-213": {
       "name": "Ruins floor 4x4 · 213",
@@ -67408,7 +67408,7 @@
           ]
         ]
       },
-      "sha256": "575edea33ddb142aadf66ff7521b780c8adfe152e187ea8c14123f94a3e9f968"
+      "sha256": "543cb9b8e374f0c13745ad94b04eca1705ce9d559016f9b13b04c3299ed33112"
     },
     "r-214": {
       "name": "Ruins floor 2x1 · 214",
@@ -67478,7 +67478,7 @@
           ]
         ]
       },
-      "sha256": "6066a5820ee2ab4cf9521b56c8b494ff1dacf74c457b1ff49cb3d220dde91706"
+      "sha256": "f1d31507269720b991dd769ee8743e056c45cecf8d20a210b251c2663fbdeda7"
     },
     "r-215": {
       "name": "Ruins floor 4x2 · 215",
@@ -67548,7 +67548,7 @@
           ]
         ]
       },
-      "sha256": "c641057b452e704b66cea7619aac571f691c2549d2debfbaaba052c83b247466"
+      "sha256": "48b1022264324ca26f2967296408c43bb34b1815f308c47f9f8fa5c69fa9526d"
     },
     "r-216": {
       "name": "Ruins floor 2x2 Curved · 216",
@@ -68039,7 +68039,7 @@
           ]
         ]
       },
-      "sha256": "b820ce3fff27b32e1c13d731c79a98ae4d7c0f42f3e2e11e5559a2ca5a6e74f3"
+      "sha256": "db189ecc9f60a0106a89fb6ad5b04caa617041903286003ef3750a33f644528c"
     },
     "r-217": {
       "name": "Fortress murderhole 1x2 · 217",
@@ -68118,7 +68118,7 @@
           ]
         ]
       },
-      "sha256": "0dfb6902fa2fd96db780f4e40d51df0a0e8765e18ce24e8eb76ceb9e804b54fe"
+      "sha256": "15e47b914776e4d5772a0496ca437c42d99c11c6116d007ee85db1abf70a08b4"
     },
     "r-218": {
       "name": "Fortress murderhole 2x2 Internal · 218",
@@ -68197,7 +68197,7 @@
           ]
         ]
       },
-      "sha256": "f6de1e0c8ef8e752360d820aa87927f7a4165fc12adee5557726de9446d33054"
+      "sha256": "b22b4a2d3d3bde6fd619cb9790fc650b12e8d1e54e6e75630f528961b1c5d3d9"
     },
     "r-219": {
       "name": "Fortress murderhole 2x2 · 219",
@@ -68276,7 +68276,7 @@
           ]
         ]
       },
-      "sha256": "dc85f9daf0c0b547360a36adc9714226421fec445bab890118eff535de555ad5"
+      "sha256": "e4a2795e8385b5ae60f2952345f1664624147fd809e0be9383fc40f584e92631"
     },
     "r-220": {
       "name": "Fortress murderhole 3x2 · 220",
@@ -68355,7 +68355,7 @@
           ]
         ]
       },
-      "sha256": "f3166923a735d5a33be2e4089ebe02f1ad21d42e9af6c621cd4c1f533a0fb7dd"
+      "sha256": "cdc81a433648c55d8c62cc1de02c864ea6373b799ca835ef05d2554834007113"
     },
     "r-221": {
       "name": "Fortress murderhole 2.5x2 · 221",
@@ -68434,7 +68434,7 @@
           ]
         ]
       },
-      "sha256": "a74912b85eb2d498e9f33fc16bb19680332a57a326845be30b0b661c13cd4a4b"
+      "sha256": "6658c50468998d8edf1b9f2adcff41b544534ffa6aa3416486fedc731cd37efa"
     },
     "r-222": {
       "name": "Fortress mouth 2x2 · 222",
@@ -68513,7 +68513,7 @@
           ]
         ]
       },
-      "sha256": "2303e577d3255a5b89a7b5c458d481c4a42dbe047cae86ea39e8ce2c6dd35ee6"
+      "sha256": "e2dc818ed7de5568558a90539dd1ad388550eec40b38bbe04539b45a3de3d6df"
     },
     "r-223": {
       "name": "Timber floor 2x2 · 223",
@@ -68583,7 +68583,7 @@
           ]
         ]
       },
-      "sha256": "0ca2e6903473f47c39031909d0a7df82868877c03ce973335276e8fbfbde1251"
+      "sha256": "fa2f85e694df11b2f945a775c6ac1200632f962fe504e601bbbe188c81822fdb"
     },
     "r-224": {
       "name": "Timber floor 2x1 · 224",
@@ -68653,7 +68653,7 @@
           ]
         ]
       },
-      "sha256": "996429be52988e9f82f65450f983172e25da3df427248b780280fb1a1cff3dd7"
+      "sha256": "5904b4cf75567586d5d057f9c8bfc05283bbf572045178fde34c00e0303a0ee7"
     },
     "r-225": {
       "name": "Ruins wall 1.5x2 · 225",
@@ -68732,7 +68732,7 @@
           ]
         ]
       },
-      "sha256": "c80094451855d7f810bc88a488b7362f8d589a326345af813fd26283af1c11c8"
+      "sha256": "04f0f6a1e8c85ac1d11815968eae3605788f9d52314439472da120b41a7967d5"
     },
     "r-226": {
       "name": "Ruins wall 2x2 · 226",
@@ -68811,7 +68811,7 @@
           ]
         ]
       },
-      "sha256": "0013d8c61fb8d0e52fac18d5cbf3c55b66a555959a6d49cf15b334ea22418f60"
+      "sha256": "67f04a5511e50904c615ea81c4276a9213dfc6ed82c414c76b280b1313394b20"
     },
     "r-227": {
       "name": "Timber floor 1x0.5 · 227",
@@ -68854,7 +68854,7 @@
           ]
         ]
       },
-      "sha256": "dc1c0e70f097b95a3abc9a331c71412cb1236b11c4d5158cdf65ff566e67d783"
+      "sha256": "46806a1ffe9009a0eabf7427fb612e72b4c026ee0e5c3c1ce5a78622057b881b"
     },
     "r-228": {
       "name": "Ruins wall 3x2 · 228",
@@ -68933,7 +68933,7 @@
           ]
         ]
       },
-      "sha256": "3ebe12ed81db7b9abe499e8a655bf61825a0bc99c754103d9129bbaae06afb7a"
+      "sha256": "063fa449e5f8ab9fe12c992efff9ee25091185f00758d5cbea433dee6806dc68"
     },
     "r-229": {
       "name": "Timber floor 2x0.5 · 229",
@@ -68976,7 +68976,7 @@
           ]
         ]
       },
-      "sha256": "8ad3d560f094942576d674f4bfcac5c2277f16e3e21bc50f59635428464bfb41"
+      "sha256": "928f5ebb13de9ec72f3846d0105a0e3d8a718e31b7a8deb82e515e807a597dff"
     },
     "r-230": {
       "name": "Timber floor 2x2 Curved · 230",
@@ -69467,7 +69467,7 @@
           ]
         ]
       },
-      "sha256": "1c8c288843ab49e90498f86ba9a9fdde51a80cd89b60dde38e6d1b8bea1ded02"
+      "sha256": "1f9fc3c8f88def7db8da90c3f293bf498d4c33cab63342b03c2a682d68ec3d96"
     },
     "r-231": {
       "name": "Ruins wall 2x2 Curved · 231",
@@ -70104,7 +70104,7 @@
           ]
         ]
       },
-      "sha256": "fa414d6db9307c77ef8481967440e43285e8478b9acb7e18f4ccaac92838339c"
+      "sha256": "34edcf9030fdddaa56fe2a01b69f6ce197db6c9b0eec36333a6293e99a5c1995"
     },
     "r-232": {
       "name": "Ruins wall 2x2 · 232",
@@ -70183,7 +70183,7 @@
           ]
         ]
       },
-      "sha256": "9fb657f9de0c826d7f5fa3e9bb2118f01f2db96eb72497a97e2f6d53a5d52b31"
+      "sha256": "37376f4d36dc78075639adbfac2b7b81d6a067771f3664456dab59550dc50515"
     },
     "r-233": {
       "name": "Ruins wall 1.5x2 · 233",
@@ -70262,7 +70262,7 @@
           ]
         ]
       },
-      "sha256": "44dd2a64198eb27a54327dc0aba5678e8f6e207fc2fa1e63ddd50a8652bd7fae"
+      "sha256": "e38fb7a447c456df6d9c09f291aa0b360e0ca406c4df5622b75f675c77affb3b"
     },
     "r-234": {
       "name": "Timber floor 4x0.5 · 234",
@@ -70305,7 +70305,7 @@
           ]
         ]
       },
-      "sha256": "02d4764f7a37242745e1dcd29b5e40bae858239a13e8df1ff2b33f38a9dc79e3"
+      "sha256": "9303573a6d57aa677415780a7d8d549a77b02f5a7c7385ad73f93d787fc18868"
     },
     "r-235": {
       "name": "Ruins wall 1x2 · 235",
@@ -70384,7 +70384,7 @@
           ]
         ]
       },
-      "sha256": "d38b7aa9ef0fe52d80fa58ff396f8af3eb7db01f4f92c4e7c9d11d02b31868f2"
+      "sha256": "c08e90f698104802935707afd8ad720cb75c8aa3cbafc0bb26b31661a4598172"
     },
     "r-236": {
       "name": "Ruins wall 4x2 · 236",
@@ -70463,7 +70463,7 @@
           ]
         ]
       },
-      "sha256": "d2ef1a3f7c48731c18630d73a8c72d430edab17499782958491202d58f0bf42b"
+      "sha256": "a14aca7d50e5f5ddcd06cfb91c25db18ff9154a2f15992188080115df9f5cce1"
     },
     "r-237": {
       "name": "Timber floor 4x4 Curved · 237",
@@ -70954,7 +70954,7 @@
           ]
         ]
       },
-      "sha256": "f72589b6d4f6efbb7bf3052f4715f5753b5c4287dd0f91260345b6e3105e913a"
+      "sha256": "73639aa4b407a3eae5312e3b0322251f26c6ec9ff4f5983d223892b3d80942e3"
     },
     "r-238": {
       "name": "Timber floor 1x0.5 · 238",
@@ -70997,7 +70997,7 @@
           ]
         ]
       },
-      "sha256": "2bf0f33b4079fcc430e82e43f0b39693ca672654673d805c4fc3f891bf6f0e19"
+      "sha256": "06fe6696ce5a310de91af01a1db87b1e91e43159328b3a95f9d4e628ed109211"
     },
     "r-239": {
       "name": "Ruins wall 3x2 · 239",
@@ -71076,7 +71076,7 @@
           ]
         ]
       },
-      "sha256": "28c990d48535ae8202f7c130436e18fac7c36167465522fb9b2317014f3da6e2"
+      "sha256": "0a795e18cde2c43602b21dad9d1a045a3b87216e524fa4d5bcd3b2d16bc9a356"
     },
     "r-240": {
       "name": "Ruins wall 3x2 · 240",
@@ -71155,7 +71155,7 @@
           ]
         ]
       },
-      "sha256": "d1019e0281823c9905212fe857f29ba43351b5c429e65b313fad612411606514"
+      "sha256": "f27ea143b4e535a4e3900c1af0fe8dbef95fd9689e34b0175bfedcfd81229113"
     },
     "r-241": {
       "name": "Ruins wall 4x4 Curved · 241",
@@ -71792,7 +71792,7 @@
           ]
         ]
       },
-      "sha256": "a5a8cc964cfc1a2472e6181b673e19b08072187ceb8360f6af641ded0e2da90d"
+      "sha256": "b8650f8e06d41da0c42f2909ed365c26b44f13507b38da7660732148b162d0dc"
     },
     "r-242": {
       "name": "Timber hatch 2x2 · 242",
@@ -71862,7 +71862,7 @@
           ]
         ]
       },
-      "sha256": "8b1e5a18a76ec0689896f6f454aa51fb7a25f95072152af6aebb57b08d8efda4"
+      "sha256": "88b92ce6cf89ba888cc254a0fd96a7d88ceb1ba6dad743e44a34ff7ccdc7a7e4"
     },
     "r-243": {
       "name": "Ruins wall 5x2 · 243",
@@ -71941,7 +71941,7 @@
           ]
         ]
       },
-      "sha256": "9a06325e200786822afd550975c451307b223164ec1ef5ca90e6b3277812be04"
+      "sha256": "7ff700031fc350265e2aa38dd4589457b159160ae632222a30d2d05ad6fe39d2"
     },
     "r-244": {
       "name": "Timber floor 1.5x0.5 · 244",
@@ -71984,7 +71984,7 @@
           ]
         ]
       },
-      "sha256": "4fe82b5278a49735f74136c609cc295aa50794089eadb8fb1c715dcdbb1f9620"
+      "sha256": "6e790fc2e402f115c800be47552bc4b2b3bb8d263aeb9cd9a71b9d3ce9d33588"
     },
     "r-245": {
       "name": "Timber floor 3x0.5 · 245",
@@ -72027,7 +72027,7 @@
           ]
         ]
       },
-      "sha256": "f7bd1ed09f6ac8990969b44122f13755b0e7b8647156ec8104b67d6b055e74a6"
+      "sha256": "7609d2f8f1b2390590e95805f98b2ad53bcbe7232483c2ec9ced7c2be62fa1ea"
     },
     "r-246": {
       "name": "Ruins wall 2.5x2 · 246",
@@ -72106,7 +72106,7 @@
           ]
         ]
       },
-      "sha256": "9d7e9c01f4d41bace59ba45cfad54bf38ed67bf0764dbbf114d8ca64296deda1"
+      "sha256": "c1642ca078b29e6e74ca37974b79b5613b3aec1f1ce7d8d6e069a6fffc49c648"
     },
     "r-247": {
       "name": "Ruins wall 4x2 · 247",
@@ -72185,7 +72185,7 @@
           ]
         ]
       },
-      "sha256": "506d00949719e299f40ecf1cea0f1ceb441be24eb73ea805ce2585b362a09e7d"
+      "sha256": "d398ee4b0318f40cdb7d921ab3dac2f9c0a0551ef4b7befcbdd681b2f47079cb"
     },
     "r-248": {
       "name": "Timber floor 2.5x0.5 · 248",
@@ -72228,7 +72228,7 @@
           ]
         ]
       },
-      "sha256": "6436dfb5e3e1d734020f31ec8f72fcaea49347c5c9a1b191a0bb69164151bcac"
+      "sha256": "5d6328de18700e35c6d92a90c888c192eb22c48152d65662544ebcf9ced19fbd"
     },
     "r-249": {
       "name": "Ruins wall 4.5x1 · 249",
@@ -72289,7 +72289,7 @@
           ]
         ]
       },
-      "sha256": "8aaac267ec0068303a6ed67ef52ca26f6f2248c74476be1adc7d239611afe338"
+      "sha256": "5403830e94051dac293411a8130c12d2ab73c6269b8691e82149a12a200a39a7"
     },
     "r-250": {
       "name": "Ruins wall 2x2 · 250",
@@ -72368,7 +72368,7 @@
           ]
         ]
       },
-      "sha256": "4d15ca0be3d850dffcc1015c9c53c28e6a355eb0f2fcd92db0d7bad619f4ee63"
+      "sha256": "408265c7c85dda4f96f9d4ef34d62beabbb215e39024dfa19f1125af97c975be"
     },
     "r-251": {
       "name": "Timber hatch 2x2 Curved · 251",
@@ -72859,7 +72859,7 @@
           ]
         ]
       },
-      "sha256": "746eb30e58f1e01852ccdcaff3ac9ff13a51328faaae418128ee1021e2a50da3"
+      "sha256": "cd16e5f089b6e14cda5d96b7de538521f171f764908a7dc51e1ecf3598bb2e5e"
     },
     "r-252": {
       "name": "Timber hatch 4x4 Curved · 252",
@@ -73350,7 +73350,7 @@
           ]
         ]
       },
-      "sha256": "331ffe33a5d121bb4e8b8bc06276f55e91b7121c7527c85ff6a7680f717dddff"
+      "sha256": "bb2645eac24f42d7125d15a962ffcfdf24a0b45e47f50bcce734315d8e2189fb"
     },
     "r-253": {
       "name": "Timber floor 2x2x0.5 Curved · 253",
@@ -73951,7 +73951,7 @@
           ]
         ]
       },
-      "sha256": "3b4924af50f025e92f1eee725a0ad4590452c507d3e6943da2aaca27824bc9d1"
+      "sha256": "8c9596b06ef31289488230b8447a5058fc8ce3b4a8b67139843dc39b6818230b"
     },
     "r-254": {
       "name": "Fortress control 2x2 · 254",
@@ -74030,7 +74030,7 @@
           ]
         ]
       },
-      "sha256": "ad71cbcf1cb36667e231eae60a91172596eae8327422baf1f0d361f182968ec0"
+      "sha256": "997e1d0ec80caae1aa6e1dababfae518fa908afff636c126f751d38bf95ae760"
     },
     "r-255": {
       "name": "Fortress control 2x2 Internal · 255",
@@ -74109,7 +74109,7 @@
           ]
         ]
       },
-      "sha256": "cb5d3b9a955d0ecf11fe327521db9e35901da4ea986379bb891765186f96c972"
+      "sha256": "bcd8cfecea20d9036fa84faba9dba0bdc965b112724c07244d8a847f975d19b0"
     },
     "r-256": {
       "name": "Fortress arch 2x2 · 256",
@@ -74188,7 +74188,7 @@
           ]
         ]
       },
-      "sha256": "c1c3a473413df5437fcf6dbb74b93f8c80d4f7baab20d496c244777c42ebece6"
+      "sha256": "fb3966e8effb5570f73c2cc438a3a58188f693d6069cba162eda22ecaf8e0750"
     },
     "r-257": {
       "name": "Cavern floor 2x2 · 257",
@@ -74258,7 +74258,7 @@
           ]
         ]
       },
-      "sha256": "c2da61e835f161a589446dd5b67ca8718d3b5bec4e8e5e34411ca5500051d160"
+      "sha256": "4af3599feefc4af130aa4b5d3949f8c76e97edd0a28dfafe74dad644f56f9cec"
     },
     "r-258": {
       "name": "Cavern floor 2x1 · 258",
@@ -74328,7 +74328,7 @@
           ]
         ]
       },
-      "sha256": "75b401ccecdf18996a491953d68ff3fa52774c4abc2d059deb9f043eab16fd20"
+      "sha256": "ee49bdc3574ea58214d81d4e5a35e317489552139e9f8445f6c6f557d602e33d"
     },
     "r-259": {
       "name": "Cavern floor 1x1 · 259",
@@ -74398,7 +74398,7 @@
           ]
         ]
       },
-      "sha256": "56f6a5362dc50ad6714bc29755f14c4c5dbfcc0ea83e59e8c8a8a25ff669276d"
+      "sha256": "3eb69bc04115c4d08bdf5ff200caff99367fdc6e07d8b777afa657ebc484787c"
     },
     "r-260": {
       "name": "Cavern low wall 2x1x1 · 260",
@@ -74468,7 +74468,7 @@
           ]
         ]
       },
-      "sha256": "3aea0b458ce200b2a61d1b21881fd6ce8125517e3bc8e90497fefc4bee276950"
+      "sha256": "13bbccc4c87570f1f2e81869a0442070b3a4ffd8973a87dcfb04f50d7a53d8c0"
     },
     "r-261": {
       "name": "Cavern low wall 3x1x1 · 261",
@@ -74538,7 +74538,7 @@
           ]
         ]
       },
-      "sha256": "5b9cdf9b412f17fec892e04db802228d62341fa7aa9df296a4272ebecf092c54"
+      "sha256": "51add0804ea3540d426bd6bbd69b53cf48a3fc02c6e0c6a8563adb168aa965fc"
     },
     "r-262": {
       "name": "Cavern floor 1x1 · 262",
@@ -74608,7 +74608,7 @@
           ]
         ]
       },
-      "sha256": "4966fa2d1ceb10650385d3bbd5478c6b579b68321b6e5cd2a1216bcd4f3fd291"
+      "sha256": "89a6f221fbf9f4de26bbd97e1fb1be3c85fe61245ca2deb35fdcdb09b2d915fb"
     },
     "r-263": {
       "name": "Cavern low wall 2x2 · 263",
@@ -74687,7 +74687,7 @@
           ]
         ]
       },
-      "sha256": "edfce2b350486ce072d5ad00e501165ef3a87e26a1fb51bf18cb0fdf40218cd2"
+      "sha256": "4fe76f30d38c4d3a8fcae3d14a02b70ed543fa853913f298ad2ec9873e80c9b2"
     },
     "r-264": {
       "name": "Cavern low wall 4x1 · 264",
@@ -74748,7 +74748,7 @@
           ]
         ]
       },
-      "sha256": "1bb355524aee377eaf6e1388351d8643339e51682caaeb2dc90ce22a4be05576"
+      "sha256": "75d21b7858f9c8091a77351cffcca104c5f541d1e79c5b15d701baf9c2cf8636"
     },
     "r-265": {
       "name": "Cavern low wall 2x1x1 · 265",
@@ -74818,7 +74818,7 @@
           ]
         ]
       },
-      "sha256": "5a32560f639f8e551b114208f515592f72ed773dd26ab770f4acdeea7378e61c"
+      "sha256": "e6116f89a458b9491e357d431e2990f27336f186a0e0c8f1bcc70f3910234cc2"
     },
     "r-266": {
       "name": "Cavern low wall 2x2 · 266",
@@ -74897,7 +74897,7 @@
           ]
         ]
       },
-      "sha256": "775269ef3442192f6dd161ab42129d92336df8149a8a78f794a115fed84e70ad"
+      "sha256": "cbd2e54cbb3de0180dc7a8d6d938f9a9cd202438a340f87a08d63ef0f53ccea3"
     },
     "r-267": {
       "name": "Cavern low wall 2x2 · 267",
@@ -74976,7 +74976,7 @@
           ]
         ]
       },
-      "sha256": "bd6f9735ce7ee7d6041128caf1ae36715b51451d84041c4d86757aa4bcdd7dc9"
+      "sha256": "9b6f4e042a068a7710016e11e112045e1e1fc6286507cb4882768f70e4597e8a"
     },
     "r-268": {
       "name": "Cavern floor 2x2 Curved · 268",
@@ -75467,7 +75467,7 @@
           ]
         ]
       },
-      "sha256": "44fbaad00d80c0509a3d276481be4720ebdbd01976435c80473cdd776fcbdb22"
+      "sha256": "82533626c88cc26567139f1b477a526a5c2f12da8af381985deb545493815440"
     },
     "r-269": {
       "name": "Fortress arch 3x2 · 269",
@@ -75546,7 +75546,7 @@
           ]
         ]
       },
-      "sha256": "5f23b4195934459bb1584768fdf0e191786c884d2ff27fd730ba0e63315570bf"
+      "sha256": "0b10c9efa2b36936343ef7337ff502bad50c811bf5f3be626baad7ecac5e5407"
     },
     "r-270": {
       "name": "Cavern floor 3x1 · 270",
@@ -75616,7 +75616,7 @@
           ]
         ]
       },
-      "sha256": "6cbc41f7cfec231d7a050066e76ca1d0a68302bbaf1266d26a9d6c46c049ef9f"
+      "sha256": "ace0085362330d95437e2f5223b8bf18021f53505574566ea10dd9e4a1ca32e6"
     },
     "r-271": {
       "name": "Cavern floor 4x1 · 271",
@@ -75686,7 +75686,7 @@
           ]
         ]
       },
-      "sha256": "f0b9bae21dc156b987e3da1d520831235a5370058656ac3824f7071c9e173a33"
+      "sha256": "09a01ba15da943b648c40b6577d06cf7820c99b45947f535254d0583a63a87a8"
     },
     "r-272": {
       "name": "Fortress arch 2x1 Internal · 272",
@@ -75747,7 +75747,7 @@
           ]
         ]
       },
-      "sha256": "60a231f9d5f7b315e5299bb446118299b5f830757e146358fa5a23a35c3845a9"
+      "sha256": "1097a113ce6845a760b457250b673a2950f4b59406b3c7076bcbb0a96a704a7a"
     },
     "r-273": {
       "name": "Fortress arch 2.5x2 · 273",
@@ -75826,7 +75826,7 @@
           ]
         ]
       },
-      "sha256": "5e92f10e1aef64849721ad4d22cbfc8d39625bae9bd99035ecbef19f4f66a116"
+      "sha256": "d408648971e26a95ad39dcf05728c5587a604edad6ca83cc43dd8fbb6cf5cf0b"
     },
     "r-274": {
       "name": "Cavern floor 2x2x1 Curved · 274",
@@ -76445,7 +76445,7 @@
           ]
         ]
       },
-      "sha256": "6638d14a8da7294b1113913289ff3b4bc38c5b3ca9217e4b892b8208c55350d8"
+      "sha256": "c3b52e49637d4d2ff10d65be2cfe5e65a216ddb80d385a53253559ef5bb8f2cd"
     },
     "r-275": {
       "name": "Cavern floor 4x0.5 · 275",
@@ -76488,7 +76488,7 @@
           ]
         ]
       },
-      "sha256": "f53aa1ce26ef25024dcaaa8e08ba1bbb5039738dd691c48a365054b143b9400f"
+      "sha256": "b8b611ad858356f341c3fb3555e229159ea6049c778f62b69725296841db51ef"
     },
     "r-276": {
       "name": "Fortress arch 4x2 · 276",
@@ -76567,7 +76567,7 @@
           ]
         ]
       },
-      "sha256": "2ec4cfe9be375b7a29081de017f9ac00177eb7742796dbdba30397a81ef24485"
+      "sha256": "3d8fecaf1fccf06f03b4afa773f4abe673380baf6e30c6cf5e7ffe73417394d8"
     },
     "r-277": {
       "name": "Fortress arch 2x2 Curved · 277",
@@ -77204,7 +77204,7 @@
           ]
         ]
       },
-      "sha256": "9f35099c8400d6ba8da420f1b05fe3c448a724fe364a1e694ad22adec9e44e9a"
+      "sha256": "1ef72152ff9e9f86f136d79a7f2dacd2aeb13a57c692bfe87530b0ef69389d16"
     },
     "r-278": {
       "name": "Fortress column End 1x2x1 · 278",
@@ -77256,7 +77256,7 @@
           ]
         ]
       },
-      "sha256": "3503fc90f6b769db23c93d1e5c895f162a656543d273cc6e704f25f08ba193d6"
+      "sha256": "305ff394e9c1539e03010c649bee94f982a7414df3e8a02a40086f5f837e1505"
     },
     "r-279": {
       "name": "Fortress wall 2x2x1 · 279",
@@ -77344,7 +77344,7 @@
           ]
         ]
       },
-      "sha256": "80efadb2748632c7708daef018e8ce702c5f5a8c4356374e44bbedaad7055730"
+      "sha256": "85997958cb4dbf058373ec894f820a38b87e4f285d0fe38970555d117211a88d"
     },
     "r-280": {
       "name": "Fortress hatch 2x2 · 280",
@@ -77414,7 +77414,7 @@
           ]
         ]
       },
-      "sha256": "69ddcb568407dbc728f91d59f65a286762cd933bf438fe6f69a10a807f278e49"
+      "sha256": "f799fbca7e28a791ade92e28305adde1d3d493bb5ae8f54f2cf90755622d0c67"
     },
     "r-281": {
       "name": "Fortress wall 4x2x1 · 281",
@@ -77502,7 +77502,7 @@
           ]
         ]
       },
-      "sha256": "1764a17a6e2d91c0a9bf224327c02b024036c0304b184c2f5792e42f23e9c390"
+      "sha256": "acb340d762ad4daba81f6545d229125bb4b23dc120d273afd8cc5e01f877aafc"
     },
     "r-282": {
       "name": "Fortress column Corner 1x2x1 · 282",
@@ -77572,7 +77572,7 @@
           ]
         ]
       },
-      "sha256": "f3fc8536eec42c97b4aca9f711277a2ffbc39eb2bba171d534a1e85591078331"
+      "sha256": "a62dec863d030b7a7feea94b06ce460c659c722e995f3852d98e001c579be09b"
     },
     "r-283": {
       "name": "Fortress ladder 1x2 · 283",
@@ -77651,7 +77651,7 @@
           ]
         ]
       },
-      "sha256": "4958a5f86860b3096bf500b710a71df442177094beedd2b26b2e56df3462b0b1"
+      "sha256": "7dcfb423f6e9f757396390b18893cb842adbbf8df1b6cad90825fe6f64a0c001"
     },
     "r-284": {
       "name": "Fortress column 1x2x1 · 284",
@@ -77721,7 +77721,7 @@
           ]
         ]
       },
-      "sha256": "a54ae98cd733cd5f10e1691bc284bd9014f9c72db095aef3ab4ca233ef2c7743"
+      "sha256": "145ce3e3aae9b5d0e8cca8d66d2c9d96588214a0a3658a5c6bde0f79ff46668c"
     },
     "r-285": {
       "name": "Fortress ladder 2x2 · 285",
@@ -77800,7 +77800,7 @@
           ]
         ]
       },
-      "sha256": "ab5ddbc8b65b2f365f1f60171a289a6982ca85163af3bdab9c939cd565cc240a"
+      "sha256": "0127183d8a3555957ca9904863d156d16891d6a745d179cf48802731a038c54d"
     },
     "r-286": {
       "name": "Fortress column T-junction 1x2x1 · 286",
@@ -77888,7 +77888,7 @@
           ]
         ]
       },
-      "sha256": "6e5cd82c5b2a7a74b63ca893ca2351cdc5028fda3678e056a3814bdf0c56a764"
+      "sha256": "c02a34c46898a274002e3a098522c88d631239b0d22cba95288f00029690b877"
     },
     "r-287": {
       "name": "Fortress wall 3x2x1 · 287",
@@ -77976,7 +77976,7 @@
           ]
         ]
       },
-      "sha256": "2d9a1796d98f013b336373cf3678f313cb8cfadde1aaf1046fbd4861897e5cf5"
+      "sha256": "d8c6c74ac48c6a0e052b0ec79a74339931aa23d63cf1e69d0c22ffb4d503d379"
     },
     "r-288": {
       "name": "Fortress column X-junction 1x2x1 · 288",
@@ -78082,7 +78082,7 @@
           ]
         ]
       },
-      "sha256": "bd8119005609117dc675975758463ee68cfa93208f012ed462f3b62fbf01b67f"
+      "sha256": "f8271164bdf0764a3575cbb8e0023e2be7914406dabd40fb0441ef9128078ea0"
     },
     "r-289": {
       "name": "Fortress arch 2x2x1 · 289",
@@ -78170,7 +78170,7 @@
           ]
         ]
       },
-      "sha256": "edd2403284fd7c8ba9bf5c01d901ef57ddef3ef796d725c2823504849d32a8b6"
+      "sha256": "3d71a39baf4f9baf0efe314346fa13370ffec6fc4af8564597de039f1c16f66a"
     },
     "r-290": {
       "name": "Fortress arch 2x2x1 · 290",
@@ -78258,7 +78258,7 @@
           ]
         ]
       },
-      "sha256": "eae3e9ea11a6856f1d8c22f30f5fc37da785627f66cc5a474e56b6f7923d176e"
+      "sha256": "14a7db1559d96239dff516ca44402803750676874150afca7541a2a5cbd74ebb"
     },
     "r-291": {
       "name": "Fortress low wall 2x1x1 · 291",
@@ -78328,7 +78328,7 @@
           ]
         ]
       },
-      "sha256": "feb8105e44a62ad912a0ba82220b9b0709b6d4c09ccea72829124b1d5fc03de0"
+      "sha256": "fb0613b188e1eefc9f0806ab8e133e117ef057b8bae5515d2dee7c36edd5401b"
     },
     "r-292": {
       "name": "Fortress hatch 4x4 Curved · 292",
@@ -78819,7 +78819,7 @@
           ]
         ]
       },
-      "sha256": "aab42df93702b9e2913316b9267435428fff94c9c24c1cf10e848784c7cdc108"
+      "sha256": "56f13676de26cf7c1b086c122fb6e6eb66b472d8a34daa31bfa4975fcf29457c"
     },
     "r-293": {
       "name": "Fortress ladder 2x2 Internal · 293",
@@ -78898,7 +78898,7 @@
           ]
         ]
       },
-      "sha256": "e5fbda4ff5beda0a55f609ed584c5a1c1bd33dc0436b9e96f4be45875c9d3964"
+      "sha256": "74883965eb9a8ba3b7d38b0d930e361c76fe23ad1d2f527e980be817e26d1fdd"
     },
     "r-294": {
       "name": "Fortress ladder 2.5x2 · 294",
@@ -78977,7 +78977,7 @@
           ]
         ]
       },
-      "sha256": "773da9e7e479287f9cb0e84c88d5e69db9ed68a1d3d1110aaf17367e1a328f38"
+      "sha256": "8b0b8eeebe915b902f8105ea4c5b4f35610c30b667a928968cf710ae144338b7"
     },
     "r-295": {
       "name": "Fortress low wall 3x1x1 · 295",
@@ -79047,7 +79047,7 @@
           ]
         ]
       },
-      "sha256": "cea177ab14be1a1d6c875a1577391c1c6267a22e65af26b4fcf147037164447c"
+      "sha256": "8cece0cafb579a6dc1f48ab8c1a94d2e632401b98527666f01355d67b81df964"
     },
     "r-296": {
       "name": "Fortress low wall 4x1 · 296",
@@ -79108,7 +79108,7 @@
           ]
         ]
       },
-      "sha256": "c970584f764c8ed7c18324a609eeb8bb5274e46014e046bb39ba39a3c3a5d481"
+      "sha256": "9606b3fc5dbeb423838a7aa5f7812803d2e27ba396ad1353c0a3ee1006bde551"
     },
     "r-297": {
       "name": "Fortress column End 1x1x1 · 297",
@@ -79151,7 +79151,7 @@
           ]
         ]
       },
-      "sha256": "491ee3e840511d720f9da399bd71a637039ab1b20a31f02c7b6c68b77bae5240"
+      "sha256": "7deedb83fa372c6f3ccd05126ea0bbd55da3cda6c6a11bd2ab5c114573b05734"
     },
     "r-298": {
       "name": "Fortress hatch 2x2 Curved · 298",
@@ -79642,7 +79642,7 @@
           ]
         ]
       },
-      "sha256": "0bcecb2ecd34dc4224b8f69a39a0ba081d1b23842fa4b90305edabc1b55feeb2"
+      "sha256": "eb748878fd9fd40e138c34cb67d968366015c25242344f3f12789d448e23515b"
     },
     "r-299": {
       "name": "Fortress column Straight 1x1x1 · 299",
@@ -79694,7 +79694,7 @@
           ]
         ]
       },
-      "sha256": "a88598b11dd6e5ad0101c1a821c366c234bbbf654f49b339c4dc574a97127c00"
+      "sha256": "20f482c7e835fa3e41e137089639fe276e73a9f372b9345ec06bb2d23806124d"
     },
     "r-300": {
       "name": "Fortress column Corner 1x1x1 · 300",
@@ -79746,7 +79746,7 @@
           ]
         ]
       },
-      "sha256": "26582de26bc8d1587107e06313bd119a6e7f51caacc0a8dc560a91d41b480f35"
+      "sha256": "50ce884168845b4bea2423f4eac48ebe62d734bb0c38ec4d66edea2e045ed750"
     },
     "r-301": {
       "name": "Fortress column X-junction 1x1x1 · 301",
@@ -79816,7 +79816,7 @@
           ]
         ]
       },
-      "sha256": "400d90aa2d8031e76f185a8bddf0dee30b174d14ec4c68fd4245c6fb4f66a4f9"
+      "sha256": "c66adffc781bd6878e8f57a0ff96d57aaa3a105e5c11eea10f0b7cc944f6bfec"
     },
     "r-302": {
       "name": "Fortress column T-junction 1x1x1 · 302",
@@ -79877,7 +79877,7 @@
           ]
         ]
       },
-      "sha256": "f05942b26cb4fa897954cf4751407c661220091fd1d1b9e12c2d42a1ebbd4560"
+      "sha256": "a2c9650da33a5606bff1c98c05b45115e2bd8a57fe5f4363039aa35067057867"
     },
     "r-303": {
       "name": "Gothic low wall 4x1 · 303",
@@ -79938,7 +79938,7 @@
           ]
         ]
       },
-      "sha256": "08b62be9eb51797062bc6bdb61eb90689644b0bcd03c7e6cc5168defbddd0e2d"
+      "sha256": "83cb7e948a53c0cc3d2d61b7081d45f13e929bf198b3a7d9afe3e3a838f1c918"
     },
     "r-304": {
       "name": "Gothic low wall 2x1 Curved · 304",
@@ -80557,7 +80557,7 @@
           ]
         ]
       },
-      "sha256": "0e85ea9ce2275e739e31b603c778a89f390f92bff533dd7cfefb7e324dea8e45"
+      "sha256": "8b6aa4212ea8d84f4cd68844a0df4614b6828e188064e2ef890cb2138e1a45bb"
     },
     "r-305": {
       "name": "Gothic arch 4x2 · 305",
@@ -80636,7 +80636,7 @@
           ]
         ]
       },
-      "sha256": "70d0adb2e05cc3935d1df4c680d9c9ad676f0413a3ca0b463e1743c4242995ed"
+      "sha256": "72034f8f343bc64946a79933ecfadff95339778a444a27e406be1d27e4d91ff4"
     },
     "r-306": {
       "name": "Gothic low wall 2x1 · 306",
@@ -80697,7 +80697,7 @@
           ]
         ]
       },
-      "sha256": "60a7ff70c359b5e11238df17709d92bcc057001372ed279c942fa220e91b98bc"
+      "sha256": "8aa6e250db0483b09d8149b00f3173d39c28d92c0ef24580d47717543e6037e0"
     },
     "r-307": {
       "name": "Gothic low wall 1.5x1 · 307",
@@ -80758,7 +80758,7 @@
           ]
         ]
       },
-      "sha256": "7c4fd36a96a6812f609ebb8ef923dd564f405a23eab4e3725cd599cf6e129976"
+      "sha256": "09bc77ebfe1be5bcb6ac6779b030e4e474c1077cff8bc5145e104940d2b42c93"
     },
     "r-308": {
       "name": "Gothic column End 0.5x1 · 308",
@@ -80801,7 +80801,7 @@
           ]
         ]
       },
-      "sha256": "ddf972a5a32c09f3b9122d1da625fd1df4b853949bcc35deec237236f0619090"
+      "sha256": "3d0c1435a6d40c5cbb445404df5fdfcbbdf2feb57a38b9f582f45b220b5c3037"
     },
     "r-309": {
       "name": "Gothic low wall 1x1 · 309",
@@ -80862,7 +80862,7 @@
           ]
         ]
       },
-      "sha256": "72c87f41e88636c6a11825a6610c2c01b52ce40664986aaa61f638f66aadf3a3"
+      "sha256": "610c0b2404e1ec83ed1d204b4cc33fe338068b7ca305334092ab0ae0082199e4"
     },
     "r-310": {
       "name": "Gothic low wall 2.5x0.5 · 310",
@@ -80905,7 +80905,7 @@
           ]
         ]
       },
-      "sha256": "021387f8506ec7f5460b0cc8f53c744d8ace6abe7ad8dd7ea2761cdc5ffbd820"
+      "sha256": "06dd0b414e74d41acbc9a71348d9ec32c155124e5ab67a7c8e8eea9f91ad7ac4"
     },
     "r-311": {
       "name": "Gothic low wall 2x1 · 311",
@@ -80966,7 +80966,7 @@
           ]
         ]
       },
-      "sha256": "77988f1fe8320b47757734b2d03d56052431397488e20237da61d33add7f98e8"
+      "sha256": "67114507d4c941210176f9f986efbe8e0ddb695829b50c83f070160ca325eda5"
     },
     "r-312": {
       "name": "Gothic arch 2x2 · 312",
@@ -81045,7 +81045,7 @@
           ]
         ]
       },
-      "sha256": "893e3ff53de1e10dacc0a13ea126db60bf9bdb75f029f5ea0f03274acd7560f9"
+      "sha256": "5a3dac35796703cb8e5cec9afe324dfb0c1ce2f8e8708ac543a52b7f00c51770"
     },
     "r-313": {
       "name": "Gothic low wall 5x1 · 313",
@@ -81106,7 +81106,7 @@
           ]
         ]
       },
-      "sha256": "510044cfc572fa81a32e2ab9c9b35e204558bbdb26ed5bc5107f962d94466462"
+      "sha256": "49f0c2a5c7f5231baffde66728fd6e82d8d898fd849c0bec489507d5737fee5e"
     },
     "r-314": {
       "name": "Gothic arch 3x2 · 314",
@@ -81185,7 +81185,7 @@
           ]
         ]
       },
-      "sha256": "00c31bcd52edad6232169b138bbacc2a2993ec2751d78b1bd6c104bc05847301"
+      "sha256": "aaa7cabeb48e9fb47284d3751f08a93e0e79798cc0d93f23232d198ea368237d"
     },
     "r-315": {
       "name": "Gothic low wall 4x1 · 315",
@@ -81246,7 +81246,7 @@
           ]
         ]
       },
-      "sha256": "49decdeca31734b413b69f588dce12895745402c57b97c0f8480a5cd0b5f7391"
+      "sha256": "9b82e3b43dd027d3e7c4bb80f1793a8aa3d233888a7af0bbbedbfb8ae1baefd2"
     },
     "r-316": {
       "name": "Gothic column End 0.5x1 · 316",
@@ -81289,7 +81289,7 @@
           ]
         ]
       },
-      "sha256": "079715b214532555f39938abcc1cdfffb5406cb978960f1f7f50d67b20932cdb"
+      "sha256": "76ca76932b5c5715d37b73aa2b701fee25c9289f2bd910945a45ed6e2ea06e29"
     },
     "r-317": {
       "name": "Gothic low wall 3x1 · 317",
@@ -81350,7 +81350,7 @@
           ]
         ]
       },
-      "sha256": "48bcbd689634a581b5758f326a2ee5734322669493b6546a483b11264bd9bc8f"
+      "sha256": "d8cf3cd3819c2956cc2050e1995c740815781b80225f88c51bc0ff5dd4adae1c"
     },
     "r-318": {
       "name": "Gothic low wall 4.5x1 · 318",
@@ -81411,7 +81411,7 @@
           ]
         ]
       },
-      "sha256": "9c216b546f2e57f5455c9fe384cf516ceb6d5b29b0629fc53faf3a7994ced95e"
+      "sha256": "e4882eaf71bea2829c57aa82799113183d3d8e8940ac24ce1e981ca6169f1871"
     },
     "r-319": {
       "name": "Gothic low wall 4x1 Curved · 319",
@@ -82030,7 +82030,7 @@
           ]
         ]
       },
-      "sha256": "0d77b38dd074faae646b5be8bbeb6a75bf0e8c85ce3239e53bd9de5aa8719a11"
+      "sha256": "72b826c619acfbd0b729a27a9b9bf30692c46b10109199f02f0c6dd091260ce8"
     },
     "r-320": {
       "name": "Grating floor 2x2 · 320",
@@ -82100,7 +82100,7 @@
           ]
         ]
       },
-      "sha256": "f128203d8814105645947399ef670b77a84beab7200e7295ea7406f38213f61e"
+      "sha256": "d33cf1d5cd3a6fddf9e392744de19e32ae17cd4004a8075a2e481fcb0ca75a3e"
     },
     "r-321": {
       "name": "Grating floor 4x4 Curved · 321",
@@ -82591,7 +82591,7 @@
           ]
         ]
       },
-      "sha256": "3988032d41324902789209439792615d198069a78f02a7d38ac7c9ab24ef6248"
+      "sha256": "0e7ac50b223312abdf7abf31e39eb87e94b29e2ebbc71161dcd6aae747611a1d"
     },
     "r-322": {
       "name": "Grating floor 2x0.5 · 322",
@@ -82634,7 +82634,7 @@
           ]
         ]
       },
-      "sha256": "d98c490500cf2fcfd5584414da206463dca6b1cc9be1f035d90ca4b650c897ec"
+      "sha256": "2129561d0628d33bf46c22cb22260b2403adc46b15174e30e6a5a4731ba04eae"
     },
     "r-323": {
       "name": "Grating floor 2x1 · 323",
@@ -82704,7 +82704,7 @@
           ]
         ]
       },
-      "sha256": "9b304d0c65321d2a5d85154389a25b9cb83f2740d05bac15b6fc464f46dbcb0a"
+      "sha256": "d4a3484713e70dc63653f68b1671190ba521baf6e6eaf4343cdbff186082c172"
     },
     "r-324": {
       "name": "Grating floor W - · 324",
@@ -83074,7 +83074,7 @@
           ]
         ]
       },
-      "sha256": "fc0cf0e253f5b22baab02da6b2f024d5323ded6685c08958418987d8dc6f2cde"
+      "sha256": "c54fec84f5141f0c7a1ba66de0caa388fb225e448511cc66df344a1fda535e55"
     },
     "r-325": {
       "name": "Grating floor 1x1 · 325",
@@ -83144,7 +83144,7 @@
           ]
         ]
       },
-      "sha256": "df586fb3622e79b81214172bec07d4b1fa2870314f416d410358357f9f915e7e"
+      "sha256": "dd099ed584d6677a9e8a63d1852972853e1f73c9bd180d5a434322a9cc3f9744"
     },
     "r-326": {
       "name": "Grating floor 3x0.5 · 326",
@@ -83187,7 +83187,7 @@
           ]
         ]
       },
-      "sha256": "cf4213ef6c0dad40ad7d1739bae43170c2055c2c65f4d9e24cd6423528110caa"
+      "sha256": "a77dc95cc52bab4113757c767395b792939cb23252f75c2f244ac6ab7c67b22b"
     },
     "r-327": {
       "name": "Grating floor 2x2 Curved · 327",
@@ -83678,7 +83678,7 @@
           ]
         ]
       },
-      "sha256": "b247d3a9192cc347458fc95b1be778c4b17679f63684c638bfcf0dd9acbb285f"
+      "sha256": "587c87db6e3bb3008f0d876cfd6985fd32970c28d461964900cff0dfaf143c40"
     },
     "r-328": {
       "name": "Grating floor 2.5x0.5 · 328",
@@ -83721,7 +83721,7 @@
           ]
         ]
       },
-      "sha256": "f173e4cd1f34ec4cedc3c343d3ceb25ca8c6c6c20f8cb31a6cf5729db3e91938"
+      "sha256": "6864a8fca58535dfec3b8afbc0dca07624595ff0459b77962db222215ec58732"
     },
     "r-329": {
       "name": "Grating floor 1x0.5 · 329",
@@ -83764,7 +83764,7 @@
           ]
         ]
       },
-      "sha256": "061481f1e8dee48199c6cfe87786b314eb13c798d862f4b01262a2889f27c3c1"
+      "sha256": "dd973e6cfd859daee949c4a10a47f81414e67bd3fe9a58a3fc58be3e278619bc"
     },
     "r-330": {
       "name": "Grating floor 2x2x0.5 Curved · 330",
@@ -84365,7 +84365,7 @@
           ]
         ]
       },
-      "sha256": "a9456a54467fb758ad7f6d6b88ecf5e0600c49b77a9a135aa6a0da8f4b62344b"
+      "sha256": "c4f69d36c2c318491697faf4965c56507453becd642001633efd8cd62e90edc7"
     },
     "r-331": {
       "name": "Grating floor 1.5x0.5 · 331",
@@ -84408,7 +84408,7 @@
           ]
         ]
       },
-      "sha256": "dd358611f764854168a310d1745fb93f3f3ce179ba1ae3a241c8cfd61557d1b3"
+      "sha256": "893aa2f20007fc9af481686615b3c00774f46af074dd2eb7a86f7e7944a3d640"
     },
     "r-332": {
       "name": "Grating floor 2x2x1 Curved · 332",
@@ -85027,7 +85027,7 @@
           ]
         ]
       },
-      "sha256": "87873a6112ab455a9c44fbdf4c4dd259270e40ae4d4b76b34493db5ac7e66c27"
+      "sha256": "4971e917ea190bac5bca003e823b0a5f8f921c46c321ec9d7233712b8f619f47"
     },
     "r-333": {
       "name": "Grating floor 4x4x0.5 Curved · 333",
@@ -85628,7 +85628,7 @@
           ]
         ]
       },
-      "sha256": "be8ce31d0c91b7fb939d95543adc43bc07615c0cf39c43508b60f82a719fbdd7"
+      "sha256": "713b5d5fe5939f8a86ad03d64645581e726cb3faf8278ff2dc246fdf710c7132"
     },
     "r-334": {
       "name": "Manor door 2x2 · 334",
@@ -85707,7 +85707,7 @@
           ]
         ]
       },
-      "sha256": "48f3f9bb6d030d953b81e08a9dccc19fa76d12220b04ce0b3fead64ca4852201"
+      "sha256": "d20f82e85f528b02a70056ce24904285de0a477f3870bdfa72c07d8c64af1b16"
     },
     "r-335": {
       "name": "Manor window 2x2 · 335",
@@ -85786,7 +85786,7 @@
           ]
         ]
       },
-      "sha256": "abf2b476b3c3e7ced6236db2dba30148e91a4c2d4ee6cfb88fd8ae5e06de629c"
+      "sha256": "2e4b28736c14f5a23bf992e657bc7511fc107fd9616a3b903e0b36e1ba4560da"
     },
     "r-336": {
       "name": "Gothic window 2x2 · 336",
@@ -85865,7 +85865,7 @@
           ]
         ]
       },
-      "sha256": "e91831067c8214e7a0b7de05fd13a31493daeaaa7bfb867ad98af8e5c4adc5b5"
+      "sha256": "e30eff46ee6d4ecd336a52c35aa79a977ea36fb2d80adca2bd980784fc06c451"
     },
     "r-337": {
       "name": "Manor door 4x2 · 337",
@@ -85944,7 +85944,7 @@
           ]
         ]
       },
-      "sha256": "9ac1470fa2dfb5890c6aff262a19cf94d9f34f32ae90ce75e51430b438040443"
+      "sha256": "469505f1e6136a34d2985c73bbb843624892060f5c3757c4a8aadf1a5ace84e1"
     },
     "r-338": {
       "name": "Manor door 3x2 · 338",
@@ -86023,7 +86023,7 @@
           ]
         ]
       },
-      "sha256": "141ed0d98db407db8542d1e0aa225ee31fff972450b201456c56dd88b524355e"
+      "sha256": "e187a870bf69fccdf7beeba0ae6d684125c915f5967d50c7ec5a54e123caf48d"
     },
     "r-339": {
       "name": "Gothic window 4x2 · 339",
@@ -86102,7 +86102,7 @@
           ]
         ]
       },
-      "sha256": "6c3dc3e07724a92f0eda2b908cc92b7a2ba7f46a99979d31a809ddda5ac4c2b6"
+      "sha256": "415e78fbc650cc41da6fa3c7ff7a09df017f2734c49aed842a2d8b5f699719f6"
     },
     "r-340": {
       "name": "Manor window 4x2 · 340",
@@ -86181,7 +86181,7 @@
           ]
         ]
       },
-      "sha256": "dc2da2a0c4dbb134017bc6d7b0c0c9bec3f21f55da5cd2b1085fdc9979165f82"
+      "sha256": "245744a32a7672849e032678e21e6a54f0738886e7f01f4271310683599aa5da"
     },
     "r-341": {
       "name": "Manor door 5x2 · 341",
@@ -86260,7 +86260,7 @@
           ]
         ]
       },
-      "sha256": "cf98afc74c28e32afb01aa534bd3d8348381d0c517aeb06963197757007345bb"
+      "sha256": "76af9543312e38bfabeeb7e0ee4a6a1d9004b3f3041676a6024b619104549694"
     },
     "r-342": {
       "name": "Gothic window 3x2 · 342",
@@ -86339,7 +86339,7 @@
           ]
         ]
       },
-      "sha256": "cddab52f52fd0b45d606751884118f13cef770f60f136b09661a1074040b6192"
+      "sha256": "b0fca9ef40b5f4948534a443fc05231a08f733b47a8d79daefa48ba88376d9c7"
     },
     "r-343": {
       "name": "Manor door 2.5x2 · 343",
@@ -86418,7 +86418,7 @@
           ]
         ]
       },
-      "sha256": "8edcb833a70c78df64f82ab051e7d3f5ecb6d1d25d1ea9d2085ffb9e7d2a49c6"
+      "sha256": "1d3733666d792f7de3d2aa00b4a9aefd0dfd7b24045572122a9e9c4f3579520d"
     },
     "r-344": {
       "name": "Manor window 3x2 · 344",
@@ -86497,7 +86497,7 @@
           ]
         ]
       },
-      "sha256": "d5229e549d17440709b36ceb5d607ad6381076534bad88fb2990ea4694b6ef26"
+      "sha256": "54b831aef775991a1656548e574157a33757c39ccfba59ade3acbecd7726120e"
     },
     "r-345": {
       "name": "Manor window 5x2 · 345",
@@ -86576,7 +86576,7 @@
           ]
         ]
       },
-      "sha256": "00533b4698d7310fdbac8386fa95528a58bcbe3ad8992ed8a0b500eae89a3b41"
+      "sha256": "16910ab54c0c2a133a606aad96a9cdf4a9336414b7c1962d27afda3e36ce398d"
     },
     "r-346": {
       "name": "Manor door 4x2 · 346",
@@ -86655,7 +86655,7 @@
           ]
         ]
       },
-      "sha256": "4093315fd82876e98645bc10e6bc1398fe6853e374d8e444572eba64a12c4286"
+      "sha256": "db7cf0c7ec60b31256091b993d2d3fefbec4df4ae7b72238da4d123c517658ad"
     },
     "r-347": {
       "name": "Gothic window 2.5x2 · 347",
@@ -86734,7 +86734,7 @@
           ]
         ]
       },
-      "sha256": "e6dcc606f9322e5fb858f6eb4c21e0633dfe4abd3b1e84bff891751912d39886"
+      "sha256": "4e8a1528cf5eae15b4b0a8551a0fcbf62a7c4a95dd14aa57ebfa2409fc1a509d"
     },
     "r-348": {
       "name": "Manor door 4.5x2 · 348",
@@ -86813,7 +86813,7 @@
           ]
         ]
       },
-      "sha256": "fb55282bad9a14e92f5782e4a18419c125144097e582c53a3598cd62dbe7b4b6"
+      "sha256": "4145755c4eddd7495d6a5aa49d91b5b20db9953157034e4db6addc1c7b47aab6"
     },
     "r-349": {
       "name": "Manor window 2.5x2 · 349",
@@ -86892,7 +86892,7 @@
           ]
         ]
       },
-      "sha256": "378c0c4a4f7c9f7687b3a0f464e9fd2beefc5613a2acbeb8fea5b4d8268c42d8"
+      "sha256": "cc3da603d8f563e5fb51c302df2f6eed9d18ab3734337dc7d75ed5e6620211ad"
     },
     "r-350": {
       "name": "Manor window 4x2 · 350",
@@ -86971,7 +86971,7 @@
           ]
         ]
       },
-      "sha256": "21318f866e7f6933edc043ca32b2df85e5a98119ee482b891a00663ecfcba71f"
+      "sha256": "3d056b665cd66d6c227a8f0d40441f471ff4782263c92324186919b64d588ac2"
     },
     "r-351": {
       "name": "Manor window 4.5x2 · 351",
@@ -87050,7 +87050,7 @@
           ]
         ]
       },
-      "sha256": "960bea04680edaf98718b6e20b3c76f643a6f0f07a70d09f5e6a4b2c40955d83"
+      "sha256": "5b056d1c997f28124cc1480ed945523f58a15fe6da55049c501d1d4b0bfd9651"
     },
     "r-352": {
       "name": "Ossuary door 2x2 · 352",
@@ -87129,7 +87129,7 @@
           ]
         ]
       },
-      "sha256": "77932ff4e9e2d82968ef48b874d23ddbcab02fb21935464a3e3ba78e1035882b"
+      "sha256": "7aa4408b9e50ecd0f11c52e3fa2b6a172fb803d5b222a40226a72b31c8b5f81f"
     },
     "r-353": {
       "name": "Ossuary gate 4x2 · 353",
@@ -87208,7 +87208,7 @@
           ]
         ]
       },
-      "sha256": "0251459e1ecb8a90b0407b7310b23e41f4c04741cd48d50829e2f14c53b63cb5"
+      "sha256": "3803b7cc6f051e9c602a9b0eff7448df5c344b7161c2ba30e9b90d48c034ffc0"
     },
     "r-354": {
       "name": "Ossuary wall 2x2 · 354",
@@ -87287,7 +87287,7 @@
           ]
         ]
       },
-      "sha256": "d12d5c00362a3ea8e52100537ed60590639d70e74f8a18a0d6224049ef672043"
+      "sha256": "504307c53c0896af790c376a382e44c7c41fb0c66ab9d08749a35168485e703a"
     },
     "r-355": {
       "name": "Ossuary wall 2x2 Curved · 355",
@@ -87924,7 +87924,7 @@
           ]
         ]
       },
-      "sha256": "e67a1f15b04cb456d3ea83885e0d2bccf899697a86291f41c9dc05aa37d8db61"
+      "sha256": "c4e5f98e270486fc5ff4141ad9d76c672dbbe2d7dfe94242a9e61f2d28520329"
     },
     "r-356": {
       "name": "Ossuary wall 4x2 · 356",
@@ -88003,7 +88003,7 @@
           ]
         ]
       },
-      "sha256": "ed3e66faeb07f1114397fc3e53931b588e07a5c727ebadd1d959686b4d5ffc84"
+      "sha256": "895cd2462d3bfce0b313631afed35ccbdd665013bcc0c813179bca24b533e2db"
     },
     "r-357": {
       "name": "Ossuary wall 2x2 · 357",
@@ -88082,7 +88082,7 @@
           ]
         ]
       },
-      "sha256": "268b8c4ee6bf9b3341b7900c108d49b701692e28006becbc271b2d2157529214"
+      "sha256": "6a0e4912c0f2dd9e302163518bb543689302de05aafdf5f47a7bb5f202034f03"
     },
     "r-358": {
       "name": "Ossuary wall 2x2 · 358",
@@ -88161,7 +88161,7 @@
           ]
         ]
       },
-      "sha256": "db671da8a2207b7d7abf8ee588ee0878f11ae8b3182c1eae088874454c5d1134"
+      "sha256": "53469483517afe5adc51770c9cd0d2b224e9139f6cef5d93a52b8db7b7ab3d86"
     },
     "r-359": {
       "name": "Ossuary wall 1.5x2 · 359",
@@ -88240,7 +88240,7 @@
           ]
         ]
       },
-      "sha256": "f6ccca82dba0b36fc208be3facc04bb947315331700d282546e010bf6b2c9e8a"
+      "sha256": "18df336e2043dd70b49d00773530d008796d2f98a73c0ae357fd82eaebcac467"
     },
     "r-360": {
       "name": "Ossuary wall 2.5x2 · 360",
@@ -88319,7 +88319,7 @@
           ]
         ]
       },
-      "sha256": "0dda1fc93a9acc68383953d257d81880363b187298fb01da65ef7e02e8723484"
+      "sha256": "a9d3aa94d5b5f3225844049abc27c293d564c4ee9627083dc289aa5d64088573"
     },
     "r-361": {
       "name": "Ossuary wall 2x2 · 361",
@@ -88398,7 +88398,7 @@
           ]
         ]
       },
-      "sha256": "baedbbc95775bde953782d8e68d09b5ef9c2c9d78e50ab31f75013bb553c9a86"
+      "sha256": "7a6ba9991cd8e4e53d6c152b8c48c0bee99e69f06b1db454ab10978a3ae2bb12"
     },
     "r-362": {
       "name": "Ossuary wall 3x2 · 362",
@@ -88477,7 +88477,7 @@
           ]
         ]
       },
-      "sha256": "f5a93e8cf0ab0f9b646c027ac3ad4f3378e74514ec760a55eb00347f44778652"
+      "sha256": "bb7c47c939f8d5f3e686258bbb4354fa01f1e98dbad40da83b7d0f2e2e90b520"
     },
     "r-363": {
       "name": "Ossuary low wall 2x1 · 363",
@@ -88538,7 +88538,7 @@
           ]
         ]
       },
-      "sha256": "6053954dedfa00a6c79bc39a638c4e7a166ac3b97e39db422ff1507049ba0693"
+      "sha256": "f6b8b5b1c2c45847c317c95e069d77d70e781bc8b04a5e30d25917766cf547ae"
     },
     "r-364": {
       "name": "Ossuary low wall 2x1 · 364",
@@ -88599,7 +88599,7 @@
           ]
         ]
       },
-      "sha256": "8882525981e49dab29424a140c6300ce2ad93884d204a1ec5163bf238e301fbf"
+      "sha256": "3a5bba048530ab09e2b80f18ca97dabdb23c21e430665f6bf4d43233e5067d77"
     },
     "r-365": {
       "name": "Fortress window 2x2 · 365",
@@ -88678,7 +88678,7 @@
           ]
         ]
       },
-      "sha256": "40c12fa947b7d55db858166e2b93338df62bfb0d2accc36e8285e0dafd2bed89"
+      "sha256": "0ac965e74300fa80c0b7c7f7e697c202fdf813ffe4fddea62f201be259812c56"
     },
     "r-366": {
       "name": "Fortress window 2.5x2 · 366",
@@ -88757,7 +88757,7 @@
           ]
         ]
       },
-      "sha256": "9361ca8137ec662c0f71f0f971d1cd09e03b8378eee1a4051fedc44c7938e50c"
+      "sha256": "4fc7d358d144dd11a5561c99a3b7a861174e8a8d5e5372dcb5f0fafb9027c43a"
     },
     "r-367": {
       "name": "Fortress window 3x2 · 367",
@@ -88836,7 +88836,7 @@
           ]
         ]
       },
-      "sha256": "d9dcf2ce0c2f97a95b5574448dcb077e29ad1498185e6a48d9e030895a0106c3"
+      "sha256": "e3565ddb2f6796c5378d43418ddd1b05101eb99fc7ae181bacd46acfa02396a3"
     },
     "r-368": {
       "name": "Fortress window 4x2 · 368",
@@ -88915,7 +88915,7 @@
           ]
         ]
       },
-      "sha256": "3927103d121afab3825949695be032bf0e2c46345efe672b769bc50426fe209c"
+      "sha256": "1afec10c4e26e5bb81decc53d6f22571d05e0b945d860490d78daf5aa55f0e70"
     },
     "r-369": {
       "name": "Fortress window 2x2 Curved · 369",
@@ -89552,7 +89552,7 @@
           ]
         ]
       },
-      "sha256": "cb1b6b0a5cd6f87daece3dd9186c50a255effb72eda8f40df03ab2a083c45df1"
+      "sha256": "17f04c75728826ab06e4a2b44a24f230f92eabb3047bb8957466062787aad704"
     },
     "r-370": {
       "name": "Fortress window 2x2 Curved · 370",
@@ -90189,7 +90189,7 @@
           ]
         ]
       },
-      "sha256": "c8df523ca47874ee766c06e1d04c3b0c89fadbc2ca2a3c194bc4d2a5f75bf626"
+      "sha256": "d25224202ba761d716cb879b087bf74c433e9607d451f0283aa39fb63f207521"
     },
     "r-371": {
       "name": "Fortress window 2x2 · 371",
@@ -90268,7 +90268,7 @@
           ]
         ]
       },
-      "sha256": "b46e5c4182159bcaf3565b075e69d782de596516f2db738de674ecb7c8f20b36"
+      "sha256": "f9be2efdb389f9f6914979406c64036922a073677a6585064dcd172b54a73be2"
     },
     "r-372": {
       "name": "Fortress window 2x2 · 372",
@@ -90347,7 +90347,7 @@
           ]
         ]
       },
-      "sha256": "07c9fc28d265452d526f42a7f228720a6540c4e6854fc82c941377e59baa1ae0"
+      "sha256": "59626e8668c25d7766e576214dd6e5a9dda9d2bf5a718be942a101bbd1951e45"
     },
     "r-373": {
       "name": "Fortress window 3x2 · 373",
@@ -90426,7 +90426,7 @@
           ]
         ]
       },
-      "sha256": "1774afb69415ce355babcd240c654f66b7db411117f20d7877f2f5a6ea11a667"
+      "sha256": "a726ae22b1375a951dae73550656d1d92c4b5cf252cad2cc875771d939eb9312"
     },
     "r-374": {
       "name": "Fortress window 2.5x2 · 374",
@@ -90505,7 +90505,7 @@
           ]
         ]
       },
-      "sha256": "72a09bb8cb64a85017a58ff39addb95878b991b0140b5ab66164f9b372076612"
+      "sha256": "abdccd482eabc7a5c29c020505db132b3aa7927355041df3b8fad3dcc9d24bbf"
     },
     "r-375": {
       "name": "Fortress window 3x2 · 375",
@@ -90584,7 +90584,7 @@
           ]
         ]
       },
-      "sha256": "66c4b9abf174e4f57f6f76788e6d9ef73b3f5259002e82b1aba937f71f2c2846"
+      "sha256": "85e44ff00f6bc13cb7f7674b15713eab86ef10908cf81ccbfaa5433e977bebe8"
     },
     "r-376": {
       "name": "Fortress window 2.5x2 · 376",
@@ -90663,7 +90663,7 @@
           ]
         ]
       },
-      "sha256": "120a885ebc6ad9cf2b478c89616658196c163c090075f721fbf3e8d3972000a3"
+      "sha256": "1043e41c91b1282b83110b5db4fa08f8d7bf62cd8bc1e382809f4ad4862bd00c"
     },
     "r-377": {
       "name": "Ossuary floor 2x2 Curved · 377",
@@ -91154,7 +91154,7 @@
           ]
         ]
       },
-      "sha256": "24efa9a786ee7134cadf772c6cc4810e151a7943d2a12a8274b07cce8abe649a"
+      "sha256": "73b894f84d7ebd03519c4df02f6226169df863d6ce054c021ec237a0cdaa8c40"
     },
     "r-378": {
       "name": "Ossuary floor 4x4 · 378",
@@ -91224,7 +91224,7 @@
           ]
         ]
       },
-      "sha256": "4586769c6556676b4cba9ed7cf34b30c9aa1f2d750cf4759c7a15f199bb04f36"
+      "sha256": "ec79789532e60f9c3ba8ab4bbf3ac053bf18316831e50d63a972acdfb83d9d26"
     },
     "r-379": {
       "name": "Ossuary floor 2x2 · 379",
@@ -91294,7 +91294,7 @@
           ]
         ]
       },
-      "sha256": "0946d14c793b35856a77798122f230da931681191c8e48a7c7c5c19b890ff466"
+      "sha256": "0c89308a02422a2eae6aabd0c0dc585fd9902d0243e560d0642a87369037d35a"
     },
     "r-380": {
       "name": "Ossuary floor 2x2 · 380",
@@ -91364,7 +91364,7 @@
           ]
         ]
       },
-      "sha256": "3058acb1a49bf5d95c8ea371b86554df2a79b757172aebd3e61805ee172c260e"
+      "sha256": "df3ecb499ac1b9797c2b31724a94ef14aaf133d544ac892b06b34574515792ba"
     },
     "r-381": {
       "name": "Ossuary floor 2x1 · 381",
@@ -91434,7 +91434,7 @@
           ]
         ]
       },
-      "sha256": "2f68e89b435e561a115f6e5c250cc67c19c1436d20267090ad2e088076a7b657"
+      "sha256": "0077b89ad2f69cd8a2409438bafa14ad6ae69acac244025c43c8daf6885f3dba"
     },
     "r-382": {
       "name": "Ossuary floor 2x2x0.5 Curved · 382",
@@ -92035,7 +92035,7 @@
           ]
         ]
       },
-      "sha256": "818a8a19149cde5224d03486a11a9cad9c63df969c0698a21bf2241f7dfea796"
+      "sha256": "dc6b2275efcfa3b29c456290a9b6c6fe64dcf093056d439160e88caac372a049"
     },
     "r-383": {
       "name": "Ossuary floor 2x1 · 383",
@@ -92105,7 +92105,7 @@
           ]
         ]
       },
-      "sha256": "6965f7142da04304f9c258d30acc55bac46424f5dbc322a4cadf0ef01f1534fe"
+      "sha256": "b01abedee750cc6551d148d453487c7ea3da7f303940d93f09f3b11ada3bc99d"
     },
     "r-384": {
       "name": "Smallstone floor 2x2 · 384",
@@ -92175,7 +92175,7 @@
           ]
         ]
       },
-      "sha256": "27d02d98e1310b8c8910b647181cc8a5704e331bb6d18db3fd693bbaaf9f9eae"
+      "sha256": "a645a90fc429372f1f21aca19c4360954c531820a7efc8bc3b2168b3bf5d8cfa"
     },
     "r-385": {
       "name": "Smallstone floor 2x1 · 385",
@@ -92245,7 +92245,7 @@
           ]
         ]
       },
-      "sha256": "ea78b090ab505aeec821bf714523ed4bb54f625d051c9c082b65452103cb1742"
+      "sha256": "ae996da0252e97e75d802261d72577e6d9b5426f589a840f23225aa65f4f6c47"
     },
     "r-386": {
       "name": "Smallstone floor 2x0.5 · 386",
@@ -92288,7 +92288,7 @@
           ]
         ]
       },
-      "sha256": "76889aa2d1e4875ddc70efc3ae5ef01edec32f1c9e43ff52bb03d19d33470768"
+      "sha256": "5255332b9dfbd9e110621c08e19f17bdef3632100f578f5ad7fb48faccd8532f"
     },
     "r-387": {
       "name": "Smallstone floor 1x1 · 387",
@@ -92358,7 +92358,7 @@
           ]
         ]
       },
-      "sha256": "dbf0d3f2ab84b7467b630a6e61d33ddef198f882252f7b23563f33f8f5b4d918"
+      "sha256": "ba053d1c607f1f7561fe340bf95109f3d5365e89d2c5c2115981bde3f32fcce3"
     },
     "r-388": {
       "name": "Smallstone floor 4x4 Curved · 388",
@@ -92849,7 +92849,7 @@
           ]
         ]
       },
-      "sha256": "47d4bf38fec3031eb23dfe5e9332d4aea733bfd8d73d8510dc09d7a2681b7974"
+      "sha256": "5214d7f0b4b47339a832a6a46afdb92dba3864cdf3728f5624569c68c0378e54"
     },
     "r-389": {
       "name": "Smallstone floor 1x0.5 · 389",
@@ -92892,7 +92892,7 @@
           ]
         ]
       },
-      "sha256": "10f19a12ae98af6645582008da821e0a5d65458572b1676c802ee911152c47aa"
+      "sha256": "8e124f90d4d04e0def77c036320b7df3260dd6c5573f79360caf1e593dad5730"
     },
     "r-390": {
       "name": "Smallstone floor 2x2 Curved · 390",
@@ -93383,7 +93383,7 @@
           ]
         ]
       },
-      "sha256": "326b7c3a80b13ece0b27930e1c7d588026f0a7e21ae1d4a5647a9b3e05ee91d7"
+      "sha256": "f74b8abb1e5a021a86a1c3b5052ff2fa0a2a185c4a7fc452247713390854e592"
     },
     "r-391": {
       "name": "Smallstone floor 2.5x0.5 · 391",
@@ -93426,7 +93426,7 @@
           ]
         ]
       },
-      "sha256": "878f3c61eccea74be9dfc87c3ecc6c85831e2d68779d2fa418eaeb560a5e3739"
+      "sha256": "2f1675ff1bc2847c6be189f3bef94015f723ff32acb6834a5285f50802650bfb"
     },
     "r-392": {
       "name": "Smallstone floor 3x0.5 · 392",
@@ -93469,7 +93469,7 @@
           ]
         ]
       },
-      "sha256": "bb3649ed77e6f88d97329f676781494f76344c7dc88af29e905e13114d4f420f"
+      "sha256": "0fc9a02034910becf7d130874e4cc1585811dbb52dd29c65a296bec0bd8e1501"
     },
     "r-393": {
       "name": "Smallstone floor 4x0.5 · 393",
@@ -93512,7 +93512,7 @@
           ]
         ]
       },
-      "sha256": "79c95b1fc7b1f4aff6adb15f8fe633ebf16cdf6f68095c8f3f8d7018e064854f"
+      "sha256": "ac86c1695f659984fc37f456627af1e615b7e67b982151b7acd100b13efaf2dc"
     },
     "r-394": {
       "name": "Smallstone floor 2x2x1 Curved · 394",
@@ -94131,7 +94131,7 @@
           ]
         ]
       },
-      "sha256": "84b20cceb1c003ce86ea60cb1697cfd3a7e86d63a2525350a396679cc3b617c9"
+      "sha256": "aa457d4740a1ed7d3d4e611d82bfcb2ac45d06b124f04515d805168157529765"
     },
     "r-395": {
       "name": "Smallstone hatch 2x2 · 395",
@@ -94201,7 +94201,7 @@
           ]
         ]
       },
-      "sha256": "6a3f10aa8946249f332d6c7bc6ff8e68c409644d01a3737a304c038d7333bb6b"
+      "sha256": "beeb6c1eb0ddd24610d43cba45a78b61a7b24551e2489c645f745b9dcacfe585"
     },
     "r-396": {
       "name": "Smallstone floor 1.5x0.5 · 396",
@@ -94244,7 +94244,7 @@
           ]
         ]
       },
-      "sha256": "0fb79e3ddbe5eb329d02eb4197f69579d494cc445a1a02fe87806b3437ac88b9"
+      "sha256": "fe15ce2cfa1c6ae191fd9067d8ee5cbc1512948016fc58a92e2563b3442b4061"
     },
     "r-397": {
       "name": "Smallstone floor 4x4x0.5 Curved · 397",
@@ -94845,7 +94845,7 @@
           ]
         ]
       },
-      "sha256": "6345471b8c4d6aaa466cc81d091abb2d50b023d4a5a8e157202dd31679bc152c"
+      "sha256": "2ad7116261906a3d125fc2b5f655ba3384868377c4bfd8d61995d9152670b51f"
     },
     "r-398": {
       "name": "Smallstone hatch 2x2 Curved · 398",
@@ -95336,7 +95336,7 @@
           ]
         ]
       },
-      "sha256": "95ab99fe02567fd63445d68677c0011fd8f6512f9cb817b9f528677679ba6ded"
+      "sha256": "827848e9cfaa169765eaf5547b6e9a2eb70fcd70395692823231bf53c3ac597f"
     },
     "r-399": {
       "name": "Smallstone floor 2x2x0.5 Curved · 399",
@@ -95937,7 +95937,7 @@
           ]
         ]
       },
-      "sha256": "efbbf5337492cc2520d59f15e5625a12fa5360a844f4e823f657a068f0663ace"
+      "sha256": "23fbebef53f838daa733982e462be0608960ea6f7d7851f31f5b8822b5501a08"
     },
     "r-400": {
       "name": "Smallstone hatch 4x4 Curved · 400",
@@ -96428,7 +96428,7 @@
           ]
         ]
       },
-      "sha256": "1cff1fff3152ed70da2cd0caadce5bef4c1d725ecd6f066b34b2b830ff1a0dcd"
+      "sha256": "4e7cde771a59e70a0f21f1e5b17a81ac8065dd50497e22e93433d8a3bb61cc75"
     },
     "r-401": {
       "name": "Ossuary wall 4x2x1 · 401",
@@ -96516,7 +96516,7 @@
           ]
         ]
       },
-      "sha256": "4aeb36dee150be6899d3ac82bc50195b4937c4b0a1410a4f5b43508e0cd92884"
+      "sha256": "3add7374c01c0379b99ebb813a8fe51767d7182e875c681b5a0699be18410799"
     },
     "r-402": {
       "name": "Ossuary wall 2x2x1 · 402",
@@ -96604,7 +96604,7 @@
           ]
         ]
       },
-      "sha256": "c79ffaf001ea1c80fa09fb18d0d1ae85a353798ff2b6d36bb6a1374019c8fca2"
+      "sha256": "f943b18cffd110d3c9a2f53a4937c753afd3340fc0ff9c0bbd2ccf4b9fc6bceb"
     },
     "r-403": {
       "name": "Ossuary gate 4x2x1 · 403",
@@ -96692,7 +96692,7 @@
           ]
         ]
       },
-      "sha256": "e6c65d0dc3210ca8503263cf063de2d45bf989c73ac76662a3cc31732f394474"
+      "sha256": "4a3c57a8570108362c02f112140de2069df5a3ab247267be6b261cb6efdd782c"
     },
     "r-404": {
       "name": "Ossuary wall 2x2x1 · 404",
@@ -96780,7 +96780,7 @@
           ]
         ]
       },
-      "sha256": "08e9d32feb4019502c17bbf4c3c96680ca21476e9634a97c8799cd477eb3effd"
+      "sha256": "b811554b17e9c1545b0ea880da28a7c8209764c6aa932a64b97a65c28676106a"
     },
     "r-405": {
       "name": "Ossuary wall 2x2x1 · 405",
@@ -96868,7 +96868,7 @@
           ]
         ]
       },
-      "sha256": "5cc37bfbd8df4ee28bfeab3bdc4f89b3468dbb56c5d3d51bd4567729510522c8"
+      "sha256": "97fafcd8de491740d66019d7ddf36de0429fee73b88cf5b87d989af3d3838748"
     },
     "r-406": {
       "name": "Ossuary door 2x2x1 · 406",
@@ -96956,7 +96956,7 @@
           ]
         ]
       },
-      "sha256": "df1dd004796ee64620d76ebbbf69d4e4b3dbbd75bb179a5f1fa49c9cac584da1"
+      "sha256": "aef84eba18ca51dfd9e4654a2a5867e7fb2e7fe26427c84f235ee4a87330863d"
     },
     "r-407": {
       "name": "Ossuary column X-junction 1x2x1 · 407",
@@ -97062,7 +97062,7 @@
           ]
         ]
       },
-      "sha256": "0740e71195e36675c28e095be005228dfc1a52c623467e9d82e47c81e8e7da89"
+      "sha256": "555e96d772accb975e33ffeafa783068bb10acd70ac87e0d1490757e39ea4e84"
     },
     "r-408": {
       "name": "Ossuary wall 3x2x1 · 408",
@@ -97150,7 +97150,7 @@
           ]
         ]
       },
-      "sha256": "21ca9ea3c4b421e86713c4dc0024a77d9cbbf6b54ac0e17196a08c61ba19a781"
+      "sha256": "cb560e574401ef941a2371c6cbea3cad382b24a0ac08a901c636e80b1267c358"
     },
     "r-409": {
       "name": "Ossuary column Corner 1x2x1 · 409",
@@ -97220,7 +97220,7 @@
           ]
         ]
       },
-      "sha256": "3c2faaa5a3cd2c6fed7e7dcc670f5baeaa070d513012426ae4f8603fd3dce6aa"
+      "sha256": "d9eb9866acb13f2e6a5676c46b3e35523599f9d1e22663d9c0b359cac210f72e"
     },
     "r-410": {
       "name": "Ossuary column 1x2x1 · 410",
@@ -97290,7 +97290,7 @@
           ]
         ]
       },
-      "sha256": "405e2375cc33fa94186774a592a2e0ea361a02d05e8073a1cca25cc22b890e59"
+      "sha256": "209bfca970ad47f1917af59b3f0a3730b2c30e06d8eff06b57efade3e724310b"
     },
     "r-411": {
       "name": "Ossuary column 1x2x1 · 411",
@@ -97360,7 +97360,7 @@
           ]
         ]
       },
-      "sha256": "033eb1636d2f1d7b537769667cd6cbefd21f05937105bbed5f728b88a84da15e"
+      "sha256": "dfaa9e1f8d7f195d62cffe68f7ae7177366c5c2771b4ec105900e14916fd721e"
     },
     "r-412": {
       "name": "Ossuary column T-junction 1x2x1 · 412",
@@ -97448,7 +97448,7 @@
           ]
         ]
       },
-      "sha256": "19c8ca73044be46b51e8435aafbdc7eddd4660505d1c4052a10f75b07c52e126"
+      "sha256": "25ad6cdb43575803a0cb91c205f2e8c4e6c1eb74566b1c65de7bcacab2ab7045"
     },
     "r-413": {
       "name": "Ossuary column Corner 1x2x1 · 413",
@@ -97518,7 +97518,7 @@
           ]
         ]
       },
-      "sha256": "e8d6cbcbd361d994a08a09d90e4c5e6be6b5282b8751888c76d187a74f256ffd"
+      "sha256": "6ddf2887ed6ec7bef172c020dacba6b9846fc329f7dbcb653c7f0b260f64622f"
     },
     "r-414": {
       "name": "Ossuary column End 1x2x1 · 414",
@@ -97570,7 +97570,7 @@
           ]
         ]
       },
-      "sha256": "ec40ca05cd93690169c607264fa92b7423bab5ff2c228994300a0c4eb5063648"
+      "sha256": "97edcfeb18ec7a0bc71438307c2b40024862c8231fee63949d09274d8650388e"
     },
     "r-415": {
       "name": "Ossuary column End 1x2x1 · 415",
@@ -97622,7 +97622,7 @@
           ]
         ]
       },
-      "sha256": "870d40c5f0c6815f33c4f02bd5601673c23dc02605d49c9e640379f680bd36c4"
+      "sha256": "b8882a906ba0f2a889d0642576b5cac1e33fdb9105cc1634b2367af4403f9450"
     },
     "r-416": {
       "name": "Ossuary column X-junction 1x2x1 · 416",
@@ -97728,7 +97728,7 @@
           ]
         ]
       },
-      "sha256": "a40f4c2409aa0edf9dc5d3ff88242ae4a8186a56e741b2389f6971b3c789c6b4"
+      "sha256": "97f2d8bf75e5e0c4b9691d62adcc1f70718209085f409a3bb63f37696cf91990"
     },
     "r-417": {
       "name": "Ossuary column T-junction 1x2x1 · 417",
@@ -97816,7 +97816,7 @@
           ]
         ]
       },
-      "sha256": "456ff33c66f66c8a6d15c3d9f7949d57e5c8837aad426b79420844db4121ad97"
+      "sha256": "a8a7c5ccb5d47a8ef8b31030b530fabb0ff7d60656862b60ca02889ad06f960f"
     },
     "r-418": {
       "name": "Fortress floor 2x0.5 · 418",
@@ -97859,7 +97859,7 @@
           ]
         ]
       },
-      "sha256": "a72af58dc9e3e4385fc1c9ab6f21dfb796ee94f5eacd37618d18e65b5fcd8359"
+      "sha256": "67ebeea057acfd2ab2ca8fb42e05e9aad98403583d943388022805023f3b75e4"
     },
     "r-419": {
       "name": "Fortress floor 2.5x0.5 · 419",
@@ -97902,7 +97902,7 @@
           ]
         ]
       },
-      "sha256": "caf5160f4bd5abc3c960aa7973e1dae4358a0604df956645048e1d9c8a48127a"
+      "sha256": "ea84499b6f0346e26b44a0c92ebf57d3e0dfd8de1b18da880faac8936fd0de09"
     },
     "r-420": {
       "name": "Timber arch 2x2 · 420",
@@ -97981,7 +97981,7 @@
           ]
         ]
       },
-      "sha256": "39b9d898e3a34ce3609c3933c7c394b23d4c1f8cd2bc5fe957d6fc2c9a376085"
+      "sha256": "601f59c29b3bcd489514f144ab881c9d3edd857174a8d3daa096b18167a2a48d"
     },
     "r-421": {
       "name": "Fortress floor 3x0.5 · 421",
@@ -98024,7 +98024,7 @@
           ]
         ]
       },
-      "sha256": "287ca5dcdaf57fae3096edf5524e9a105da059bbe3431b69e285ceaaff145b3a"
+      "sha256": "038a752b3e7a2131d926d0441fe85a56d0ae554f99f4f6d555ad2a9f57309326"
     },
     "r-422": {
       "name": "Fortress floor 4x0.5 · 422",
@@ -98067,7 +98067,7 @@
           ]
         ]
       },
-      "sha256": "63a45c1ce25a679c9b2182faf3ed9e53de3131161d8eb53dcc852c04e036eb19"
+      "sha256": "1d436422de8b3a06197d9bacf84bdb2453c8fb1cd2da7055a189a55fda4e423d"
     },
     "r-423": {
       "name": "Fortress floor 2x0.5 · 423",
@@ -98110,7 +98110,7 @@
           ]
         ]
       },
-      "sha256": "777d49551bf29185cc088858efdae38418a8e8316de847e887d1b1e11bd85d11"
+      "sha256": "817799736e19cf5939cbe18293e86891798754248b300de4b98d99b0b51e05ed"
     },
     "r-424": {
       "name": "Fortress floor 1.5x0.5 · 424",
@@ -98153,7 +98153,7 @@
           ]
         ]
       },
-      "sha256": "2d50ae30bbf34e804858becbeee5d6c57b54b681b1e75dcc89791e4f511ef521"
+      "sha256": "26adfd61390b6aef26da55ff4100eab3c76b50def4004de634237fe82f92538b"
     },
     "r-425": {
       "name": "Fortress floor 1x0.5 · 425",
@@ -98196,7 +98196,7 @@
           ]
         ]
       },
-      "sha256": "dc266e43dc3560c8e975b244c2372a59a6f103d4f0d33659e8b7d5d17e8ea51d"
+      "sha256": "cf1f388f4e8165bbd1f4ba2ef102445a28323d30e74d35566d76a7827e09af66"
     },
     "r-426": {
       "name": "Fortress floor 2x2x1 Curved · 426",
@@ -98815,7 +98815,7 @@
           ]
         ]
       },
-      "sha256": "4bcc74403cf877350d2d7505fe113656c3a8fe1c40869c11ca06c68ffafc62ff"
+      "sha256": "67de5c2859e51a1df24241ad97104e52a66f7f06a322330042bc3dabbfeb3e1f"
     },
     "r-427": {
       "name": "Fortress floor 2x2x0.5 Curved · 427",
@@ -99416,7 +99416,7 @@
           ]
         ]
       },
-      "sha256": "1077ff3c5803dd5ad6ef734eac2efc89622ed1a387e37b2a94440749d6b94942"
+      "sha256": "747f442d55828893af35bc96835add59b41a27a93d1dea6301818953a3c98243"
     },
     "r-428": {
       "name": "Fortress floor 4x4x0.5 Curved · 428",
@@ -100017,7 +100017,7 @@
           ]
         ]
       },
-      "sha256": "e3d6a08392c65b8e0e343bcb41eace41edead9b55ab7d7c86940849f65f3c298"
+      "sha256": "40bff5f93e99b2438884a7a43f371e7aa1e6eb1e48d7dfee447c4f775d39526b"
     },
     "r-429": {
       "name": "Timber arch 4x2 · 429",
@@ -100096,7 +100096,7 @@
           ]
         ]
       },
-      "sha256": "04846917469733c4d461da2f02cf5b8450e9ae15aadedc8924733283750debb0"
+      "sha256": "3c327fc8b2a46be1b1a79b1047d2800e73ec44430f03d3f00c50913f4bc7d52b"
     },
     "r-430": {
       "name": "Timber arch 3x2 · 430",
@@ -100175,7 +100175,7 @@
           ]
         ]
       },
-      "sha256": "111d54750c7d8c1daeb0d176fde94456eaf39b6d12e1ab1e29edd0a8bf85f475"
+      "sha256": "7003b26bd8d34d32d1058f4034fe2c1bcb07ee3ff45b381a2348f055dacfdc9b"
     },
     "r-431": {
       "name": "Timber arch 2.5x2 · 431",
@@ -100254,7 +100254,7 @@
           ]
         ]
       },
-      "sha256": "5025c333983e2b1a26e0c3bb06e20b3e161bbac08c11ff5d647910d1c2540036"
+      "sha256": "760a359b5ca80c80d0068ea9aacd744b5907cba219acabfb37e499be052c27e7"
     },
     "n-entrance": {
       "name": "Rocky cave entrance",
@@ -100275,7 +100275,7 @@
           }
         ]
       },
-      "sha256": "6a74f46825b7f18b08211f29636720f64385d15f5c88cf583489d47c65110a2f"
+      "sha256": "0c22670a4c9704af64b80bd94093a9fa82341b0532e884060ea9ea065c74a2d4"
     },
     "n-entrance-wide": {
       "name": "Wide cavern entrance",
@@ -100296,7 +100296,7 @@
           }
         ]
       },
-      "sha256": "1f62e1a446579ac0bc99e56d215e057266c906dcf68cfb764289ca28beb2841f"
+      "sha256": "1c06444d1412032a92821e899f2131d4fcdeb42550c5d35857beefe75085fce9"
     },
     "n-wall": {
       "name": "Layered cave wall",
@@ -100317,7 +100317,7 @@
           }
         ]
       },
-      "sha256": "b218f5c4d4728dc5323d1dff0dd74831f0edbe969d5b88657ca1beeb53003cfb"
+      "sha256": "f980e681801330e6fa639bdfee73fb6a536b26999017dffc100b0386e35b827c"
     },
     "n-wall-fractured": {
       "name": "Fractured cave wall",
@@ -100338,7 +100338,7 @@
           }
         ]
       },
-      "sha256": "128cf684f9966b8875812871bbd6f987dcbab5ec0f2ac28e68032e1734f49900"
+      "sha256": "dcb9f15a6a3280fab04118515ddf4a718f19580c6399b7e3cc8f0668d482a189"
     },
     "n-wall-low": {
       "name": "Low cave wall",
@@ -100359,7 +100359,7 @@
           }
         ]
       },
-      "sha256": "3cfa2a22de1f803096ddde8ca41427f2ade22f83890850ada28b6bcd23fdc210"
+      "sha256": "6d452d357eed1d77f093f4247134413bc9559571e53fe48b2881d370fa1373a4"
     },
     "n-wall-short": {
       "name": "Short cave wall",
@@ -100380,7 +100380,7 @@
           }
         ]
       },
-      "sha256": "ad91b9b8431fd9e6da7248ac4750d5204ad96c345bb232ccf1f30818fd5eab21"
+      "sha256": "2887b27e4ea3400da2c7cb04148cbbaec9486a9c33f94b61fbceb97d05cae45f"
     },
     "n-corner": {
       "name": "Cavern corner floor",
@@ -100422,7 +100422,7 @@
           }
         ]
       },
-      "sha256": "e4da0d3b14ca499b1dff5ca45c3e31760cadb75ac6e94203b62d01f459df95e8"
+      "sha256": "33ef8bc9fb5f2eb8fcb826c525f853ee6176927b404b165d84c7d7fe655bebaa"
     },
     "n-floor": {
       "name": "Cavern stone floor",
@@ -100464,7 +100464,7 @@
           }
         ]
       },
-      "sha256": "da7c5318b9b61b60a83df1e7da7d5bdb277ae18a197eed729d74a23c6d8befcf"
+      "sha256": "dbadeb3d14f0bb48d38a4a0bdca9e053d34b8067b82813e66219f8ad0df53a4d"
     },
     "n-rubble": {
       "name": "Rockfall floor",
@@ -100506,7 +100506,7 @@
           }
         ]
       },
-      "sha256": "9e7f3d34f9880faefd722a62985121165f3d0f1c0a2ffa100a7889e68cfa3c4a"
+      "sha256": "cb49458f6da9fc83d9d97a86bf15dd9275d4924b6aa7dcf174ffcc91bcd02d8d"
     },
     "n-stalagmites": {
       "name": "Stalagmite floor",
@@ -100548,7 +100548,7 @@
           }
         ]
       },
-      "sha256": "968ecd271ad61ca2cca7ffce05a155b99892a9b4eb74aaf30a4f55a5c3534504"
+      "sha256": "bb6063d61217509a040b554d7dd70f939b4908a6a7fb6a01e8ecca6efa2af8f6"
     },
     "q-quarry-wall": {
       "name": "Stratified quarry wall",
@@ -100569,7 +100569,7 @@
           }
         ]
       },
-      "sha256": "3a2406bf2d4e3bde3f03e5f6b6f186704a5d882fea773aac0c1b9f0ed0540a5b"
+      "sha256": "b53eb9a68359a25a77215b1a93986683ac3f8acccea0aec0adf80d861a89f263"
     },
     "q-quarry-arch": {
       "name": "Quarry entrance",
@@ -100590,7 +100590,7 @@
           }
         ]
       },
-      "sha256": "c3072b61f393086b00fd1dc27ca145688d41fe2082f5e054b84fa62441318f24"
+      "sha256": "54ab039eefc705c802169e5ca4f10766cce93b1f918bb7737b0c657f57b6a4e2"
     },
     "q-quarry-floor": {
       "name": "Fractured quarry floor",
@@ -100632,7 +100632,7 @@
           }
         ]
       },
-      "sha256": "8dff3be80749eb3ae25bc6128e8866dd8d8d6e471d0a5ad8e02c5ea40430c8c8"
+      "sha256": "2c8b25a3898b2fad4eeca953b2c58b2279bcfa59d703cffa17d49481794e26f4"
     },
     "q-low-wall": {
       "name": "Heavy low wall",
@@ -100653,7 +100653,7 @@
           }
         ]
       },
-      "sha256": "edbf7e371d13de709cd9e3173e54ab57536f5b5bbbc7f23043a69ae60152f457"
+      "sha256": "86070e72ff516292266fb3035298cdb7f574bdeadc25d7864f2b26a067858849"
     },
     "q-low-arch": {
       "name": "Low stone arch",
@@ -100674,7 +100674,7 @@
           }
         ]
       },
-      "sha256": "7a80ca9b5646fbb817efd047d48ed8344f27bc6e6bd632994aeaa41e64ce4663"
+      "sha256": "581b48879982ea2623c09f316227275d87dc0054477f5e0c741506489cd45710"
     },
     "q-crypt": {
       "name": "Carved burial niches",
@@ -100695,7 +100695,7 @@
           }
         ]
       },
-      "sha256": "ab78a55200bc8baf14e99a50ba7b5b3e7806069c44e47acfb81148278cc9b10b"
+      "sha256": "6b837c7a2d7728784bf0f8ddda6ec3dfbcf2b69ad0fd65e60cef6305c2d4d97f"
     },
     "q-portal": {
       "name": "Ossuary portal",
@@ -100716,7 +100716,7 @@
           }
         ]
       },
-      "sha256": "15f409c78e981ae1d7b0dc907a83ffbada4ea4d465b36d319f55a3bbc7ec18fb"
+      "sha256": "4866b30c12f5063fc7ef4abe6922a78d584e7ccb6ce8d21967d0094459486905"
     },
     "q-tomb": {
       "name": "Knight sarcophagus tile",
@@ -100758,7 +100758,7 @@
           }
         ]
       },
-      "sha256": "4767ec51a80e639826ec62784d09cb31618647182a019fe903cb99aae53673ac"
+      "sha256": "4e33c8af56fb686cabe2196199ca874d1b8f4f79ff7623e740d19af90a356077"
     },
     "q-column": {
       "name": "Fluted marble column tile",
@@ -100800,7 +100800,7 @@
           }
         ]
       },
-      "sha256": "8eba341b60fb4fb227e5e2c8a7d780968bccc525c5d2f7c182913dc8a05ad4e5"
+      "sha256": "c18b7398e9b918e9fbae934dc1c892bb34842cc07c2f6af791b3e1a6371b4f0b"
     },
     "q-stairs": {
       "name": "Carved dungeon stairs",
@@ -100842,7 +100842,7 @@
           }
         ]
       },
-      "sha256": "c73151cf447e62037d305b159793e06b5a7def47bd998d5c9abc05eb6b846c0f"
+      "sha256": "7cfa888ec87c1aff1bf8749a25043c262b395a07e0cdd55584de7c8a859e74f6"
     },
     "q-water-full": {
       "name": "Quarry pool / full",
@@ -100884,7 +100884,7 @@
           }
         ]
       },
-      "sha256": "a5cfe7052cbe05dfc0f0b4520919568863ea1754b4ba97e60847e56799de9548"
+      "sha256": "c28d1130a8e4aa7dcd96c04cec1bcd5a7100df829960e319921e340a15cdae04"
     },
     "q-water-straight": {
       "name": "Quarry pool / straight",
@@ -100926,7 +100926,7 @@
           }
         ]
       },
-      "sha256": "d691082cdfc8526ef902d232a76f866d33c611ddf18d7804e5a9cac1a24eb584"
+      "sha256": "67eeab582917255347bc530c61ba078be9834f9a081135d3ee6d1252f5c2a154"
     },
     "q-water-corner": {
       "name": "Quarry pool / corner",
@@ -100968,7 +100968,7 @@
           }
         ]
       },
-      "sha256": "0d94fc3d7814b22d473d8cf2d3f06b456c634420d8d69f2b4b9546fb40acdbb6"
+      "sha256": "9e29161ea430741e1e6cafd0b1b0e2665b3d3d233181c158a0b192e5c93e4d2e"
     },
     "q-water-end": {
       "name": "Quarry pool / end",
@@ -101010,7 +101010,7 @@
           }
         ]
       },
-      "sha256": "63019f857df9066c6fe82403f9c2401e3c0230188f775352f60f1387f3d867a8"
+      "sha256": "4a930b57c6a96ecf45c770df4fa91713d868c6ac17bef7d8ae17acd52d2e5415"
     },
     "q-water-island": {
       "name": "Quarry pool / island",
@@ -101052,7 +101052,7 @@
           }
         ]
       },
-      "sha256": "0382ca16bfde6db625b86dbebbf29c1c880edd0c44bf36d8e4bc64d34ac76037"
+      "sha256": "04f6f2563500d5da09aafe7a3f3d04b820c4269f8a6c4b66f21e46f9c6de7bed"
     },
     "q-water-junction": {
       "name": "Quarry pool / junction",
@@ -101094,7 +101094,7 @@
           }
         ]
       },
-      "sha256": "1ffd6683efc273e0de61e35b1a78f57d3a9b985f73f776c4c310da5a5c9e36a4"
+      "sha256": "a87aa25cea578899e1671026c32fe3f887b85902c76f94f23c103b0bcf6583ea"
     },
     "q-lava-full": {
       "name": "Molten fissures / full",
@@ -101136,7 +101136,7 @@
           }
         ]
       },
-      "sha256": "44e4b7ef0540856697bb1977171817ceb37806bfc2200c3a48d0ccf692d16dd0"
+      "sha256": "5112d19c6b20a85872f1a5246c24c94cd9c2b67599a0ac81079b641837f6eb8d"
     },
     "q-lava-straight": {
       "name": "Molten fissures / straight",
@@ -101178,7 +101178,7 @@
           }
         ]
       },
-      "sha256": "ef09f4b0ddb00b1442d8d45952672ce15e05c448c5bd711cadfbee481b7240e6"
+      "sha256": "19c0cbebf03d212c636338257fce5b84f7489fdfb5dfce4b48db3c26fa61927e"
     },
     "q-lava-corner": {
       "name": "Molten fissures / corner",
@@ -101220,7 +101220,7 @@
           }
         ]
       },
-      "sha256": "c9a2cb1db085f5aed7f5dfe05b0079f9131ee4d23008ea19f5adb79cf63429a5"
+      "sha256": "e01df5f1639904834b913eca5068c9254dc9c32c06a28c8c4e45327505ed1e77"
     },
     "q-lava-end": {
       "name": "Molten fissures / end",
@@ -101262,7 +101262,7 @@
           }
         ]
       },
-      "sha256": "a86ad00f67b0cf67f5954ce1fc0358ea28936ddc2c026432179d1ed44c9c4118"
+      "sha256": "f6c77c2127acdfe4d381e1c888cfb4e7577f878bfdac063090d167d5eb7cacbb"
     },
     "q-lava-island": {
       "name": "Molten fissures / island",
@@ -101304,7 +101304,7 @@
           }
         ]
       },
-      "sha256": "947b950aa9570b2c3997aa2be3bea353d09e5d8bbc0b392bc817f8d9d3048021"
+      "sha256": "04a6772c24e1b25fd05dfb863289e345dc14cb78900999df44c72b50ea26ca4a"
     },
     "q-lava-junction": {
       "name": "Molten fissures / junction",
@@ -101346,7 +101346,7 @@
           }
         ]
       },
-      "sha256": "b930e7077d56b873113688d8e0eea886832fc0e2c6a9ccc506eb2fdb615e3855"
+      "sha256": "b05eab438e96ec174625b57bdfcaab7c61434040b4f5104d3f25abe8c81e3e0b"
     },
     "t-spears": {
       "name": "Rising spear floor",
@@ -101388,7 +101388,7 @@
           }
         ]
       },
-      "sha256": "fb4d1ad7ab1698ef8a4e99ea5ddf54483ac15d3ab9dff6143217bd24855d6e1e"
+      "sha256": "3e20a6a2d7081aca4dab2c663eaa72cc62b5da927a1ffb978f260f461b3f2134"
     },
     "t-jaws": {
       "name": "Iron jaw trap",
@@ -101430,7 +101430,7 @@
           }
         ]
       },
-      "sha256": "01c6871f2ba8233ad7232af142556ff7af50bc016024a2db967ee290c9a0902e"
+      "sha256": "40b444c37170f1daa1cc191bc951a43ec599b752218ce68e78415073e52baa65"
     },
     "t-saw": {
       "name": "Serrated floor blade",
@@ -101472,7 +101472,7 @@
           }
         ]
       },
-      "sha256": "ff498cbf263c446d45c3ca5b23547d3c2cb45c6755239f2c2f23a160f53b508e"
+      "sha256": "0bd872ed73b5ac6b664b94a4f68277e3a1408ba591ca33b85e43d801b089a84f"
     },
     "t-acid": {
       "name": "Bubbling acid pit",
@@ -101514,7 +101514,7 @@
           }
         ]
       },
-      "sha256": "10b0dfdd12823ba918a7ea6d8c3d0b900d62d388b12277ccef387c5c01cd83d5"
+      "sha256": "262c81f392f12ed3b42d6b6f0b0711e3b5044d5403a2f524ad64d910e7ae3b78"
     },
     "t-maw": {
       "name": "Hungry stone maw",
@@ -101556,7 +101556,7 @@
           }
         ]
       },
-      "sha256": "70a9d14ac076c44457a40ab42a67484a2b154f27a859b3e3cfc9ea0543f9eee7"
+      "sha256": "fcd607ab8f43f630615e1aae3c13d558bc0f0c8a9f29eac0747cbd06770f8c05"
     },
     "t-worm": {
       "name": "Burrowing worm",
@@ -101598,7 +101598,7 @@
           }
         ]
       },
-      "sha256": "52be585012b5f7c1775ec551eecf299c5eb8f98c9f109f7364efff770eb66778"
+      "sha256": "8d0d62cf5621beb07e339b622281855c1cc8e814ccb89b56fe063a7245b4a9cd"
     },
     "t-ram": {
       "name": "Suspended battering ram",
@@ -101640,7 +101640,7 @@
           }
         ]
       },
-      "sha256": "a9406c9cf7440ea5c7a43ee27bac87a9d5bc83d83e461fd83382bafbb8e420c1"
+      "sha256": "cffd93e3ba586527a5d3b3deef3414e641a82274d5a0a945ec940e411d55c31d"
     },
     "t-blades": {
       "name": "Twin pendulum blades",
@@ -101682,7 +101682,7 @@
           }
         ]
       },
-      "sha256": "e14a9b4c0af19877ef92ef1a860169d05e3025730a0faba64358050017c3546c"
+      "sha256": "c681b133732d6e379c32d5ddb354394fe594944b289356b7c7ce9b8d27d75ec0"
     },
     "t-mace": {
       "name": "Spiked pendulum mace",
@@ -101724,7 +101724,7 @@
           }
         ]
       },
-      "sha256": "03b6548b09edb7e0fbad0aa7f3fe56e1f5caa313eaf62e88886d64105f4b0b75"
+      "sha256": "021c093be83969e62a2d2060f316b11d996a05a83989ec34d97dc0acae5c3aaa"
     },
     "t-column": {
       "name": "Rotating blade column",
@@ -101766,7 +101766,7 @@
           }
         ]
       },
-      "sha256": "d6b1957c93654cc1a667e74695e8edb92505cbd3ffffaf11eedd4d6a68ce24a0"
+      "sha256": "03f379765b02d6e8d84f1101a293e16f70c319c9c18b8ff151b4d7c57ea091bb"
     },
     "c-plain": {
       "name": "Weathered curtain wall",
@@ -101787,7 +101787,7 @@
           }
         ]
       },
-      "sha256": "f226245c4ee01ab5693afbe06e2f91c5fdd4322e7a832633772631a6d36aa41b"
+      "sha256": "72c8e2dd04beec00340e22cd8c2757e612bfb1887da5408d417389f6388bfdbd"
     },
     "c-arch": {
       "name": "Voussoir stone arch",
@@ -101808,7 +101808,7 @@
           }
         ]
       },
-      "sha256": "289338a4f251e1d7c62a190bcd9ff808a61fd04b4e6088e9d65b644c9c059628"
+      "sha256": "0c28518d4ee9fabbfa73b28dbe0ed5d4bbd6ee3e565ce2bb9a20d407c26444e4"
     },
     "c-door": {
       "name": "Ironbound castle door",
@@ -101829,7 +101829,7 @@
           }
         ]
       },
-      "sha256": "b7cac8c0cb8fb3023cdd74394c2da6bbe1f7651d31e595dd5dce46916086f4be"
+      "sha256": "68a379eedcbb4a52e26e96ea5164c8e7d5ded2f774216ca5e1f95332a2c27b27"
     },
     "c-gate": {
       "name": "Castle portcullis",
@@ -101850,7 +101850,7 @@
           }
         ]
       },
-      "sha256": "843b341d9044c2112d2a4481fce9a0798f304266347a4557f689bf90bd4c5de7"
+      "sha256": "06856ae2d599f08a903631d6191b34586cb54a74b97c7ccb437f65757077b158"
     },
     "c-slit": {
       "name": "Cross arrow slit",
@@ -101871,7 +101871,7 @@
           }
         ]
       },
-      "sha256": "fdb2f3b832199ec07236150ef5d2d469b01f1b560ada5bbd81b8170518300a2e"
+      "sha256": "0d03206db76663a40770e556555684cd577cd6c886c36e2b7f08bbca1e2c704c"
     },
     "c-window": {
       "name": "Arched castle window",
@@ -101892,7 +101892,7 @@
           }
         ]
       },
-      "sha256": "264dde4b134fc8ccef859124a9ff36ce674f4b35d5b6e2f521239d12fef51712"
+      "sha256": "2ff3159d6b6d08efd478080a6b2a0ce83ea4a68e82f1028dbfae0f84656aaa63"
     },
     "c-buttress": {
       "name": "Buttressed curtain wall",
@@ -101913,7 +101913,7 @@
           }
         ]
       },
-      "sha256": "13921198db3c8b2a361e3e8933b9351e5b8b4187b2706a551b4d544414a1c66c"
+      "sha256": "3cd11773447889614ef1436be1ec4252f25fa16b7746833388fe3a0201d0d936"
     },
     "c-ruin": {
       "name": "Breached curtain wall",
@@ -101934,7 +101934,7 @@
           }
         ]
       },
-      "sha256": "4fe04dafc6f2e59ac3b9782341307a45e4a4709328a7989338229226b3456f3f"
+      "sha256": "3d4ada3dd5bd14702a76b988778287de5fa626a1d0ec5ee83ca44744e3cddaf9"
     },
     "c-battlement": {
       "name": "Crenellated parapet",
@@ -101955,7 +101955,7 @@
           }
         ]
       },
-      "sha256": "c76acd7c3fa03d14147452171cb58c96dbd6433df4d5f163b88ac0caffd23db0"
+      "sha256": "38df613a41fc7a920d95c4f9d60e35429df6f3c8106cdc42c9f57a30d218afc4"
     },
     "c-short": {
       "name": "Narrow curtain wall",
@@ -101976,7 +101976,7 @@
           }
         ]
       },
-      "sha256": "d6747863d8a21749f4ab5094a21139f9b68f2e422575bbf4f2e9e8fdaf4d9bc6"
+      "sha256": "fdfb6ac28f707b2d91524452b7825f7b8652f252aa5d4bf04c86a2c69c731cd1"
     },
     "c-low": {
       "name": "Low castle wall",
@@ -101997,7 +101997,7 @@
           }
         ]
       },
-      "sha256": "8db75a8ebc4144e319b401fba82e98a53b59704bece5ad77733ea334805dcbb1"
+      "sha256": "9eed8885b6325a569a414161602e6ef4856658e858a32605bab2a7c606df49b1"
     },
     "c-courtyard": {
       "name": "Castle courtyard paving",
@@ -102039,7 +102039,7 @@
           }
         ]
       },
-      "sha256": "8dff3be80749eb3ae25bc6128e8866dd8d8d6e471d0a5ad8e02c5ea40430c8c8"
+      "sha256": "2c8b25a3898b2fad4eeca953b2c58b2279bcfa59d703cffa17d49481794e26f4"
     },
     "c-hatch": {
       "name": "Ironbound hatchway",
@@ -102081,7 +102081,7 @@
           }
         ]
       },
-      "sha256": "3e41f7efa0688da9178e03be4a4e35467d5f7156050cc485fe685f42d83e0c45"
+      "sha256": "708bd810f4181af551dee452e94c090122e18b865285a81743970257d32364f7"
     },
     "c-walkway": {
       "name": "Battlement wall walk",
@@ -102123,7 +102123,7 @@
           }
         ]
       },
-      "sha256": "c18f8756790c9bd4af4a9edc4e4a2c60314abb2a3aba348c13b7d8f4cacd5fbd"
+      "sha256": "baf7799c9543bd5cd84ee3fc98b98d7c7851737f091591ac578cfebe32891e33"
     },
     "c-gatehouse": {
       "name": "Fortified gatehouse",
@@ -102165,7 +102165,7 @@
           }
         ]
       },
-      "sha256": "590b14fdd50cb74d0bae0fdc8579dd26551b2d4ca1ed85cc753c5f8f4e68ee3c"
+      "sha256": "755313904645b64e442ff7eaa99fcfe22bd514138897fdf36bb50a2514905f09"
     },
     "c-tower": {
       "name": "Round battlement tower",
@@ -102207,7 +102207,7 @@
           }
         ]
       },
-      "sha256": "2b2d37dbd1dc7336ef2f5253074a6e246e85b7e253952f345d590a4eadfefc32"
+      "sha256": "e835f84c6068ad3175a1af7c897d60f3b2504ac9dc00f62ff865821a2702afd1"
     },
     "c-tower-roof": {
       "name": "Shingled watchtower",
@@ -102249,7 +102249,7 @@
           }
         ]
       },
-      "sha256": "161d52b59f49e4ea939e76295d56f17029f8816d30f10c5b0978263229f94d24"
+      "sha256": "e3117d61d6d37cb0237ba452d6b79cfadcbcb156da76ce72a5963c05cac5040e"
     },
     "c-tower-ruin": {
       "name": "Broken round tower",
@@ -102291,7 +102291,7 @@
           }
         ]
       },
-      "sha256": "e8011c6373105275f0ce4cde810994876527be861336e935e2f79d2730d59b46"
+      "sha256": "2cf4690acc3d1293386e70b1f570496f709eb8ac8e26c59cd1e32da84067aa58"
     },
     "c-stairs": {
       "name": "Castle access stairs",
@@ -102333,7 +102333,7 @@
           }
         ]
       },
-      "sha256": "f5cba65bc639df070d8c0f7ce74dc1283cfdfe6b898f94992793eba031a20f8c"
+      "sha256": "241c2ad22c6548ca5c0b3ac63d9dd46c312a913e1d67055da8caa462be258a5c"
     },
     "o-daisies": {
       "name": "Daisy meadow",
@@ -102375,7 +102375,7 @@
           }
         ]
       },
-      "sha256": "1ed07b0e859029ff933f4e3875e22c78be772d4366a8df1ebc52cdf920ae1b50"
+      "sha256": "1d16d07f3ca2ab354f5d39ae6a829ec6e62ef3a49d3fb0de14517326d68d32fa"
     },
     "o-buttercups": {
       "name": "Buttercup meadow",
@@ -102417,7 +102417,7 @@
           }
         ]
       },
-      "sha256": "cf7c6bc63f3b162ac5313f80d5a0b56f6256926b8f373083fa24a54b50c02e02"
+      "sha256": "c62847841a827ae39e70142b2813a710f7cfa3daa18af24998267542e643b37c"
     },
     "o-wildflowers": {
       "name": "Purple wildflower meadow",
@@ -102459,7 +102459,7 @@
           }
         ]
       },
-      "sha256": "ba256aa5d3c4a501c54760eb768b085a7a83fed4de41176a2fa5f64afbc9fb46"
+      "sha256": "a8e044af1dc462ec26f39089b1fae514419c813883c62a7a22548d33cb2f17f0"
     },
     "o-shrubs": {
       "name": "Low shrub grassland",
@@ -102501,7 +102501,7 @@
           }
         ]
       },
-      "sha256": "4da81193bd9de8e88caa16b9b6577ecc5fdae4289feb85fb16d942b84c5bb0c4"
+      "sha256": "a2c3ce9ae0f68c556e7020b08bb6f75952f1fc9b635d70a5187718bff9252e83"
     },
     "o-mixed": {
       "name": "Flowers and shrubs",
@@ -102543,7 +102543,7 @@
           }
         ]
       },
-      "sha256": "7b7190e59f076fdc4ba03f4361ad96cfdad30b39d3d01af2a6ec16fde53e1a07"
+      "sha256": "f2549ba6e6aabaf51428e31db349d8029fce0e5b1b0691472819740bd91ba778"
     },
     "o-heather": {
       "name": "Heather and wildflowers",
@@ -102585,7 +102585,7 @@
           }
         ]
       },
-      "sha256": "88865d8f57ff91d39240d3f2599511f1491bdf3d5fc521075209c1d5836faad7"
+      "sha256": "ea93ee02c6f367a484427c802bd04bf4d7b3c90118158c5926e92e44e19c89bc"
     },
     "o-tufts": {
       "name": "Long grass tufts",
@@ -102627,7 +102627,7 @@
           }
         ]
       },
-      "sha256": "6a277ddf7a82448488ea1509b6fa88a1298d7322b9f103be55a1df9fc62a3ebd"
+      "sha256": "5bb38013588f268479c56f9b79416daa6d42f8f186440bb02bf6fb46ca1a9823"
     },
     "o-moss": {
       "name": "Mossy grassland",
@@ -102669,7 +102669,7 @@
           }
         ]
       },
-      "sha256": "07644cbd63ff4a9a05fdb0d3c0e282ac9b7c78f2b2a894512ff2991380e1e597"
+      "sha256": "81dcc13adc5a77c17b438a3598174b508600f172ef52dd29bdb9e84109eef3e8"
     },
     "o-grass": {
       "name": "Meadow grass",
@@ -102711,7 +102711,7 @@
           }
         ]
       },
-      "sha256": "e47a4775c90d9801ec3ba305be1e4a76fce84cd99663b87d2da4cd0a6a59c81f"
+      "sha256": "6fda14132cb3d97f38300f5920cd14ca1176570a2623883755c35b025f5ad1f5"
     },
     "o-grass-rough": {
       "name": "Rocky grassland",
@@ -102753,7 +102753,7 @@
           }
         ]
       },
-      "sha256": "a17e04538adac776f0ef0a84f840648a048ad9f1d1f681a72efe17e0761199fd"
+      "sha256": "9e89fe159a8de8b45127ffc052434a3b3e28d52df4f9e1cd158eb4fd758937b5"
     },
     "o-path": {
       "name": "Worn grass path",
@@ -102795,7 +102795,7 @@
           }
         ]
       },
-      "sha256": "809ed860dd19d7f95ddf6ca0c3b01f021078171893e95fb7f11b7a0a19445ccc"
+      "sha256": "391ff0b2d34de1f4dc202f488d7ececcb62a8f7bbff140fcf0f82e12d4031948"
     },
     "o-path-turn": {
       "name": "Turning grass path",
@@ -102837,7 +102837,7 @@
           }
         ]
       },
-      "sha256": "db67ec14d0467ba49a85ecddb8c984b43ea9d17128b1b3dc3e0fdbe0ac6f83f3"
+      "sha256": "816de146c048375db931bf82729b8e7b789fce9cf72a279e7008bc8d3e0bd244"
     },
     "o-sand": {
       "name": "Wind-rippled sand",
@@ -102879,7 +102879,7 @@
           }
         ]
       },
-      "sha256": "a20ce2cc8a22c6e877030c3a6a4525f77d36b422ebbde9e3f7692cdf41d14367"
+      "sha256": "3694cf21a59510c66a046611f8636ebe89d899016a12fd07030ab6587c18df31"
     },
     "o-dunes": {
       "name": "Rolling desert dunes",
@@ -102921,7 +102921,7 @@
           }
         ]
       },
-      "sha256": "fbf43003dd421fbc76253975d5f771fa7449a732605c965d984ebbd761b8d551"
+      "sha256": "be2b8f7b63d9a40b4ab447bbadb35d0d0d743f002a22f6924c454f767e2ac766"
     },
     "o-cracked": {
       "name": "Cracked desert earth",
@@ -102963,7 +102963,7 @@
           }
         ]
       },
-      "sha256": "750011c86c8c2fa98736bcbf3076f380107096268fbb0861d8b5ac05a19107b4"
+      "sha256": "548581a4cd360f1bdd3f9be6392dfcfd13f52f40d94180b3abd3528c96221ca8"
     },
     "o-transition": {
       "name": "Grass to desert",
@@ -103005,7 +103005,7 @@
           }
         ]
       },
-      "sha256": "3480d7a73d063c9c19a448f81704642f31152693121899bd926b1d208b9891ee"
+      "sha256": "7d04abf5de956101e93095b6e95029b103f4b2a4760f767f339f153c3fdd5442"
     },
     "o-oasis": {
       "name": "Palm oasis pool",
@@ -103047,7 +103047,7 @@
           }
         ]
       },
-      "sha256": "ea0ac64917c983200adac79f5b354edf722c603bf0ddcebd056a0e0b802575a3"
+      "sha256": "0afe9cad3c8f977c13de39ca1afbb8b67a9ffaf1828fe9a7e645dd7b4bd9e5db"
     },
     "o-oasis-inlet": {
       "name": "Oasis river inlet",
@@ -103089,7 +103089,7 @@
           }
         ]
       },
-      "sha256": "4b47ddb259281fff37cb03b7a6a54907177988b35cd7b2ad14f2151a02ba766b"
+      "sha256": "f86f84cdc964afe8e757fff234710faea6dffc6bf67e866eea78598791ba5218"
     },
     "o-river": {
       "name": "Grass river straight",
@@ -103131,7 +103131,7 @@
           }
         ]
       },
-      "sha256": "409eb15f104e77fe6a025d37e94e67803b79f0c29b6b5cb82bc98c2d4d230682"
+      "sha256": "56812c7e65763652c8da07b83b050bef2b3823f558336736ac4abefb0c891765"
     },
     "o-river-bend": {
       "name": "Grass river bend",
@@ -103173,7 +103173,7 @@
           }
         ]
       },
-      "sha256": "374d9b2ab57b87dcd870dbec1166ef5481926194d43dc67688426f6967a51a55"
+      "sha256": "b4d671269e3542a3ee93a6432d8a4ce4f47dcb27cc2ca2e0557b0558732e34a0"
     },
     "o-river-junction": {
       "name": "Grass river junction",
@@ -103215,7 +103215,7 @@
           }
         ]
       },
-      "sha256": "d73563c499c3587af85eff08e57e887cbe4b0c36a80b3bc102f0165024794f1c"
+      "sha256": "9eddcc39f5256e4b09380a7081ee39b7e72e3d06e73032e2f16ce21122be970d"
     },
     "o-river-end": {
       "name": "Grass river source",
@@ -103257,7 +103257,7 @@
           }
         ]
       },
-      "sha256": "1bf77ae1bc6b929c4b6d9aea107e88ce62cf7f3dc11a2a473666fdb4db9452a6"
+      "sha256": "ca474c09ff34c7e15da083811db4bd4bdbdfc8c05c5c1c978ccf07dcc4d373f2"
     },
     "o-river-desert": {
       "name": "Desert river straight",
@@ -103299,7 +103299,7 @@
           }
         ]
       },
-      "sha256": "0f35d7cd9aa79c0b4e00f727d9e5659b2b7b3aaf3a3baa2eb592f0096583c8fe"
+      "sha256": "a4511dd425b5fcc6f950ecc1ca3f08f35208a52020f4fb38198c0aa7f35210f8"
     },
     "o-river-desert-bend": {
       "name": "Desert river bend",
@@ -103341,7 +103341,7 @@
           }
         ]
       },
-      "sha256": "233860effb5afa2a78abc3f901fe19ab43a409ff95484664585cdc0652dcc672"
+      "sha256": "8ef53ee1cd6708559db9b9671173b9670232eb927d6e1b2eea8a9fa09f26ab3e"
     },
     "o-river-desert-junction": {
       "name": "Desert river junction",
@@ -103383,7 +103383,7 @@
           }
         ]
       },
-      "sha256": "e03d1602d1875baf35fb30dcc5f492627bee52e17403ee5e9ea0618b5553a722"
+      "sha256": "66a3dbe370a0ec5518e98a41f607393216ddc430e42581e97284d5a63fecd230"
     },
     "o-river-desert-end": {
       "name": "Desert river source",
@@ -103425,7 +103425,7 @@
           }
         ]
       },
-      "sha256": "427f38087e6f32345662bf5e74125a3c33a4f2a6f66a01e467bec40c566e674d"
+      "sha256": "4ac19c8f08c629cc1ab363ae67a708455f0aea48d1133d458c36d6c14caa9785"
     },
     "o-river-transition": {
       "name": "Grass to desert river",
@@ -103467,7 +103467,7 @@
           }
         ]
       },
-      "sha256": "db9f93773336feb09e3b8db18d3f453d622aa1267dd19af494db3b284b647791"
+      "sha256": "5c159350f024601c1f57daffafdf2ce962670811c1e00c03d13dbe503dee39e5"
     },
     "o-bridge-wood": {
       "name": "Timber river bridge",
@@ -103509,7 +103509,7 @@
           }
         ]
       },
-      "sha256": "14b0aee39ed22b0a7949379c2d67ee6c5e024d6d664291a532a4f1930f59e864"
+      "sha256": "3767a88975ddd6e27168378641198a8496322724570b51299758fb779859152e"
     },
     "o-bridge-stone": {
       "name": "Masonry river bridge",
@@ -103551,7 +103551,7 @@
           }
         ]
       },
-      "sha256": "dec5529a27eb70a6629224a8cf2af45ba2b905d0a386645d30ac45271347e9b8"
+      "sha256": "b7cdd7d8c8e6283bccfaaa5017525872137ef095b5cb1e92359e60f65405d807"
     },
     "b-weathered-wall": {
       "name": "Weathered rubble wall",
@@ -103572,7 +103572,7 @@
           }
         ]
       },
-      "sha256": "4c3a2d32ac19edde5c24716a43edbf6b4ad1fe318b6c6dcd848830773147b965"
+      "sha256": "b4db07e903c6d0142a9c8a58c5310229318f8e153629b237da433378bf25e813"
     },
     "b-timber-window": {
       "name": "Carved timber window",
@@ -103593,7 +103593,7 @@
           }
         ]
       },
-      "sha256": "a54a37bc71fa5d30e5358830b0a9ac7340b9c7811788142ca28a2813fc4b5330"
+      "sha256": "0ed617d53e4e2a6d6a79cd3bda7bd31755d2eb9837744ad897ab6f978b795926"
     },
     "d-heavy-wall": {
       "name": "Heavy dungeon wall",
@@ -103614,7 +103614,7 @@
           }
         ]
       },
-      "sha256": "714e552e2b21ac159bec9564d6e85560944d4bb9b64d76a83804963020f8ecdc"
+      "sha256": "5ed7573573bf5b517ab3e6d19cdcdef72e458547303e74724b075ee0cdd6f1a8"
     },
     "d-heavy-short": {
       "name": "Narrow dungeon wall",
@@ -103635,7 +103635,7 @@
           }
         ]
       },
-      "sha256": "6d05212e7fec9f82927f578c4109d0b3b3d757660d6d1ee937bf95c8f92cff64"
+      "sha256": "643bdb97a7cc4abdcf9be447881a2ca1c1ef38cc41d9b21b9958a9fc885d2550"
     },
     "d-heavy-low": {
       "name": "Low dungeon wall",
@@ -103656,7 +103656,7 @@
           }
         ]
       },
-      "sha256": "6d45a628de2185aabca9498ab967c4504c72be8852294e2b13889235871137c3"
+      "sha256": "6bc9215da2ac56c7a56bfffe9c38208b7057212412b38e245274900e4b332965"
     },
     "d-arch": {
       "name": "Reinforced archway",
@@ -103677,7 +103677,7 @@
           }
         ]
       },
-      "sha256": "9df8be7d50a5ccaae44f7021323f578702f5698e29894ca207e3eb612b01361a"
+      "sha256": "037d29cd3752e18326527539912e45eee44cfdd84c4925cc2e36802f4d5ea7b3"
     },
     "d-gate": {
       "name": "Iron portcullis",
@@ -103698,7 +103698,7 @@
           }
         ]
       },
-      "sha256": "8b449bd994607c935820489070cdc7cd4217a9fa30d2ba0876920e06f00ec38b"
+      "sha256": "f29383cd9fb139698aef03c47508374814f83472ebf02a455ad6a4d95ea15d73"
     },
     "d-curved-wall": {
       "name": "Curved masonry wall",
@@ -103766,7 +103766,7 @@
           }
         ]
       },
-      "sha256": "b32a23b2209366a55bdd8821aaea5657368a176b7272a370635593f9c315d2b3"
+      "sha256": "83a929d329991329e7270a0011f140fcf01c972eb6973b5c0dffb70e299246ae"
     },
     "d-riser": {
       "name": "Raised dungeon floor",
@@ -103808,7 +103808,7 @@
           }
         ]
       },
-      "sha256": "6f123cadfefb2c77c9daf7962c43ec6d838d87c2ad3953dddcdb90493dcc1ab9"
+      "sha256": "cdb1e93abd087d63aa5cf9c3de4c3ca0e1b066d35e13ccefe8a1822269ec6237"
     },
     "d-column": {
       "name": "Banded stone column",
@@ -103855,7 +103855,7 @@
           }
         ]
       },
-      "sha256": "90238fd7f186848a12b4057858ed77462229c1159ffc614a1fe0c14a15d73b5a"
+      "sha256": "659227c44a8a2feabdab9c2daef6f9cf78c6e8fe3a847fc94d4730f5e6e20f87"
     },
     "d-sewer-grate": {
       "name": "Barred sewer outfall",
@@ -103876,7 +103876,7 @@
           }
         ]
       },
-      "sha256": "5f5f81bc03c742bc4dfdcb93d6243eb83d687922fccdd447ccff3cec158c3556"
+      "sha256": "29c222c3e343e44e0c35bb65f1bd58d65ba85215b8f64529980c103463f9c7ef"
     },
     "d-channel": {
       "name": "Sewer channel floor",
@@ -103918,7 +103918,7 @@
           }
         ]
       },
-      "sha256": "6e65e8f3c95ed5af55b776d2c6cada48ce82a71830d4b742de075601d70ff46e"
+      "sha256": "237b8df33567ab5439b2317933ecfda01c97e54fea8c29a35540d8ea0951988e"
     },
     "d-crypt": {
       "name": "Recessed crypt wall",
@@ -103939,7 +103939,7 @@
           }
         ]
       },
-      "sha256": "661d5eda06f2280269ed69c506d6130e0668e3579776b3c756268a02cc2e8f37"
+      "sha256": "dc95943af972e0ef687783a575d0f40ca454ad31d3657a43352b1176b8e5af1d"
     },
     "d-tomb": {
       "name": "Raised stone tomb",
@@ -103973,7 +103973,7 @@
           }
         ]
       },
-      "sha256": "f39210d39a577a13340f440ffdd195ef1092d259afb1df9fadbfe0c3c8af514d"
+      "sha256": "7219d1bc53cc8580e223ea47b227212734eb11958cbf9fa3e080601542673644"
     },
     "d-track": {
       "name": "Mine track floor",
@@ -104015,7 +104015,7 @@
           }
         ]
       },
-      "sha256": "bbc6ca6f5f485635a0e829c7610d1ff503c59ada2aa63a289823c56f4f2463ae"
+      "sha256": "28642ecf73cbd2711012e464bfd686ad5eed13ef5f07fbb79d136334d9b87529"
     },
     "v-stone-wall": {
       "name": "Fieldstone wall",
@@ -104036,7 +104036,7 @@
           }
         ]
       },
-      "sha256": "ac9cac5acbe9e49cd6f7e6066a5bc770dd52637fd74025b345a511bbabb6949b"
+      "sha256": "9250b8fec3d0f8fabfaf47322ca6a790d3aa9cae3993fed173357faf5ea68416"
     },
     "v-stone-short": {
       "name": "Narrow fieldstone wall",
@@ -104057,7 +104057,7 @@
           }
         ]
       },
-      "sha256": "f995bf13610c1b2e59617444febf4da0c0b08911c88f477722b5112364e9f032"
+      "sha256": "96ad18cd1cd72e2cd76d2e108778fbdd543422d27a9be1c4b8cefd0aae78fe1c"
     },
     "v-stone-window": {
       "name": "Stone window",
@@ -104078,7 +104078,7 @@
           }
         ]
       },
-      "sha256": "2dec49e3788c114f5a35d04158a7c4ea5b1588b6fce345ec45fc7edc5a84d7af"
+      "sha256": "9d0dd6cf42ec1550a104ee7339e08ff85ce8bdc1c520da2929fcb8bbf71a72ec"
     },
     "v-stone-door": {
       "name": "Stone archway",
@@ -104099,7 +104099,7 @@
           }
         ]
       },
-      "sha256": "423c868700a85e44b1bf037f86ef6c9729a6612174fa2ffb86dd949039073c7a"
+      "sha256": "1ec438bafd295644835a9063949f2862b579cdf7d9dbed4992b2727e8cb93795"
     },
     "v-tudor-wall": {
       "name": "Timber & plaster wall",
@@ -104120,7 +104120,7 @@
           }
         ]
       },
-      "sha256": "270b06e2127235ebfe9152929c96de56311b6745df2ba25119842db654948809"
+      "sha256": "f37c814274f003d37548c3db8a13365a3b77b1e6194927bebabe5512cfd85128"
     },
     "v-tudor-short": {
       "name": "Narrow timber wall",
@@ -104141,7 +104141,7 @@
           }
         ]
       },
-      "sha256": "6940fac6f238d632790cc687350b235b1a030bb83b04f7060ab35e05f1998844"
+      "sha256": "67258ae83ab75b56922de10eb374a30f3d44130383cb091e21b3bac2e341c8ef"
     },
     "v-tudor-window": {
       "name": "Timber window",
@@ -104162,7 +104162,7 @@
           }
         ]
       },
-      "sha256": "2c4247528d122ebc0f4714adf0ad9e0218708527cd73328ee6cc5f72aebb585a"
+      "sha256": "1277dda455af3399be72247ee0519a1cd6b7901884ee644a4d833e7f1d3bd412"
     },
     "v-tudor-door": {
       "name": "Timber doorway",
@@ -104183,7 +104183,7 @@
           }
         ]
       },
-      "sha256": "ba561bf3c566dd46ef95ce75f20e3b41fb0649c2bf2d4e67ffd73d80645486ba"
+      "sha256": "92b61f14f00a2635fba0858473b8de5b1ce1e38500bd7ef747967e1684d2f9df"
     },
     "v-stone-floor": {
       "name": "Flagstone floor",
@@ -104225,7 +104225,7 @@
           }
         ]
       },
-      "sha256": "923816b377abf72c6cecb305d6d14cbb754fa3f72fbd0f3a1bde47bcb81b2906"
+      "sha256": "f1066fdf285653ad3d7059f4afeaf8723b21547f71ebb06927964ac11afc36d2"
     },
     "v-timber-floor": {
       "name": "Plank floor",
@@ -104267,7 +104267,7 @@
           }
         ]
       },
-      "sha256": "7671b11a18af070c53eedeeb15227741ed94d2e3925d40498e37fd6403146453"
+      "sha256": "58771bf0e04f1da1845266e21364b0971a07998cc33f5e1482b1d81f7d52ed94"
     },
     "v-roof": {
       "name": "Slate roof section",
@@ -104374,7 +104374,7 @@
           }
         ]
       },
-      "sha256": "a3af794f15b85045ce921807b101951d4d1e41e2f3d9bc0a7a0b5d43d4ecb4fb"
+      "sha256": "23738b37818ac59686b4f1abf0eb1636816247e936ee8779e6389ecfe2c2c47a"
     },
     "floor-small": {
       "name": "Small floor",
@@ -104416,7 +104416,7 @@
           }
         ]
       },
-      "sha256": "fef3fa2c3dc4ea6b00f9a4c190025234867f94d11b4b900094506451b1dacb39"
+      "sha256": "dc4b515dc3fde1bd0c09e6d40af1da3480ed85ae7da7fec79adac90fd8e39802"
     },
     "wall": {
       "name": "Dungeon wall",
@@ -104437,7 +104437,7 @@
           }
         ]
       },
-      "sha256": "91a6eca62c79e222429ed3c7c79d8084dd15b21976587463eebba6e247337d75"
+      "sha256": "d505a2750813b7f599c58b78c21dad9b8fc5721ff6532bc905c730e5a63beef5"
     },
     "wall-low": {
       "name": "Low wall",
@@ -104458,7 +104458,7 @@
           }
         ]
       },
-      "sha256": "3f0574614d82c36830a26ccde6479b08d4cf2d0b4ddef2cd3916cc6d7898b6fb"
+      "sha256": "cecd9dca02e2b0ebf6490a4c4d8e0da78fca39e83fb6264c2400b656521bf8d9"
     },
     "door": {
       "name": "Doorway",
@@ -104479,7 +104479,7 @@
           }
         ]
       },
-      "sha256": "16350e8db36664e5cd048a8ad8c9c63642cb4cb16e070c4e9fd2f0b495560dc5"
+      "sha256": "a16dba110000cff2bcb297d5269c409ce0c63193f4d1ec87aa3975f454afc3c8"
     },
     "pillar": {
       "name": "Round pillar",
@@ -104573,7 +104573,7 @@
           }
         ]
       },
-      "sha256": "83b72cbc921e3d9a49fa287f6e340b29f43741cd584c9460b6544ccec8f1775a"
+      "sha256": "fe8e032143c6fbb49f2a7362cdb09651cb7010180e95a01de80abd58b6569414"
     }
   }
 }

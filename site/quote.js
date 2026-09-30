@@ -4,7 +4,7 @@ const quoteMoney=p=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GB
 const [quoteId,quoteSecret]=location.hash.slice(1).split('.');
 const quoteHeaders={Authorization:'Bearer '+quoteSecret};
 let currentQuote,page=0,activeTab='summary';
-const pageSize=()=>innerWidth<700?3:innerHeight<800?5:8;
+const pageSize=()=>{const style=getComputedStyle(quotePanel),height=quotePanel.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);return Math.max(1,Math.min(12,Math.floor((height-(innerHeight<=450?68:144))/(innerHeight<=450?64:88))*(innerWidth>=1200?2:1)));};
 const buttons=Object.fromEntries(['pay','test-order','confirm-payment','save-quote','copy-quote'].map(id=>[id,document.getElementById(id+'-button')||document.getElementById(id)]));
 function quoteSay(text){quoteStatus.textContent=text;}
 async function quoteApi(path,method='GET'){
@@ -13,6 +13,33 @@ async function quoteApi(path,method='GET'){
  if(!response.ok)throw Error(body.error||'Unable to load your quote.');return body;
 }
 function element(tag,text,className){const el=document.createElement(tag);el.textContent=text;if(className)el.className=className;return el;}
+function pieceCard(item){
+ const asset=window.TerrainQuoteCatalog?.lookup(item),name=asset?.name||item.name;
+ const card=element('li','','piece-card'),details=element('div','','piece-card-details');card.dataset.file=item.file||item.name;
+ const placeholder=()=>element('span','◇','piece-placeholder');
+ if(asset){
+  const button=element('button','','piece-thumbnail');button.type='button';button.setAttribute('aria-label','Preview '+name);
+  const image=document.createElement('img');image.src=asset.image;image.alt='';image.width=88;image.height=66;image.decoding='async';
+  image.onerror=()=>{button.replaceChildren(placeholder());button.disabled=true;button.setAttribute('aria-label','Preview unavailable for '+name);};
+  button.append(image);button.onclick=()=>showPiecePreview(item,asset);card.append(button);
+ }else{const empty=element('div','','piece-thumbnail');empty.setAttribute('aria-label','No registered preview');empty.append(placeholder());card.append(empty);}
+ const heading=element('strong',name,'piece-name');heading.title=name;
+ details.append(heading,element('span',asset?(asset.matched?'Matched model':'Catalogue reference'):'Uploaded model · no preview','piece-match'));
+ const quantity=element('span','×'+item.quantity,'piece-quantity');quantity.setAttribute('aria-label',item.quantity+' copies');
+ card.append(details,quantity);return card;
+}
+let previewDialog;
+function showPiecePreview(item,asset){
+ if(!previewDialog){previewDialog=document.createElement('dialog');previewDialog.className='piece-preview-dialog';previewDialog.setAttribute('aria-labelledby','piece-preview-title');document.body.append(previewDialog);}
+ previewDialog.replaceChildren();const title=element('h2',asset.name);title.id='piece-preview-title';
+ const picture=element('div','','piece-preview-picture'),image=document.createElement('img');image.src=asset.image;image.alt=asset.name+' registered design';image.onerror=()=>picture.replaceChildren(element('p','Preview unavailable. Your uploaded piece remains in this quote.'));picture.append(image);
+ const size=Array.isArray(item.sizeMm)&&item.sizeMm.every(Number.isFinite)?item.sizeMm.map(n=>Number(n.toFixed(1))).join(' × ')+' mm':'';
+ const description=element('p',`${item.quantity} copies · ${currentQuote.colour.label}${size?' · '+size:''}`);
+ const caption=element('p',asset.matched?'Matched to the registered model. Colours and textures are a visual guide; printing uses your chosen filament.':'Catalogue reference only. This upload differs from the current registered model; shape, scale or connectors may differ. Printing uses your chosen filament.','piece-preview-caption');
+ const source=element('p','Uploaded file: '+item.file,'piece-preview-caption'),actions=element('div','','piece-preview-actions'),credits=element('a','Model credits');credits.href='assets/terrain/NOTICE.txt';credits.target='_blank';credits.rel='noopener';
+ const close=element('button','Close preview','button secondary');close.onclick=()=>previewDialog.close();actions.append(credits,close);
+ previewDialog.append(title,picture,description,caption,source,actions);previewDialog.showModal();close.focus();
+}
 function chargeRows(p){
  // Older stored quotes and cached responses retain their agreed total.
  const rows=Number.isInteger(p.filamentPence)?[['Filament',p.filamentPence],['Machine time',p.machinePence],['Handling (includes setup)',p.handlingPence]]:[['Printing (saved quote)',p.printBeforeDiscountPence??p.printPence]];
@@ -23,9 +50,9 @@ function chargeRows(p){
 function renderQuote(){
  const q=currentQuote,p=q.price;quotePanel.replaceChildren();
  const pieces=element('section','','quote-column quote-part-column');pieces.id='quote-parts';
- pieces.append(element('h2','Your pieces'),element('p',`${p.pieceCount} pieces · ${q.colour.label}`,'quote-context'));
+ pieces.append(element('h2','Your pieces'),element('p',`${p.pieceCount} pieces · ${q.colour.label}`,'quote-context'),element('p','Tap a preview to inspect the registered design.','piece-preview-note'));
  const pages=Math.max(1,Math.ceil(q.items.length/pageSize()));page=Math.min(page,pages-1);
- const list=element('ul','','quote-pieces');for(const item of q.items.slice(page*pageSize(),(page+1)*pageSize()))list.append(element('li',`${item.quantity} × ${item.name}`));pieces.append(list);
+ const list=element('ul','','quote-pieces');for(const item of q.items.slice(page*pageSize(),(page+1)*pageSize()))list.append(pieceCard(item));pieces.append(list);
  const nav=element('nav','','quote-pagination');nav.setAttribute('aria-label','Parts pages');
  const previous=element('button','Previous'),next=element('button','Next');previous.disabled=page===0;next.disabled=page===pages-1;
  previous.onclick=()=>{page--;renderQuote();};next.onclick=()=>{page++;renderQuote();};nav.append(previous,element('span',`${page+1} / ${pages}`),next);pieces.append(nav);
@@ -54,9 +81,11 @@ addEventListener('resize',()=>{if(currentQuote)renderQuote();});
 const privateQuoteLink=()=>location.origin+location.pathname+'#'+quoteId+'.'+quoteSecret;
 buttons['copy-quote'].onclick=async()=>{try{await navigator.clipboard.writeText(privateQuoteLink());quoteSay('Private link copied. Keep it safe to reopen this quotation.');}catch{quoteSay('Copy is unavailable. Use Save quotation to keep your private link.');}};
 buttons['save-quote'].onclick=()=>{
- const q=currentQuote;const text=['Terrain Foundry '+(q.preview?'TEST estimate':'quotation'),'Reference: '+q.id,'Colour: '+q.colour.label,...q.items.map(item=>item.quantity+' x '+item.name),'',...chargeRows(q.price).map(([label,pence])=>label+': '+quoteMoney(pence)),'Total: '+quoteMoney(q.price.totalPence),'Valid until: '+new Date(q.expiresAt).toLocaleDateString('en-GB'),'Reopen using this private link (do not share):',privateQuoteLink(),'Geometry estimate; final slicing may differ.',q.preview?'TEST ONLY: no payment, printing or shipping.':''].join('\r\n');
+ const q=currentQuote;const text=['Terrain Foundry '+(q.preview?'TEST estimate':'quotation'),'Reference: '+q.id,'Colour: '+q.colour.label,...q.items.map(item=>item.quantity+' x '+(window.TerrainQuoteCatalog?.lookup(item)?.name||item.name)+' ('+item.file+')'),'',...chargeRows(q.price).map(([label,pence])=>label+': '+quoteMoney(pence)),'Total: '+quoteMoney(q.price.totalPence),'Valid until: '+new Date(q.expiresAt).toLocaleDateString('en-GB'),'Reopen using this private link (do not share):',privateQuoteLink(),'Geometry estimate; final slicing may differ.',q.preview?'TEST ONLY: no payment, printing or shipping.':''].join('\r\n');
  const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=element('a','');a.href=url;a.download='TerrainFoundry-quote-'+q.id.slice(0,8)+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);quoteSay('Quotation saved with its private link. It keeps its original expiry date.');
 };
 async function action(button,path){button.disabled=true;try{const result=await quoteApi(path+'/'+quoteId,'POST');if(result.url){const url=new URL(result.url);if(url.protocol!=='https:'||!['www.paypal.com','www.sandbox.paypal.com'].includes(url.hostname))throw Error('Invalid payment address.');location.assign(url.href);}else if(result.paid)showQuote(await quoteApi('quote/'+quoteId));else{showQuote(result);if(result.paymentPending)quoteSay('PayPal has not confirmed payment yet.');}}catch(error){quoteSay(error.message);}finally{button.disabled=false;}}
 buttons.pay.onclick=()=>action(buttons.pay,'checkout');buttons['test-order'].onclick=()=>action(buttons['test-order'],'test-order');buttons['confirm-payment'].onclick=()=>action(buttons['confirm-payment'],'confirm');
 (async()=>{try{if(!window.TERRAIN_PRINT_API||!/^[a-f0-9]{32}$/.test(quoteId||'')||!/^[a-f0-9]{64}$/.test(quoteSecret||''))throw Error('Open the complete private link from your quote email.');showQuote(await quoteApi('quote/'+quoteId));if(new URLSearchParams(location.search).has('PayerID')&&!buttons['confirm-payment'].hidden)buttons['confirm-payment'].click();}catch(error){quoteSay(error.message);}})();
+
+window.TerrainQuoteCatalog?.ready.then(()=>{if(currentQuote)renderQuote();});

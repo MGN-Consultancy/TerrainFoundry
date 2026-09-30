@@ -1,0 +1,10 @@
+Terrain Foundry catalogue previews
+
+Rendered from registered Terrain Foundry scenery and its original procedural surface textures. These are visual catalogue references, not uploaded customer models. Colours and surface shading are illustrative; STL printing is in the selected filament.
+
+Original unsocketed sculptures: CC0-1.0, MGN CONSULTANCY LIMITED.
+OpenLOCK-socketed derivatives and OpenLOCK Clip 5.4: CC BY-NC 4.0. OpenLOCK system and clip by Printable Scenery. Non-commercial use only. Preview images render the attributed connected geometry with Terrain Foundry visual materials.
+
+Source and attribution: https://github.com/MGN-Consultancy/TerrainFoundry/blob/main/third-party/openlock/NOTICE.md
+License: https://creativecommons.org/licenses/by-nc/4.0/
+Regenerate previews with: node scripts/build-quote-catalog.mjs (after building scenery packs).

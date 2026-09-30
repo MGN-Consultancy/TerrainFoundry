@@ -1,0 +1,18 @@
+const {_electron:electron}=require('playwright');
+const fs=require('node:fs/promises'),path=require('node:path'),assert=require('node:assert/strict');
+(async()=>{const dir=await fs.mkdtemp(path.join(require('node:os').tmpdir(),'terrain-woodland-'));
+const ids=['w-oak','w-birch','w-pine','w-autumn','w-dead','w-stump'];
+const project={version:1,name:'Woodland inspection',grid:25.4,connectors:'openlock',connectorRevision:2,board:24,printer:{x:180,y:180,z:180},items:[]};
+ids.forEach((type,i)=>{const x=(i%3-1)*3,z=(Math.floor(i/3)-.5)*3;project.items.push({id:'grass-'+i,type:'o-grass',x,z,y:0,rotation:0,color:'#ffffff'},{id:'tree-'+i,type,x,z,y:8,rotation:0,color:'#ffffff'});});
+await fs.writeFile(dir+'/woodland.terrain',JSON.stringify(project));await fs.writeFile('examples/woodland.terrain',JSON.stringify(project,null,2));
+const app=await electron.launch({executablePath:process.env.TERRAIN_EXECUTABLE,args:[...(process.env.TERRAIN_EXECUTABLE?[]:['.']),`--user-data-dir=${dir}/profile`]});
+try{const page=await app.firstWindow(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());await page.waitForSelector('canvas',{timeout:120000});
+await app.evaluate(({dialog},dir)=>{dialog.showSaveDialog=async()=>({canceled:false,filePath:dir+'/saved.terrain'});dialog.showOpenDialog=async(_,o)=>({canceled:false,filePaths:[o.properties.includes('openDirectory')?dir:dir+'/woodland.terrain']});},dir);
+await page.locator('#open').click();await page.waitForFunction(()=>document.querySelector('#count').textContent==='12');await page.locator('#collection').selectOption('w-');assert.equal(await page.locator('#kit .asset').count(),6);await page.locator('#fit').click();await page.waitForTimeout(800);await page.screenshot({path:path.resolve('test-results/woodland-scene.png')});
+await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready'));assert.deepEqual(JSON.parse(await fs.readFile(dir+'/saved.terrain','utf8')).items,project.items);
+await page.locator('#export').click();await page.locator('#confirm-print').click();await page.waitForFunction(()=>!document.querySelector('#print-dialog').open);const pack=(await fs.readdir(dir)).find(n=>n.startsWith('TerrainFoundry-'));for(const id of ids)assert.ok((await fs.stat(path.join(dir,pack,id+'.stl'))).size>1000);
+// A large grass tile under the viewport centre checks automatic surface placement.
+project.items=[{id:'ground',type:'o-grass',x:0,z:0,y:20,rotation:0,color:'#ffffff'}];await fs.writeFile(dir+'/woodland.terrain',JSON.stringify(project));await page.locator('#open').click();await page.waitForFunction(()=>document.querySelector('#count').textContent==='1');await page.locator('#fit').click();await page.waitForTimeout(500);await page.locator('[data-asset="w-oak"]').click();const canvas=await page.locator('#stage > canvas').boundingBox();await page.mouse.click(canvas.x+canvas.width/2,canvas.y+canvas.height/2);await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready'));const saved=JSON.parse(await fs.readFile(dir+'/saved.terrain','utf8'));assert.equal(saved.items.length,2);assert.ok(saved.items[1].y>27&&saved.items[1].y<30,'tree sits on raised grass');assert.ok(await page.locator('#select').evaluate(e=>e.classList.contains('active')));assert.deepEqual(errors,[]);
+console.log('PASS: six rendered trees, save, six STL exports, raised grass placement, return to selector.');
+}finally{await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows().forEach(w=>w.destroy()));await app.close();}
+})().catch(e=>{console.error(e);process.exit(1);});

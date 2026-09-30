@@ -1,0 +1,1 @@
+const {app,BrowserWindow}=require('electron');app.whenReady().then(()=>{const w=new BrowserWindow({width:1440,height:1000,webPreferences:{contextIsolation:true,nodeIntegration:false}});w.loadFile(require('node:path').resolve('site/index.html'));});

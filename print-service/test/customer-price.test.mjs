@@ -14,6 +14,7 @@ test('30 percent applies to material only, with machine and combined handling ch
  const p=price(items,customer,rates),publicPrice=customerPrice(p);
  assert.equal(p.estimate.markupPence,Math.ceil(p.estimate.filamentCostPence*.3));
  assert.equal(publicPrice.machinePence,p.estimate.machineCostPence);
+ assert.equal(publicPrice.estimate.hourlyRatePence,150);
  assert.equal(publicPrice.filamentPence,p.estimate.filamentCostPence+p.estimate.markupPence);
  assert.equal(publicPrice.handlingPence,p.piecePence+p.setupPence);
  assert.equal(publicPrice.totalPence,publicPrice.filamentPence+publicPrice.machinePence+publicPrice.handlingPence+publicPrice.minimumAdjustmentPence-publicPrice.discountPence+publicPrice.shippingPence+publicPrice.vatPence);
@@ -28,7 +29,7 @@ test('minimum and discount reconcile to the customer total',()=>{
 });
 test('legacy quotes keep frozen totals and do not fabricate new charges',()=>{
  const original=price(items,customer,rates);delete original.estimate.assumptions.materialMarkupBasisPoints;original.estimate.assumptions.markupBasisPoints=5000;
- const saved=structuredClone(original),p=customerPrice(original);assert.equal(p.legacyTariff,true);assert.equal(p.filamentPence,null);assert.equal(p.totalPence,saved.totalPence);assert.deepEqual(original,saved);noPrivate(p);
+ const saved=structuredClone(original),p=customerPrice(original);assert.equal(p.legacyTariff,true);assert.equal(p.estimate.hourlyRatePence,null);assert.equal(p.filamentPence,null);assert.equal(p.totalPence,saved.totalPence);assert.deepEqual(original,saved);noPrivate(p);
 });
 test('quote API and customer email do not disclose manufacturing costs',async()=>{
  const service=makeService({store:new MemoryStore(),paypal:new FakePayPal(),env:{...env,PRINT_SERVICE_ENABLED:'false',PRINT_PREVIEW_ENABLED:'true',PRINT_PREVIEW_ACCESS_CODE:'private-test-access-code'},rates,verifyHuman:async()=>{}});

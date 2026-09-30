@@ -1,4 +1,5 @@
 import {EmailClient} from '@azure/communication-email';
+import {customerPrice} from './customer-price.mjs';
 import {quotePath} from './service.mjs';
 
 const money=p=>'£'+(p/100).toFixed(2);
@@ -8,7 +9,7 @@ export function emailFor(kind,q,{siteUrl,downloadUrl,operator}) {
  const reduction=q.price.discountPence?`Printing before discount: ${money(q.price.printBeforeDiscountPence)}\nParts discount (${q.price.discount.code}): -${money(q.price.discountPence)}\n`:'';
  const common=`Terrain Foundry reference: ${q.id}\nColour: ${q.colour.label}\n\n${summary}\n\n${reduction}Printing: ${money(q.price.printPence)}\nShipping: ${money(q.price.shippingPence)}\nVAT: ${money(q.price.vatPence)}\nTotal: ${money(q.price.totalPence)} GBP`;
  const address=q.customer.address;const delivery='Ship to:\n'+[address.name,address.line1,address.line2,address.city,address.region,address.postcode,address.country].filter(Boolean).join('\n');
- const estimate=q.price.estimate;const calculation=estimate?`\n\nEstimated material: ${estimate.material}, ${estimate.grams} g\nPrinter: ${estimate.printer}, approximately ${estimate.hours} hours\n${estimate.notice}`:'';
+ const estimate=customerPrice(q.price).estimate;const calculation=estimate?`\n\nEstimated material: ${estimate.material}, ${estimate.grams} g\nPrinter: ${estimate.printer}, approximately ${estimate.hours} hours${Number.isInteger(estimate.hourlyRatePence)?' at '+money(estimate.hourlyRatePence)+'/hour':''}\n${estimate.notice}`:'';
  if(q.preview){
   const submitted=kind!=='quote';
   return {to:kind==='testOperator'?operator:q.customer.email,subject:prefix+(submitted?'Test print request recorded':'Your Terrain Foundry test estimate'),text:`TEST ONLY — no payment, no production and no shipment. This is not an accepted commercial order.\n\n${common}${calculation}\n\n${submitted?'The test request has been recorded. Do not print or ship it.':'Review the estimate and optionally submit a test request:'}\n${siteUrl}\n\nQuestions and replies: ${operator}`};

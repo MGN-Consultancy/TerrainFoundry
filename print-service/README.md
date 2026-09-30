@@ -82,3 +82,27 @@ The operator reported obtaining separate OpenLOCK commercial permission on
 or grant commercial permission to other users. Keep the agreement privately
 with business records and follow its terms. Payment/rate/terms approvals and
 provider configuration remain separate from commercial-rights approval.
+
+
+## Private real 10p PayPal transaction test
+
+This is separate from print discounts and from non-paying preview requests.
+The quote owner must supply its private link and a private test code; the quote
+email must match PRINT_OPERATOR_EMAIL. Only one test invoice per quote is made.
+GBP 0.10 is fixed server-side, with no shipping. A successful capture is stored
+under payment-tests/, never quotes/, and cannot queue workshop files or settle
+the original quote. No automatic refund is issued. PayPal's own receipt applies;
+this path does not send a print-order confirmation email.
+
+Configure PAYPAL_ENV=live, PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET,
+PAYPAL_MERCHANT_ID and PAYPAL_TEST_WEBHOOK_ID securely in Azure. Register a
+separate live webhook at /api/print/test-webhook for CHECKOUT.ORDER.APPROVED,
+CHECKOUT.ORDER.COMPLETED, PAYMENT.CAPTURE.COMPLETED, PAYMENT.CAPTURE.REFUNDED,
+PAYMENT.CAPTURE.REVERSED and PAYMENT.CAPTURE.DENIED. Keep the ordinary production
+webhook separate. Set PRINT_PAYMENT_TEST_ENABLED=true, a private random
+PRINT_PAYMENT_TEST_CODE of at least 16 characters, and a UTC
+PRINT_PAYMENT_TEST_EXPIRES timestamp. The quote page offers a test-payment dialog
+only while these prerequisites are configured. Keep preview mode enabled and
+normal paid-print ordering disabled during testing. Configure the credentials
+through Azure settings or a private local settings file, never commit secrets.
+Test payment state can be reconciled after the code expires; new captures cannot.

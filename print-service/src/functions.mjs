@@ -1,5 +1,7 @@
 import {app} from '@azure/functions';
 import {Store} from './storage.mjs';
+import {paymentTests} from './payment-test.mjs';
+import {quotePath} from './service.mjs';
 import {PayPal} from './paypal.mjs';
 import {makeService} from './service.mjs';
 import {InputError,LIMITS} from './geometry.mjs';
@@ -17,18 +19,18 @@ function dependencies(){
   const result=await response.json();if(!result.success||result.hostname!==new URL(env.PRINT_SITE_ORIGIN).hostname||result.action!=='print-quote')throw new InputError('The anti-spam check expired. Please try again.');
  };
  let discounts;try{discounts=JSON.parse(env.PRINT_DISCOUNTS_JSON||'[]');}catch{discounts=null;}
- runtime={store,service:makeService({store,paypal,env,rates,discounts,verifyHuman})};return runtime;
+ runtime={store,paymentTests:paymentTests({store,paypal:new PayPal({...env,PAYPAL_WEBHOOK_ID:env.PAYPAL_TEST_WEBHOOK_ID}),env}),service:makeService({store,paypal,env,rates,discounts,verifyHuman})};return runtime;
 }
 const headers={'Cache-Control':'no-store','Content-Type':'application/json','X-Content-Type-Options':'nosniff'};
 export async function handler(request,context){
  const path=request.params.action||'config',id=request.params.id;
  try{
   if(path==='config'&&!env.PRINT_STORAGE_CONNECTION_STRING&&!env.AzureWebJobsStorage)return {jsonBody:{enabled:false,contact:'nigel.webster@mgnconsultancy.co.uk'},headers};
-  const {store,service}=dependencies();let result;
+  const {store,service,paymentTests}=dependencies();let result;
   if(request.method==='GET'&&path==='config')return {jsonBody:service.config(),headers};
   // Non-browser webhook uses PayPal's signature verification. All browser writes require the site origin.
   const origins=(env.PRINT_ALLOWED_ORIGINS||env.PRINT_SITE_ORIGIN||'').split(',');
-  if(request.method==='POST'&&path!=='webhook'&&!origins.includes(request.headers.get('origin')))throw new InputError('Unapproved request origin.',403);
+  if(request.method==='POST'&&!['webhook','test-webhook'].includes(path)&&!origins.includes(request.headers.get('origin')))throw new InputError('Unapproved request origin.',403);
   await store.init();
   const secret=request.headers.get('authorization')?.replace(/^Bearer /,'');
   if(request.method==='POST'&&path==='estimate'){
@@ -37,13 +39,20 @@ export async function handler(request,context){
    const forwarded=(request.headers.get('x-forwarded-for')||'').split(',').at(-1).trim();
    const peer=forwarded.startsWith('[')?forwarded.slice(1,forwarded.indexOf(']')):isIP(forwarded)?forwarded:forwarded.replace(/:\d+$/,'');
    result=await service.estimate(await request.json(),isIP(peer)?peer:'unknown');
+  }else if(request.method==='POST'&&['payment-test','payment-test-confirm'].includes(path)){
+   await service.get(id,secret);
+   if(path==='payment-test-confirm')result=await paymentTests.reconcile(id,true);
+   else {if(Number(request.headers.get('content-length'))>1000)throw new InputError('Invalid test request.',413);const body=await request.json();result=await paymentTests.start(await store.get(quotePath(id)),body.code,service.quoteUrl(id).replace('print-order.html#','print-order.html?paymentTest=1#'));}
+  }else if(request.method==='POST'&&path==='test-webhook'){
+   if(Number(request.headers.get('content-length'))>100000)throw new InputError('Notification too large.',413);
+   result=await paymentTests.webhook(request.headers,await request.json());
   }else if(request.method==='POST'&&path==='quotes'){
    const length=Number(request.headers.get('content-length'));if(!length||length>LIMITS.upload+100000)throw new InputError('Upload is missing or larger than 40 MB.',413);
    const form=await request.formData(),file=form.get('pack');if(!file||typeof file.arrayBuffer!=='function'||file.size>LIMITS.upload)throw new InputError('Choose a ZIP print pack under 40 MB.');
    const details=form.get('details');if(typeof details!=='string'||details.length>5000)throw new InputError('Invalid form details.');
    let parsed;try{parsed=JSON.parse(details);}catch{throw new InputError('Invalid form details.');}
    result=await service.create(Buffer.from(await file.arrayBuffer()),parsed,form.get('cf-turnstile-response'));
-  }else if(request.method==='GET'&&path==='quote')result=await service.get(id,secret);
+  }else if(request.method==='GET'&&path==='quote')result={...await service.get(id,secret),paymentTestAvailable:paymentTests.available()};
   else if(request.method==='POST'&&path==='checkout')result=await service.checkout(id,secret);
   else if(request.method==='POST'&&path==='confirm')result=await service.confirm(id,secret);
   else if(request.method==='POST'&&path==='test-order')result=await service.requestTestOrder(id,secret);

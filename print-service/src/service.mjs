@@ -4,6 +4,7 @@ import {InputError,readPack,inspectPack,LIMITS} from './geometry.mjs';
 import {validateRates,validateDiscounts,customerDetails,price} from './pricing.mjs';
 import {settled} from './paypal.mjs';
 import {estimateItems} from './estimate.mjs';
+import {manufacturing3mf,workshopReadme} from './manufacturing.mjs';
 import {customerPrice} from './customer-price.mjs';
 
 export const quotePath=id=>'quotes/'+id+'.json';
@@ -30,6 +31,9 @@ export function makeService({store,paypal,env=process.env,rates,discounts=[],now
   const id=randomBytes(16).toString('hex'),createdAt=now();const q={id,createdAt,expiresAt:createdAt+ttl,status:'quoted',preview,sandbox:env.PAYPAL_ENV!=='live',customer,colour:rates.colours.find(c=>c.id===customer.colour),items,price:cost,email:{quote:{pending:true}},rateSnapshot:rates};
   // Rebuild the archive from the validated manufacturing files only. Editable scenes stay private.
   const clean={};for(const {name,bytes} of files.values())clean[name]=bytes;
+  clean['OPEN-IN-BAMBU.3mf']=manufacturing3mf(files,items);
+  clean['WORKSHOP-README.txt']=Buffer.from(workshopReadme);
+  q.manufacturingFormat='3mf-v1';
   await store.put('packs/'+id+'.zip',Buffer.from(zipSync(clean,{level:1})));
   try{await store.put(quotePath(id),q,{conditions:{ifNoneMatch:'*'}});}catch(error){await store.remove('packs/'+id+'.zip');throw error;}
   return {...publicQuote(q),url:quoteUrl(id)};

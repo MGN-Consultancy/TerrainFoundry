@@ -8,7 +8,7 @@ export function setupPrintEstimate({getProject,makePrintFiles}){
  for(const field of dialog.querySelectorAll('input,select'))field.addEventListener('input',()=>{result.hidden=true;website.hidden=true;});
  $('close-estimate').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{sequence++;files=null;});
  $('estimate-print').onclick=async()=>{
-  const token=++sequence;result.hidden=true;website.hidden=true;calculate.disabled=true;status.textContent='Loading current pricing options…';dialog.showModal();
+  const token=++sequence;for(const field of dialog.querySelectorAll('input,select'))field.disabled=false;result.hidden=true;website.hidden=true;calculate.disabled=true;status.textContent='Loading current pricing options…';dialog.showModal();
   try{
    if(!window.desktop?.printEstimateConfig)throw Error('Print estimates are available in the installed desktop client.');
    if(!getProject().items.length)throw Error('Add some terrain to your scene first.');
@@ -19,12 +19,12 @@ export function setupPrintEstimate({getProject,makePrintFiles}){
    status.textContent=(config.cached?'Offline pricing options from '+new Date(config.fetchedAt).toLocaleString()+'. Only previously fetched estimates are available. ': 'Ready to calculate using the website’s current prices. ')+(config.preview?'Website requests are test-only: no payment, printing or shipping.':'');calculate.disabled=false;
   }catch(error){if(token===sequence)status.textContent=error.message;}
  };
- calculate.onclick=async()=>{const token=sequence;calculate.disabled=true;website.hidden=true;result.hidden=true;status.textContent='Measuring your pieces and checking website prices…';
+ calculate.onclick=async()=>{const token=sequence;for(const field of dialog.querySelectorAll('input,select'))field.disabled=true;calculate.disabled=true;website.hidden=true;result.hidden=true;status.textContent='Measuring your pieces and checking website prices…';
   try{const estimate=await window.desktop.printEstimate(files,selection());if(token!==sequence)return;const p=estimate.price,e=p.estimate;result.replaceChildren();row('Estimated total',money(p.totalPence),true);row('Printed pieces, including connectors',String(p.pieceCount));
    if(e){row('Estimated filament',e.grams+' g · '+e.material);row('Estimated print time',e.hours+' hours · '+e.printer);row('Filament cost',money(e.filamentCostPence));row('Machine time cost',money(e.machineCostPence));row('Manufacturing markup',money(e.markupPence));row('Parts handling',money(p.piecePence));row('Setup',money(p.setupPence));}
    if(p.minimumApplied)row('Minimum charge','Applied');if(p.discountPence){row('Before discount',money(p.printBeforeDiscountPence));row('Parts discount ('+p.discount.code+')','−'+money(p.discountPence));}row('Printing',money(p.printPence));row('Postage',money(p.shippingPence));row('VAT',money(p.vatPence));result.hidden=false;website.hidden=false;
    status.textContent=(estimate.cached?'OFFLINE — saved estimate from ':'Checked website prices at ')+new Date(estimate.estimatedAt).toLocaleString()+'. '+(estimate.preview?'Test estimate only. No payment or production.':'Advisory price; the website rechecks your pack.');
-  }catch(error){if(token===sequence)status.textContent=error.message;}finally{if(token===sequence)calculate.disabled=false;}
+  }catch(error){if(token===sequence)status.textContent=error.message;}finally{if(token===sequence){calculate.disabled=false;for(const field of dialog.querySelectorAll('input,select'))field.disabled=false;}}
  };
  website.onclick=async()=>{website.disabled=true;try{const entries=Object.fromEntries(files.map(f=>[f.name,typeof f.data==='string'?strToU8(f.data):f.data]));const saved=await window.desktop.printWebsitePack(zipSync(entries));if(saved)status.textContent='Saved '+saved+'. Select this ZIP on the website. Nothing has been uploaded by the editor.';}catch(error){status.textContent=error.message;}finally{website.disabled=false;}};
 }

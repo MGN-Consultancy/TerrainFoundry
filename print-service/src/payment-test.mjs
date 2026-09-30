@@ -22,16 +22,24 @@ export function paymentTests({store,paypal,env=process.env,now=()=>Date.now()}){
    }return {...publicResult(q),url:q.approvalUrl};
   });
  }
+ async function queueReceipt(payment){
+  await store.lock('quotes/'+payment.quoteId+'.json',async(q,save)=>{
+   if(q.paymentTestReceipt?.captureId===payment.captureId)return;
+   q.paymentTestReceipt={status:'paid',amountPence:10,reference:payment.id,captureId:payment.captureId,paidAt:payment.paidAt};
+   q.email.paymentTestCustomer={pending:true};q.email.paymentTestOperator={pending:true};await save(q);
+  });
+ }
  async function reconcile(id,capture=false){
   // Existing payments can still be reconciled after the invitation expires.
   if(env.PAYPAL_ENV!=='live')throw new InputError('Live payment testing is unavailable.',503);
   if(!await store.get(paymentTestPath(id)))throw new InputError('No test transaction exists for this quote.',404);
   return store.lock(paymentTestPath(id),async(q,save)=>{
    if(!q)throw new InputError('No test transaction exists for this quote.',404);
+   if(q.status==='paid')await queueReceipt(q);
    if(q.status!=='quoted')return publicResult(q);
    let order=await paypal.get(q.paypalOrderId);
    if(capture&&order.status==='APPROVED'&&available()){await paypal.capture(q.paypalOrderId,q.id);order=await paypal.get(q.paypalOrderId);}
-   if(settled(order,q,env.PAYPAL_MERCHANT_ID)){q.status='paid';q.paidAt=now();q.captureId=order.purchase_units[0].payments.captures[0].id;await save(q);}
+   if(settled(order,q,env.PAYPAL_MERCHANT_ID)){q.status='paid';q.paidAt=now();q.captureId=order.purchase_units[0].payments.captures[0].id;await save(q);await queueReceipt(q);}
    return publicResult(q);
   });
  }

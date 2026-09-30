@@ -32,5 +32,10 @@ const {chromium}=require('playwright'),fs=require('node:fs/promises'),assert=req
  q.paymentTestAvailable=true;await page.setViewportSize({width:390,height:667});await page.reload();await page.getByRole('button',{name:'Test a 10p PayPal payment'}).click();assert.match(await page.locator('dialog').innerText(),/does not pay for this quotation/);
  await page.route('https://quote.test/api/print/payment-test/**',route=>{assert.deepEqual(route.request().postDataJSON(),{code:'dummy-test-code'});return route.fulfill({json:{paymentTest:true,status:'paid',amountPence:10,noProduction:true}});});
  await page.getByLabel('Private testing code').fill('dummy-test-code');await page.getByRole('button',{name:'Continue to PayPal'}).click();await page.getByText('This quotation already has a successful 10p test payment. No printing or shipping.').waitFor();await page.keyboard.press('Escape');assert.equal(await page.locator('.quote-total strong').innerText(),'£65.81');assert.deepEqual(errors,[]);console.log('PASS separate 10p testing dialog leaves quotation total unchanged');
+
+ q.preview=true;q.status='test-requested';q.paymentTestReceipt={status:'paid',amountPence:10,reference:'test-'+q.id};
+ await page.route('https://quote.test/api/print/payment-test-confirm/**',route=>route.fulfill({json:{paymentTest:true,status:'paid',amountPence:10,noProduction:true}}));
+ await page.goto('https://terrainfoundry.co.uk/print-order.html?paymentTest=1#'+q.id+'.'+'b'.repeat(64)+'&token=TESTPAYPAL&PayerID=TESTPAYER');
+ await page.getByRole('heading',{name:'Test payment confirmed'}).waitFor();assert.match(await page.locator('#print-status').innerText(),/£0.10 test payment received/);assert.ok(!new URL(page.url()).hash.includes('&'));assert.deepEqual(errors,[]);console.log('PASS PayPal parameters appended to fragment preserve private access and show confirmation');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

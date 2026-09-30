@@ -1,8 +1,10 @@
 const quotePanel=document.querySelector('#order-details');
 const quoteStatus=document.querySelector('#print-status');
 const quoteMoney=p=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(p/100);
-const [quoteId,quoteSecret]=location.hash.slice(1).split('.');
+const [quoteId,quoteSecret]=location.hash.slice(1).split('&')[0].split('.');
 const quoteHeaders={Authorization:'Bearer '+quoteSecret};
+const paypalReturn=new URLSearchParams(location.search);for(const [key,value] of new URLSearchParams(location.hash.split('&').slice(1).join('&')))paypalReturn.set(key,value);
+if(location.hash.includes('&'))history.replaceState(null,'',location.pathname+location.search+'#'+quoteId+'.'+quoteSecret);
 let currentQuote,page=0,activeTab='summary';
 const pageSize=()=>{const style=getComputedStyle(quotePanel),height=quotePanel.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);return Math.max(1,Math.min(12,Math.floor((height-(innerHeight<=450?68:144))/(innerHeight<=450?64:88))*(innerWidth>=1200?2:1)));};
 const buttons=Object.fromEntries(['pay','test-order','confirm-payment','save-quote','copy-quote'].map(id=>[id,document.getElementById(id+'-button')||document.getElementById(id)]));
@@ -72,9 +74,11 @@ function renderQuote(){
 }
 function showQuote(q){
  currentQuote=q;renderQuote();paymentTestButton.hidden=!q.paymentTestAvailable;
+ if(q.paymentTestReceipt?.status==='paid'){document.querySelector('h1').textContent='Test payment confirmed';document.querySelector('.quote-note').textContent='Real 10p test payment only. No printing or shipping. Your scenery quotation remains separate.';quoteSay('£0.10 test payment received · '+q.paymentTestReceipt.reference+' · No printing or shipping. Scenery quotation remains unpaid.');return;}
  if(q.preview){quoteSay(q.status==='test-requested'?'Test request saved — no payment or printing.':Date.now()>q.expiresAt?'This test quote has expired.':'TEST ESTIMATE — no payment, printing or shipping.');return;}
+ if(q.status==='paid'){document.querySelector('h1').textContent='Your print order';document.querySelector('.quote-note').textContent='Your order status appears above. We will email you when printing starts and when it ships.';}
  const prefix=q.sandbox?'SANDBOX — test payment only. ':'';
- quoteSay(prefix+(q.status==='paid'?'Payment received.':q.status==='payment-review'?'This order needs a payment review. Please contact the workshop.':Date.now()>q.expiresAt?'This quote has expired.':'Your private quotation is ready.'));
+ quoteSay(prefix+(q.status==='paid'?'Payment received · '+({paid:'Order received','in-progress':'In progress',shipped:'Shipped'}[q.fulfilment?.status||'paid'])+(q.fulfilment?.tracking?' · Tracking: '+q.fulfilment.tracking:''):q.status==='payment-review'?'This order needs a payment review. Please contact the workshop.':Date.now()>q.expiresAt?'This quote has expired.':'Your private quotation is ready.'));
 }
 for(const button of document.querySelectorAll('[data-quote-tab]'))button.onclick=()=>{if(!currentQuote)return;activeTab=button.dataset.quoteTab;renderQuote();};
 addEventListener('resize',()=>{if(currentQuote)renderQuote();});
@@ -86,7 +90,7 @@ buttons['save-quote'].onclick=()=>{
 };
 async function action(button,path){button.disabled=true;try{const result=await quoteApi(path+'/'+quoteId,'POST');if(result.url){const url=new URL(result.url);if(url.protocol!=='https:'||!['www.paypal.com','www.sandbox.paypal.com'].includes(url.hostname))throw Error('Invalid payment address.');location.assign(url.href);}else if(result.paid)showQuote(await quoteApi('quote/'+quoteId));else{showQuote(result);if(result.paymentPending)quoteSay('PayPal has not confirmed payment yet.');}}catch(error){quoteSay(error.message);}finally{button.disabled=false;}}
 buttons.pay.onclick=()=>action(buttons.pay,'checkout');buttons['test-order'].onclick=()=>action(buttons['test-order'],'test-order');buttons['confirm-payment'].onclick=()=>action(buttons['confirm-payment'],'confirm');
-(async()=>{try{if(!window.TERRAIN_PRINT_API||!/^[a-f0-9]{32}$/.test(quoteId||'')||!/^[a-f0-9]{64}$/.test(quoteSecret||''))throw Error('Open the complete private link from your quote email.');showQuote(await quoteApi('quote/'+quoteId));if(new URLSearchParams(location.search).get('paymentTest')==='1'){const result=await quoteApi('payment-test-confirm/'+quoteId,'POST');quoteSay(result.status==='paid'?'Real £0.10 test payment received — no printing or shipping. This quotation remains unpaid.':'Test payment status: '+result.status+'. No printing or shipping.');return;}if(new URLSearchParams(location.search).has('PayerID')&&!buttons['confirm-payment'].hidden)buttons['confirm-payment'].click();}catch(error){quoteSay(error.message);}})();
+(async()=>{try{if(!window.TERRAIN_PRINT_API||!/^[a-f0-9]{32}$/.test(quoteId||'')||!/^[a-f0-9]{64}$/.test(quoteSecret||''))throw Error('Open the complete private link from your quote email.');showQuote(await quoteApi('quote/'+quoteId));if(new URLSearchParams(location.search).get('paymentTest')==='1'){const result=await quoteApi('payment-test-confirm/'+quoteId,'POST');if(result.status==='paid')showQuote(await quoteApi('quote/'+quoteId));else quoteSay('Test payment status: '+result.status+'. No printing or shipping.');return;}if(paypalReturn.has('PayerID')&&!buttons['confirm-payment'].hidden)buttons['confirm-payment'].click();}catch(error){quoteSay(error.message);}})();
 
 window.TerrainQuoteCatalog?.ready.then(()=>{if(currentQuote)renderQuote();});
 

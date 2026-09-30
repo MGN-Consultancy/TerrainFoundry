@@ -106,3 +106,18 @@ only while these prerequisites are configured. Keep preview mode enabled and
 normal paid-print ordering disabled during testing. Configure the credentials
 through Azure settings or a private local settings file, never commit secrets.
 Test payment state can be reconciled after the code expires; new captures cannot.
+
+
+## Payment confirmation and workshop progress
+
+PayPal return parameters are accepted in the query string or appended after the
+private URL fragment. They never substitute for server-side payment verification.
+A captured 10p test queues explicitly labelled customer/operator receipts and
+shows a persistent test confirmation; it never marks the scenery quote paid.
+Paid live print-order emails include a separate purpose-bound workshop link.
+That operator link supports paid -> in-progress -> shipped, with optional carrier
+and tracking text. Customer emails link back to the read-only order status.
+Customer quote tokens cannot operate workshop endpoints. Preview, sandbox,
+unpaid and payment-review orders cannot enter fulfilment. Keep workshop links
+private; their authority is tied to PRINT_TOKEN_SECRET, independently derived
+from customer quote capabilities. No customer account is needed.

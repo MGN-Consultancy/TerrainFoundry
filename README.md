@@ -14,9 +14,9 @@ An offline Windows desktop workshop for designing modular tabletop terrain and e
 
 ## Installation
 
-Download the launcher MSI from Releases. The verified publisher must be **MGN CONSULTANCY LIMITED**. The first run needs an internet connection to download the editor and scenery. After that, choose **Open installed editor (offline)** whenever needed. Updates do not overwrite saved projects.
+Download the launcher MSI from Releases. The verified publisher must be **MGN CONSULTANCY LIMITED**. Follow the welcome, licence and folder-selection wizard. It adds desktop and Start menu shortcuts. When opened, the launcher checks for updates, shows release details and download size, and waits for **Install / update** before downloading. The first run needs internet. **Open installed editor / continue offline** remains available after installation. Updates do not overwrite saved projects.
 
-The launcher stores downloaded versions under `%LOCALAPPDATA%\TerrainFoundryLauncher`. Projects use your Documents\Terrain Foundry\Projects folder, or another location you choose. The editor preserves the historical `%APPDATA%\dnd-terrain-builder` recovery profile. The launcher installs alongside older standalone MSI versions; it does not silently uninstall them.
+The launcher stores downloaded versions and self-updates in the installation folder selected in the wizard (default `%LOCALAPPDATA%\TerrainFoundryLauncher`). MSI upgrades remember that folder. Projects use your Documents\Terrain Foundry\Projects folder, or another location you choose. The editor preserves the historical `%APPDATA%\dnd-terrain-builder` recovery profile. The launcher installs alongside older standalone MSI versions; it does not silently uninstall them.
 
 ## Open source and connectors
 

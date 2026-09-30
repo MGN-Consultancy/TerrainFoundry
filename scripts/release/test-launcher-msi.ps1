@@ -17,4 +17,15 @@ $view=$database.OpenView('SELECT `Name` FROM `Icon`')
 $view.Execute();$record=$view.Fetch()
 if(!$record -or $record.StringData(1) -ne 'FoundryIcon'){throw 'Embedded installer icon is missing'}
 $view.Close()
+foreach($dialog in @('WelcomeDlg','LicenseAgreementDlg','InstallDirDlg','VerifyReadyDlg','ProgressDlg','ExitDialog')){
+  $view=$database.OpenView('SELECT `Dialog` FROM `Dialog` WHERE `Dialog` = '''+$dialog+'''')
+  $view.Execute();if(!$view.Fetch()){throw "Missing wizard page: $dialog"};$view.Close()
+}
+$view=$database.OpenView('SELECT `File` FROM `File` WHERE `File` = ''InstallationMarker''')
+$view.Execute();if(!$view.Fetch()){throw 'Chosen-folder marker is missing'};$view.Close()
+$view=$database.OpenView('SELECT `Value` FROM `Property` WHERE `Property` = ''WIXUI_INSTALLDIR''')
+$view.Execute();$record=$view.Fetch();if(!$record -or $record.StringData(1) -ne 'INSTALLFOLDER'){throw 'Folder chooser does not control installation folder'};$view.Close()
+$view=$database.OpenView('SELECT `Name`, `Value` FROM `Registry` WHERE `Name` = ''InstallDirectory''')
+$view.Execute();$record=$view.Fetch();if(!$record -or $record.StringData(2) -ne '[INSTALLFOLDER]'){throw 'MSI upgrades cannot recover the chosen folder'};$view.Close()
+Write-Output 'PASS: welcome, licence, folder, confirmation, progress and finish pages; selected folder persisted for updates.'
 Write-Output 'PASS: MSI contains desktop and Start menu shortcuts targeting the updater, with an embedded Terrain Foundry icon.'

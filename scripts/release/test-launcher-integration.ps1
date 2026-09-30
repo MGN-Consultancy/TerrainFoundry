@@ -1,7 +1,7 @@
 $ErrorActionPreference='Stop'
 $testRoot=Join-Path ([IO.Path]::GetTempPath()) ('terrain-launcher-integration-'+[Guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Force $testRoot,test-results | Out-Null
-& (Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe') /nologo /define:TEST_TRANSPORT /target:winexe '/out:test-results\LauncherIntegration.exe' '/resource:launcher\update-public.xml,update-public.xml' /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /reference:System.Net.Http.dll /reference:System.Web.Extensions.dll /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll 'launcher\Launcher.cs'
+& (Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe') /nologo /codepage:65001 /define:TEST_TRANSPORT /target:winexe '/out:test-results\LauncherIntegration.exe' '/resource:launcher\update-public.xml,update-public.xml' /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /reference:System.Net.Http.dll /reference:System.Web.Extensions.dll /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll 'launcher\Launcher.cs'
 if($LASTEXITCODE -ne 0){throw 'Integration build failed'}
 $env:TERRAIN_TEST_ROOT=$testRoot
 $env:TERRAIN_TEST_RELEASE=(Resolve-Path release/publish).Path

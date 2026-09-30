@@ -100,8 +100,8 @@ buttons['save-quote'].parentElement.append(paymentTestButton);
 paymentTestButton.onclick=()=>{
  const dialog=document.createElement('dialog');dialog.className='piece-preview-dialog';
  const title=element('h2','Real £0.10 payment test'),notice=element('p','This charges 10p through live PayPal. It does not pay for this quotation and will never trigger printing or shipping.');
- const label=element('label','Private testing code'),input=document.createElement('input');input.type='password';input.autocomplete='off';input.maxLength=128;label.append(input);
- const status=element('p',''),pay=element('div','','official-paypal'),close=element('button','Cancel');close.onclick=()=>dialog.close();
+ const label=element('label','Private testing code'),input=document.createElement('input');input.className='payment-test-code';input.type='password';input.autocomplete='off';input.maxLength=128;label.append(input);
+ const status=element('p',''),pay=element('div','','official-paypal'),close=element('button','Cancel','button secondary');close.onclick=()=>dialog.close();
  dialog.append(title,notice,label,status,pay,close);dialog.addEventListener('close',()=>dialog.remove());document.body.append(dialog);dialog.showModal();input.focus();
  window.TerrainPayPal.render(pay,currentQuote.paypalClientId,{
   create:async()=>{if(!input.value.trim())throw Error('Enter your private testing code.');const r=await fetch(window.TERRAIN_PRINT_API+'/api/print/payment-test/'+quoteId,{method:'POST',headers:{...quoteHeaders,'Content-Type':'application/json'},body:JSON.stringify({code:input.value}),credentials:'omit'});const result=await r.json();if(!r.ok)throw Error(result.error);if(!result.orderId)throw Error('This test has already been paid or needs review.');return result.orderId;},

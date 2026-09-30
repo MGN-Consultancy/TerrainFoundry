@@ -57,3 +57,8 @@ The dedicated storage container denies public access. Download URLs are issued o
 ## OpenLOCK edition licensing gate
 
 As of 1.1.0 the scenery uses attributed CC BY-NC OpenLOCK profiles and clips. Paid ordering additionally requires `PRINT_COMMERCIAL_RIGHTS_APPROVED=true`, which must remain unset/false until written permissions covering every relevant model and connector contribution have been verified. A Printable Scenery permission alone must not be assumed to cover a separate community profile contribution. The public site reports paid printing paused. Local test fixtures exercise payment logic on original test geometry; they do not establish commercial rights.
+
+
+## Invited quote testing
+
+See [PRICING.md](PRICING.md) for the A1/H2S PLA/PETG draft model, calibration, private test access and discount configuration. The dedicated email resources are defined in `infra/print-email.bicep`. Preview mode supports real quote emails and test requests, but cannot create PayPal orders, take money or queue production. Keep all commercial enablement flags false. Test records remain non-payable even after future live activation.

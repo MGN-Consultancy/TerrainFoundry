@@ -15,7 +15,8 @@ function dependencies(){
   const response=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',body:new URLSearchParams({secret:env.TURNSTILE_SECRET_KEY,response:token}),signal:AbortSignal.timeout(10000)});
   const result=await response.json();if(!result.success||result.hostname!==new URL(env.PRINT_SITE_ORIGIN).hostname||result.action!=='print-quote')throw new InputError('The anti-spam check expired. Please try again.');
  };
- runtime={store,service:makeService({store,paypal,env,rates,verifyHuman})};return runtime;
+ let discounts;try{discounts=JSON.parse(env.PRINT_DISCOUNTS_JSON||'[]');}catch{discounts=null;}
+ runtime={store,service:makeService({store,paypal,env,rates,discounts,verifyHuman})};return runtime;
 }
 const headers={'Cache-Control':'no-store','Content-Type':'application/json','X-Content-Type-Options':'nosniff'};
 export async function handler(request,context){
@@ -38,6 +39,7 @@ export async function handler(request,context){
   }else if(request.method==='GET'&&path==='quote')result=await service.get(id,secret);
   else if(request.method==='POST'&&path==='checkout')result=await service.checkout(id,secret);
   else if(request.method==='POST'&&path==='confirm')result=await service.confirm(id,secret);
+  else if(request.method==='POST'&&path==='test-order')result=await service.requestTestOrder(id,secret);
   else if(request.method==='POST'&&path==='webhook'){
    if(Number(request.headers.get('content-length'))>100000)throw new InputError('Notification too large.',413);
    result=await service.webhook(request.headers,await request.json());
@@ -46,5 +48,5 @@ export async function handler(request,context){
  }catch(error){if(!(error instanceof InputError)&&!error.status)context.error('Print service request failed.');return {status:error.status||503,jsonBody:{error:error.status?error.message:'The print service is temporarily unavailable. Please try again shortly.'},headers};}
 }
 app.http('print-service',{route:'print/{action?}/{id?}',methods:['GET','POST'],authLevel:'anonymous',handler});
-app.timer('print-email-outbox',{schedule:'0 */1 * * * *',handler:async()=>{if(env.PRINT_SERVICE_ENABLED!=='true')return;const deps=dependencies();await deps.store.init();await processNotifications(deps);}});
+app.timer('print-email-outbox',{schedule:'0 */1 * * * *',handler:async()=>{if(env.PRINT_SERVICE_ENABLED!=='true'&&env.PRINT_PREVIEW_ENABLED!=='true')return;const deps=dependencies();await deps.store.init();await processNotifications(deps);}});
 app.timer('print-cleanup',{schedule:'0 15 3 * * *',handler:async()=>{const {store}=dependencies();await cleanup(store);}});

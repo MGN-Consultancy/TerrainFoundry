@@ -1,0 +1,11 @@
+[
+  {
+    "code":"TEST10",
+    "enabled":false,
+    "percentBasisPoints":1000,
+    "startsAt":"2026-09-30T00:00:00Z",
+    "expiresAt":"2026-10-30T00:00:00Z",
+    "minimumPartsPence":1000,
+    "maximumDiscountPence":2000
+  }
+]

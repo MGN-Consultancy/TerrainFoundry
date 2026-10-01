@@ -103,5 +103,96 @@ export const VILLAGE_KIT = [
     "category": "Roofs",
     "icon": "",
     "hint": "Village collection · sculpted"
+  },
+  {
+    "id": "v-smith-floor",
+    "name": "Blacksmith worn flagstone floor",
+    "category": "Floors",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-wall",
+    "name": "Blacksmith braced timber wall",
+    "category": "Walls",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-window",
+    "name": "Blacksmith service window",
+    "category": "Walls",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-door",
+    "name": "Blacksmith workshop doorway",
+    "category": "Walls",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-forge",
+    "name": "Blacksmith forge and chimney",
+    "category": "Props",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-anvil",
+    "name": "Blacksmith anvil on stump",
+    "category": "Props",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-bench",
+    "name": "Blacksmith workbench and vice",
+    "category": "Props",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-trough",
+    "name": "Blacksmith quenching trough",
+    "category": "Props",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-rack",
+    "name": "Blacksmith hammer rack",
+    "category": "Props",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-gable",
+    "name": "Blacksmith timber gable",
+    "category": "Roofs",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-roof",
+    "name": "Blacksmith tiled roof section",
+    "category": "Roofs",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-roof-chimney",
+    "name": "Blacksmith chimney roof section",
+    "category": "Roofs",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
+  },
+  {
+    "id": "v-smith-canopy",
+    "name": "Blacksmith yard canopy",
+    "category": "Props",
+    "icon": "",
+    "hint": "Ironbrook blacksmith / original sculpt / modular workshop"
   }
 ];

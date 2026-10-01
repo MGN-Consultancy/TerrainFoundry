@@ -1,5 +1,5 @@
-// Assembly code: MIT. The imported OpenLOCK socket profile and socketed
-// derivatives are CC BY-NC 4.0; see third-party/openlock/NOTICE.md.
+// Assembly code: MIT. Official Printable Scenery template derivative.
+// Public CC BY-NC / MGN commercial grant: third-party/openlock/NOTICE.md.
 import {socketCut} from './openlock-profile.js';
 export {socketCut} from './openlock-profile.js';
 export const OPENLOCK_GRID=25.4;
@@ -17,9 +17,9 @@ export function baseSpec(geo,category='Props',type=''){
  const width=Math.max(25.4,Math.round((b.max.x-b.min.x)/25.4)*25.4);
  const depth=Math.max(25.4,Math.round((b.max.z-b.min.z)/25.4)*25.4);
  const scenic=!['Walls','Floors','Terrain','Water','Bridges'].includes(category)||['d-curved-wall','d-corner'].includes(type);
- if(scenic)return {revision:2,kind:'scenic',width:b.max.x-b.min.x,depth:b.max.z-b.min.z,height:0,ports:[]};
- if(category==='Walls')return {revision:2,kind:'wall',width,depth:12.7,height:8,ports:[{x:0,z:6.35,nx:0,nz:1,angle:-90}]};
- return {revision:2,kind:'floor',width,depth,height:8,ports:[
+ if(scenic)return {templateSource:'printable-scenery-8.6',revision:2,kind:'scenic',width:b.max.x-b.min.x,depth:b.max.z-b.min.z,height:0,ports:[]};
+ if(category==='Walls')return {templateSource:'printable-scenery-8.6',revision:2,kind:'wall',width,depth:12.7,height:8,ports:[{x:0,z:6.35,nx:0,nz:1,angle:-90}]};
+ return {templateSource:'printable-scenery-8.6',revision:2,kind:'floor',width,depth,height:8,ports:[
  {x:width/2,z:0,nx:1,nz:0,angle:0},{x:-width/2,z:0,nx:-1,nz:0,angle:180},
  {x:0,z:depth/2,nx:0,nz:1,angle:-90},{x:0,z:-depth/2,nx:0,nz:-1,angle:90}]};
 }

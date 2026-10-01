@@ -8,7 +8,7 @@ let client=await entry(clientName,{files:fileLists[clientName],sourceHash});
 if(process.env.TERRAIN_SCENERY_ONLY==='true'){
  const previous=JSON.parse(await fs.readFile('release/previous-channel.json','utf8')),payload=Buffer.from(previous.payload,'base64');if(!verify('RSA-SHA256',payload,await fs.readFile('release-config/update-public.pem'),Buffer.from(previous.signature,'base64')))throw Error('Previous channel signature invalid');const release=JSON.parse(payload);if(release.repository!==repo||release.client.sourceHash!==sourceHash)throw Error('Client code/catalogue changed: publish a normal release instead of scenery-only');client=release.client;
 }
-const release={schema:1,repository:repo,version:pkg.version,sequence:Date.now(),connector:'openlock-cc-by-nc-4.0',client,assets,launcher:await entry('TerrainFoundryLauncher.exe',{version:(product.launcherVersion||'1.0.0')+'.0'})};
+const release={schema:1,repository:repo,version:pkg.version,sequence:Date.now(),connector:'openlock-official-8.6',client,assets,launcher:await entry('TerrainFoundryLauncher.exe',{version:(product.launcherVersion||'1.0.0')+'.0'})};
 const key=process.env.TERRAIN_RELEASE_KEY||await fs.readFile(path.join(os.homedir(),'.terrain-foundry','release-signing-private.pem'),'utf8'),payload=Buffer.from(JSON.stringify(release)),signature=sign('RSA-SHA256',payload,key);
 await fs.writeFile(root+'/channel.json',JSON.stringify({payload:payload.toString('base64'),signature:signature.toString('base64')}));
 console.log('Signed release manifest for',tag,assets.length,'scenery packs');

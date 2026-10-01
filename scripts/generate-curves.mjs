@@ -23,14 +23,16 @@ if(process.argv.includes('--batch')){
  for(const k of plan.slice(start,start+4)){
   const t=12.7,R=k.radius+t,D=k.innerDepth+t,mid=k.radius+t/2,midD=k.innerDepth+t/2,angle=k.sweep*Math.PI/180,len=mid*angle;
   const r={family:k.recipe,feature:'wall',width:len,depth:t,height:50.8,variant:start+17,referenceName:'original'};
-  let s=wallShape(r).refineToLength(1.2).warp(p=>{const a=(p[0]/len+.5)*angle,z=p[2];p[0]=(mid-z)*Math.cos(a)-R/2;p[2]=(midD-z)*Math.sin(a)-D/2;});
+  // Trim decorative overhangs to the mating end planes before bending.
+  // Otherwise an end ornament can seal an otherwise correct socket mouth.
+  let s=wallShape(r).intersect(M.cube([len,200,200],true).translate([0,50,0])).refineToLength(1.2).warp(p=>{const a=(p[0]/len+.5)*angle,z=p[2];p[0]=(mid-z)*Math.cos(a)-R/2;p[2]=(midD-z)*Math.sin(a)-D/2;});
   const segments=k.sweep===45?16:32;const polys=[];for(let i=0;i<segments;i++){const a=angle*i/segments,b=angle*(i+1)/segments;polys.push([[k.radius*Math.cos(a)-R/2,k.innerDepth*Math.sin(a)-D/2],[R*Math.cos(a)-R/2,D*Math.sin(a)-D/2],[R*Math.cos(b)-R/2,D*Math.sin(b)-D/2],[k.radius*Math.cos(b)-R/2,k.innerDepth*Math.sin(b)-D/2]]);}
   const ports=[],put=(x,z,nx,nz,y,roll)=>ports.push({x,z,nx,nz,y,roll,angle:Math.atan2(-nz,nx)*180/Math.PI});
   // Existing elliptical floors have no curved-edge socket. Keep their geometry
   // compatible and use end-to-end wall connectors rather than inventing a mate.
   if(Math.abs(k.radius-k.innerDepth)<.001){const a=angle/2;put(k.radius*Math.cos(a)-R/2,k.radius*Math.sin(a)-D/2,-Math.cos(a),-Math.sin(a),3.5,0);}
   for(const y of [12.7,38.1]){put(mid-R/2,-D/2,0,-1,y,90);put(mid*Math.cos(angle)-R/2,midD*Math.sin(angle)-D/2,-Math.sin(angle),Math.cos(angle),y,90);}
-  const spec={revision:3,kind:'wall',width:R,depth:D,height:8,rotationStep:45,ports,footprints:polys};
+  const spec={templateSource:'printable-scenery-8.6',revision:3,kind:'wall',width:R,depth:D,height:8,rotationStep:45,ports,footprints:polys};
   function checked(s){const parts=s.decompose().sort((a,b)=>b.volume()-a.volume());if(s.status()!=='NoError'||!parts.length||parts.slice(1).reduce((v,p)=>v+Math.abs(p.volume()),0)>Math.min(5,parts[0].volume()*.001))throw Error(k.id+' disconnected '+parts.map(p=>p.volume()).join(','));return parts[0];}
   function encode(s){const d=cleanMeshData(solidData(s));const edges=new Map();for(let i=0;i<d.indices.length;i+=3)for(let j=0;j<3;j++){const a=d.indices[i+j],b=d.indices[i+(j+1)%3],key=a<b?a+','+b:b+','+a,e=edges.get(key)||[0,0];e[0]++;e[1]+=a<b?1:-1;edges.set(key,e);}if([...edges.values()].some(e=>e[0]!==2||e[1]!==0))throw Error(k.id+' topology');const p=Float32Array.from(d.positions),c=Float32Array.from(d.colors),i=Uint32Array.from(d.indices),data=Buffer.concat([Buffer.from(p.buffer),Buffer.from(c.buffer),Buffer.from(i.buffer)]);return {data,vertices:p.length/3,indices:i.length,length:data.length,volume:s.volume()};}
   s=checked(s);let raw;try{raw=encode(s);}catch(error){for(const tol of [.01,.003,.001]){const simple=s.simplify(tol);try{raw=encode(simple);s.delete();s=simple;break;}catch{simple.delete();}}if(!raw)throw error;}const c=checked(cutRangeSockets(s,spec)),connected=encode(c),bytes=Buffer.concat([raw.data,connected.data]);delete raw.data;delete connected.data;

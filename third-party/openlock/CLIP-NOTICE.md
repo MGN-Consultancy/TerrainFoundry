@@ -19,3 +19,6 @@ orientation and scale are unchanged. The export includes attribution and licence
 One clip is counted per matched horizontal port pair, plus one for the included
 floor/wall fit test. Free ports do not require clips. Vertical stacking pins and
 special-purpose clips are not included. Physical fit must be tested on the user's printer.
+
+
+The identical Clip 5.4 is also included in Printable Scenery’s official Tessellation Templates 8.6 archive. MGN Consultancy has a non-transferable commercial BSD grant for the OpenLOCK system: https://www.printablescenery.com/2026/10/01/mgn-consultancy/ . See MGN-COMMERCIAL-LICENSE.txt for all conditions and the disclaimer. Public CC BY-NC terms remain for other users unless separately licensed.

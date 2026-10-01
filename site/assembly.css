@@ -94,3 +94,4 @@ body.home.landing-page:before,body.home.landing-page:after{display:none}
 
 /* Preserve the scroll section during GPU loss; never jump the visitor away. */
 .scene-ready.scene-unavailable .assembly-stage{background:url('assets/scenery-backdrop.png') center/cover;mask-image:none}
+.assembly-stage .assembly-sequence{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}.sequence-ready.scene-unavailable .assembly-controls button{display:inline-block}

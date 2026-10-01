@@ -1,3 +1,9 @@
+# 1.4.1 — Startup guidance and release highlights
+
+The screenshot guide opens on every startup until you explicitly select “Skip this tutorial next time”. Closing or completing the guide no longer opts you out. Guide/F1 can reopen it and restore startup guidance.
+
+A bundled What’s new popup introduces each release and is remembered only after Got it is acknowledged. Release highlights appear before the tutorial, one dialog at a time. Preferences stay on your PC and work offline.
+
 # 1.4.0 — Offline getting-started guide and refreshed editor
 
 A six-step first-start walkthrough uses bundled screenshots of the real editor. Reopen it with Guide or F1; dismissal is remembered only on your PC. Covers placing, moving and raising pieces, camera controls, local saves and print packs. Screenshots can be enlarged.

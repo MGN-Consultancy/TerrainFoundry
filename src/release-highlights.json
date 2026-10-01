@@ -1,0 +1,18 @@
+{
+  "version": "1.4.1",
+  "title": "Your welcome guide, your choice",
+  "features": [
+    {
+      "title": "A guide whenever you need it",
+      "description": "The screenshot tutorial opens on startup until you choose “Skip this tutorial next time”. Closing it or finishing a walkthrough only dismisses it for this session."
+    },
+    {
+      "title": "See what changed after an update",
+      "description": "Key features appear once for each release. Choose “Got it” to acknowledge this version; the next release gets its own introduction."
+    },
+    {
+      "title": "Everything stays local",
+      "description": "These preferences and release highlights work offline. You can always reopen the tutorial from Guide or F1, and turn startup guidance back on there."
+    }
+  ]
+}

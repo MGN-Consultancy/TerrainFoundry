@@ -4,7 +4,7 @@ const fs=require('node:fs/promises'),path=require('node:path'),assert=require('n
  const dir=await fs.mkdtemp(path.join(require('node:os').tmpdir(),'terrain-underkeep-'));
  const app=await electron.launch({executablePath:process.env.TERRAIN_EXECUTABLE,args:[...(process.env.TERRAIN_EXECUTABLE?[]:['.']),`--user-data-dir=${dir}/profile`]});
  try{
-  const page=await app.firstWindow(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());await page.waitForSelector('#tutorial-dialog',{state:'attached'});if(await page.locator('#tutorial-dialog').isVisible())await page.locator('#tutorial-close').click();await page.waitForSelector('canvas',{timeout:120000});
+  const page=await app.firstWindow(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());await page.waitForSelector('#tutorial-dialog',{state:'attached'});if(await page.locator('#release-dialog').isVisible())await page.locator('#release-acknowledge').click();await page.waitForSelector('#tutorial-dialog',{state:'attached'});if(await page.locator('#tutorial-dialog').isVisible())await page.locator('#tutorial-close').click();await page.waitForSelector('canvas',{timeout:120000});
   await page.locator('#collection').selectOption('r-');assert.match(await page.locator('#library-count').textContent(),/24 of 431/);assert.equal(await page.locator('#kit .asset').count(),24);
   await page.locator('#more-assets').click();assert.match(await page.locator('#library-count').textContent(),/48 of 431/);
   await page.locator('#family').selectOption('Mine');assert.equal(await page.locator('#kit .asset').count(),20);await page.locator('#family').selectOption('All families');

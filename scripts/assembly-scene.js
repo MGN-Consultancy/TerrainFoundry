@@ -7,7 +7,7 @@ const travel=()=>Math.max(1,story.offsetHeight-pin.clientHeight);
 const progress=()=>reduce.matches?1:Math.max(0,Math.min(1,-story.getBoundingClientRect().top/travel()));
 const schedule=()=>{if(!document.hidden&&!frame)frame=requestAnimationFrame(()=>{frame=0;render?.(progress());});};
 async function init(){
- const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'});
+ const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power',preserveDrawingBuffer:true});
  renderer.setPixelRatio(Math.min(devicePixelRatio,matchMedia('(pointer:coarse)').matches?1.25:1.5));renderer.setClearColor(0,0);renderer.outputColorSpace=THREE.SRGBColorSpace;
  renderer.domElement.setAttribute('aria-hidden','true');stage.prepend(renderer.domElement);
  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(34,1,.1,2000);
@@ -26,13 +26,14 @@ async function init(){
  for(const z of [-25.4,25.4])add('wall-low',-57.15,z,Math.PI/2,.65,.94);
  const pad=new THREE.Mesh(new THREE.CylinderGeometry(105,108,3,96),new THREE.MeshStandardMaterial({color:0x182328,roughness:1}));pad.position.y=-3;scene.add(pad);
  let lastWidth=0,lastHeight=0;
- render=p=>{if(innerWidth<=900&&innerHeight>500){stage.style.top=(document.querySelector('.landing-copy').offsetHeight+25)+'px';}else stage.style.top='';const w=stage.clientWidth,h=stage.clientHeight;if(w<1||h<1)return;if(w!==lastWidth||h!==lastHeight){renderer.setSize(w,h,false);lastWidth=w;lastHeight=h;}camera.aspect=w/h;const d=camera.aspect<.9?340:285;camera.position.set(d*.75,d*.68,d);camera.lookAt(0,9,0);camera.updateProjectionMatrix();group.rotation.y=-.14+p*.14;for(const item of items){let t=Math.max(0,Math.min(1,(p-item.start)/(item.end-item.start)));t=t*t*(3-2*t);const gap=1-t;item.mesh.position.set(item.x+Math.sign(item.x)*gap*45,gap*(item.start>.4?55:15),item.z+Math.sign(item.z)*gap*45);}const step=p<.42?0:p<.72?1:p<.94?2:3;label.textContent=['01 / Scroll to lay the foundations','02 / Bring the walls together','03 / Connect your world','04 / Ready for your table'][step];story.dataset.stage=String(step);story.dataset.progress=p.toFixed(3);renderer.render(scene,camera);};
- renderer.domElement.addEventListener('webglcontextlost',()=>{story.classList.remove('scene-ready');story.classList.add('scene-unavailable');label.textContent='Original scenery. Built for your table.';render=null;});story.classList.add('scene-ready');schedule();
+ render=p=>{if(renderer.getContext().isContextLost())return;if(innerWidth<=900&&innerHeight>500){stage.style.top=(document.querySelector('.landing-copy').offsetHeight+25)+'px';}else stage.style.top='';const w=stage.clientWidth,h=stage.clientHeight;if(w<1||h<1)return;if(w!==lastWidth||h!==lastHeight){renderer.setSize(w,h,false);lastWidth=w;lastHeight=h;}camera.aspect=w/h;const d=camera.aspect<.9?340:285;camera.position.set(d*.75,d*.68,d);camera.lookAt(0,9,0);camera.updateProjectionMatrix();group.rotation.y=-.14+p*.14;for(const item of items){let t=Math.max(0,Math.min(1,(p-item.start)/(item.end-item.start)));t=t*t*(3-2*t);const gap=1-t;item.mesh.position.set(item.x+Math.sign(item.x)*gap*45,gap*(item.start>.4?55:15),item.z+Math.sign(item.z)*gap*45);}const step=p<.42?0:p<.72?1:p<.94?2:3;label.textContent=['01 / Scroll to lay the foundations','02 / Bring the walls together','03 / Connect your world','04 / Ready for your table'][step];story.dataset.stage=String(step);story.dataset.progress=p.toFixed(3);renderer.render(scene,camera);};
+ renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();story.classList.add('scene-unavailable');label.textContent='Original scenery. Built for your table.';});
+ renderer.domElement.addEventListener('webglcontextrestored',()=>{story.classList.remove('scene-unavailable');schedule();});story.classList.add('scene-ready');if(story.classList.contains('assembly-chapter')&&location.hash){document.getElementById(location.hash.slice(1))?.scrollIntoView({behavior:'instant'});}schedule();
 }
 addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);reduce.addEventListener('change',schedule);
 visualViewport?.addEventListener('resize',schedule);document.addEventListener('visibilitychange',schedule);
 new ResizeObserver(schedule).observe(document.querySelector('.landing-copy'));
 new ResizeObserver(schedule).observe(pin);
-document.querySelector('#skip-assembly').addEventListener('click',()=>{scrollTo({top:story.offsetTop+travel(),behavior:'instant'});schedule();});
+document.querySelector('#skip-assembly').addEventListener('click',event=>{const target=event.currentTarget.dataset.next;if(target){document.getElementById(target)?.scrollIntoView({behavior:'instant'});}else scrollTo({top:story.getBoundingClientRect().top+scrollY+travel(),behavior:'instant'});schedule();});
 init().catch(()=>{story.classList.add('scene-unavailable');label.textContent='Original scenery. Built for your table.';});
 

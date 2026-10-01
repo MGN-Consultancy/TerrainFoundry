@@ -9,7 +9,7 @@ Terrain Foundry application code is MIT licensed except the separately attribute
 - WiX 3: Microsoft Reciprocal License (https://github.com/wixtoolset/wix3). Installer build tool; not bundled as a library in the editor.
 - Microsoft Artifact Signing client and Windows SDK tools: Microsoft tool licences. Used only for signing official builds; not redistributed in the source repository or launcher.
 
-This release restores OpenLOCK for non-commercial use. The socket profile in src/openlock-profile.js is adapted from caitlynb/OpenSCAD-OpenLock, commit 2dc0e67caffe73901902541d93baaa5d804d961c. Printable Scenery created the bundled OpenLOCK Clip 5.4. Both contributions are attributed in third-party/openlock/ and licensed CC BY-NC 4.0. The source SCAD and original clip are preserved with their notices and full licence. Export translates the clip to the print origin; the socket port adapts the source to Manifold/Y-up and omits breakaway supports. Physical fit has not been verified. No separate commercial printing permission is supplied.
+This release restores OpenLOCK for non-commercial use. The socket profile in src/openlock-profile.js is adapted from caitlynb/OpenSCAD-OpenLock, commit 2dc0e67caffe73901902541d93baaa5d804d961c. Printable Scenery created the bundled OpenLOCK Clip 5.4. Both contributions are attributed in third-party/openlock/ and licensed CC BY-NC 4.0. The source SCAD and original clip are preserved with their notices and full licence. Export translates the clip to the print origin; the socket port adapts the source to Manifold/Y-up and omits breakaway supports. Physical fit has not been verified. MGN Consultancy’s separate Printable Scenery permission is documented below; it does not relicense the community socket code.
 
 No commercial Terrain Tinker meshes or textures are included. Scenery is generated from the original procedural modelling source in this repository. Generic architectural dimensions and shapes are used; this audit is not a legal opinion or a guarantee that no third-party intellectual-property claims could ever exist.
 
@@ -39,3 +39,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## MGN Consultancy commercial permission — 1 October 2026
+
+MGN Consultancy holds a non-transferable commercial BSD licence from Printable Scenery for the OpenLOCK system: https://www.printablescenery.com/2026/10/01/mgn-consultancy/. This does not transfer MGN Consultancy’s commercial licence to other users, license third-party scenery, or change the separate CC BY-NC community socket implementation currently bundled. OpenLOCK is by Printable Scenery: https://www.printablescenery.com/. See the published conditions and disclaimer.
+
+The published grant is reproduced in `third-party/openlock/MGN-COMMERCIAL-LICENSE.txt`. Its conditions and disclaimer must accompany relevant distributions. The official compatibility logo is reproduced unmodified; it is not CC0 artwork or an endorsement. Its source is https://www.printablescenery.com/wp-content/uploads/2024/01/image.png .

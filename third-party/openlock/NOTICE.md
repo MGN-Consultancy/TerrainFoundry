@@ -19,3 +19,10 @@ https://www.printablescenery.com/product/open-lock/
 https://www.printablescenery.com/2020/02/10/the-openlock-license/
 
 The pinned upstream support SCAD files are included. Upstream DemoSurface.scad is stored as demosurface.scad to match polyhedronhelper.scad on case-sensitive systems; its contents are unchanged. These are reference sources; the editor builds sockets using the attributed Manifold port.
+
+
+## MGN Consultancy commercial permission — 1 October 2026
+
+MGN Consultancy holds a non-transferable commercial BSD licence from Printable Scenery for the OpenLOCK system: https://www.printablescenery.com/2026/10/01/mgn-consultancy/. This does not transfer MGN Consultancy’s commercial licence to other users, license third-party scenery, or change the separate CC BY-NC community socket implementation currently bundled. OpenLOCK is by Printable Scenery: https://www.printablescenery.com/. See the published conditions and disclaimer.
+
+The published grant is reproduced in `third-party/openlock/MGN-COMMERCIAL-LICENSE.txt`. Its conditions and disclaimer must accompany relevant distributions. The official compatibility logo is reproduced unmodified; it is not CC0 artwork or an endorsement. Its source is https://www.printablescenery.com/wp-content/uploads/2024/01/image.png .

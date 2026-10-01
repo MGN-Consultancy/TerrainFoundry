@@ -29,3 +29,5 @@
 .offline-highlight strong{display:block;font-size:20px;line-height:1.35;color:var(--gold)}
 .offline-highlight p{font-size:15px;margin:8px 0;line-height:1.55}.offline-highlight small{display:block;color:var(--muted);font-size:12px;line-height:1.5}
 @media(prefers-reduced-motion:reduce){.button{transition:none}.button:hover:not(:disabled){transform:none}}
+
+.openlock-logo{max-width:100%;height:auto;margin:8px 0}#printing a{text-decoration:underline;text-underline-offset:3px}

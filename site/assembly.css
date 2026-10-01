@@ -40,3 +40,28 @@ body.home.landing-page:before,body.home.landing-page:after{display:none}
 @media(max-height:500px){.assembly-pin .landing-copy{width:47%}.assembly-stage{inset:0 0 0 42%}.assembly-pin .landing-intro,.assembly-pin .landing-promise,.assembly-pin .release-note{display:none}.assembly-pin h1{font-size:32px}.assembly-pin .landing-footer{padding:6px 24px}}
 @media(prefers-reduced-motion:reduce){.assembly-story.scene-ready{height:100svh}.assembly-controls button{display:none}}
 .scene-unavailable{height:100svh}.scene-unavailable .assembly-controls button{display:none}
+
+/* Safe areas and dynamic browser bars on iOS Safari and Android Chrome. */
+.assembly-pin{height:100dvh}
+.assembly-pin .site-header{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right));padding-top:max(16px,env(safe-area-inset-top))}
+.assembly-pin .landing-footer{padding-bottom:max(12px,env(safe-area-inset-bottom))}
+.assembly-stage canvas{touch-action:pan-y pinch-zoom}
+.scene-unavailable .assembly-stage canvas{display:none}
+@media(pointer:coarse){
+ .assembly-controls button,.assembly-pin .menu-toggle{min-height:44px;min-width:44px}
+ .assembly-pin nav a{min-height:44px;display:inline-flex;align-items:center}
+ .assembly-pin .landing-footer a{display:inline-flex;align-items:center;min-height:32px}
+}
+@media(max-width:900px){
+ .assembly-pin .landing{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+ .assembly-stage{right:0;bottom:70px}
+ .assembly-controls{right:max(20px,env(safe-area-inset-right))}
+}
+@media(max-height:500px) and (orientation:landscape){
+ .assembly-pin .site-header{padding-top:max(6px,env(safe-area-inset-top));padding-bottom:6px}
+ .assembly-pin .landing{padding-top:10px;padding-bottom:64px}
+ .assembly-pin .landing-footer{padding-top:4px;padding-bottom:max(4px,env(safe-area-inset-bottom))}
+ .assembly-stage{bottom:35px}
+ .assembly-controls{display:flex;align-items:center;gap:12px;bottom:3px}
+ .assembly-controls p{margin:0}.assembly-controls button{margin:0}
+}

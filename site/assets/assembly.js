@@ -9935,11 +9935,12 @@ async function Xo() {
 		][c], Bo.dataset.stage = String(c), Bo.dataset.progress = r.toFixed(3), e.render(t, n);
 	}, e.domElement.addEventListener("webglcontextlost", () => {
 		Bo.classList.remove("scene-ready"), Bo.classList.add("scene-unavailable"), Ho.textContent = "Original scenery. Built for your table.", Go = null;
-	}), Bo.classList.add("scene-ready"), Yo();
+	}), Bo.classList.add("scene-ready"), Bo.classList.contains("assembly-chapter") && location.hash && document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: "instant" }), Yo();
 }
-addEventListener("scroll", Yo, { passive: !0 }), addEventListener("resize", Yo), Uo.addEventListener("change", Yo), visualViewport?.addEventListener("resize", Yo), document.addEventListener("visibilitychange", Yo), new ResizeObserver(Yo).observe(document.querySelector(".landing-copy")), new ResizeObserver(Yo).observe(Wo), document.querySelector("#skip-assembly").addEventListener("click", () => {
-	scrollTo({
-		top: Bo.offsetTop + qo(),
+addEventListener("scroll", Yo, { passive: !0 }), addEventListener("resize", Yo), Uo.addEventListener("change", Yo), visualViewport?.addEventListener("resize", Yo), document.addEventListener("visibilitychange", Yo), new ResizeObserver(Yo).observe(document.querySelector(".landing-copy")), new ResizeObserver(Yo).observe(Wo), document.querySelector("#skip-assembly").addEventListener("click", (e) => {
+	let t = e.currentTarget.dataset.next;
+	t ? document.getElementById(t)?.scrollIntoView({ behavior: "instant" }) : scrollTo({
+		top: Bo.getBoundingClientRect().top + scrollY + qo(),
 		behavior: "instant"
 	}), Yo();
 }), Xo().catch(() => {

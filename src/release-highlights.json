@@ -1,18 +1,18 @@
 {
-  "version": "1.4.1",
-  "title": "Your welcome guide, your choice",
+  "version": "1.5.0",
+  "title": "A bigger space to find your terrain",
   "features": [
     {
-      "title": "A guide whenever you need it",
-      "description": "The screenshot tutorial opens on startup until you choose “Skip this tutorial next time”. Closing it or finishing a walkthrough only dismisses it for this session."
+      "title": "Browse by category",
+      "description": "All scenery is organised by what it is, rather than downloadable packs. Find floors, walls, openings, trees, plants, traps and more together."
     },
     {
-      "title": "See what changed after an update",
-      "description": "Key features appear once for each release. Choose “Got it” to acknowledge this version; the next release gets its own introduction."
+      "title": "Narrow it down",
+      "description": "Use subcategories such as Curved walls, Flowers or Cave entrances, and combine them with search."
     },
     {
-      "title": "Everything stays local",
-      "description": "These preferences and release highlights work offline. You can always reopen the tutorial from Guide or F1, and turn startup guidance back on there."
+      "title": "Expand your library",
+      "description": "Choose Expand library for larger previews in a spacious browsing window. Click a piece to return to your scene ready to place it. Your filters stay selected."
     }
   ]
 }

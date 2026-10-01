@@ -1,3 +1,7 @@
+# 1.5.0 — Categories and expanded asset browsing
+
+The asset library now groups all scenery by category and subcategory instead of pack. Search works across the complete library. Expand library opens a spacious grid with larger previews; selecting a piece returns to the scene ready to place it, preserving filters. Imported models have their own category. Existing asset IDs, saved scenes and print geometry are unchanged.
+
 # 1.4.1 — Startup guidance and release highlights
 
 The screenshot guide opens on every startup until you explicitly select “Skip this tutorial next time”. Closing or completing the guide no longer opts you out. Guide/F1 can reopen it and restore startup guidance.

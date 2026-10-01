@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "release": "1.5.0",
+  "release": "1.6.0",
   "policy": "Built-in asset IDs resolve to this installed catalogue; imported geometry stays in the project.",
   "assets": {
     "a-001": {
@@ -100637,6 +100637,352 @@
         ]
       },
       "sha256": "570363c71793da268ec0bd7d11661f8dcba088944be0ce62fcacdad6d5363576"
+    },
+    "n-grotto-flowstone-wall": {
+      "name": "Flowstone grotto wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "d523474ef8e6fc5e05b4cbc212e3ef7e26b5a4c2bc5707b8d2766a3fbec09485"
+    },
+    "n-grotto-crystal-wall": {
+      "name": "Crystal-veined grotto wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "6bb02f260a23d527bcace9f7da8c0a37eff5a21cfd75edebff51f6e521579a99"
+    },
+    "n-grotto-shelf-wall": {
+      "name": "Shelf-fungus grotto wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "40539a2d888ed1f22a89fc178eca87d484d8888a9052ee2586123895b1dab4b0"
+    },
+    "n-grotto-arch": {
+      "name": "Weathered grotto entrance",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "9efe67e0908d6901028f7f0131c4e86347210b9e13d676e8ffc418b5bedadbc9"
+    },
+    "n-grotto-flagstone": {
+      "name": "Fractured grotto floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "040faadd1fcb0c3d93ea269647a9990fe4236c13d10675331edca1b54d079aba"
+    },
+    "n-grotto-crystals": {
+      "name": "Quartz grotto crystal bed",
+      "category": "Terrain",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "7b67a228a5b0ccf2e868801bc751091c8fa6d6d186f6440449f23d450d4b6b62"
+    },
+    "n-grotto-mushrooms": {
+      "name": "Spotted grotto mushroom grove",
+      "category": "Terrain",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "a193c9fb3b69f0676ff4106e959310368a9069d7db80573f2957d7be9a253222"
+    },
+    "n-grotto-column": {
+      "name": "Fluted grotto stalagmite column",
+      "category": "Terrain",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "7f6f1da2e00f0f42b6c1da05c52bd5e78b6a003e03afa8ee6426f31514d8cd3f"
+    },
+    "n-grotto-pool": {
+      "name": "Mineral grotto pool",
+      "category": "Water",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "f3d08dfc00b568e7332a40e63dff113610b60f635771d5a1930a3c9f2345afd0"
+    },
+    "n-grotto-ramp": {
+      "name": "Eroded grotto ramp",
+      "category": "Terrain",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "9114f6d669810e0923385f27563f12b6617189823232ba3e58588829b9411b5f"
     },
     "q-quarry-wall": {
       "name": "Stratified quarry wall",

@@ -1,5 +1,5 @@
-# Terrain Foundry 1.5.1
+# Terrain Foundry 1.6.0
 
-The startup window now fits the active display’s usable area. The tutorial stays within the viewport, with its controls visible on small or scaled displays.
+Adds ten original grotto pieces with sculpted mineral relief, crystals, fungi and integrated OpenLOCK sockets. Search for **grotto** in the asset library.
 
-All scenery and saved-project formats remain unchanged. Verified all six guide steps at 100%, 125%, 150% and 200% browser zoom, plus existing onboarding preference and release acknowledgement checks.
+Includes three wall variants, an entrance, fractured floor, crystal bed, mushroom grove, stalagmite column, mineral pool and eroded ramp. All ten connected STL exports pass closed-geometry checks. Physical print and connector fit still require a printer fit test. Preview colours are not included in STL. Existing scenery IDs and connector layouts are preserved.

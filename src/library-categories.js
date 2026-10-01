@@ -14,7 +14,7 @@ export function classifyAsset(asset){
  if(category==='Doors & openings')subcategory=/window/.test(text)?'Windows':/cave|cavern|entrance/.test(text)?'Cave entrances':/gate|portcullis/.test(text)?'Gates':/arch/.test(text)?'Arches':'Doors & hatches';
  if(category==='Stairs & ramps')subcategory=/ladder/.test(text)?'Ladders':/ramp/.test(text)?'Ramps':'Stairs & risers';
  if(category==='Roofs')subcategory=/gable/.test(text)?'Gables':'Roof sections';
- if(category==='Terrain')subcategory=/sand|desert|dune/.test(text)?'Desert':/rock|boulder|cliff/.test(text)?'Rock & cliffs':'Grass & ground';
+ if(category==='Terrain')subcategory=/grotto/.test(text)?'Caves & grottos':/sand|desert|dune/.test(text)?'Desert':/rock|boulder|cliff/.test(text)?'Rock & cliffs':'Grass & ground';
  if(category==='Water')subcategory=/oasis/.test(text)?'Oasis':/pond|pool/.test(text)?'Pools':'Rivers & channels';
  if(category==='Bridges')subcategory=/wood|timber|rope/.test(text)?'Wooden bridges':'Stone bridges';
  if(category==='Trees & plants')subcategory=/stump|dead/.test(text)?'Dead trees & stumps':asset.id.startsWith('w-')?'Trees':/flower|dais|buttercup/.test(text)?'Flowers':'Shrubs & ground cover';

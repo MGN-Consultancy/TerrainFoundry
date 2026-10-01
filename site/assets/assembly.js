@@ -9851,17 +9851,18 @@ var zo = class {
 		let t = this.getContext();
 		t.drawingBufferColorSpace = H._getDrawingBufferColorSpace(e), t.unpackColorSpace = H._getUnpackColorSpace();
 	}
-}, Bo = document.querySelector(".assembly-story"), Vo = document.querySelector(".assembly-stage"), Ho = document.querySelector("#assembly-caption"), Uo = matchMedia("(prefers-reduced-motion: reduce)"), Wo, Go = 0, Ko = () => Uo.matches ? 1 : Math.max(0, Math.min(1, -Bo.getBoundingClientRect().top / (Bo.offsetHeight - innerHeight))), qo = () => {
-	Go ||= requestAnimationFrame(() => {
-		Go = 0, Wo?.(Ko());
-	});
+}, Bo = document.querySelector(".assembly-story"), Vo = document.querySelector(".assembly-stage"), Ho = document.querySelector("#assembly-caption"), Uo = matchMedia("(prefers-reduced-motion: reduce)"), Wo = document.querySelector(".assembly-pin"), Go, Ko = 0, qo = () => Math.max(1, Bo.offsetHeight - Wo.clientHeight), Jo = () => Uo.matches ? 1 : Math.max(0, Math.min(1, -Bo.getBoundingClientRect().top / qo())), Yo = () => {
+	!document.hidden && !Ko && (Ko = requestAnimationFrame(() => {
+		Ko = 0, Go?.(Jo());
+	}));
 };
-async function Jo() {
+async function Xo() {
 	let e = new zo({
 		antialias: !0,
-		alpha: !0
+		alpha: !0,
+		powerPreference: "low-power"
 	});
-	e.setPixelRatio(Math.min(devicePixelRatio, 1.5)), e.setClearColor(0, 0), e.outputColorSpace = y, e.domElement.setAttribute("aria-hidden", "true"), Vo.prepend(e.domElement);
+	e.setPixelRatio(Math.min(devicePixelRatio, matchMedia("(pointer:coarse)").matches ? 1.25 : 1.5)), e.setClearColor(0, 0), e.outputColorSpace = y, e.domElement.setAttribute("aria-hidden", "true"), Vo.prepend(e.domElement);
 	let t = new Ln(), n = new On(34, 1, .1, 2e3);
 	t.add(new mr(14478591, 5522482, 2.8));
 	let r = new xr(16770229, 4);
@@ -9910,10 +9911,13 @@ async function Jo() {
 		color: 1581864,
 		roughness: 1
 	}));
-	f.position.y = -3, t.add(f), Wo = (r) => {
+	f.position.y = -3, t.add(f);
+	let p = 0, m = 0;
+	Go = (r) => {
 		innerWidth <= 900 && innerHeight > 500 ? Vo.style.top = document.querySelector(".landing-copy").offsetHeight + 25 + "px" : Vo.style.top = "";
 		let i = Vo.clientWidth, o = Vo.clientHeight;
-		e.setSize(i, o, !1), n.aspect = i / o;
+		if (i < 1 || o < 1) return;
+		(i !== p || o !== m) && (e.setSize(i, o, !1), p = i, m = o), n.aspect = i / o;
 		let s = n.aspect < .9 ? 340 : 285;
 		n.position.set(s * .75, s * .68, s), n.lookAt(0, 9, 0), n.updateProjectionMatrix(), a.rotation.y = -.14 + r * .14;
 		for (let e of u) {
@@ -9930,15 +9934,15 @@ async function Jo() {
 			"04 / Ready for your table"
 		][c], Bo.dataset.stage = String(c), Bo.dataset.progress = r.toFixed(3), e.render(t, n);
 	}, e.domElement.addEventListener("webglcontextlost", () => {
-		Bo.classList.remove("scene-ready"), Wo = null;
-	}), Bo.classList.add("scene-ready"), qo();
+		Bo.classList.remove("scene-ready"), Bo.classList.add("scene-unavailable"), Ho.textContent = "Original scenery. Built for your table.", Go = null;
+	}), Bo.classList.add("scene-ready"), Yo();
 }
-addEventListener("scroll", qo, { passive: !0 }), addEventListener("resize", qo), Uo.addEventListener("change", qo), document.querySelector("#skip-assembly").addEventListener("click", () => {
+addEventListener("scroll", Yo, { passive: !0 }), addEventListener("resize", Yo), Uo.addEventListener("change", Yo), visualViewport?.addEventListener("resize", Yo), document.addEventListener("visibilitychange", Yo), new ResizeObserver(Yo).observe(document.querySelector(".landing-copy")), new ResizeObserver(Yo).observe(Wo), document.querySelector("#skip-assembly").addEventListener("click", () => {
 	scrollTo({
-		top: Bo.offsetTop + Bo.offsetHeight - innerHeight,
+		top: Bo.offsetTop + qo(),
 		behavior: "instant"
-	}), qo();
-}), Jo().catch(() => {
+	}), Yo();
+}), Xo().catch(() => {
 	Bo.classList.add("scene-unavailable"), Ho.textContent = "Original scenery. Built for your table.";
 });
 //#endregion

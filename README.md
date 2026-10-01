@@ -22,6 +22,8 @@ The launcher stores downloaded versions and self-updates in the installation fol
 
 Application code: **MIT**, except the attributed OpenLOCK profile. Original connector-free sculpture: **CC0-1.0**. OpenLOCK profiles, socketed derivatives and clips: **CC BY-NC 4.0**, non-commercial use with attribution. See [licence scope](LICENSE-SCOPE.md). Dependencies retain their own notices; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
+Version 1.4.0 adds a first-start screenshot guide (also available from Guide or F1) and refreshed editing controls. The guide is bundled offline and remembers dismissal locally.
+
 Version 1.3.0 replaces the community socket implementation with geometry derived directly from Printable Scenery’s official templates. MGN Consultancy holds the commercial licence linked in LICENSE-SCOPE.md. Public non-commercial terms remain available to other users. Your saved scene coordinates and asset IDs are retained. Previously printed Foundry Link pin pieces are a different connection system and must not be mixed with these OpenLOCK pieces. Print the supplied floor/wall/clip fit test first: physical fit has not yet been verified. Preview colours and bump maps do not appear in STL; sculpted relief does.
 
 ## Build from source

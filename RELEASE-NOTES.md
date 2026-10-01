@@ -1,3 +1,9 @@
+# 1.4.0 — Offline getting-started guide and refreshed editor
+
+A six-step first-start walkthrough uses bundled screenshots of the real editor. Reopen it with Guide or F1; dismissal is remembered only on your PC. Covers placing, moving and raising pieces, camera controls, local saves and print packs. Screenshots can be enlarged.
+
+Refreshed toolbars, consistent icons, clearer buttons and grouped example scenes make the workspace easier to use. Saved projects, scenery geometry and OpenLOCK sockets are unchanged. Editing and the guide work offline after installation; updates and fresh print estimates use the internet.
+
 # 1.3.0 — Official OpenLOCK templates
 
 All built-in connected scenery is rebuilt from Printable Scenery’s official template sockets. Saved scene IDs and layouts remain unchanged. Includes MGN Consultancy’s commercial licence, the official compatibility logo, attribution links and complete conditions/disclaimer in the client and print exports. Other users retain public OpenLOCK licence terms. Print the updated fit test before a large batch; physical fit is not yet verified.

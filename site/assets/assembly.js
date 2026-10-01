@@ -9860,7 +9860,8 @@ async function Xo() {
 	let e = new zo({
 		antialias: !0,
 		alpha: !0,
-		powerPreference: "low-power"
+		powerPreference: "low-power",
+		preserveDrawingBuffer: !0
 	});
 	e.setPixelRatio(Math.min(devicePixelRatio, matchMedia("(pointer:coarse)").matches ? 1.25 : 1.5)), e.setClearColor(0, 0), e.outputColorSpace = y, e.domElement.setAttribute("aria-hidden", "true"), Vo.prepend(e.domElement);
 	let t = new Ln(), n = new On(34, 1, .1, 2e3);
@@ -9914,6 +9915,7 @@ async function Xo() {
 	f.position.y = -3, t.add(f);
 	let p = 0, m = 0;
 	Go = (r) => {
+		if (e.getContext().isContextLost()) return;
 		innerWidth <= 900 && innerHeight > 500 ? Vo.style.top = document.querySelector(".landing-copy").offsetHeight + 25 + "px" : Vo.style.top = "";
 		let i = Vo.clientWidth, o = Vo.clientHeight;
 		if (i < 1 || o < 1) return;
@@ -9933,8 +9935,10 @@ async function Xo() {
 			"03 / Connect your world",
 			"04 / Ready for your table"
 		][c], Bo.dataset.stage = String(c), Bo.dataset.progress = r.toFixed(3), e.render(t, n);
-	}, e.domElement.addEventListener("webglcontextlost", () => {
-		Bo.classList.remove("scene-ready"), Bo.classList.add("scene-unavailable"), Ho.textContent = "Original scenery. Built for your table.", Go = null;
+	}, e.domElement.addEventListener("webglcontextlost", (e) => {
+		e.preventDefault(), Bo.classList.add("scene-unavailable"), Ho.textContent = "Original scenery. Built for your table.";
+	}), e.domElement.addEventListener("webglcontextrestored", () => {
+		Bo.classList.remove("scene-unavailable"), Yo();
 	}), Bo.classList.add("scene-ready"), Bo.classList.contains("assembly-chapter") && location.hash && document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: "instant" }), Yo();
 }
 addEventListener("scroll", Yo, { passive: !0 }), addEventListener("resize", Yo), Uo.addEventListener("change", Yo), visualViewport?.addEventListener("resize", Yo), document.addEventListener("visibilitychange", Yo), new ResizeObserver(Yo).observe(document.querySelector(".landing-copy")), new ResizeObserver(Yo).observe(Wo), document.querySelector("#skip-assembly").addEventListener("click", (e) => {

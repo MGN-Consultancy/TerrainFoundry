@@ -42,7 +42,7 @@ body.home.landing-page:before,body.home.landing-page:after{display:none}
 .scene-unavailable{height:100svh}.scene-unavailable .assembly-controls button{display:none}
 
 /* Safe areas and dynamic browser bars on iOS Safari and Android Chrome. */
-.assembly-pin{height:100dvh}
+.assembly-pin{height:100svh}
 .assembly-pin .site-header{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right));padding-top:max(16px,env(safe-area-inset-top))}
 .assembly-pin .landing-footer{padding-bottom:max(12px,env(safe-area-inset-bottom))}
 .assembly-stage canvas{touch-action:pan-y pinch-zoom}
@@ -69,7 +69,7 @@ body.home.landing-page:before,body.home.landing-page:after{display:none}
 /* The same scroll sequence introduces each public product/service page. */
 .assembly-chapter{height:min(760px,100svh)}
 .assembly-chapter.scene-ready{height:240svh}
-.assembly-chapter .assembly-pin{height:min(760px,100dvh);grid-template-rows:1fr}
+.assembly-chapter .assembly-pin{height:min(760px,100svh);grid-template-rows:1fr}
 .assembly-chapter .landing{padding-left:8%;padding-right:8%;display:flex;align-items:center}
 .assembly-chapter .landing-copy{pointer-events:auto}
 .assembly-chapter .landing-intro{max-width:480px}
@@ -91,3 +91,6 @@ body.home.landing-page:before,body.home.landing-page:after{display:none}
 .inner-page .print-panel label{min-width:0}
 .inner-page .print-panel select{max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .inner-page .print-panel select{appearance:none;padding-right:30px;background-image:linear-gradient(45deg,transparent 50%,#d6b575 50%),linear-gradient(135deg,#d6b575 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+
+/* Preserve the scroll section during GPU loss; never jump the visitor away. */
+.scene-ready.scene-unavailable .assembly-stage{background:url('assets/scenery-backdrop.png') center/cover;mask-image:none}

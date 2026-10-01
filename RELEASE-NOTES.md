@@ -1,6 +1,6 @@
 # 1.4.0 — Offline getting-started guide and refreshed editor
 
-A six-step first-start walkthrough uses bundled screenshots of the real editor. Reopen it with Guide or F1; completion is remembered only on your PC. Covers placing, moving and raising pieces, camera controls, local saves and print packs. Screenshots can be enlarged.
+A six-step first-start walkthrough uses bundled screenshots of the real editor. Reopen it with Guide or F1; dismissal is remembered only on your PC. Covers placing, moving and raising pieces, camera controls, local saves and print packs. Screenshots can be enlarged.
 
 Refreshed toolbars, consistent icons, clearer buttons and grouped example scenes make the workspace easier to use. Saved projects, scenery geometry and OpenLOCK sockets are unchanged. Editing and the guide work offline after installation; updates and fresh print estimates use the internet.
 

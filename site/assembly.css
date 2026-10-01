@@ -95,3 +95,14 @@ body.home.landing-page:before,body.home.landing-page:after{display:none}
 /* Preserve the scroll section during GPU loss; never jump the visitor away. */
 .scene-ready.scene-unavailable .assembly-stage{background:url('assets/scenery-backdrop.png') center/cover;mask-image:none}
 .assembly-stage .assembly-sequence{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}.sequence-ready.scene-unavailable .assembly-controls button{display:inline-block}
+
+/* A browser motion preference is a default, not a dead end for the visitor. */
+.assembly-story.scene-ready.motion-enabled{height:340svh}
+.assembly-chapter.scene-ready.motion-enabled{height:240svh}
+.assembly-story.scene-ready.motion-still{height:100svh}
+.assembly-chapter.scene-ready.motion-still{height:min(760px,100svh)}
+.assembly-controls #assembly-motion,.motion-enabled .assembly-controls button{display:inline-block}
+.motion-still #skip-assembly{display:none}
+.assembly-controls button+button{margin-left:8px}
+.assembly-controls #assembly-replay[hidden]{display:none}
+@media(max-height:500px){.assembly-controls{flex-wrap:wrap;max-width:90%}}

@@ -1,6 +1,7 @@
 export function validateWorld(p, validateScene) {
  if(p.kind!==undefined&&!['scene','world'].includes(p.kind))throw Error('Unknown project kind');
  if(p.kind!=='world'){if(p.world!==undefined)throw Error('World data requires a world project');return;}
+ if(p.version!==2)throw Error('World projects require version 2.');
  const w=p.world,finite=(n,min,max)=>Number.isFinite(n)&&n>=min&&n<=max;
  if(!w||!finite(w.widthMm,203.2,10000)||!finite(w.depthMm,203.2,10000)||!Array.isArray(w.levels)||!w.levels.length||w.levels.length>32||!Array.isArray(w.instances)||w.instances.length>1000||!Array.isArray(w.encounters)||w.encounters.length>30)throw Error('Invalid world settings');
  const ids=new Set();for(const l of w.levels){if(typeof l.id!=='string'||ids.has(l.id)||typeof l.name!=='string'||l.name.length>80||!finite(l.elevation,0,9000)||typeof l.visible!=='boolean')throw Error('Invalid world level');ids.add(l.id);}

@@ -21,7 +21,7 @@ export function placeEncounter(p,templateId,x,z){
  const level=activeLevel(p);if(!level.visible)throw Error('Show the active level before placing pieces.');
  const items=e.scene.items,cx=(Math.min(...items.map(i=>i.x))+Math.max(...items.map(i=>i.x)))/2,cz=(Math.min(...items.map(i=>i.z))+Math.max(...items.map(i=>i.z)))/2,base=Math.min(...items.map(i=>i.y));
  const group={id:id(),name:e.scene.name},assets={...p.assets},mapping={};
- for(const [key,a]of Object.entries(e.scene.assets||{})){let target=key;if(assets[key]&&JSON.stringify(assets[key])!==JSON.stringify(a))target='u-'+id();mapping[key]=target;assets[target]=structuredClone(a);}
+ for(const [key,a]of Object.entries(e.scene.assets||{})){let target=key;if(assets[key]&&JSON.stringify(assets[key])!==JSON.stringify(a)){const encoded=JSON.stringify(a);target=Object.keys(assets).find(k=>JSON.stringify(assets[k])===encoded)||'u-'+id();}mapping[key]=target;if(!assets[target])assets[target]=structuredClone(a);}
  const placed=items.map(i=>({...i,id:id(),type:mapping[i.type]||i.type,x:i.x-cx+x,z:i.z-cz+z,y:i.y-base+level.elevation,levelId:level.id,encounterId:group.id}));
  const [w,d]=tableSize(p);if(placed.some(i=>Math.abs(i.x*p.grid)>w/2||Math.abs(i.z*p.grid)>d/2))throw Error('Encounter piece centres extend beyond this table. Place it further inside.');
  const candidate={...p,assets,items:[...p.items,...placed],world:{...p.world,instances:[...p.world.instances,group]}};validateProject(candidate,false);

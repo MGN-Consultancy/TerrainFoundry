@@ -2,7 +2,7 @@
 const story=document.querySelector('.assembly-story'),stage=document.querySelector('.assembly-stage'),pin=document.querySelector('.assembly-pin'),copy=document.querySelector('.landing-copy'),label=document.querySelector('#assembly-caption');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)'),cache=new Map();
 const picture=new Image();picture.className='assembly-sequence';picture.alt='';picture.setAttribute('aria-hidden','true');picture.width=720;picture.height=580;
-let frame=0,wanted=0,shown=-1,motionChoice=null;
+let frame=0,wanted=0,shown=-1,motionChoice=true;
 const controls=document.querySelector('.assembly-controls');
 const motionButton=document.createElement('button');motionButton.type='button';motionButton.id='assembly-motion';
 const replayButton=document.createElement('button');replayButton.type='button';replayButton.id='assembly-replay';replayButton.textContent='Replay assembly ↑';
@@ -30,7 +30,7 @@ function update(){
  frame=0;if(innerWidth<=900&&innerHeight>500)stage.style.top=(copy.offsetHeight+25)+'px';else stage.style.top='';
  const p=!motionEnabled()?1:Math.max(0,Math.min(1,-story.getBoundingClientRect().top/travel()));wanted=Math.round(p*48);
  const step=p<.42?0:p<.72?1:p<.94?2:3;story.dataset.progress=p.toFixed(3);story.dataset.stage=String(step);
- replayButton.hidden=!motionEnabled()||p<.94;motionButton.hidden=motionEnabled()&&!reduce.matches;document.querySelector('#skip-assembly').hidden=motionEnabled()&&p>=.94&&!story.classList.contains('assembly-chapter');
+ replayButton.hidden=!motionEnabled()||p<.94;motionButton.hidden=false;document.querySelector('#skip-assembly').hidden=motionEnabled()&&p>=.94&&!story.classList.contains('assembly-chapter');
  label.textContent=!motionEnabled()?'Still image · animation is off':['01 / Scroll to lay the foundations','02 / Bring the walls together','03 / Connect your world','04 / Ready for your table'][step];
  if(innerWidth<=900)stage.style.bottom=(controls.offsetHeight+16)+'px';else stage.style.bottom='';
  if(shown!==wanted)paint(wanted);

@@ -86,3 +86,8 @@ body.home.landing-page:before,body.home.landing-page:after{display:none}
  .assembly-chapter .assembly-stage{bottom:50px}
 }
 @media(prefers-reduced-motion:reduce){.assembly-chapter.scene-ready{height:min(760px,100svh)}}
+
+/* Safari must constrain long native select labels to the form column. */
+.inner-page .print-panel label{min-width:0}
+.inner-page .print-panel select{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.inner-page .print-panel select{appearance:none;padding-right:30px;background-image:linear-gradient(45deg,transparent 50%,#d6b575 50%),linear-gradient(135deg,#d6b575 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat}

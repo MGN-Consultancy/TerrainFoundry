@@ -7,6 +7,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),os=req
  let app=await launch();
  try{
  const p=await app.firstWindow(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.route(/^https?:/,r=>r.abort());
+ await p.waitForSelector('#release-dialog[open]');await p.setViewportSize({width:1100,height:720});await p.screenshot({path:'test-results/release-highlights.png'});await p.keyboard.press('Escape');assert.ok(await p.locator('#release-dialog').isVisible());await p.locator('#release-acknowledge').click();
  await p.waitForSelector('#tutorial-dialog[open]');await app.evaluate(({dialog})=>{global.__saveCalls=0;dialog.showSaveDialog=async()=>{global.__saveCalls++;return{canceled:true};};});
  const initial=await p.locator('#count').textContent();
  for(const size of [{width:1440,height:900},{width:1100,height:720}]){
@@ -29,7 +30,16 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),os=req
  await p.locator('#tutorial-help').click();await p.keyboard.press('Escape');await p.keyboard.press('F1');await p.locator('#tutorial-close').click();
  const controls=await p.locator('header button').evaluateAll(bs=>bs.filter(b=>!b.hidden&&b.offsetWidth).map(b=>{const r=b.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom};}));assert.ok(controls.every(r=>r.left>=0&&r.right<=1100&&r.top>=0&&r.bottom<=78));
  await p.screenshot({path:'test-results/editor-1100.png'});assert.deepEqual(errors,[]);
- await stop(app);app=await launch();const p2=await app.firstWindow();await p2.waitForSelector('#tutorial-help');assert.equal(await p2.locator('#tutorial-dialog').evaluate(d=>d.open),false);await p2.locator('#tutorial-help').click();await p2.waitForSelector('#tutorial-dialog[open]');
- console.log('PASS first-start guide: six bundled screenshots, offline navigation, two window sizes, enlarge, shortcut isolation, unchanged scene, persistence and reopening.');
+ await stop(app);app=await launch();const p2=await app.firstWindow();await p2.waitForSelector('#tutorial-help');await p2.waitForSelector('#tutorial-dialog[open]');assert.equal(await p2.locator('#release-dialog').count(),0);
+ // Completing/closing does not opt out. Only the labelled checkbox does.
+ await p2.locator('#tutorial-skip').check();await p2.locator('#tutorial-close').click();await p2.reload();await p2.waitForSelector('#tutorial-help');assert.equal(await p2.locator('#tutorial-dialog').evaluate(d=>d.open),false);
+ await p2.locator('#tutorial-help').click();assert.ok(await p2.locator('#tutorial-skip').isChecked());await p2.locator('#tutorial-skip').uncheck();await p2.locator('#tutorial-close').click();await p2.reload();await p2.waitForSelector('#tutorial-dialog[open]');
+ // Old 1.4.0 automatic dismissal must not count as an explicit opt-out.
+ await p2.evaluate(()=>{localStorage.setItem('terrain-foundry-tutorial-seen-v1','seen');localStorage.removeItem('terrain-foundry-tutorial-skip-v2');});await p2.reload();await p2.waitForSelector('#tutorial-dialog[open]');
+ await p2.locator('#tutorial-skip').check();await p2.locator('#tutorial-close').click();
+ // Simulate an update using an older acknowledged version; tutorial opt-out remains independent.
+ await p2.evaluate(()=>localStorage.setItem('terrain-foundry-release-acknowledged','1.4.0'));await p2.reload();await p2.waitForSelector('#release-dialog[open]');assert.equal(await p2.locator('#tutorial-dialog').evaluate(d=>d.open),false);
+ await stop(app);app=await launch();const p3=await app.firstWindow();await p3.waitForSelector('#release-dialog[open]');await p3.locator('#release-acknowledge').click();assert.equal(await p3.locator('#tutorial-dialog').evaluate(d=>d.open),false);await p3.reload();await p3.waitForSelector('#tutorial-help');assert.equal(await p3.locator('#release-dialog').count(),0);assert.equal(await p3.locator('#count').textContent(),initial);
+ console.log('PASS first-start guide: six bundled screenshots, offline navigation, two window sizes, enlarge, shortcut isolation, unchanged scene, explicit skip/re-enable, legacy preference migration, repeated unacknowledged release and version-specific acknowledgement.');
  }finally{await stop(app);}
 })().catch(e=>{console.error(e);process.exit(1)});

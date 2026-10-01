@@ -6,7 +6,7 @@ try{const page=await app.firstWindow(),errors=[];page.on('dialog',d=>d.accept())
  await page.waitForFunction(()=>document.querySelector('#count').textContent==='12');
  assert.equal(await page.locator('#connectors').inputValue(),'openlock');assert.ok(await page.locator('#grid').isDisabled());
  assert.match(await page.locator('#connection-status').textContent(),/0 overlapping bases/);
- await page.waitForSelector('#tutorial-dialog[open]');await page.locator('#tutorial-close').click();await page.locator('#fit').click();await page.waitForTimeout(400);await page.screenshot({path:path.resolve('test-results/openlock-courtyard.png')});
+ await page.waitForSelector('#tutorial-dialog',{state:'attached'});if(await page.locator('#release-dialog').isVisible())await page.locator('#release-acknowledge').click();await page.waitForSelector('#tutorial-dialog[open]');await page.locator('#tutorial-close').click();await page.locator('#fit').click();await page.waitForTimeout(400);await page.screenshot({path:path.resolve('test-results/openlock-courtyard.png')});
  await page.locator('#sockets').click();await page.waitForTimeout(400);await page.screenshot({path:path.resolve('test-results/openlock-sockets.png')});await page.locator('#perspective').click();
  await app.evaluate(({dialog},dir)=>{dialog.showSaveDialog=async()=>({canceled:false,filePath:dir+'/openlock.terrain'});dialog.showOpenDialog=async(_,o)=>({canceled:false,filePaths:[o.properties.includes('openDirectory')?dir:dir+'/openlock.terrain']});},dir);
  await page.locator('#export').click();await page.locator('#confirm-print').click();await page.waitForFunction(()=>!document.querySelector('#print-dialog').open);

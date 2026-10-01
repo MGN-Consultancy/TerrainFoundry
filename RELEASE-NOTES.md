@@ -1,30 +1,5 @@
-# 1.5.0 — Categories and expanded asset browsing
+# Terrain Foundry 1.5.1
 
-The asset library now groups all scenery by category and subcategory instead of pack. Search works across the complete library. Expand library opens a spacious grid with larger previews; selecting a piece returns to the scene ready to place it, preserving filters. Imported models have their own category. Existing asset IDs, saved scenes and print geometry are unchanged.
+The startup window now fits the active display’s usable area. The tutorial stays within the viewport, with its controls visible on small or scaled displays.
 
-# 1.4.1 — Startup guidance and release highlights
-
-The screenshot guide opens on every startup until you explicitly select “Skip this tutorial next time”. Closing or completing the guide no longer opts you out. Guide/F1 can reopen it and restore startup guidance.
-
-A bundled What’s new popup introduces each release and is remembered only after Got it is acknowledged. Release highlights appear before the tutorial, one dialog at a time. Preferences stay on your PC and work offline.
-
-# 1.4.0 — Offline getting-started guide and refreshed editor
-
-A six-step first-start walkthrough uses bundled screenshots of the real editor. Reopen it with Guide or F1; dismissal is remembered only on your PC. Covers placing, moving and raising pieces, camera controls, local saves and print packs. Screenshots can be enlarged.
-
-Refreshed toolbars, consistent icons, clearer buttons and grouped example scenes make the workspace easier to use. Saved projects, scenery geometry and OpenLOCK sockets are unchanged. Editing and the guide work offline after installation; updates and fresh print estimates use the internet.
-
-# 1.3.0 — Official OpenLOCK templates
-
-All built-in connected scenery is rebuilt from Printable Scenery’s official template sockets. Saved scene IDs and layouts remain unchanged. Includes MGN Consultancy’s commercial licence, the official compatibility logo, attribution links and complete conditions/disclaimer in the client and print exports. Other users retain public OpenLOCK licence terms. Print the updated fit test before a large batch; physical fit is not yet verified.
-
-# Terrain Foundry 1.2.0 — print cost estimates
-
-- Adds **Estimate print costs** beside **Prepare print pack** in the desktop editor.
-- Uses the website's current pricing calculation for PLA/PETG, A1/H2S, colour, UK delivery and optional parts discounts. Website rate/calculation changes take effect without a client rebuild while the estimate API remains compatible.
-- Measures the scene's export locally, including connectors and fit-test quantities. Only part measurements, identifiers and quantities are sent; STL geometry, scene layouts and personal details are not uploaded for estimates.
-- Shows the website breakdown and a clearly dated cached estimate when offline, only for an identical pack and print options. A new scene or option needs an online calculation first.
-- Saves a ready-to-upload ZIP and opens the print website when requested. The user chooses whether to upload it there.
-- Print requests remain test-only. No payment, printing or shipping is enabled. Estimated weight/time are not Bambu Studio slice results.
-
-Existing OpenLOCK scenery, non-commercial licensing, sculpted detail and saved scene layouts are unchanged. Physical connector fit still requires the supplied test print. The signed launcher offers the new client as an interactive update.
+All scenery and saved-project formats remain unchanged. Verified all six guide steps at 100%, 125%, 150% and 200% browser zoom, plus existing onboarding preference and release acknowledgement checks.

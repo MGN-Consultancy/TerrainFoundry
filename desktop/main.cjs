@@ -1,4 +1,4 @@
-const {app,BrowserWindow,dialog,ipcMain,Menu,shell}=require('electron');
+const {app,BrowserWindow,dialog,ipcMain,Menu,shell,screen}=require('electron');
 const fs=require('node:fs/promises');const path=require('node:path');
 const {createProjectStore}=require('./project-store.cjs');
 const {createSceneryReader}=require('./scenery-store.cjs');
@@ -18,7 +18,9 @@ app.whenReady().then(async()=>{
  ipcMain.handle('save-recovery',(_,data)=>store.saveRecovery(data));
  ipcMain.handle('storage-info',()=>({projects:store.projects,backups:store.backups,recovery:store.recovery,version:app.getVersion()}));
  Menu.setApplicationMenu(null);
- const win=new BrowserWindow({width:1500,height:960,minWidth:1100,minHeight:720,title:'Terrain Foundry',backgroundColor:'#111820',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
+ const area=screen.getDisplayNearestPoint(screen.getCursorScreenPoint()).workArea;
+ const width=Math.min(1500,area.width),height=Math.min(960,area.height);
+ const win=new BrowserWindow({x:area.x+Math.floor((area.width-width)/2),y:area.y+Math.floor((area.height-height)/2),width,height,minWidth:Math.min(1100,area.width),minHeight:Math.min(720,area.height),title:'Terrain Foundry',backgroundColor:'#111820',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
  win.webContents.setWindowOpenHandler(({url})=>{if(['https://www.printablescenery.com/','https://www.printablescenery.com/2026/10/01/mgn-consultancy/'].includes(url))void shell.openExternal(url);return {action:'deny'};});
  win.webContents.on('will-navigate',e=>e.preventDefault());
  ipcMain.handle('print-website-pack',async(_,data)=>{if(!(data instanceof Uint8Array)||data.length>40*1024*1024||data[0]!==80||data[1]!==75)throw Error('Print pack must be a ZIP under 40 MB.');const result=await dialog.showSaveDialog(win,{title:'Save the print pack to upload on the website',defaultPath:path.join(app.getPath('documents'),'TerrainFoundry-print-quote.zip'),filters:[{name:'ZIP print pack',extensions:['zip']}]});if(result.canceled)return null;await fs.writeFile(result.filePath,data);await shell.openExternal('https://terrainfoundry.co.uk/#print-service');return result.filePath;});

@@ -1,18 +1,10 @@
 {
-  "version": "1.5.0",
-  "title": "A bigger space to find your terrain",
+  "version": "1.5.1",
+  "title": "A guide that fits your screen",
   "features": [
     {
-      "title": "Browse by category",
-      "description": "All scenery is organised by what it is, rather than downloadable packs. Find floors, walls, openings, trees, plants, traps and more together."
-    },
-    {
-      "title": "Narrow it down",
-      "description": "Use subcategories such as Curved walls, Flowers or Cave entrances, and combine them with search."
-    },
-    {
-      "title": "Expand your library",
-      "description": "Choose Expand library for larger previews in a spacious browsing window. Click a piece to return to your scene ready to place it. Your filters stay selected."
+      "title": "Comfortable first start",
+      "description": "The editor opens within your display\u2019s usable area. The tutorial keeps its controls visible on smaller or scaled screens, with scrolling inside the guide when needed."
     }
   ]
 }

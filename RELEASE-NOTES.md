@@ -1,3 +1,7 @@
+# 1.3.0 — Official OpenLOCK templates
+
+All built-in connected scenery is rebuilt from Printable Scenery’s official template sockets. Saved scene IDs and layouts remain unchanged. Includes MGN Consultancy’s commercial licence, the official compatibility logo, attribution links and complete conditions/disclaimer in the client and print exports. Other users retain public OpenLOCK licence terms. Print the updated fit test before a large batch; physical fit is not yet verified.
+
 # Terrain Foundry 1.2.0 — print cost estimates
 
 - Adds **Estimate print costs** beside **Prepare print pack** in the desktop editor.

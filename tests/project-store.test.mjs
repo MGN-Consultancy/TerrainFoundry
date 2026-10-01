@@ -9,7 +9,7 @@ test('saving keeps an exact backup and recovery survives new app instances',asyn
  await assert.rejects(store.save(path.join(options.installRoot,'unsafe.terrain'),old),/outside/);await assert.rejects(store.save(target,'not json'));assert.equal(await fs.readFile(target,'utf8'),next);
 });
 test('asset quality may change while IDs and connector layouts remain stable',()=>{
- const upgraded=structuredClone(catalog);upgraded.assets['c-window'].sha256='new-sculpt-and-material-revision';verifyCompatibility(catalog,upgraded);
+ const upgraded=structuredClone(catalog);upgraded.assets['c-window'].sha256='new-sculpt-and-material-revision';upgraded.assets['c-window'].connection.templateSource='official-provenance-only';verifyCompatibility(catalog,upgraded);
  const scene=JSON.parse(project('Saved scene')),snapshot=JSON.stringify(scene);const reopened=validateProject(JSON.parse(snapshot));assert.deepEqual(reopened,scene);assert.equal(upgraded.assets[reopened.items[0].type].sha256,'new-sculpt-and-material-revision');assert.equal(JSON.stringify(scene),snapshot);assert.equal(scene.assets,undefined);
  delete upgraded.assets['c-window'];assert.throws(()=>verifyCompatibility(catalog,upgraded),/Retain its ID/);const incompatible=structuredClone(catalog);incompatible.assets['c-window'].connection.ports[0].x+=1;assert.throws(()=>verifyCompatibility(catalog,incompatible),/Connection layout changed/);
 });

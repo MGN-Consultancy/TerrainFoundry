@@ -10,8 +10,9 @@ async function walk(dir){for(const e of await fs.readdir(dir,{withFileTypes:true
  }
 }}
 await walk(root);
-for(const name of ['LICENSE-SCOPE.md','third-party/openlock/NOTICE.md','third-party/openlock/CLIP-NOTICE.md','third-party/openlock/CLIP-LICENSE.txt'])if(!await fs.stat(path.join(root,name)).catch(()=>null))bad.push('Missing attribution/licence: '+name);
+for(const name of ['LICENSE-SCOPE.md','third-party/openlock/NOTICE.md','third-party/openlock/CLIP-NOTICE.md','third-party/openlock/CLIP-LICENSE.txt','third-party/openlock/MGN-COMMERCIAL-LICENSE.txt','third-party/openlock/official/provenance.json'])if(!await fs.stat(path.join(root,name)).catch(()=>null))bad.push('Missing attribution/licence: '+name);
 const clip=await fs.readFile(path.join(root,'third-party/openlock/OpenLOCK_Clip_v5.4.stl'));
 if(createHash('sha256').update(clip).digest('hex')!=='50d2e770f52f6c6836d157b4351b39a6b6733ddb625b2cb08611866965fe7cd6')bad.push('OpenLOCK clip differs from attributed upstream file');
+if(await fs.stat(path.join(root,'third-party/openlock/OpenLock.scad')).catch(()=>null))bad.push('Obsolete community socket source');
 if(bad.length)throw Error('Public-source audit failed: '+bad.join(', '));
-console.log('No installer binaries or private keys; attributed OpenLOCK source, original clip and non-commercial licence present.');
+console.log('No installer binaries or private keys; attributed OpenLOCK source, original clip, public terms and MGN commercial grant present.');

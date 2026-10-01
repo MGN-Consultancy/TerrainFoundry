@@ -1,0 +1,39 @@
+{
+  "product": "https://www.printablescenery.com/product/open-lock/",
+  "version": "8.6",
+  "archiveSha256": "056cdf2d9668e1654adbb62ad700e33f613bbc9c03f872dfb35b7b48d5f86dc4",
+  "retrieved": "2026-10-01",
+  "commercialLicense": "https://www.printablescenery.com/2026/10/01/mgn-consultancy/",
+  "files": [
+    {
+      "archiveEntry": "Primary-Floors/E-TRP-v7.6.stl",
+      "file": "E-TRP-v7.6.stl",
+      "sha256": "6809aab3fdc64f78d651faaba01049b306b54dad7ba9feaa28e038dba25dc17a"
+    },
+    {
+      "archiveEntry": "Primary-Floors/A-TRP-v7.0.stl",
+      "file": "A-TRP-v7.0.stl",
+      "sha256": "0dcfe28f74db2fd7a8b5e65ad4b7e903d769fb4ca0b616e9210bf70182c11fa3"
+    },
+    {
+      "archiveEntry": "Primary-Walls/A-Wall-TRP-v7.2.stl",
+      "file": "A-Wall-TRP-v7.2.stl",
+      "sha256": "0637608c0f43628334107861eca6582f5d626e411d4e24df7b8e44b7633af4de"
+    },
+    {
+      "archiveEntry": "Legacy/BOOL TOOLS/A-RPG-Wall-BoolTool-v83.stl",
+      "file": "A-RPG-Wall-BoolTool-v83.stl",
+      "sha256": "1d460180d7415ebcc68d6be9dfb59dfb9d672a1bd0854fd3a4d92444716a1c65"
+    },
+    {
+      "archiveEntry": "Legacy/BOOL TOOLS/A-RPG-Wall-Bumps-v83.stl",
+      "file": "A-RPG-Wall-Bumps-v83.stl",
+      "sha256": "644103db0d7eca1be8644877e748f0e0292a65d265d89a708a52032c7ffb79cb"
+    },
+    {
+      "archiveEntry": "OpenLOCK_Clip_v5.4.stl",
+      "file": "OpenLOCK_Clip_v5.4.stl",
+      "sha256": "50d2e770f52f6c6836d157b4351b39a6b6733ddb625b2cb08611866965fe7cd6"
+    }
+  ]
+}

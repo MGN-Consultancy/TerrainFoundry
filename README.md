@@ -22,7 +22,7 @@ The launcher stores downloaded versions and self-updates in the installation fol
 
 Application code: **MIT**, except the attributed OpenLOCK profile. Original connector-free sculpture: **CC0-1.0**. OpenLOCK profiles, socketed derivatives and clips: **CC BY-NC 4.0**, non-commercial use with attribution. See [licence scope](LICENSE-SCOPE.md). Dependencies retain their own notices; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
-This edition restores the OpenLOCK socket profile and Printable Scenery Clip 5.4 for personal, non-commercial printing. Your saved scene coordinates and asset IDs are retained. Previously printed Foundry Link pin pieces are a different connection system and must not be mixed with these OpenLOCK pieces. Print the supplied floor/wall/clip fit test first: physical fit has not yet been verified. Preview colours and bump maps do not appear in STL; sculpted relief does.
+Version 1.3.0 replaces the community socket implementation with geometry derived directly from Printable Scenery’s official templates. MGN Consultancy holds the commercial licence linked in LICENSE-SCOPE.md. Public non-commercial terms remain available to other users. Your saved scene coordinates and asset IDs are retained. Previously printed Foundry Link pin pieces are a different connection system and must not be mixed with these OpenLOCK pieces. Print the supplied floor/wall/clip fit test first: physical fit has not yet been verified. Preview colours and bump maps do not appear in STL; sculpted relief does.
 
 ## Build from source
 
@@ -46,7 +46,7 @@ The editor saves locally and has no telemetry, cloud project storage or account 
 
 ## Optional print and ship service
 
-The website now includes a print-pack quote form, separate from the offline editor. The service reads STL geometry and quantities, offers a chosen PLA colour, calculates a quote and integrates with PayPal and workshop email notifications. Paid ordering stays disabled: this OpenLOCK edition includes non-commercial parts. Commercial permissions covering the relevant model and connector rights, followed by rates, terms and provider configuration, are required before any paid printing. See [print-service/README.md](print-service/README.md) for local tests, the no-payment demo, hosting and activation requirements. Normal editor use never uploads a scene.
+The website now includes a print-pack quote form, separate from the offline editor. The service reads STL geometry and quantities, offers a chosen PLA colour, calculates a quote and integrates with PayPal and workshop email notifications. MGN Consultancy operates paid printing under its non-transferable Printable Scenery commercial licence. Imported models still require their own permissions. See [print-service/README.md](print-service/README.md) for local tests, the no-payment demo, hosting and activation requirements. Normal editor use never uploads a scene.
 
 ## Estimate printing from the editor
 

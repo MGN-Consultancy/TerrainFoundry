@@ -1,6 +1,6 @@
 import {footprintsOverlap} from './footprints.js';
 import {connectionSpec} from './geometry.js';
-export const CONNECTOR_NOTICE='OpenLOCK socket profile adapted from https://github.com/caitlynb/OpenSCAD-OpenLock (caitlynb); clip by Printable Scenery: https://www.thingiverse.com/thing:1833963 . Socketed derivatives and clips: CC BY-NC 4.0, non-commercial use only, with attribution. https://creativecommons.org/licenses/by-nc/4.0/ . Print a fit test first; physical fit is not yet verified.';
+export const CONNECTOR_NOTICE="OpenLOCK system, official tessellation templates 8.6 and Clip 5.4 by Printable Scenery (https://www.printablescenery.com/). Terrain Foundry sockets are derived directly from the official A-TRP-v7.0 template; two sacrificial entrance supports are omitted. MGN Consultancy uses the system under its non-transferable commercial BSD licence: https://www.printablescenery.com/2026/10/01/mgn-consultancy/. The MGN licence is not transferred to recipients. Other users retain the public CC BY-NC 4.0 terms unless they obtain their own commercial permission. Original connector-free Terrain Foundry sculpts are CC0; imported models retain their own rights. Print a fit test first; physical fit is not yet verified.";
 export function worldPorts(item,assets={}){
  const s=connectionSpec(item.type,assets);if(!s)return [];
  const r=item.rotation*Math.PI/180,c=Math.cos(r),sn=Math.sin(r);

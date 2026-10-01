@@ -119,3 +119,5 @@ express Statement of Purpose.
  d. Affirmer understands and acknowledges that Creative Commons is not a
     party to this document and has no duty or obligation with respect to
     this CC0 or use of the Work.
+
+MGN Consultancy uses the official Printable Scenery OpenLOCK templates under its non-transferable commercial grant. See LICENSE-SCOPE.md and third-party/openlock/MGN-COMMERCIAL-LICENSE.txt. This does not transfer that commercial grant to other users.

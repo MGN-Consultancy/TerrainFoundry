@@ -96,7 +96,7 @@ export function rangeSpec(r){const w=r.width,d=r.depth,ports=[],add=(x,z,nx,nz,a
  else if(r.category==='Walls'){add(0,d/2,0,1,-90);if(d>=25.4)add(0,-d/2,0,-1,90);vertical(w/2,0,1,0,0);vertical(-w/2,0,-1,0,180);}
  else if(r.shape==='corner'){add(0,-d/2,0,-1,90);add(-w/2,0,-1,0,180);}
  else {if(d>=25.4){add(w/2,0,1,0,0);add(-w/2,0,-1,0,180);}if(w>=25.4){add(0,d/2,0,1,-90);if(d>=25.4)add(0,-d/2,0,-1,90);}}
- return {revision:3,kind:r.category==='Walls'?'wall':r.feature==='column'?'column':'floor',width:w,depth:d,height:8,ports,footprints:footprint(r)};
+ return {templateSource:'printable-scenery-8.6',revision:3,kind:r.category==='Walls'?'wall':r.feature==='column'?'column':'floor',width:w,depth:d,height:8,ports,footprints:footprint(r)};
 }
 export function cutRangeSockets(s,spec){const raw=socketCut(wasm).translate([0,-3.5,0]);const cuts=spec.ports.map(p=>raw.rotate([p.roll,0,0]).rotate([0,p.angle,0]).translate([p.x,p.y,p.z]));const result=cuts.length?s.subtract(U(cuts)):s;raw.delete();return result;}
 

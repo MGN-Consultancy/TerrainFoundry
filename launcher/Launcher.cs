@@ -1,5 +1,5 @@
 using System;using System.IO;using System.IO.Compression;using System.Net;using System.Net.Http;using System.Linq;using System.Text;using System.Collections.Generic;using System.Security.Cryptography;using System.Diagnostics;using System.Threading;using System.Threading.Tasks;using System.Web.Script.Serialization;using System.Windows.Forms;
-[assembly:System.Reflection.AssemblyVersion("1.2.0.0")]
+[assembly:System.Reflection.AssemblyVersion("1.3.0.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
  public class Launcher:Form {
@@ -25,7 +25,7 @@ namespace TerrainFoundry {
    Icon=System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
    Text="Terrain Foundry - MGN Consultancy";Width=620;Height=420;MinimumSize=new System.Drawing.Size(620,420);StartPosition=FormStartPosition.CenterScreen;
    Font=new System.Drawing.Font("Segoe UI",10);BackColor=System.Drawing.Color.FromArgb(16,39,31);ForeColor=System.Drawing.Color.FromArgb(244,220,160);
-   var publisher=new Label{Dock=DockStyle.Top,Height=68,Padding=new Padding(24,12,24,0),Text="TERRAIN FOUNDRY\nMGN CONSULTANCY LIMITED - Local projects - OpenLOCK: non-commercial"};
+   var publisher=new Label{Dock=DockStyle.Top,Height=68,Padding=new Padding(24,12,24,0),Text="TERRAIN FOUNDRY\nMGN CONSULTANCY LIMITED - Local projects - Official OpenLOCK - MGN commercially licensed"};
    var location=new Label{Dock=DockStyle.Bottom,Height=44,Padding=new Padding(24,2,24,2),AutoEllipsis=true,Text="Installation folder:\n"+Root};
    var actions=new FlowLayoutPanel{Dock=DockStyle.Bottom,Height=60,Padding=new Padding(24,8,0,8)};actions.Controls.Add(play);
    var progressArea=new Panel{Dock=DockStyle.Bottom,Height=28,Padding=new Padding(24,6,24,6)};progressArea.Controls.Add(progress);

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "release": "1.6.0",
+  "release": "1.7.0",
   "policy": "Built-in asset IDs resolve to this installed catalogue; imported geometry stays in the project.",
   "assets": {
     "a-001": {
@@ -104882,6 +104882,241 @@
         "ports": []
       },
       "sha256": "264940225e059c5c8261a03b5ac1e5f2273c565967ef57ebfbaf4bc6dcb91164"
+    },
+    "v-smith-floor": {
+      "name": "Blacksmith worn flagstone floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "b8760a449c9dc96e6ab3ea47391be821ee024c24abcb895040da18ed7e177712"
+    },
+    "v-smith-wall": {
+      "name": "Blacksmith braced timber wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "fa98d6f9bcaa8332662badb4eed612423314c4adf0c4ca1c0a35c5da2d5a05b8"
+    },
+    "v-smith-window": {
+      "name": "Blacksmith service window",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "a4c2e565e52df0e64cb699df1954779b06ceee5d6b17866108a9f0a358e48cdd"
+    },
+    "v-smith-door": {
+      "name": "Blacksmith workshop doorway",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "f051011142d830237977a9518f70fefe86453ba02092b8e2bf75b8e67f9911e3"
+    },
+    "v-smith-forge": {
+      "name": "Blacksmith forge and chimney",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 35,
+        "depth": 30.5,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "094349aa8b57085acfce58bf93f9651c641cedfc8ff222eee420a999b33dcafa"
+    },
+    "v-smith-anvil": {
+      "name": "Blacksmith anvil on stump",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 26,
+        "depth": 15,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "2da16e1adf62e19aba007de725337a356abf668983efd70a41e09a55c0e33624"
+    },
+    "v-smith-bench": {
+      "name": "Blacksmith workbench and vice",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 32,
+        "depth": 15.555000305175781,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "1b10cfb0b2c2a733aa6e018729cfade9fe0fcd8bc1133534bfa56e7a7d5e91a2"
+    },
+    "v-smith-trough": {
+      "name": "Blacksmith quenching trough",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 30,
+        "depth": 15.199999809265137,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "874d85b318775cc9dedd637c032fc042169939bf4734100246fb339576ad2992"
+    },
+    "v-smith-rack": {
+      "name": "Blacksmith hammer rack",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 29,
+        "depth": 10.088099956512451,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "e1bd5660f4c979f8b3b80ba5d3cbfea1b419854db1762ee3413173d3e57afd57"
+    },
+    "v-smith-gable": {
+      "name": "Blacksmith timber gable",
+      "category": "Roofs",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 128.1468048095703,
+        "depth": 8.089499950408936,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "0994699a419e7e8726472124909493af66e6a37f876de354e07cd45c3ea253ab"
+    },
+    "v-smith-roof": {
+      "name": "Blacksmith tiled roof section",
+      "category": "Roofs",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 131.0522003173828,
+        "depth": 57.22049903869629,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "9f05e798d598b321572a8c36693eeeb247c8fc628b59d1d1e6c2a54dd7e2721e"
+    },
+    "v-smith-roof-chimney": {
+      "name": "Blacksmith chimney roof section",
+      "category": "Roofs",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 131.0522003173828,
+        "depth": 57.22049903869629,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "7ba55066e3a31e99d4dfa0d7751b6d23bed9cc98146559b28a2038c453eabc7c"
+    },
+    "v-smith-canopy": {
+      "name": "Blacksmith yard canopy",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 2,
+        "kind": "scenic",
+        "width": 50.79999923706055,
+        "depth": 31.083499908447266,
+        "height": 0,
+        "ports": []
+      },
+      "sha256": "287efda369680c5c28eb351d53e91a7c6dc687665dca54c90c915270a6577aa0"
     },
     "floor": {
       "name": "Stone floor",

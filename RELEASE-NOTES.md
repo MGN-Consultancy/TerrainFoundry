@@ -1,5 +1,5 @@
-# Terrain Foundry 1.6.0
+# Terrain Foundry 1.7.0
 
-Adds ten original grotto pieces with sculpted mineral relief, crystals, fungi and integrated OpenLOCK sockets. Search for **grotto** in the asset library.
+Adds Ironbrook blacksmith: thirteen original modular pieces and an assembled example scene. Includes worn flagstone, braced walls, doorway and service window, two removable tiled roof variants, gable, forge/chimney, anvil, workbench, quenching trough, tool rack and yard canopy.
 
-Includes three wall variants, an entrance, fractured floor, crystal bed, mushroom grove, stalagmite column, mineral pool and eroded ramp. All ten connected STL exports pass closed-geometry checks. Physical print and connector fit still require a printer fit test. Preview colours are not included in STL. Existing scenery IDs and connector layouts are preserved.
+Search **blacksmith** or load **Ironbrook blacksmith** from Example scenes. Floors and walls use integrated OpenLOCK; furniture is freestanding and roofs rest on the walls. Sculpted wood grain and masonry export with the geometry. Preview colours do not export to STL. All thirteen STLs pass geometry validation; physical fit and supports still need a test print. Existing asset IDs and connector layouts remain unchanged.

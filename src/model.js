@@ -57,3 +57,5 @@ export function caveDemo(){const p=defaults();p.name='Hollowdeep Cavern';const a
 
 
 
+
+export function blacksmithDemo(){const p=defaults();p.name='Ironbrook blacksmith';const add=(t,x,z,r=0,y=0)=>p.items.push({...piece('v-smith-'+t,x,z,r,y),color:'#ffffff'});for(const x of [-1,1])for(const z of [-1,1])add('floor',x,z);for(const x of [-1,1]){add('wall',x,-2.25);add(x<0?'door':'window',x,2.25,180);}for(const z of [-1,1]){add('wall',-2.25,z,90);add('window',2.25,z,270);}add('gable',0,-2.25,0,51);add('gable',0,2.25,180,51);add('roof-chimney',0,-1.125,0,51);add('roof',0,1.125,0,51);add('forge',-.9,-1.1,0,9.6);add('anvil',-.8,.4,0,9.6);add('bench',.8,-1.2,0,9.6);add('trough',.9,.7,0,9.6);add('rack',-1.4,-.3,90,9.6);return p;}

@@ -15,7 +15,10 @@ export function connectionReport(project){
  if(project.connectors!=='openlock')return {matches:[],overlaps:[],freePorts:0};
  const ports=project.items.flatMap(i=>worldPorts(i,project.assets)),matches=[],used=new Set(),cells=new Map();
  for(const p of ports){const key=[p.x,p.y,p.z].map(n=>Math.round(n*100)).join(',');const bucket=cells.get(key)||[];for(const q of bucket){if(p.piece!==q.piece&&p.roll===q.roll&&!used.has(q)&&!used.has(p)&&p.nx*q.nx+p.nz*q.nz<-.9999){matches.push({a:p,b:q});used.add(p);used.add(q);break;}}bucket.push(p);cells.set(key,bucket);}
- const overlaps=[];for(let i=0;i<project.items.length;i++)for(let j=i+1;j<project.items.length;j++)if(overlap(project.items[i],project.items[j],project.assets))overlaps.push([project.items[i].id,project.items[j].id]);
+ // Sweep horizontal bounds before checking polygon intersections on larger worlds.
+ const entries=project.items.flatMap((item,index)=>{const s=connectionSpec(item.type,project.assets);if(!s?.ports.length)return [];const a=item.rotation*Math.PI/180,c=Math.cos(a),sn=Math.sin(a),shapes=s.footprints||[[[-s.width/2,-s.depth/2],[s.width/2,-s.depth/2],[s.width/2,s.depth/2],[-s.width/2,s.depth/2]]],points=shapes.flat().map(([x,z])=>[item.x*25.4+c*x+sn*z,item.z*25.4-sn*x+c*z]);return [{item,index,s,minX:Math.min(...points.map(p=>p[0])),maxX:Math.max(...points.map(p=>p[0])),minZ:Math.min(...points.map(p=>p[1])),maxZ:Math.max(...points.map(p=>p[1]))}];}).sort((a,b)=>a.minX-b.minX);
+ const pairs=[];for(let i=0;i<entries.length;i++)for(let j=i+1;j<entries.length;j++){const a=entries[i],b=entries[j];if(b.minX>=a.maxX-.01)break;if(a.minZ>=b.maxZ-.01||b.minZ>=a.maxZ-.01||Math.abs(a.item.y-b.item.y)>=8-.01)continue;if(footprintsOverlap(a.item,a.s,b.item,b.s))pairs.push([Math.min(a.index,b.index),Math.max(a.index,b.index)]);}
+ const overlaps=pairs.sort((a,b)=>a[0]-b[0]||a[1]-b[1]).map(([i,j])=>[project.items[i].id,project.items[j].id]);
  return {matches,overlaps,freePorts:ports.length-used.size};
 }
 

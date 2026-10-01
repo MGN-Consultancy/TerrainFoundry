@@ -4,13 +4,23 @@ An offline Windows desktop workshop for designing modular tabletop terrain and e
 
 **No account. No signup. No cloud saves.** Your scenes and imported models stay on your computer.
 
-- 644 original built-in scenery pieces: dungeon rooms, castles, caves, outdoor terrain, rivers, bridges, trees and planted grass.
+- 667 original built-in scenery pieces: dungeon rooms, castles, caves, outdoor terrain, rivers, bridges, trees and planted grass.
 - Drag-and-drop building, movement and elevation, curved walls, 45-degree sections and broad two-tile-radius bends.
 - Local editable projects and recovery files.
 - Separate STL pieces, quantities and attributed non-commercial OpenLOCK clips in print exports.
 - Small signed Windows launcher. Client and scenery downloads are cached separately and verified before activation. Offline opening remains available when an update cannot be downloaded.
 
 [Website](https://terrainfoundry.co.uk) · [Downloads](https://github.com/MGN-Consultancy/TerrainFoundry/releases) · [Issues](https://github.com/MGN-Consultancy/TerrainFoundry/issues)
+
+## World builder
+
+Version 1.8.0 adds local worlds alongside encounter scenes. Open **World builder…** above the terrain library to create an empty world or turn your current scene into one. Choose a table preset (3 × 3, 4 × 4, 6 × 4 or 8 × 4 feet, or 180 × 90 cm) or enter custom dimensions in millimetres. **Fit table** frames the entire play area.
+
+Save buildings and encounters as `.scene.terrain` files, then use **Add saved scene…** inside a world. Click or drag an encounter onto the table; hold Shift for more placements. Each placement is an independent group: selecting any of its pieces moves, rotates, duplicates or raises the group together. Use **Edit pieces separately** to dissolve a group. Add roads, trees and other individual scenery from the usual terrain library.
+
+In **Levels & table**, name your layers and set their elevation in millimetres. Start underground at 0 mm and put a village on an upper level. New pieces use the active level; changing a level's elevation shifts its contents, preserving relative prop heights. Hide an upper level while working below it. **Save this level as a scene…** makes a village or encounter reusable in another world; **Save encounter…** saves a selected placement separately.
+
+Worlds save as `.world.terrain`, include their encounter templates and imported models, and work offline. Existing version-1 scenes still open. Version-2 worlds require client 1.8.0 or later. Worlds support 5,000 placed pieces, 30 reusable scene templates and 32 levels, with a table up to 10 metres per side. Actual performance depends on geometry and your computer. Print exports include all levels, including hidden ones; geometry is exported as individual pieces rather than a single table-size solid. Very large website print orders must be split to meet the service's upload and quantity limits.
 
 ## Installation
 

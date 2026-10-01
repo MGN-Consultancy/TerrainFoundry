@@ -12,7 +12,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),os=req
  const initial=await p.locator('#count').textContent();
  for(const size of [{width:1440,height:900},{width:1100,height:720}]){
   await p.setViewportSize(size);
-  for(let i=0;i<6;i++){
+  for(let i=0;i<await p.locator('.tutorial-steps button').count();i++){
    await p.locator('.tutorial-steps button').nth(i).click();
    await p.waitForFunction(()=>{const i=document.querySelector('#tutorial-image');return i.complete&&i.naturalWidth>0;});
    const bounds=await p.locator('#tutorial-dialog').boundingBox();assert.ok(bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.width<=size.width+1&&bounds.y+bounds.height<=size.height+1);
@@ -40,6 +40,6 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),os=req
  // Simulate an update using an older acknowledged version; tutorial opt-out remains independent.
  await p2.evaluate(()=>localStorage.setItem('terrain-foundry-release-acknowledged','1.4.0'));await p2.reload();await p2.waitForSelector('#release-dialog[open]');assert.equal(await p2.locator('#tutorial-dialog').evaluate(d=>d.open),false);
  await stop(app);app=await launch();const p3=await app.firstWindow();await p3.waitForSelector('#release-dialog[open]');await p3.locator('#release-acknowledge').click();assert.equal(await p3.locator('#tutorial-dialog').evaluate(d=>d.open),false);await p3.reload();await p3.waitForSelector('#tutorial-help');assert.equal(await p3.locator('#release-dialog').count(),0);assert.equal(await p3.locator('#count').textContent(),initial);
- console.log('PASS first-start guide: six bundled screenshots, offline navigation, two window sizes, enlarge, shortcut isolation, unchanged scene, explicit skip/re-enable, legacy preference migration, repeated unacknowledged release and version-specific acknowledgement.');
+ console.log('PASS first-start guide: seven bundled screenshots, offline navigation, two window sizes, enlarge, shortcut isolation, unchanged scene, explicit skip/re-enable, legacy preference migration, repeated unacknowledged release and version-specific acknowledgement.');
  }finally{await stop(app);}
 })().catch(e=>{console.error(e);process.exit(1)});

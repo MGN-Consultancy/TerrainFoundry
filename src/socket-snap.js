@@ -10,7 +10,8 @@ export function snapPlacement(project,type,point,rotations){
    if(a.roll!==b.roll||Math.abs(a.y-b.y)>.01||a.nx*b.nx+a.nz*b.nz>-.999)continue;
    const d=Math.hypot(a.x-b.x,a.z-b.z);if(d>=distance)continue;
    const placed={...candidate,x:point.x+(b.x-a.x)/25.4,z:point.z+(b.z-a.z)/25.4};
-   if(Math.abs(placed.x)>project.board/2||Math.abs(placed.z)>project.board/2||project.items.some(i=>overlap(placed,i,project.assets)))continue;
+   const width=project.world?.widthMm/project.grid||project.board,depth=project.world?.depthMm/project.grid||project.board;
+   if(Math.abs(placed.x)>width/2||Math.abs(placed.z)>depth/2||project.items.some(i=>overlap(placed,i,project.assets)))continue;
    distance=d;best={x:Math.round(placed.x*1e6)/1e6,z:Math.round(placed.z*1e6)/1e6,y:placed.y,rotation};
   }
  }

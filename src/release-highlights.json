@@ -1,14 +1,18 @@
 {
-  "version": "1.7.0",
-  "title": "Welcome to Ironbrook blacksmith",
+  "version": "1.8.0",
+  "title": "Build your entire tabletop world",
   "features": [
     {
-      "title": "A complete modular workshop",
-      "description": "Load Ironbrook blacksmith from Example scenes, or search blacksmith for thirteen original pieces. Hide roofs to arrange the forge, anvil, workbench, trough and tools."
+      "title": "Scenes become reusable encounters",
+      "description": "Add locally saved scenes to a world, place multiple buildings or encounters, and move, rotate or elevate each placement as a group. Encounter templates and imported geometry travel inside your world file."
     },
     {
-      "title": "Connect the building to your world",
-      "description": "Floors and walls use integrated OpenLOCK sockets. The removable roof rests on the walls; furnishings stand directly on the floor without added connector bases."
+      "title": "Tables and underground levels",
+      "description": "Choose 3 × 3, 4 × 4, 6 × 4 or 8 × 4 ft tables, a dining table, or a custom size. Add named levels, hide upper layers to work underground, and save a level as a reusable scene."
+    },
+    {
+      "title": "Your world stays on your PC",
+      "description": "Worlds use separate local project files, recovery and backups. Existing scenes still open. Use Fit table to see the whole layout; every level is included when exporting a print pack."
     }
   ]
 }

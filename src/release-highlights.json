@@ -1,10 +1,14 @@
 {
-  "version": "1.5.1",
-  "title": "A guide that fits your screen",
+  "version": "1.6.0",
+  "title": "Explore the mineral grottos",
   "features": [
     {
-      "title": "Comfortable first start",
-      "description": "The editor opens within your display\u2019s usable area. The tutorial keeps its controls visible on smaller or scaled screens, with scrolling inside the guide when needed."
+      "title": "Ten new original cave pieces",
+      "description": "Search for grotto to find flowstone and crystal walls, fungi, a weathered entrance, rocky floors, a mineral pool, a fluted column and an eroded ramp."
+    },
+    {
+      "title": "Sculpted detail and OpenLOCK",
+      "description": "The relief is part of the printable geometry. Every new piece includes integrated official-template OpenLOCK sockets. Fit-test your printer before a full scene."
     }
   ]
 }

@@ -5,8 +5,8 @@ const fs=require('node:fs/promises'),path=require('node:path'),assert=require('n
  const app=await electron.launch({executablePath:process.env.TERRAIN_EXECUTABLE,args:[...(process.env.TERRAIN_EXECUTABLE?[]:['.']),`--user-data-dir=${dir}/profile`]});
  try{
   const page=await app.firstWindow(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());await page.waitForSelector('#tutorial-dialog',{state:'attached'});if(await page.locator('#release-dialog').isVisible())await page.locator('#release-acknowledge').click();await page.waitForSelector('#tutorial-dialog',{state:'attached'});if(await page.locator('#tutorial-dialog').isVisible())await page.locator('#tutorial-close').click();await page.waitForSelector('canvas',{timeout:120000});
-  await page.locator('#asset-category').selectOption('All');assert.match(await page.locator('#library-count').textContent(),/24 of 644/);assert.equal(await page.locator('#kit .asset').count(),24);
-  await page.locator('#more-assets').click();assert.match(await page.locator('#library-count').textContent(),/48 of 644/);
+  await page.locator('#asset-category').selectOption('All');assert.match(await page.locator('#library-count').textContent(),/24 of 654/);assert.equal(await page.locator('#kit .asset').count(),24);
+  await page.locator('#more-assets').click();assert.match(await page.locator('#library-count').textContent(),/48 of 654/);
   await page.locator('#search').fill('Mine');assert.ok(await page.locator('#kit .asset').count()>0);await page.locator('#search').fill('');
   await page.locator('#search').fill('E-TRP-TrackMine-X');assert.equal(await page.locator('#kit .asset').count(),1);assert.equal(await page.locator('#kit .asset').getAttribute('data-asset'),'r-106');
   const project={version:1,name:'Underkeep inspection',grid:25.4,connectors:'openlock',connectorRevision:2,board:32,printer:{x:256,y:256,z:256},items:['r-002','r-033','r-052','r-100','r-108','r-137','r-158','r-222','r-324','r-356','r-336','r-431'].map((type,i)=>({id:'review-'+i,type,x:(i%4-1.5)*6,z:(Math.floor(i/4)-1)*6,y:0,rotation:0,color:'#ffffff'}))};

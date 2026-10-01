@@ -1,0 +1,42 @@
+/* Scroll drives the model, without intercepting wheel or touch gestures. */
+body.home.landing-page{display:block;height:auto;min-height:100svh;background:#0b151c}
+body.home.landing-page:before,body.home.landing-page:after{display:none}
+.assembly-story{height:100svh;position:relative}.assembly-story.scene-ready{height:340svh}
+.assembly-pin{position:sticky;top:0;height:100svh;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;background:radial-gradient(ellipse at 75% 48%,#25363e 0,#111f28 48%,#091219 100%)}
+.assembly-pin .site-header{position:relative;z-index:5;padding-top:16px;padding-bottom:16px}
+.assembly-pin .landing{position:relative;min-height:0;isolation:isolate;padding-top:24px;padding-bottom:70px;max-width:none;width:100%;box-sizing:border-box}
+.assembly-pin .landing-copy{position:relative;z-index:2;width:40%;max-width:590px;pointer-events:none}
+.assembly-pin .landing-copy a{pointer-events:auto}
+.assembly-pin h1{font-size:clamp(40px,4.1vw,80px)}
+.assembly-pin .landing-intro{font-size:clamp(15px,1.2vw,19px)}
+.assembly-stage{position:absolute;inset:0 0 0 37%;background:url('assets/scenery-backdrop.png') center/cover;mask-image:linear-gradient(90deg,transparent,#000 20%)}
+.scene-ready .assembly-stage{background:none;mask-image:none}
+.assembly-stage canvas{display:block;width:100%;height:100%}
+.assembly-controls{position:absolute;bottom:22px;right:5%;text-align:right;z-index:3;color:#d6bd83}
+.assembly-controls p{font-size:18px;font-weight:700;margin:0 0 5px}
+.assembly-controls span{display:block;font-size:12px;color:#adbdc4}
+.assembly-controls button{margin-top:10px;border:1px solid #77817e;border-radius:20px;background:#14252e;color:#f5e7c9;padding:7px 15px;cursor:pointer}
+.assembly-controls button:hover{background:#29404b}
+.assembly-controls button:focus-visible{outline:3px solid #f3d399;outline-offset:3px}
+.assembly-pin .landing-footer{position:relative;background:#0b161ee6;z-index:3}
+@media(max-width:900px){
+ .assembly-pin .landing{display:block;padding:20px 24px 0}
+ .assembly-pin .landing-copy{width:100%;max-width:600px}
+ .assembly-pin h1{font-size:clamp(32px,6vw,46px);margin-bottom:10px}
+ .assembly-pin .landing-intro{max-width:540px;font-size:14px;line-height:1.45;margin-bottom:14px}
+ .assembly-pin .landing-small{display:none}
+ .assembly-pin .landing-promise{margin-top:12px;font-size:11px}
+ .assembly-pin .release-note{font-size:10px;margin:8px 0}
+ .assembly-stage{inset:210px -5% 28px 0;mask-image:none}
+ .assembly-controls{bottom:8px;right:24px}
+ .assembly-controls p{font-size:13px}
+ .assembly-controls span{display:none}
+ .assembly-controls button{font-size:11px;margin-top:5px;padding:5px 10px}
+ .assembly-pin .landing-footer{font-size:10px;padding:10px 24px;gap:6px}
+ .assembly-pin .site-header{padding:12px 24px}
+}
+@media(max-height:740px) and (min-width:901px){.assembly-pin h1{font-size:44px}.assembly-pin .landing-small{display:none}.assembly-pin .landing{padding-top:10px}.assembly-pin .landing-promise{margin-top:14px}}
+@media(max-width:900px) and (max-height:730px){.assembly-pin .landing-intro{display:none}.assembly-stage{top:165px}.assembly-pin .landing-promise{margin-top:8px}.assembly-pin h1{font-size:32px}}
+@media(max-height:500px){.assembly-pin .landing-copy{width:47%}.assembly-stage{inset:0 0 0 42%}.assembly-pin .landing-intro,.assembly-pin .landing-promise,.assembly-pin .release-note{display:none}.assembly-pin h1{font-size:32px}.assembly-pin .landing-footer{padding:6px 24px}}
+@media(prefers-reduced-motion:reduce){.assembly-story.scene-ready{height:100svh}.assembly-controls button{display:none}}
+.scene-unavailable{height:100svh}.scene-unavailable .assembly-controls button{display:none}

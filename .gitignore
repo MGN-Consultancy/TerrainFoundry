@@ -28,3 +28,6 @@ src/generated/*.json
 !src/generated/builtin-index.json
 !src/generated/dungeon-range-index.json
 
+
+# Local provider credentials must never enter source control.
+meshy.txt

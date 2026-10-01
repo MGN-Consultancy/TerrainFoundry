@@ -1,3 +1,15 @@
+# Terrain Foundry 1.8.0
+
+Build a whole gaming table from reusable locally saved scenes. Add scenes to a world library and place independent encounter groups; move, rotate, duplicate and elevate complete buildings together, with individual scenery and roads between them.
+
+- Rectangular table presets and custom dimensions, with a Fit table camera.
+- Named elevation levels, independent visibility, and scene export for a complete level or selected encounter.
+- Local version-2 world files embed templates and imported meshes. Version-1 scenes remain supported; recovery and backups support both formats.
+- World grids retain the 25.4 mm OpenLOCK spacing. Group movement preserves internal connector alignment; sockets can still snap between individual pieces.
+- Three existing grotto walls are trimmed flat at the print plane; this is a print-preparation correction, not the pending detailed grotto remaster.
+
+World building and scene reuse work without internet. Hidden levels remain in print packs. Print a connector fit test before a full build; physical fit remains unverified. The detailed grotto remaster and replacement website animation assets are still awaiting an actual-mesh quality prototype.
+
 # Terrain Foundry 1.7.0
 
 Adds Ironbrook blacksmith: thirteen original modular pieces and an assembled example scene. Includes worn flagstone, braced walls, doorway and service window, two removable tiled roof variants, gable, forge/chimney, anvil, workbench, quenching trough, tool rack and yard canopy.

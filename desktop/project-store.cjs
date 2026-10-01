@@ -2,7 +2,7 @@ const fs=require('node:fs/promises');
 const path=require('node:path');
 const {randomUUID,createHash}=require('node:crypto');
 const MAX_BYTES=100000000;
-function check(data){if(typeof data!=='string'||Buffer.byteLength(data)>MAX_BYTES)throw Error('Project exceeds the 100 MB limit');const p=JSON.parse(data);if(p.version!==1||!Array.isArray(p.items)||typeof p.name!=='string')throw Error('Invalid project');return data;}
+function check(data){if(typeof data!=='string'||Buffer.byteLength(data)>MAX_BYTES)throw Error('Project exceeds the 100 MB limit');const p=JSON.parse(data);if((![1,2].includes(p.version)||(p.version===2&&p.kind!=='world'))||!Array.isArray(p.items)||typeof p.name!=='string')throw Error('Invalid project');return data;}
 async function atomicWrite(file,data){const temp=file+'.'+randomUUID()+'.tmp';try{await fs.writeFile(temp,data,{flag:'wx'});await fs.rename(temp,file);}finally{await fs.unlink(temp).catch(()=>{});}}
 function createProjectStore({userData,documents,installRoot}){
  const projects=path.join(documents,'Terrain Foundry','Projects'),recovery=path.join(userData,'projects','recovery.terrain'),backups=path.join(userData,'projects','backups');

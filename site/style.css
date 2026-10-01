@@ -31,3 +31,9 @@
 @media(prefers-reduced-motion:reduce){.button{transition:none}.button:hover:not(:disabled){transform:none}}
 
 .openlock-logo{max-width:100%;height:auto;margin:8px 0}#printing a{text-decoration:underline;text-underline-offset:3px}
+
+/* Our product promise, not a third-party privacy certification. */
+.offline-badge{display:inline-flex;align-items:center;gap:13px;max-width:100%;margin-top:25px;padding:14px 19px;border:1px solid #9cba84;border-radius:20px;background:linear-gradient(145deg,#344b34,#1b2c21);box-shadow:inset 0 1px 0 #ffffff20,0 4px 0 #101c14,0 8px 20px #0003;text-decoration:none;color:#e1edcd}
+.offline-badge svg{width:44px;height:44px;flex:none;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.offline-badge strong{display:block;font-size:15px;letter-spacing:.1em;line-height:1.5}.offline-badge small{display:block;font-size:12px;line-height:1.6;color:#c3d2b9}.offline-badge:hover{border-color:#d6b575}.offline-badge:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+#offline-choice{scroll-margin-top:25px}.offline-promise{margin-top:13px;border-top:1px solid #ffffff26;padding-top:11px}.offline-promise summary{cursor:pointer;color:var(--gold);font-size:14px}.offline-promise p{font-size:14px}.offline-promise a,.print-service .quiet a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:420px){.offline-badge{padding:12px;gap:10px}.offline-badge strong{font-size:13px;letter-spacing:.07em}.offline-badge small{font-size:11px}}

@@ -4,7 +4,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=r
  const dir=await fs.mkdtemp(path.join(require('node:os').tmpdir(),'terrain-clips-'));
  const app=await electron.launch({executablePath:process.env.TERRAIN_EXECUTABLE,args:[...(process.env.TERRAIN_EXECUTABLE?[]:['.']),`--user-data-dir=${dir}/profile`]});
  try{
-  const page=await app.firstWindow(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.waitForSelector('#connection-status');
+  const page=await app.firstWindow(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.waitForSelector('#tutorial-dialog',{state:'attached'});if(await page.locator('#tutorial-dialog').isVisible())await page.locator('#tutorial-close').click();await page.waitForSelector('#connection-status');
   await app.evaluate(({dialog},dir)=>{dialog.showOpenDialog=async()=>({canceled:false,filePaths:[dir]});},dir);
   await page.locator('#export').click();assert.match(await page.locator('#export-summary').textContent(),/13 clips to print.*Clip STL included/);
   await page.locator('#confirm-print').click();await page.waitForFunction(()=>!document.querySelector('#print-dialog').open);

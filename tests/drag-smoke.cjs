@@ -10,7 +10,7 @@ const fs=require('node:fs/promises');const path=require('node:path');
  const page=await app.firstWindow(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.waitForSelector('canvas');
  await page.evaluate(()=>window.confirm=()=>true);
  await app.evaluate(({dialog},file)=>{dialog.showOpenDialog=async()=>({canceled:false,filePaths:[file]});dialog.showSaveDialog=async()=>({canceled:false,filePath:file});},file);
- await page.locator('#open').click();await page.waitForFunction(()=>document.querySelector('#count').textContent==='1');
+ await page.waitForSelector('#tutorial-dialog[open]');await page.locator('#tutorial-close').click();await page.locator('#open').click();await page.waitForFunction(()=>document.querySelector('#count').textContent==='1');
  async function center(){await page.locator('#top').click();await page.waitForTimeout(600);const b=await page.locator('canvas').boundingBox();return{x:b.x+b.width/2,y:b.y+b.height/2};}
  async function values(){return page.evaluate(()=>['x','z','height','angle'].map(id=>Number(document.getElementById(id).value)));}
  let c=await center();await page.mouse.click(c.x,c.y);assert.deepEqual(await values(),[0,0,0,90]);

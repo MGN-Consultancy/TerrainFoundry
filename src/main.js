@@ -1,3 +1,5 @@
+import {setupTutorial} from './tutorial.js';
+import {setupEditorChrome} from './editor-chrome.js';
 import openlockLogo from '../public/openlock-compatible.png';
 import {setupPrintEstimate} from './print-estimate.js';
 import {gardenDemo,curveDemo} from './model.js';
@@ -119,7 +121,7 @@ function replace(p){checkpoint();project=p;selected=null;changed();setTool(null)
 $('save').onclick=save;$('new').onclick=()=>{if(!dirty||confirm('Start a new scene? Save first to keep the current scene as a separate project.'))replace(defaults());};$('demo').onclick=()=>{if(!dirty||confirm('Replace this scene with the example dungeon?'))replace(demo());};$('open').onclick=async()=>{if(dirty&&!confirm('Open another project and replace this scene? Save first if needed.'))return;try{if(window.desktop){const s=await window.desktop.open();if(s)replace(validateProject(JSON.parse(s)));}else{const f=document.createElement('input');f.type='file';f.accept='.terrain';f.onchange=async()=>{try{if(f.files[0])replace(validateProject(JSON.parse(await f.files[0].text())));}catch(e){toast(e.message,true);}};f.click();}}catch(e){toast('Could not open project: '+e.message,true);}};
 function printFiles(){return makePrintFiles(project);}
 $('export').onclick=()=>{if(!project.items.length){toast('Add some terrain before exporting.');return;}const p=printFiles();$('export-summary').textContent=`${project.items.length} pieces · ${p.types.length} terrain shapes\nGrid: ${project.grid} mm · Build volume: ${project.printer.x} × ${project.printer.y} × ${project.printer.z} mm\n${project.connectors==='openlock'?p.report.matches.length+' matched connections · '+p.clipQuantity+' clips to print (includes 1 fit-test clip) · Clip STL included. '+p.report.overlaps.length+' overlapping bases. ':''}${p.warnings.length?'Oversized pieces: '+p.warnings.join(', '):'All individual pieces fit the configured build volume.'}`;$('print-dialog').showModal();};$('close-print').onclick=()=>$('print-dialog').close();$('confirm-print').onclick=async()=>{try{const p=printFiles();if(window.desktop){const dir=await window.desktop.export(p.files);if(!dir)return;toast('Print pack exported: '+dir);}else for(const f of p.files)download(f.name,f.data);$('print-dialog').close();}catch(e){toast('Export failed: '+e.message,true);}};
-document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();save();return;}if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)||$('print-dialog').open)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$(e.shiftKey?'redo':'undo').click();}else if(e.key==='Escape')setTool(null);else if(e.key==='Delete')$('delete').click();else if(e.key.toLowerCase()==='r')$('rotate').click();else if(e.key.toLowerCase()==='d')$('duplicate').click();});
+document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();save();return;}if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)||$('print-dialog').open)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$(e.shiftKey?'redo':'undo').click();}else if(e.key==='Escape')setTool(null);else if(e.key==='Delete')$('delete').click();else if(e.key.toLowerCase()==='r')$('rotate').click();else if(e.key.toLowerCase()==='d')$('duplicate').click();});
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 new ResizeObserver(()=>{const r=$('stage').getBoundingClientRect();renderer.setSize(r.width,r.height);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();}).observe($('stage'));
 renderScene();library();fit();renderer.setAnimationLoop(()=>{if(!drag)controls.update();renderer.render(scene,camera);});
@@ -176,3 +178,6 @@ for(const [id,create,prefix]of [['curves-demo',curveDemo,'a-'],['garden-demo',ga
 
 
 setupPrintEstimate({getProject:()=>project,makePrintFiles});
+
+setupEditorChrome();
+setupTutorial();

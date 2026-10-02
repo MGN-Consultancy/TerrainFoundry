@@ -17,6 +17,8 @@ app.whenReady().then(async()=>{
  ipcMain.handle('print-estimate-config',()=>estimator.config());
  ipcMain.handle('print-estimate',(_,files,selection)=>estimator.estimate(files,selection));
  const readBuiltin=createSceneryReader(path.join(__dirname,'..'));
+ const readPrint=require('./print-scenery.cjs').createPrintSceneryReader(path.join(__dirname,'..'));
+ ipcMain.on('print-scenery',(event,id)=>{try{event.returnValue={files:readPrint(id)};}catch(error){event.returnValue={error:error.message};}});
  ipcMain.on('builtin-shape',(event,id,connected)=>{try{event.returnValue=readBuiltin(id,connected);}catch(error){event.returnValue={error:error.message};}});
  let finishing=false;app.on('before-quit',e=>{if(!finishing){e.preventDefault();Promise.all([store.flush(),sceneLibrary.flush()]).finally(()=>{finishing=true;app.quit();});}});
  ipcMain.handle('load-recovery',()=>store.loadRecovery());

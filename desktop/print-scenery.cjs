@@ -1,0 +1,7 @@
+const fs=require('node:fs'),path=require('node:path'),{createHash}=require('node:crypto');
+function createPrintSceneryReader(root,environment=process.env.TERRAIN_ASSET_PACKS){
+ const folders=environment?JSON.parse(environment):Object.fromEntries(fs.readdirSync(path.join(root,'release','asset-packs'),{withFileTypes:true}).filter(e=>e.isDirectory()).map(e=>[e.name,path.join(root,'release','asset-packs',e.name)]));
+ const index=new Map();for(const folder of Object.values(folders)){if(typeof folder!=='string'||!path.isAbsolute(folder))throw Error('Invalid pack path');for(const [id,m]of Object.entries(JSON.parse(fs.readFileSync(path.join(folder,'index.json'),'utf8'))))if(m.printFiles)index.set(id,{folder,files:m.printFiles});}
+ return id=>{if(typeof id!=='string'||!/^dg-\d{3}$/.test(id)||!index.has(id))throw Error('Unknown print asset');const m=index.get(id);return m.files.map(f=>{if(!/^dg-\d{3}(?:-(?:body|insert))?\.stl$/.test(f.file)||!Number.isSafeInteger(f.size)||f.size<84||f.size>130000000||!/^deepstone-print-0[1-5]$/.test(f.pack)||!folders[f.pack])throw Error('Invalid print file');const bytes=fs.readFileSync(path.join(folders[f.pack],'print',f.file));if(bytes.length!==f.size||createHash('sha256').update(bytes).digest('hex')!==f.sha256||bytes.length!==84+50*bytes.readUInt32LE(80))throw Error('Print file integrity failed');return {name:f.file,data:bytes};});};
+}
+module.exports={createPrintSceneryReader};

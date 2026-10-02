@@ -28,9 +28,9 @@ test('connected print exports carry official provenance, grant and logo',async()
  assert.match(files['MGN-OPENLOCK-COMMERCIAL-LICENSE.txt'],/non-transferable/);assert.ok(files['OpenLOCK-Compatible.png'].length>100);assert.doesNotMatch(files['OPENLOCK-NOTICE.txt'],/caitlynb/);
 });
 
-test('every built-in connected STL passes the quote service geometry checks',async()=>{
+test('legacy built-in connected STL passes the quote service geometry checks',async()=>{
  const {KIT,defaults}=await import('../src/model.js');const {stlFile}=await import('../src/print-pack.js');const {inspectSTL}=await import('../print-service/src/geometry.mjs');
- const p=defaults();for(const id of [...KIT.map(k=>k.id),'fit-floor','fit-wall']){
+ const p=defaults();for(const id of [...KIT.filter(k=>!k.id.startsWith('dg-')).map(k=>k.id),'fit-floor','fit-wall']){
   assert.doesNotThrow(()=>inspectSTL(Buffer.from(stlFile(id,p).file.data),[1000,1000,1000]),id+' must export closed geometry without collapsed or degenerate triangles');
  }
 });

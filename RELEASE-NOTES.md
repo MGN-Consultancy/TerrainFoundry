@@ -1,3 +1,9 @@
+# Terrain Foundry 1.9.0
+
+Adds the free 50-piece Deepstone Cave & Grotto starter collection with integrated OpenLOCK sockets. Categorised, coloured editor meshes and full-resolution print STLs are cached locally. Door and pit-trap exports include separate inserts. Existing asset identities, saved scenes and worlds are preserved.
+
+Geometry, editor imports and nominal joining heights checked in software; physical print fit remains to be tested.
+
 # Terrain Foundry 1.8.1
 
 Saved encounters now appear in **Encounters & scenes…** with a rendered preview of their complete build. Save updates the same library entry; old scene files can be added with **Add existing scene…**. The searchable library is paginated and persists locally across editor restarts.

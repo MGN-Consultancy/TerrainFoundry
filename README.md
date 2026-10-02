@@ -73,3 +73,7 @@ The website now includes a print-pack quote form, separate from the offline edit
 Click **Estimate print costs**, choose material, printer, colour, delivery country and an optional discount code, then calculate. The website prices locally measured part summaries; it receives no models, scene layout or personal details for this step. The estimate includes export quantities, clips and fit-test pieces. Weight and hours are estimates, not sliced measurements.
 
 If offline, only an identical previously checked pack and print selection can show a cached, dated estimate. **Save pack & open website** saves a ZIP and opens the website; you choose whether to upload it. Current requests are test-only and cannot collect payment or start production.
+
+## Free Deepstone starter
+
+Version 1.9.0 adds 50 original cave and grotto pieces. The launcher caches the coloured editor meshes and full-resolution STL files locally, in six separately verified downloads (about 1.9 GB total). Download once, then build, save and print-export offline. Door and pit trap exports use separate inserts. Physical print-fit testing remains pending. The pinned free geometry is restored by `scripts/release/fetch-deepstone.py`; model binaries stay in GitHub Releases rather than Git. Future premium collections are separate and currently unavailable.

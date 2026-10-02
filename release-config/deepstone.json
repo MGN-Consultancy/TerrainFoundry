@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "archives": [
+    {
+      "id": "deepstone-print-01",
+      "url": "https://github.com/MGN-Consultancy/TerrainFoundry/releases/download/v1.9.0/scenery-deepstone-print-01.zip",
+      "sha256": "6edea9f1e29e45a2d13b02f438b764dac7af659633f1ac48f07ddf55253f4248"
+    },
+    {
+      "id": "deepstone-print-02",
+      "url": "https://github.com/MGN-Consultancy/TerrainFoundry/releases/download/v1.9.0/scenery-deepstone-print-02.zip",
+      "sha256": "f17a8135f38aac3011818e6da49dd84de2188dfd5bc4c2ad3b643fce3197d0ea"
+    },
+    {
+      "id": "deepstone-print-03",
+      "url": "https://github.com/MGN-Consultancy/TerrainFoundry/releases/download/v1.9.0/scenery-deepstone-print-03.zip",
+      "sha256": "f590ca803757d52988a6c755dd86aa3964a188f0346b51341ae7c8dfe19e3af6"
+    },
+    {
+      "id": "deepstone-print-04",
+      "url": "https://github.com/MGN-Consultancy/TerrainFoundry/releases/download/v1.9.0/scenery-deepstone-print-04.zip",
+      "sha256": "484c8965bcc7bc351432d3c3d8a4f044ed8a0e002624144c79e859e54775d781"
+    },
+    {
+      "id": "deepstone-print-05",
+      "url": "https://github.com/MGN-Consultancy/TerrainFoundry/releases/download/v1.9.0/scenery-deepstone-print-05.zip",
+      "sha256": "c9a9c54602986c7fc372e78727ad82618f4c6c699cfa9d5514134f5f4e7ea5e2"
+    },
+    {
+      "id": "deepstone",
+      "url": "https://github.com/MGN-Consultancy/TerrainFoundry/releases/download/v1.9.0/scenery-deepstone.zip",
+      "sha256": "0b949fb25db349ace08e067e88c226aea922aabd5cda8b1f8ef7a1ace31a3e5c"
+    }
+  ]
+}

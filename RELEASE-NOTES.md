@@ -1,4 +1,11 @@
-# Terrain Foundry 1.8.0
+# Terrain Foundry 1.8.1
+
+Saved encounters now appear in **Encounters & scenes…** with a rendered preview of their complete build. Save updates the same library entry; old scene files can be added with **Add existing scene…**. The searchable library is paginated and persists locally across editor restarts.
+
+Click a library scene to place it in a world or reopen it as an editable encounter. Drag a preview onto a world for direct grouped placement. World encounter cards also display complete-build previews. Scene files embed PNG previews and the local library retains independent snapshots, including imported geometry. Existing world files remain compatible; scenery packs are unchanged.
+
+## Terrain Foundry 1.8.0
+
 
 Build a whole gaming table from reusable locally saved scenes. Add scenes to a world library and place independent encounter groups; move, rotate, duplicate and elevate complete buildings together, with individual scenery and roads between them.
 

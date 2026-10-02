@@ -1,18 +1,18 @@
 {
-  "version": "1.8.0",
-  "title": "Build your entire tabletop world",
+  "version": "1.8.1",
+  "title": "Your encounters, ready to use again",
   "features": [
     {
-      "title": "Scenes become reusable encounters",
-      "description": "Add locally saved scenes to a world, place multiple buildings or encounters, and move, rotate or elevate each placement as a group. Encounter templates and imported geometry travel inside your world file."
+      "title": "A local scene library",
+      "description": "Save a scene and it appears in Encounters & scenes with a preview of the complete build. Search the library or add older scene files."
     },
     {
-      "title": "Tables and underground levels",
-      "description": "Choose 3 × 3, 4 × 4, 6 × 4 or 8 × 4 ft tables, a dining table, or a custom size. Add named levels, hide upper layers to work underground, and save a level as a reusable scene."
+      "title": "Drag entire builds into worlds",
+      "description": "Click or drag a library scene onto a world, just like terrain. Each placement is an independent group. Reopen it as an editable scene on an encounter slate."
     },
     {
-      "title": "Your world stays on your PC",
-      "description": "Worlds use separate local project files, recovery and backups. Existing scenes still open. Use Fit table to see the whole layout; every level is included when exporting a print pack."
+      "title": "Saved on your computer",
+      "description": "Scene files embed their previews. A local library copy keeps the geometry and layouts available across restarts, with no account or internet connection."
     }
   ]
 }

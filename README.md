@@ -12,6 +12,12 @@ An offline Windows desktop workshop for designing modular tabletop terrain and e
 
 [Website](https://terrainfoundry.co.uk) · [Downloads](https://github.com/MGN-Consultancy/TerrainFoundry/releases) · [Issues](https://github.com/MGN-Consultancy/TerrainFoundry/issues)
 
+## Saved encounters and scenes
+
+Saving a nonempty scene or encounter adds it to **Encounters & scenes…** above the terrain library, with an automatically framed image of the complete build. Search or browse the larger preview cards. Save again to the same file to refresh its entry; add older files using **Add existing scene…**.
+
+In a world, click a library card to arm placement, or drag its preview straight onto the table. Hold Shift to place more copies. In a scene, click or drag a card to reopen the complete editable encounter; unsaved changes require confirmation. Library snapshots and PNG previews live in `Documents/Terrain Foundry/Encounter Library`, outside the application installation folder, and scene files also embed their preview. World files retain their own independent encounter snapshots. Everything works offline. The optional `TERRAIN_SCENE_LIBRARY` environment variable selects a different local library folder.
+
 ## World builder
 
 Version 1.8.0 adds local worlds alongside encounter scenes. Open **World builder…** above the terrain library to create an empty world or turn your current scene into one. Choose a table preset (3 × 3, 4 × 4, 6 × 4 or 8 × 4 feet, or 180 × 90 cm) or enter custom dimensions in millimetres. **Fit table** frames the entire play area.

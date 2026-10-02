@@ -32,6 +32,8 @@ jobs:
         with:
           version: '11.19.0'
       - run: pnpm install --frozen-lockfile
+      - name: Install geometry validation dependencies
+        run: npm ci --prefix print-service --ignore-scripts
       - name: Generate scenery from official licensed OpenLOCK templates
         run: node scripts/release/generate-all.mjs
       - name: Verify meshes, layouts, connector and updater

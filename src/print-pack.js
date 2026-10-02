@@ -1,11 +1,14 @@
 import {OPENLOCK_COMMERCIAL_LICENSE,OPENLOCK_LOGO_BASE64} from './openlock-commercial.js';
 import {clipFiles} from './print-clip.js';
+import {detailedPrintFiles} from './print-scenery.js';
+import {builtinIndex} from './builtin-data.js';
 import * as THREE from 'three';
 import {STLExporter} from 'three/addons/exporters/STLExporter.js';
 import {geometry,connectionSpec} from './geometry.js';
 import {KIT} from './model.js';
 import {connectionReport,CONNECTOR_NOTICE} from './connections.js';
 export function stlFile(type,project){
+ const detailed=detailedPrintFiles(type);if(detailed){if(project.grid!==25.4)throw Error('Deepstone uses a fixed 25.4 mm grid');const d=builtinIndex[type].dimensionsMm;return {file:detailed[0],componentFiles:detailed,size:new THREE.Vector3(d.width,d.height,d.depth)};}
  const geo=geometry(type,project.grid,project.assets,project.connectors==='openlock');
  geo.computeBoundingBox();const size=geo.boundingBox.getSize(new THREE.Vector3());
  const mesh=new THREE.Mesh(geo);mesh.rotation.x=Math.PI/2;mesh.updateMatrixWorld(true);
@@ -14,9 +17,9 @@ export function stlFile(type,project){
 }
 export function printFiles(project){
  const types=[...new Set(project.items.map(i=>i.type))],files=[],warnings=[],rows=['Piece,File,Quantity,Width_mm,Depth_mm,Height_mm'];
- for(const type of types){const {file,size:d}=stlFile(type,project);files.push(file);
+ for(const type of types){const {file,componentFiles,size:d}=stlFile(type,project);files.push(...(componentFiles||[file]));
   if(d.x>project.printer.x||d.z>project.printer.y||d.y>project.printer.z)warnings.push(KIT.find(k=>k.id===type)?.name||project.assets[type].name);
-  rows.push(`${type},${file.name},${project.items.filter(i=>i.type===type).length},${d.x.toFixed(2)},${d.z.toFixed(2)},${d.y.toFixed(2)}`);
+  for(const part of componentFiles||[file])rows.push(`${type},${part.name},${project.items.filter(i=>i.type===type).length},${d.x.toFixed(2)},${d.z.toFixed(2)},${d.y.toFixed(2)}`);
  }
  const originalRange=types.map(t=>KIT.find(k=>k.id===t)).filter(k=>k?.referenceIndex);if(originalRange.length)files.push({name:'DUNGEON-PIECES.json',data:JSON.stringify(originalRange.map(k=>({id:k.id,name:k.name,referenceIndex:k.referenceIndex,dimensions:k.referenceDimensions,mechanism:k.mechanism,physicalFitVerified:false})),null,2)});
  const report=connectionReport(project),connected=project.connectors==='openlock';

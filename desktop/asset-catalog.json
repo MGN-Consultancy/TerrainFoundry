@@ -1,8 +1,1798 @@
 {
   "schema": 1,
-  "release": "1.7.0",
+  "release": "1.9.0",
   "policy": "Built-in asset IDs resolve to this installed catalogue; imported geometry stays in the project.",
   "assets": {
+    "dg-001": {
+      "name": "Deepstone · Flowstone cascade wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "1c33f589e6f0c1e9afe4dd87a5c7b252998cf2bfabb50585d7ebc85ac9ee4034"
+    },
+    "dg-002": {
+      "name": "Deepstone · Layered limestone wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "c77df6b96c39a2fcce5bfa469d7b321f37156419c5fea960b2537373f3323d7c"
+    },
+    "dg-003": {
+      "name": "Deepstone · Eroded fissure wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "ef818c2abfd0d3fc9eaaed470cfb70db7f23d6d8a7b5af8e1e45e13d3b15f440"
+    },
+    "dg-004": {
+      "name": "Deepstone · Shelf fungus wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "928556c623a32d386de5fb10b0de055f7d93e84a29d2f33421587b919b8686f8"
+    },
+    "dg-005": {
+      "name": "Deepstone · Calcite curtain wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "df2b9c075094f3e806112f2c5b899c1ef31d61b3606cb9ad0c1476e7cf785bed"
+    },
+    "dg-006": {
+      "name": "Deepstone · Fossil seam wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "9344ccdea60f070b489de8059772579360afe4ef922c2c4093c2c19040b0663a"
+    },
+    "dg-007": {
+      "name": "Deepstone · Ancient rune wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "60625cf8e42a783f33ee0998049ee8d0bb6c11f1d86090b852324e2d755060d1"
+    },
+    "dg-008": {
+      "name": "Deepstone · Sealed secret doorway wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "e8abc64fe50056227eb8cc894ae3b8f18de6582a837f5e86b992d06441bf337c"
+    },
+    "dg-009": {
+      "name": "Deepstone · Collapsed low wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "46173c1782c863b47f72a4f55d6010e015ae4f5988be6da0206569f37ea956af"
+    },
+    "dg-010": {
+      "name": "Deepstone · Stalagmite-root low wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "e43efc2ffd6dcf249b7594faf8c5a789ef19cf87b9d6a6e65384ef08e5e7ba47"
+    },
+    "dg-011": {
+      "name": "Deepstone · Narrow limestone wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 25.4,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "4c8f8455d686410736011cfc0a272d98e36bfb17b96e2e0d627ff8df4ce1ddd0"
+    },
+    "dg-012": {
+      "name": "Deepstone · Long mineral-vein wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 101.6,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 25.4,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "cfa34514f78c01716a09712a6e1446432ac95f9cdf6c2e7f670872a74833aeba"
+    },
+    "dg-013": {
+      "name": "Deepstone · Internal grotto corner",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": 12.7,
+            "z": -6.35,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -6.35,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "edd6d4b39001ef20eddd647cb25d2a5fd668b2cd2c010b31ee884a72e1adc5cb"
+    },
+    "dg-014": {
+      "name": "Deepstone · External grotto corner",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": 12.7,
+            "z": -6.35,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -6.35,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "30a891f6cb55e82e7e56bbb2587758bef408325366926ba5306188c8994f5ddc"
+    },
+    "dg-015": {
+      "name": "Deepstone · Sweeping inner curve",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 19.049999999999997,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": -25.4,
+            "z": 19.049999999999997,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          }
+        ]
+      },
+      "sha256": "cfbcc2f2a7ae0c80be2cba30d9f1379cbec3dd339d7b74aee6502f83124abc6c"
+    },
+    "dg-016": {
+      "name": "Deepstone · Sweeping outer curve",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 19.049999999999997,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": -25.4,
+            "z": 19.049999999999997,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          }
+        ]
+      },
+      "sha256": "5d57a0369bd8d8bd5bbf8ea9d30429324f5c44b0819912eb36d81fcfe2583321"
+    },
+    "dg-017": {
+      "name": "Deepstone · Tight inner curve",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": 6.349999999999998,
+            "z": -12.7,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": -12.7,
+            "z": 6.349999999999998,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          }
+        ]
+      },
+      "sha256": "43864c50ac125f6dd78cfcb790b7d24a4ee518b59fe03ef08fb3a12a83010ba7"
+    },
+    "dg-018": {
+      "name": "Deepstone · Tight outer curve",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": 6.349999999999998,
+            "z": -12.7,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": -12.7,
+            "z": 6.349999999999998,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          }
+        ]
+      },
+      "sha256": "f3b1e281f30acbc5016ed382c39c95efbf9c6fb02529949588ceda4236a1b7c9"
+    },
+    "dg-019": {
+      "name": "Deepstone · Full to low wall transition",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "17afcf36f9b9c0def72e4a9752ebcd3f5869b66f03fedba3436d6860e08e7d54"
+    },
+    "dg-020": {
+      "name": "Deepstone · Rocky tunnel junction wall",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "e248b021805a7a712bd42f178d100ac7710504d4d663b8f687106dcba54209fe"
+    },
+    "dg-021": {
+      "name": "Deepstone · Worn limestone floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "8628b25e162051866720e6a747b2779f7b71cd053211dececf0502196a0608ff"
+    },
+    "dg-022": {
+      "name": "Deepstone · Broken strata floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "856a7c0c9c2459a01ff19c17b7acf6f2132afd707a5380eaeffa2c6d81741b4b"
+    },
+    "dg-023": {
+      "name": "Deepstone · Calcite ripple floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "a2ff003acaf7623b9797303447a1797a3cdb42b8f982aa5270158bcca4fa1a64"
+    },
+    "dg-024": {
+      "name": "Deepstone · Embedded rubble floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "d7e8bfbfff1f78a5af8b229f09d72aab89499d5b9a5abd584b0c1fbeac1c090d"
+    },
+    "dg-025": {
+      "name": "Deepstone · Fossil bed floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "6bc0fb4fc2bdfc9b52607b3d64ef005da544cfcc053448cf42d4672c174c46a5"
+    },
+    "dg-026": {
+      "name": "Deepstone · Small cave floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": -12.7,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 12.7,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -12.7,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "408a2ed9fb3633cd318c351bfc56cd10e0fdd38956f5887d9a0f5c912bcdad5f"
+    },
+    "dg-027": {
+      "name": "Deepstone · Long cave floor",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -50.8,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 50.8,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": -25.4,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 25.4,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 25.4,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "2ce3608e00d775f4f8f7fd56f428f954c03f94a18520b35e09cde966753e7143"
+    },
+    "dg-028": {
+      "name": "Deepstone · Grotto pool closed basin",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "c001c255f2895ae9d196e06e5cdd43b0be550fe973fccd275ad6be22f6d0816c"
+    },
+    "dg-029": {
+      "name": "Deepstone · Pool straight channel",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "46d244c9bbbc7b07c373bfe124e56db709c5349fad57e21e82895b886ee083a1"
+    },
+    "dg-030": {
+      "name": "Deepstone · Pool bend channel",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "aa268cf41d66d822d757bc004405fc0ee55e0baf2dd2785c39ccde17898f6c98"
+    },
+    "dg-031": {
+      "name": "Deepstone · Pool widening chamber",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "aa497cb2f86bbfaea7493fb8f150573f11bdc4d7e156a3617c6005ca83e3e52c"
+    },
+    "dg-032": {
+      "name": "Deepstone · Pool ending shore",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "21c319a4d9ac6fc98f4171f178c24c097589a85f1540614b032173a85774a866"
+    },
+    "dg-033": {
+      "name": "Deepstone · Natural cave entrance",
+      "category": "Doors & openings",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -12.7,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "5b2e21555bcf16e74f1f0513e03e95c53d2853ff4277bbed5b2a66f4abd282e1"
+    },
+    "dg-034": {
+      "name": "Deepstone · Narrow tunnel doorway",
+      "category": "Doors & openings",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -12.7,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "1355c92e10e1c7d9a34780e1191c01090d826f0f7f02e1277670872ac3b1943f"
+    },
+    "dg-035": {
+      "name": "Deepstone · Ancient carved threshold",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "1783fe42af11e2933e9ddfde59e81b1c9bf6219090b14f890ef23de3eb352543"
+    },
+    "dg-036": {
+      "name": "Deepstone · Worn ascending steps",
+      "category": "Stairs & ramps",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90,
+            "baseY": 25.4,
+            "y": 28.9
+          }
+        ]
+      },
+      "sha256": "a55d906a5f9abafc673769a73c9d83baf00d94e36020f1138a5e19b7b7c5c93b"
+    },
+    "dg-037": {
+      "name": "Deepstone · Split-level rock ledge",
+      "category": "Stairs & ramps",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180,
+            "baseY": 25.4,
+            "y": 28.9
+          }
+        ]
+      },
+      "sha256": "a8f142e8fc975bef811abeb62d23b673e5f89bbb0f4da0659159e5c6659dc9a7"
+    },
+    "dg-038": {
+      "name": "Deepstone · Stone bridge over pool",
+      "category": "Bridges",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "97a8c4e5d5699683bb9d3e5aa26b36ef2f58de8ee874ce72d6d6173cac520fe1"
+    },
+    "dg-039": {
+      "name": "Deepstone · Stalagmite cluster tile",
+      "category": "Details",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          }
+        ]
+      },
+      "sha256": "36936ecc6fe04018fda7faee977193e6dc4b2881679afe4f5a03c3e64c445a8c"
+    },
+    "dg-040": {
+      "name": "Deepstone · Calcite column tile",
+      "category": "Details",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "7f6e0a6a4fe2d38d9007c8828e953dc300e1f3289d6a41ec32aa8fa4a8311026"
+    },
+    "dg-041": {
+      "name": "Deepstone · Buried skeleton tile",
+      "category": "Details",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "c75b805acc5c15869db5b0c7365986563e46b1f0989fa1e3ed08aff52c03b016"
+    },
+    "dg-042": {
+      "name": "Deepstone · Broken armour cache tile",
+      "category": "Details",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "7c7bdb539d585a9fc0e9251dcb21710c820e74ba205cbd5af6356b6d0ba33fce"
+    },
+    "dg-043": {
+      "name": "Deepstone · Closed treasure chest tile",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": -12.7,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 12.7,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -12.7,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "f5bde0f0f6437393e5cc59617d19c73d8b305c90069dfdfdcbd977986684059d"
+    },
+    "dg-044": {
+      "name": "Deepstone · Open treasure chest tile",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": -12.7,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 12.7,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -12.7,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "c60c1eca7bca7c355aa0891f7c29ea2167481972cb6544403aab8fffcf0303f2"
+    },
+    "dg-045": {
+      "name": "Deepstone · Scattered hoard tile",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 8,
+        "ports": [
+          {
+            "x": -12.7,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 12.7,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -12.7,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 12.7,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "e111eb2299d2ff0446f1e9521eaabc8be1e25b82ce1606b879ad0982c3fcf49e"
+    },
+    "dg-046": {
+      "name": "Deepstone · Ancient offering altar tile",
+      "category": "Props",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "7204d43e82a84a4574175b032ec952aae46f4f612bce17ee80b53628ea39aef9"
+    },
+    "dg-047": {
+      "name": "Deepstone · Concealed pit trap tile",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "784f819a4664d6e392c7ddbbfa00370175e11adcc1846381b39c468d6b235589"
+    },
+    "dg-048": {
+      "name": "Deepstone · Pressure plate trap tile",
+      "category": "Floors",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "fb7b8cd125779086618e72252db8e97d1f9b6250e88018dafdd6d26d2c6ebcb5"
+    },
+    "dg-049": {
+      "name": "Deepstone · Rockfall trap tile",
+      "category": "Details",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "floor",
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 8,
+        "ports": [
+          {
+            "x": -25.4,
+            "z": 0,
+            "nx": -1,
+            "nz": 0,
+            "angle": 180
+          },
+          {
+            "x": 25.4,
+            "z": 0,
+            "nx": 1,
+            "nz": 0,
+            "angle": 0
+          },
+          {
+            "x": 0,
+            "z": -25.4,
+            "nx": 0,
+            "nz": -1,
+            "angle": 90
+          },
+          {
+            "x": 0,
+            "z": 25.4,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "d8163407ec186d172f2ee9f07e692f3061b8f36bb7f8616a2fd1072e4b45e4a1"
+    },
+    "dg-050": {
+      "name": "Deepstone · Hidden door open passage",
+      "category": "Walls",
+      "connection": {
+        "templateSource": "printable-scenery-8.6",
+        "revision": 3,
+        "kind": "wall",
+        "width": 50.8,
+        "depth": 12.7,
+        "height": 8,
+        "ports": [
+          {
+            "x": 0,
+            "z": 6.35,
+            "nx": 0,
+            "nz": 1,
+            "angle": -90
+          }
+        ]
+      },
+      "sha256": "7145092c0559c24928746404101df77abcf93bd626a4d798d8c3a965e7338271"
+    },
     "a-001": {
       "name": "Fortress curved wall · 1 tile radius",
       "category": "Walls",
@@ -100658,7 +102448,7 @@
           }
         ]
       },
-      "sha256": "d523474ef8e6fc5e05b4cbc212e3ef7e26b5a4c2bc5707b8d2766a3fbec09485"
+      "sha256": "bd82ea474c519b0daaea281ad4d7abe2745784804d8f99337ad7ad03c8b981a5"
     },
     "n-grotto-crystal-wall": {
       "name": "Crystal-veined grotto wall",
@@ -100680,7 +102470,7 @@
           }
         ]
       },
-      "sha256": "6bb02f260a23d527bcace9f7da8c0a37eff5a21cfd75edebff51f6e521579a99"
+      "sha256": "c1497d1efaad25b910cc6c26d03d1d9e548eb7cebcbefb7883ad2a9e80eb3453"
     },
     "n-grotto-shelf-wall": {
       "name": "Shelf-fungus grotto wall",
@@ -100702,7 +102492,7 @@
           }
         ]
       },
-      "sha256": "40539a2d888ed1f22a89fc178eca87d484d8888a9052ee2586123895b1dab4b0"
+      "sha256": "70d1355503659cbf10647d7e3bea7f2571de3d7077680e917dd553778beefd40"
     },
     "n-grotto-arch": {
       "name": "Weathered grotto entrance",
@@ -100724,7 +102514,7 @@
           }
         ]
       },
-      "sha256": "9efe67e0908d6901028f7f0131c4e86347210b9e13d676e8ffc418b5bedadbc9"
+      "sha256": "ce62b27638d605ae1bab8c6ef9a61ee427dbc86d9be14661b80f8bde5fdf0563"
     },
     "n-grotto-flagstone": {
       "name": "Fractured grotto floor",
@@ -100767,7 +102557,7 @@
           }
         ]
       },
-      "sha256": "040faadd1fcb0c3d93ea269647a9990fe4236c13d10675331edca1b54d079aba"
+      "sha256": "e261c9a74ff0b260dabd1197ccf32a84ea2e8b7c98d9765ccb334a36225b44f6"
     },
     "n-grotto-crystals": {
       "name": "Quartz grotto crystal bed",
@@ -100810,7 +102600,7 @@
           }
         ]
       },
-      "sha256": "7b67a228a5b0ccf2e868801bc751091c8fa6d6d186f6440449f23d450d4b6b62"
+      "sha256": "941a8a8c0659dbf5db3aaeb0ac04e0239f43d4409f1eee3ad913d179ffce6dc2"
     },
     "n-grotto-mushrooms": {
       "name": "Spotted grotto mushroom grove",
@@ -100853,7 +102643,7 @@
           }
         ]
       },
-      "sha256": "a193c9fb3b69f0676ff4106e959310368a9069d7db80573f2957d7be9a253222"
+      "sha256": "ac5fba448d95a14636a58153b95cb04d52fd941ef8a06ed3f89d0394c7a23978"
     },
     "n-grotto-column": {
       "name": "Fluted grotto stalagmite column",
@@ -100896,7 +102686,7 @@
           }
         ]
       },
-      "sha256": "7f6f1da2e00f0f42b6c1da05c52bd5e78b6a003e03afa8ee6426f31514d8cd3f"
+      "sha256": "0226f9ca64854c2cb589492b46a29dd5a21b52c2f9ad0801a89c4b0a5950da0e"
     },
     "n-grotto-pool": {
       "name": "Mineral grotto pool",
@@ -100939,7 +102729,7 @@
           }
         ]
       },
-      "sha256": "f3d08dfc00b568e7332a40e63dff113610b60f635771d5a1930a3c9f2345afd0"
+      "sha256": "468a96658d4bb9a75e7a735ec994bf2ebda30d407883e10583708c6f04e92587"
     },
     "n-grotto-ramp": {
       "name": "Eroded grotto ramp",
@@ -100982,7 +102772,7 @@
           }
         ]
       },
-      "sha256": "9114f6d669810e0923385f27563f12b6617189823232ba3e58588829b9411b5f"
+      "sha256": "d20bafeab2233e7bb4ccf65e1cd2d730fb828a7ad079cf4a005149f19e2c08ec"
     },
     "q-quarry-wall": {
       "name": "Stratified quarry wall",

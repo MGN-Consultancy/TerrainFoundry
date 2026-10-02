@@ -1,5 +1,5 @@
 using System;using System.IO;using System.IO.Compression;using System.Net;using System.Net.Http;using System.Linq;using System.Text;using System.Collections.Generic;using System.Security.Cryptography;using System.Diagnostics;using System.Threading;using System.Threading.Tasks;using System.Web.Script.Serialization;using System.Windows.Forms;
-[assembly:System.Reflection.AssemblyVersion("1.8.1.0")]
+[assembly:System.Reflection.AssemblyVersion("1.9.0.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
  public class Launcher:Form {
@@ -128,6 +128,7 @@ static void WriteRestart(string target,string approvedHash){string script=Path.C
   async void Launch(){if(busy)return;busy=true;play.Enabled=false;offer.Visible=false;Progress("Checking installed editor and scenery...");try{var state=ReadState();string client=Str(state,"client");var release=VerifyEnvelope(Str(state,"envelope"));await Task.Run(()=>CheckInventory(client,Obj(release["client"])));var assets=Obj(state["assets"]);foreach(var a in (System.Collections.IEnumerable)release["assets"]){var pack=Obj(a);await Task.Run(()=>CheckInventory(Convert.ToString(assets[Str(pack,"id")]),pack));}var start=new ProcessStartInfo(Path.Combine(client,"TerrainFoundry.exe")){UseShellExecute=false,WorkingDirectory=client};start.EnvironmentVariables["TERRAIN_ASSET_PACKS"]=Json.Serialize(assets);Process.Start(start);status.Text="Editor opened. Projects are saved locally.";}catch(Exception e){status.Text=e.Message;}finally{busy=false;StopProgress();play.Enabled=File.Exists(StateFile);}}
  }
 }
+
 
 
 

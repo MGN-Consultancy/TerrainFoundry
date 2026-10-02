@@ -15,7 +15,7 @@ replayButton.addEventListener('click',restart);
 const travel=()=>Math.max(1,story.offsetHeight-pin.clientHeight);
 function load(index){
  if(cache.has(index))return cache.get(index);
- const image=new Image();image.decoding='async';image.src=new URL(`assets/assembly-frames/${String(index).padStart(2,'0')}.webp`,import.meta.url).href;
+ const image=new Image();image.decoding='async';image.src=new URL(`assets/grotto-frames/${String(index).padStart(2,'0')}.webp`,import.meta.url).href;
  const promise=image.decode().then(()=>image).catch(error=>{cache.delete(index);throw error;});cache.set(index,promise);
  // Only a small neighbourhood is held as decoded images, not the whole film.
  for(const key of cache.keys())if(Math.abs(key-wanted)>4)cache.delete(key);

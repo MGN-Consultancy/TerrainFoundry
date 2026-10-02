@@ -1,4 +1,5 @@
 import {validateWorld} from './world-schema.js';
+import {DEEPSTONE_STARTER_KIT} from './deepstone-starter-kit.js';
 import {CURVE_KIT} from './curve-kit.js';
 import {WOODLAND_KIT} from './woodland-kit.js';
 import {DUNGEON_RANGE_KIT} from './dungeon-range-kit.js';
@@ -8,7 +9,7 @@ import {OUTDOOR_KIT} from './outdoor-kit.js';
 import {VILLAGE_KIT} from './village-kit.js';
 import {DUNGEON_KIT} from './dungeon-kit.js';
 import {BENCHMARK_KIT} from './benchmark-kit.js';
-export const KIT=[...CURVE_KIT,...WOODLAND_KIT,...DUNGEON_RANGE_KIT,...CAVE_KIT,...EXPANSION_KIT,...OUTDOOR_KIT,...BENCHMARK_KIT,...DUNGEON_KIT,...VILLAGE_KIT,
+export const KIT=[...DEEPSTONE_STARTER_KIT,...CURVE_KIT,...WOODLAND_KIT,...DUNGEON_RANGE_KIT,...CAVE_KIT,...EXPANSION_KIT,...OUTDOOR_KIT,...BENCHMARK_KIT,...DUNGEON_KIT,...VILLAGE_KIT,
  {id:'floor',name:'Stone floor',category:'Floors',icon:'▦',hint:'2 × 2 squares'},
  {id:'floor-small',name:'Small floor',category:'Floors',icon:'▧',hint:'1 × 1 square'},
  {id:'wall',name:'Dungeon wall',category:'Walls',icon:'▥',hint:'2 squares · full height'},

@@ -1,6 +1,7 @@
 // Browsing taxonomy only: asset IDs, geometry and project data remain unchanged.
 export const CATEGORIES=['All','Floors','Walls','Doors & openings','Stairs & ramps','Roofs','Terrain','Water','Bridges','Trees & plants','Traps','Props','Details','Imported'];
 export function classifyAsset(asset){
+ if(asset.explicitCategory)return {category:asset.category,subcategory:asset.subcategory};
  const text=(asset.name+' '+(asset.feature||'')).toLowerCase(),shape=asset.shape||'';
  let category=asset.category;
  if(category==='Imported')return {category,subcategory:'Your models'};

@@ -14,4 +14,8 @@ export function scenePreview(project){
   camera.position.copy(centre).add(new THREE.Vector3(.9,.8,1.2).normalize().multiplyScalar(distance));camera.lookAt(centre);camera.near=Math.max(.1,distance-radius*1.5);camera.far=distance+radius*3;camera.updateProjectionMatrix();renderer.render(scene,camera);return renderer.domElement.toDataURL('image/png');
  }finally{for(const mesh of group.children)mesh.material.dispose();for(const g of cache.values())g.dispose();}
 }
-export const validPreview=value=>typeof value==='string'&&value.length<=600000&&/^data:image\/png;base64,[A-Za-z0-9+/=]+$/.test(value);
+export function validPreview(value){
+ if(typeof value!=='string'||value.length>600000||!/^data:image\/png;base64,[A-Za-z0-9+/=]+$/.test(value))return false;
+ try{const h=atob(value.slice(22,66)),bytes=Array.from(h,c=>c.charCodeAt(0)),size=i=>bytes[i]*16777216+bytes[i+1]*65536+bytes[i+2]*256+bytes[i+3];return h.length>=24&&[137,80,78,71,13,10,26,10].every((b,i)=>bytes[i]===b)&&h.slice(12,16)==='IHDR'&&size(16)>0&&size(16)<=2048&&size(20)>0&&size(20)<=2048;}catch{return false;}
+}
+

@@ -1,12 +1,15 @@
 import {defaults,validateProject} from './model.js';
 export const TABLES=[['Skirmish · 3 × 3 ft',914.4,914.4],['Battle · 4 × 4 ft',1219.2,1219.2],['Gaming table · 6 × 4 ft',1828.8,1219.2],['Large table · 8 × 4 ft',2438.4,1219.2],['Dining table · 180 × 90 cm',1800,900]];
 const id=()=>crypto.randomUUID();
+// Imported asset objects are immutable; cache their exact content once per object.
+const encodings=new WeakMap();const encode=a=>{if(!encodings.has(a))encodings.set(a,JSON.stringify(a));return encodings.get(a);};
 export function toWorld(scene,widthMm=1828.8,depthMm=1219.2){
- const p=structuredClone(scene);p.version=2;p.kind='world';p.world={widthMm,depthMm,activeLevel:'ground',levels:[{id:'ground',name:'Ground',elevation:0,visible:true}],encounters:[],instances:[]};
+ const p=structuredClone(scene);p.version=2;p.kind='world';p.world={widthMm,depthMm,activeLevel:'ground',placementOffset:0,levels:[{id:'ground',name:'Ground',elevation:0,visible:true}],encounters:[],instances:[]};
  p.items.forEach(i=>{i.levelId='ground';delete i.encounterId;});return validateProject(p);
 }
 export const tableSize=p=>p.kind==='world'?[p.world.widthMm,p.world.depthMm]:[p.board*p.grid,p.board*p.grid];
 export const activeLevel=p=>p.world?.levels.find(l=>l.id===p.world.activeLevel);
+export const placementHeight=p=>Math.max(0,Math.min(10000,(activeLevel(p)?.elevation||0)+(p.world?.placementOffset||0)));
 export const visibleItem=(p,i)=>p.kind!=='world'||p.world.levels.find(l=>l.id===i.levelId)?.visible!==false;
 export function addEncounter(p,input){
  const scene=validateProject(input);if(scene.kind==='world')throw Error('Choose a saved scene or encounter, not another world.');
@@ -21,7 +24,7 @@ export function placeEncounter(p,templateId,x,z){
  const level=activeLevel(p);if(!level.visible)throw Error('Show the active level before placing pieces.');
  const items=e.scene.items,cx=(Math.min(...items.map(i=>i.x))+Math.max(...items.map(i=>i.x)))/2,cz=(Math.min(...items.map(i=>i.z))+Math.max(...items.map(i=>i.z)))/2,base=Math.min(...items.map(i=>i.y));
  const group={id:id(),name:e.scene.name},assets={...p.assets},mapping={};
- for(const [key,a]of Object.entries(e.scene.assets||{})){let target=key;if(assets[key]&&JSON.stringify(assets[key])!==JSON.stringify(a))target='u-'+id();mapping[key]=target;assets[target]=structuredClone(a);}
+ for(const [key,a]of Object.entries(e.scene.assets||{})){let target=key;if(assets[key]&&encode(assets[key])!==encode(a)){const encoded=encode(a);target=Object.keys(assets).find(k=>encode(assets[k])===encoded)||'u-'+id();}mapping[key]=target;if(!assets[target])assets[target]=structuredClone(a);}
  const placed=items.map(i=>({...i,id:id(),type:mapping[i.type]||i.type,x:i.x-cx+x,z:i.z-cz+z,y:i.y-base+level.elevation,levelId:level.id,encounterId:group.id}));
  const [w,d]=tableSize(p);if(placed.some(i=>Math.abs(i.x*p.grid)>w/2||Math.abs(i.z*p.grid)>d/2))throw Error('Encounter piece centres extend beyond this table. Place it further inside.');
  const candidate={...p,assets,items:[...p.items,...placed],world:{...p.world,instances:[...p.world.instances,group]}};validateProject(candidate,false);

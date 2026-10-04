@@ -1,0 +1,2137 @@
+{
+  "schemaVersion": 1,
+  "id": "tf-willowbrook-village",
+  "name": "Willowbrook Medieval Village",
+  "version": "1.0.0",
+  "priceMinor": 999,
+  "currency": "GBP",
+  "pieceCount": 85,
+  "modelRenderCount": 77,
+  "status": "in-production",
+  "purchaseAvailable": false,
+  "supportEmail": "nigel.webster@mgnconsultancy.co.uk",
+  "deviceAllowance": 2,
+  "physicalFitVerified": false,
+  "pieces": [
+    {
+      "id": "wb-001",
+      "name": "Cottage body A, 2x2, solid exterior shell and integrated base, one print",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless one-storey cottage shell, single continuous print with integrated square stone floor. Front plank door slightly left of centre, square leaded window right, two windows on right side, no furniture. Wall beams are subtly bowed. Flat open wall tops ready for separate roof. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-001-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-001-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-001-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-001-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-001-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-001-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-001-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-001-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-002",
+      "name": "Cottage A removable pitched roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only the detachable pitched slate roof for cottage A, gentle settled ridge, broad eaves, matching 101.6 mm square cottage. No walls, no duplicate house, no floating chimney. Render roof upright on its flat seat. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-002-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-002-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-002-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-002-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-002-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-002-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-002-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-002-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-003",
+      "name": "Cottage body B, 2x2, stone lower walls, one print",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless one-storey stone cottage shell, single body with lower fieldstone wall, plaster upper panels, centred front door and small side windows, no interior furniture. Retained concept has centred door, small windows either side and stone lower wall courses. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-003-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-003-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-003-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-003-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-003-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-003-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-003-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-003-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-004",
+      "name": "Cottage B removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable cottage B pitched roof of worn wooden shingles, matching square 101.6 mm cottage body. No walls. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-004-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-004-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-004-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-004-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-004-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-004-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-004-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-004-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-005",
+      "name": "Cottage body C, 2x2, timber and cracked plaster, one print",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless one-storey poor cottage shell, patched plaster, visibly bowed sturdy beams, front door on right and shuttered window left, single integrated square floor. Retained concept includes a shallow front planter and one integrated sack as sculpted building details. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-005-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-005-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-005-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-005-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-005-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-005-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-005-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-005-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-006",
+      "name": "Cottage C removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable cottage C thatched roof, thick sculpted reed clumps and settled ridge, square body match. No house walls. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-006-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-006-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-006-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-006-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-006-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-006-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-006-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-006-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-007",
+      "name": "Tavern body, 3x2, taller two-storey exterior, one print",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless taller two-storey tavern shell on rectangular integrated floor. Two front doorways, leaded windows and sturdy integral sign bracket without lettering. Slightly bowed beams, separate roof omitted. Retained concept includes fixed lanterns, blank shield sign, window flowerboxes, barrels, bench and hay crate on its building carrier. These details are integral to the building, separate prop variants remain independently rearrangeable. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 110
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-007-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-007-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-007-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-007-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-007-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-007-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-007-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-007-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-008",
+      "name": "Tavern removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable broad pitched worn slate tavern roof, long ridge on 152.4 mm dimension, matching tavern shell. No walls. Dormers and chimney above the roof are integral roof details; the chimney joint and clearance with body007 require CAD engineering. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-008-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-008-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-008-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-008-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-008-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-008-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-008-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-008-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-009",
+      "name": "Blacksmith body, 3x2, stone chimney base and open work bay, one print",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless single-storey blacksmith workshop shell with stone back wall, thick timber posts and wide open front work bay, integrated floor. No furnace, canopy or roof: these are separate pieces. Retained concept includes integral workbench, toolboard, small bucket and anvil in the open work bay; separate workshop props are additional modular components. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-009-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-009-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-009-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-009-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-009-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-009-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-009-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-009-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-010",
+      "name": "Blacksmith removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable worn slate blacksmith roof matching 152.4 by 101.6 mm workshop, no walls or canopy. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-010-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-010-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-010-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-010-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-010-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-010-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-010-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-010-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-011",
+      "name": "Blacksmith forge-yard floor, 2x2",
+      "category": "Floors",
+      "subcategory": "Buildings and roofs",
+      "description": "Only a square bare blacksmith forge-yard paving slab: irregular worn grey flagstones with broad sculpted soot wear. Absolutely no furnace, chimney, anvil, tools, canopy, fences or furniture.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 12.097800254821777
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-011-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-011-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-011-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-011-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-011-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-011-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-011-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-011-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-012",
+      "name": "Blacksmith sturdy separate canopy",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "One connected blacksmith canopy assembly with substantial timber posts and a shallow weathered plank roof. No workshop walls, no forge, no detached components. Retained canopy is a standalone four-post pitched roof on its own integral rectangular paving carrier; not a roof insert.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 65
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-012-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-012-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-012-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-012-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-012-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-012-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-012-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-012-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-013",
+      "name": "Worn flagstone floor A",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Worn flagstone floor A. Original aged medieval village miniature with chunky physically sculpted detail, one coherent object.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.953700065612793
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-013-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-013-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-013-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-013-left.webp"
+      },
+      "engineeringImages": {},
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-014",
+      "name": "Worn flagstone floor B",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Worn flagstone floor B. Original aged medieval village miniature with chunky physically sculpted detail, one coherent object.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 13.350799560546875
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-014-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-014-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-014-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-014-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-014-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-014-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-014-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-014-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-015",
+      "name": "Chipped flagstone floor C",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Chipped flagstone floor C. Original aged medieval village miniature with chunky physically sculpted detail, one coherent object.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.696100234985352
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-015-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-015-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-015-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-015-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-015-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-015-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-015-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-015-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-016",
+      "name": "Small cobblestone floor",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square floor tile covered with many small rounded cobblestones, each roughly4\u00e2\u20ac\u201c6mm across in model scale, laid in staggered rows. No large flagstone slabs.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.024200439453125
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-016-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-016-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-016-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-016-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-016-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-016-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-016-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-016-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-017",
+      "name": "Large cobblestone floor",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square floor tile with distinct chunky rounded cobbles roughly7\u00e2\u20ac\u201c9mm across, varied heights and recessed mortar. No huge flagstone slabs.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.0733003616333
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-017-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-017-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-017-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-017-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-017-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-017-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-017-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-017-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-018",
+      "name": "Market-square centre floor, 2x2, fountain mounting pad",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square centre paving tile with a flat solid circular fountain mounting pad, circle indicated by shallow circular mortar seam. No raised circular wall, basin, hollow opening, fountain or pedestal.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 12.216699600219727
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-018-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-018-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-018-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-018-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-018-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-018-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-018-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-018-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-019",
+      "name": "Market paving border full floor straight",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a full square bare stone floor tile: smaller cobbles in centre with a contrasting course of larger worn rectangular pavers along rear edge. Flat square footprint, no wall, fence, props or raised tray rim.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.058199882507324
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-019-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-019-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-019-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-019-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-019-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-019-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-019-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-019-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-020",
+      "name": "Market paving border full floor corner",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a full square bare stone floor tile: smaller cobbles in centre with a contrasting course of larger worn rectangular pavers along rear and right edges. Flat square footprint, no wall, fence, props or raised tray rim.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.673999786376953
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-020-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-020-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-020-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-020-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-020-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-020-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-020-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-020-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-021",
+      "name": "Drain and gutter floor",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square cobblestone floor tile with a shallow straight stone drainage gutter through the centre and chunky integrated iron grate, flat adjoining surface. No scene or furniture.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.582300186157227
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-021-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-021-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-021-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-021-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-021-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-021-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-021-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-021-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-022",
+      "name": "Dirt-to-stone transition",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square transition floor tile: worn cobblestone on one half blends into textured packed dirt on the other. Joining boundaries remain square and equal height. No fences, walls or props.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 14.097100257873535
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-022-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-022-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-022-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-022-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-022-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-022-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-022-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-022-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-023",
+      "name": "Straight cobbled lane",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square roadway tile: straight cobbled walking strip25.4mm wide connecting FRONT and REAR edges; flat packed dirt along both sides. No boundary objects.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.53279972076416
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-023-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-023-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-023-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-023-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-023-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-023-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-023-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-023-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-024",
+      "name": "Corner cobbled lane",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square roadway tile: cobbled walking strip25.4mm wide makes a clear quarter-turn connecting FRONT and RIGHT edges; flat packed dirt in unused corners. No buildings, walls, fences, posts or street props.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.698699951171875
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-024-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-024-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-024-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-024-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-024-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-024-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-024-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-024-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-025",
+      "name": "T-junction cobbled lane",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square roadway tile: T-shaped cobbled walking strip25.4mm wide connects FRONT, LEFT and RIGHT edges; flat packed dirt in unused corners. No walls, fences, furniture or posts.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.538200378417969
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-025-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-025-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-025-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-025-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-025-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-025-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-025-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-025-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-026",
+      "name": "Crossroads cobbled lane",
+      "category": "Floors",
+      "subcategory": "Market floors and roads",
+      "description": "Only a square roadway tile: cross-shaped cobbled walking strip25.4mm wide connects all four edges; packed dirt in four corners. No corner dioramas, fences, walls, barrels, signs, benches or other street furniture.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.866999626159668
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-026-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-026-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-026-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-026-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-026-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-026-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-026-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-026-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-027",
+      "name": "Low stone wall straight",
+      "category": "Walls",
+      "subcategory": "Boundaries and access",
+      "description": "One FULL square worn cobblestone floor tile with an integrated low irregular fieldstone wall running along the whole rear edge with continuous seam terminals. Boundary thickness 8 mm, all geometry INSIDE the footprint. Wall top 22 mm above the 12 mm paving datum. Broad open paved walking area in front, no loose props or extra scenery. No narrow strip base or L-shaped footprint.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 34
+      },
+      "images": {},
+      "engineeringImages": {},
+      "modelReturned": false,
+      "final": false
+    },
+    {
+      "id": "wb-028",
+      "name": "Low stone wall corner",
+      "category": "Walls",
+      "subcategory": "Boundaries and access",
+      "description": "One FULL square worn cobblestone floor tile with an integrated low irregular fieldstone wall running along rear and right edges to make a right-angle corner. Boundary thickness 8 mm, all geometry INSIDE the footprint. Wall top 22 mm above the 12 mm paving datum. Broad open paved walking area in front, no loose props or extra scenery. No narrow strip base or L-shaped footprint.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 34
+      },
+      "images": {},
+      "engineeringImages": {},
+      "modelReturned": false,
+      "final": false
+    },
+    {
+      "id": "wb-029",
+      "name": "Low stone wall end",
+      "category": "Walls",
+      "subcategory": "Boundaries and access",
+      "description": "Full50.8mm square paving tile. Low stone wall runs the ENTIRE rear edge from left outer corner to right outer corner. Finished stout stone terminal FLUSH at right outer corner; left end is continuation seam. No midpoint stop, no extra return wall. Wall34mm overall,22mm above paving.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 34
+      },
+      "images": {},
+      "engineeringImages": {},
+      "modelReturned": false,
+      "final": false
+    },
+    {
+      "id": "wb-030",
+      "name": "Low stone wall gate opening",
+      "category": "Walls",
+      "subcategory": "Boundaries and access",
+      "description": "One FULL double-width rectangular worn cobblestone floor tile with an integrated low irregular fieldstone wall along rear edge, interrupted by a clear 60 mm central open gateway with stout stone posts. Boundary thickness 8 mm, all geometry INSIDE the footprint. Wall top 22 mm above the 12 mm paving datum. Broad open paved walking area in front, no loose props or extra scenery. No narrow strip base or L-shaped footprint.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 34
+      },
+      "images": {},
+      "engineeringImages": {},
+      "modelReturned": false,
+      "final": false
+    },
+    {
+      "id": "wb-031",
+      "name": "Timber fence straight",
+      "category": "Walls",
+      "subcategory": "Boundaries and access",
+      "description": "One FULL square worn cobblestone floor tile with an integrated aged thick oak fence with bowed rails running along the whole rear edge with continuous seam terminals. Boundary thickness 8 mm, all geometry INSIDE the footprint. Top rail 28 mm above the 12 mm paving datum. Broad open paved walking area in front, no loose props or extra scenery. No narrow strip base or L-shaped footprint.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 40
+      },
+      "images": {},
+      "engineeringImages": {},
+      "modelReturned": false,
+      "final": false
+    },
+    {
+      "id": "wb-032",
+      "name": "Timber fence corner",
+      "category": "Walls",
+      "subcategory": "Boundaries and access",
+      "description": "One FULL square worn cobblestone floor tile with an integrated aged thick oak fence with bowed rails running along rear and right edges to make a right-angle corner. Boundary thickness 8 mm, all geometry INSIDE the footprint. Top rail 28 mm above the 12 mm paving datum. Broad open paved walking area in front, no loose props or extra scenery. No narrow strip base or L-shaped footprint.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 40
+      },
+      "images": {},
+      "engineeringImages": {},
+      "modelReturned": false,
+      "final": false
+    },
+    {
+      "id": "wb-033",
+      "name": "Timber fence end",
+      "category": "Walls",
+      "subcategory": "Boundaries and access",
+      "description": "Full50.8mm square paving tile. Timber fence runs the ENTIRE rear edge from left outer corner to right outer corner. Finished stout oak endpost FLUSH at right outer corner; left end is continuation seam. No midpoint stop, no extra return fence. Fence40mm overall,28mm above paving.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 40
+      },
+      "images": {},
+      "engineeringImages": {},
+      "modelReturned": false,
+      "final": false
+    },
+    {
+      "id": "wb-034",
+      "name": "Timber gate with posts",
+      "category": "Walls",
+      "subcategory": "Boundaries and access",
+      "description": "One FULL double-width rectangular worn cobblestone floor tile with an integrated aged thick oak fence with bowed rails along rear edge, interrupted by stout posts and closed double timber gate leaves. Boundary thickness 8 mm, all geometry INSIDE the footprint. Top rail 28 mm above the 12 mm paving datum. Broad open paved walking area in front, no loose props or extra scenery. No narrow strip base or L-shaped footprint.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 40
+      },
+      "images": {},
+      "engineeringImages": {},
+      "modelReturned": false,
+      "final": false
+    },
+    {
+      "id": "wb-035",
+      "name": "Stone doorstep",
+      "category": "Details",
+      "subcategory": "Boundaries and access",
+      "description": "Full50.8mm square paving tile12mm tall carrying a broad two-tread stone doorstep along rear edge.35mm overall. Broad unobstructed paving in front. No half-depth base.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 35
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-035-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-035-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-035-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-035-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-035-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-035-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-035-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-035-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-036",
+      "name": "Broad stone steps",
+      "category": "Details",
+      "subcategory": "Boundaries and access",
+      "description": "Full50.8mm square paving tile12mm tall carrying broad three-tread stone steps along rear edge.35mm overall. Broad unobstructed paving in front. No half-depth base.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 35
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-036-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-036-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-036-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-036-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-036-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-036-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-036-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-036-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-037",
+      "name": "Timber porch with integrated plinth",
+      "category": "Details",
+      "subcategory": "Boundaries and access",
+      "description": "One standalone modest timber porch with chunky posts and fixed simple roof, connected to a square integral stone base; no cottage, door wall or furniture.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 77
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-037-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-037-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-037-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-037-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-037-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-037-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-037-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-037-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-038",
+      "name": "Village entrance sign on sturdy posts",
+      "category": "Details",
+      "subcategory": "Boundaries and access",
+      "description": "One standalone village entrance sign: two thick oak posts with broad blank carved timber board on integral rectangular stone carrier, no text, no wall or scenery.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 65
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-038-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-038-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-038-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-038-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-038-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-038-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-038-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-038-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-039",
+      "name": "Old market stall body A on 2x1 connected base",
+      "category": "Details",
+      "subcategory": "Market and fountain",
+      "description": "Only old market stall A frame and counter: four stout posts on integral rectangular cobbled carrier, no canopy, no cloth roof and no produce or separate goods.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 60
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-039-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-039-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-039-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-039-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-039-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-039-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-039-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-039-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-040",
+      "name": "Stall A removable chunky canopy",
+      "category": "Details",
+      "subcategory": "Market and fountain",
+      "description": "Only detachable red and cream striped old cloth market canopy on chunky integral wooden crossbars. No posts, no stall body or produce. Cloth folds have thick printable geometry.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 60
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-040-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-040-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-040-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-040-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-040-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-040-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-040-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-040-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-041",
+      "name": "Old market stall body B on 2x1 connected base",
+      "category": "Details",
+      "subcategory": "Market and fountain",
+      "description": "Only old market stall B timber frame with counter and attached rear shelf on integral rectangular cobbled carrier, four thick posts, no canopy, no roof, no display goods.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 60
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-041-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-041-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-041-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-041-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-041-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-041-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-041-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-041-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-042",
+      "name": "Stall B removable chunky canopy",
+      "category": "Details",
+      "subcategory": "Market and fountain",
+      "description": "Only detachable weathered pale ochre cloth market canopy on thick integral wooden supports, no posts or stall body.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 60
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-042-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-042-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-042-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-042-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-042-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-042-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-042-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-042-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-043",
+      "name": "Produce display tray",
+      "category": "Details",
+      "subcategory": "Market and fountain",
+      "description": "Freestanding small produce crate18x14x10mm, with many small apples about1.8mm diameter and compact vegetables. One joined sculpt, flat underside; no tile or mandatory stall attachment.",
+      "targetDimensionsMm": {
+        "width": 18,
+        "depth": 14,
+        "height": 10
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-043-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-043-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-043-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-043-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-043-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-043-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-043-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-043-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-044",
+      "name": "Cloth-and-pottery display tray",
+      "category": "Details",
+      "subcategory": "Market and fountain",
+      "description": "Freestanding small pottery and folded-cloth tray20x16x12mm, flat underside, no tile or mandatory stall attachment.",
+      "targetDimensionsMm": {
+        "width": 20,
+        "depth": 16,
+        "height": 12
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-044-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-044-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-044-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-044-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-044-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-044-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-044-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-044-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-045",
+      "name": "Stone fountain basin on connected base, dry interior",
+      "category": "Details",
+      "subcategory": "Market and fountain",
+      "description": "Dry octagonal stone fountain basin on square flagstone base with empty basin and central pedestal seat. No water, no central pedestal, no spray. Current engineered candidate: mounting-fountain-basin; matching gentle central locator, physical fit and final visual acceptance pending.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 26
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-045-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-045-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-045-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-045-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-045-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-045-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-045-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-045-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-046",
+      "name": "Fountain central carved pedestal, separate print",
+      "category": "Details",
+      "subcategory": "Market and fountain",
+      "description": "Only carved medieval stone fountain central pedestal, tiered simple masonry column with broad flat foot sized to the separate basin. No basin, no liquid. Current engineered candidate: mounting-fountain-pedestal; matching gentle central locator, physical fit and final visual acceptance pending.",
+      "targetDimensionsMm": {
+        "width": 22.86,
+        "depth": 19.7349,
+        "height": 39.58709
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-046-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-046-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-046-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-046-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-046-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-046-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-046-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-046-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-047",
+      "name": "Barrel",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Freestanding oak barrel16mm maximum diameter22mm tall, flat bottom, no paving tile.",
+      "targetDimensionsMm": {
+        "width": 16,
+        "depth": 16,
+        "height": 22
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-047-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-047-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-047-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-047-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-047-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-047-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-047-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-047-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-048",
+      "name": "Stacked barrels",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Freestanding joined pyramid of three horizontal barrels16mm diameter22mm long, two below one above,32x22x30mm overall; integral wooden chocks, no floor tile.",
+      "targetDimensionsMm": {
+        "width": 32,
+        "depth": 22,
+        "height": 30
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-048-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-048-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-048-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-048-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-048-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-048-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-048-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-048-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-049",
+      "name": "Crate",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Freestanding20mm cube timber crate, flat underside, no floor tile.",
+      "targetDimensionsMm": {
+        "width": 20,
+        "depth": 20,
+        "height": 20
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-049-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-049-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-049-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-049-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-049-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-049-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-049-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-049-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-050",
+      "name": "Crate stack",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Freestanding joined stack of three20mm cube crates, two below one above,40x20x40mm overall; no floor tile.",
+      "targetDimensionsMm": {
+        "width": 40,
+        "depth": 20,
+        "height": 40
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-050-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-050-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-050-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-050-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-050-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-050-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-050-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-050-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-051",
+      "name": "Bench",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One rustic bench45mm long, seat16mm above paving, thick feet and slightly bowed worn timber seat, on its own integral rectangular stone carrier. No fence, barrel or surroundings. V6 carrier101.6x50.8mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 28
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-051-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-051-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-051-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-051-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-051-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-051-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-051-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-051-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-052",
+      "name": "Horse trough",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One carved stone horse trough45mm long, dry interior, rim16mm above paving, on its own integral rectangular stone carrier. No horse, water, bucket or fence. V6 carrier101.6x50.8mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 28
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-052-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-052-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-052-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-052-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-052-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-052-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-052-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-052-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-053",
+      "name": "Handcart",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Empty rustic two-wheel handcart, connected chunky wheels, short handles kept within footprint, no load and no separate parts. V6 carrier101.6x50.8mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 30
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-053-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-053-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-053-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-053-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-053-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-053-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-053-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-053-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-054",
+      "name": "Firewood stack",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One compact cohesive stack of chunky split firewood, roughly35mm long, on own integral stone carrier. No fence, forge or unrelated props. V6 carrier101.6x50.8mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 30
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-054-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-054-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-054-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-054-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-054-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-054-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-054-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-054-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-055",
+      "name": "Village noticeboard on connected base",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One blank timber village noticeboard on two thick posts, on its own square integral stone carrier. No writing, street scene, barrels or fence.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 60
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-055-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-055-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-055-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-055-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-055-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-055-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-055-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-055-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-056",
+      "name": "Forge hearth on connected base",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One independent stone forge hearth with integral stout chimney and sculpted cold coals, on own square integral stone carrier. No workshop walls, canopy, anvil, tools or workbench.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 55
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-056-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-056-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-056-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-056-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-056-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-056-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-056-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-056-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-057",
+      "name": "Anvil on sturdy stump",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One freestanding iron anvil on sturdy wooden stump.25.4mm maximum width anddepth25mm overallheight. Flat stump underside, no stonefloor or tile; drop-in accessory.",
+      "targetDimensionsMm": {
+        "width": 25.4,
+        "depth": 25.4,
+        "height": 25
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-057-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-057-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-057-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-057-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-057-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-057-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-057-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-057-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-058",
+      "name": "Blacksmith workbench",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One blacksmith workbench45mm long with only sculpted integral tool details, on its own rectangular stone carrier. No furnace, anvil or workshop walls. Workbench details include integral tool holders, tools, small storage bucket and horseshoes; all joined to workbench in CAD, no loose child objects. V6 carrier101.6x50.8mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 30
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-058-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-058-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-058-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-058-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-058-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-058-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-058-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-058-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-059",
+      "name": "Compact village orchard tree on single tile",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Compact young village orchard tree with slender6mm trunk and modest rounded canopy40mm wide,70mm above paving,82mm overall. One50.8mm square cobbled tile12mm tall. Small leaf clusters, no giant ancient trunk or sprawling roots; canopy remains within tile.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 82
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-059-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-059-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-059-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-059-left.webp"
+      },
+      "engineeringImages": {},
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-060",
+      "name": "Bush and planter on connected base",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One chunky bush in a carved stone planter on own square integral stone carrier, no tree, bench or surrounding scene.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-060-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-060-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-060-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-060-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-060-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-060-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-060-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-060-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-061",
+      "name": "Hay cart with chunky sculpted loose hay load",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Rustic two-wheel hay cart fully loaded with bulky sculpted loose straw clumps, substantial connected wooden wheels and thick short shafts, single coherent printable object. V6 carrier101.6x50.8mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 55
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-061-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-061-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-061-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-061-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-061-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-061-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-061-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-061-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-062",
+      "name": "Hay-bale cart with stacked chunky bales",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Rustic two-wheel farm cart carrying stacked rectangular bound hay bales, thick sculpted straw ridges and stout wheels and shafts, one connected object. V6 carrier101.6x50.8mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 55
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-062-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-062-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-062-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-062-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-062-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-062-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-062-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-062-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-063",
+      "name": "General store body, 3x2, shuttered display window and recessed doorway",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless general store shell with integrated 3x2-module stone floor, recessed front doorway on left and wide shuttered display window on right, bowed oak framing, no merchandise, no roof. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-063-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-063-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-063-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-063-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-063-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-063-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-063-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-063-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-064",
+      "name": "General store removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable slate roof matching long rectangular general store shell, no walls or goods. Small chimney and triangular timber/plaster gables are integral roof details; no ground carrier. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-064-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-064-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-064-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-064-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-064-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-064-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-064-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-064-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-065",
+      "name": "Stables body, 3x2, three open horse bays and feed passage",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless stable shell on rectangular integrated cobbled floor with three empty open-front horse bays and robust timber partitions, fieldstone rear wall, thick posts. No horses, no roof, no hay. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-065-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-065-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-065-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-065-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-065-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-065-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-065-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-065-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-066",
+      "name": "Stables removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable long barn-style pitched timber-shingle roof matching three-bay stable, no stable walls, no horses. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-066-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-066-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-066-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-066-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-066-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-066-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-066-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-066-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-067",
+      "name": "Barn body, 3x2, wide plank doors and hayloft",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless barn shell on rectangular integrated floor with wide double plank doors, hayloft opening and aged stout timber walls. No roof, no hay or carts. The loft shelf and interior ladder are integral sculpted details. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-067-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-067-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-067-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-067-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-067-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-067-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-067-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-067-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-068",
+      "name": "Barn removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable long pitched thatched barn roof, thick sculpted straw clumps, no barn body. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 152.4,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-068-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-068-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-068-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-068-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-068-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-068-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-068-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-068-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-069",
+      "name": "Village well basin, dry interior, stone round curb on square base",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Round dry village well curb of chipped stones on square cobbled floor, empty dark opening, no water, no posts and no hood.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 30
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-069-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-069-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-069-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-069-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-069-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-069-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-069-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-069-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-070",
+      "name": "Village well timber hood, posts and chunky fixed windlass",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Separate connected well hood assembly with two thick posts, modest shingled pitched cover and stout fixed windlass; no well basin, no rope, no bucket.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-070-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-070-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-070-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-070-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-070-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-070-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-070-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-070-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-071",
+      "name": "Small chapel body, 2x3, stone arch doorway and narrow windows",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless small medieval chapel shell, stone arched doorway on short front face, narrow arched windows along long side, integrated stone floor, no roof or figures. The small interior bench is an integral sculpted detail. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 152.4,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-071-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-071-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-071-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-071-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-071-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-071-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-071-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-071-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-072",
+      "name": "Small chapel removable roof with modest bell housing",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable long slate chapel roof with small integral sturdy enclosed bell housing, no chapel walls, no thin cross or loose bell. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 152.4,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-072-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-072-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-072-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-072-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-072-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-072-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-072-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-072-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-073",
+      "name": "Guardhouse body, 2x2, stout stone lower walls and timber upper floor",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless compact guardhouse shell with stout stone lower walls and timber upper floor, front door and small watch windows, no soldiers or roof. Interior bench and stored hay are integral sculpted details. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 110
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-073-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-073-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-073-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-073-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-073-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-073-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-073-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-073-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-074",
+      "name": "Guardhouse removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable short square pitched slate guardhouse roof, no building walls. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-074-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-074-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-074-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-074-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-074-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-074-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-074-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-074-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-075",
+      "name": "Bakery body, 2x2, bread hatch and exterior oven chimney",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Roofless bakery shell, front service hatch and door, weathered timber and plaster, integrated square base, oven chimney stump attached to exterior wall, no roof, no bread display. The oven projection, body chimney and small hatch awning are integral sculpted details. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 70
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-075-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-075-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-075-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-075-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-075-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-075-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-075-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-075-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-076",
+      "name": "Bakery removable roof",
+      "category": "Details",
+      "subcategory": "Buildings and roofs",
+      "description": "Only detachable square bakery roof with matching modest chimney clearance seat, no building walls. CAD v5: shared flat interchangeable roof seat and four locating-pin holes. Parent identity is visual only; common footprint family controls mating. Body chimneys and raised gables must be re-engineered clear of every family roof.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 45
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-076-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-076-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-076-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-076-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-076-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-076-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-076-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-076-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-077",
+      "name": "Village privy, 1x1, weathered plank hut with fixed roof",
+      "category": "Details",
+      "subcategory": "Village props",
+      "description": "Small weathered wooden privy hut with fixed slightly sagging plank roof, closed front door, chunky beams, square integrated base. One object.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 60
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-077-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-077-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-077-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-077-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-077-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-077-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-077-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-077-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-078",
+      "name": "Village stocks on stone platform, empty head and hand holes",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One empty medieval stocks frame with a head opening near32mm above paving and two hand openings, thick oak posts and crosspiece on own stone carrier. No figures or unrelated street furniture. V6 carrier101.6x50.8mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 50.8,
+        "height": 50
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-078-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-078-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-078-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-078-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-078-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-078-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-078-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-078-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-079",
+      "name": "Optional guillotine scenery, empty static timber frame on platform",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "Static ornamental guillotine scenery on a low square cobbled platform, two thick timber uprights, fixed blunt metal blade safely seated high between rails, empty bench. No people, no injury, no blood, no moving mechanism, no ropes or realistic operating instructions. V6 carrier101.6x101.6mm uses whole50.8mm modules; scenic object retains prior scale.",
+      "targetDimensionsMm": {
+        "width": 101.6,
+        "depth": 101.6,
+        "height": 100
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-079-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-079-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-079-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-079-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-079-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-079-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-079-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-079-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-080",
+      "name": "Hitching rail on cobbled base, thick posts and beam",
+      "category": "Props",
+      "subcategory": "Village props",
+      "description": "One stout horse hitching rail with two thick oak posts and a slightly bowed beam, rail 28 mm above paving, fully contained on a FULL square 50.8 mm cobbled floor tile. No horse, ropes, fence run or other props.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 40
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-080-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-080-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-080-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-080-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-080-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-080-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-080-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-080-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-081",
+      "name": "Sandstone sett floor",
+      "category": "Floors",
+      "subcategory": "Narrow paving fillers",
+      "description": "Full50.8mm square bare paving tile, aged small irregular sandstone setts.12mm height. No strips, fillers,props or walls.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.863499641418457
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-081-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-081-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-081-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-081-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-081-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-081-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-081-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-081-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-082",
+      "name": "Large limestone slab floor",
+      "category": "Floors",
+      "subcategory": "Narrow paving fillers",
+      "description": "Full50.8mm square bare paving tile, aged large rectangular limestone slabs.12mm height. No strips, fillers,props or walls.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.623100280761719
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-082-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-082-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-082-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-082-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-082-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-082-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-082-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-082-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-083",
+      "name": "Fan-pattern cobble floor",
+      "category": "Floors",
+      "subcategory": "Narrow paving fillers",
+      "description": "Full50.8mm square bare paving tile, worn radial fan-pattern cobbles.12mm height. No notches,cornercaps,fillers,props or walls.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.734399795532227
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-083-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-083-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-083-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-083-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-083-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-083-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-083-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-083-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-084",
+      "name": "Herringbone stone floor",
+      "category": "Floors",
+      "subcategory": "Narrow paving fillers",
+      "description": "Full50.8mm square bare paving tile, worn herringbone stone setts.12mm height. No narrow spacer strip,props or walls.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.632499694824219
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-084-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-084-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-084-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-084-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-084-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-084-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-084-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-084-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    },
+    {
+      "id": "wb-085",
+      "name": "Patched flagstone floor",
+      "category": "Floors",
+      "subcategory": "Narrow paving fillers",
+      "description": "Full50.8mm square bare paving tile, irregular patched flagstones.12mm height. No small spacer,props or walls.",
+      "targetDimensionsMm": {
+        "width": 50.8,
+        "depth": 50.8,
+        "height": 12.131099700927734
+      },
+      "images": {
+        "front": "assets/premium/tf-willowbrook-village/wb-085-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-085-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-085-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-085-left.webp"
+      },
+      "engineeringImages": {
+        "front": "assets/premium/tf-willowbrook-village/wb-085-engineered-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-085-engineered-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-085-engineered-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-085-engineered-left.webp"
+      },
+      "modelReturned": true,
+      "final": false
+    }
+  ]
+}

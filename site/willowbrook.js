@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id),node=(tag,text)=>{const e=document.createElement(tag);if(text)e.textContent=text;return e;};
-const safeImage=p=>typeof p==='string'&&/^assets\/premium\/tf-willowbrook-village\/wb-\d{3}-(?:engineered-)?(?:front|right|rear|left)\.webp$/.test(p);
+const safeImage=p=>typeof p==='string'&&/^assets\/premium\/tf-willowbrook-village\/wb-\d{3}-(?:engineered-)?(?:perspective|front|right|rear|left)\.webp$/.test(p);
 try{
  const response=await fetch('willowbrook-gallery.json');if(!response.ok)throw Error('Gallery unavailable');const data=await response.json();if(data.schemaVersion!==1||!Array.isArray(data.pieces))throw Error('Invalid gallery');
  $('gallery-status').textContent=`${data.modelRenderCount} of ${data.pieceCount} pieces have actual model renders. Remaining models and final checks are in progress.`;
@@ -12,5 +12,6 @@ try{
   }
   if(!pieces.length)$('gallery-grid').append(node('p','No pieces match. Try another search or category.'));
  }
+ $('gallery-render').addEventListener('change',()=>{if($('gallery-render').value==='engineering'&&$('gallery-view').value==='perspective')$('gallery-view').value='front';render();});
  for(const id of ['gallery-search','gallery-category','gallery-render','gallery-view'])$(id).addEventListener(id==='gallery-search'?'input':'change',render);render();
 }catch{$('gallery-status').textContent='The model gallery could not be loaded. Please try again later.';}

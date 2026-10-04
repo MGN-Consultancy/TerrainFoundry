@@ -6,7 +6,7 @@
   "priceMinor": 999,
   "currency": "GBP",
   "pieceCount": 85,
-  "modelRenderCount": 77,
+  "modelRenderCount": 85,
   "status": "in-production",
   "purchaseAvailable": false,
   "supportEmail": "nigel.webster@mgnconsultancy.co.uk",
@@ -25,6 +25,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-001-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-001-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-001-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-001-rear.webp",
@@ -51,6 +52,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-002-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-002-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-002-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-002-rear.webp",
@@ -77,6 +79,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-003-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-003-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-003-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-003-rear.webp",
@@ -103,6 +106,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-004-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-004-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-004-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-004-rear.webp",
@@ -129,6 +133,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-005-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-005-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-005-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-005-rear.webp",
@@ -155,6 +160,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-006-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-006-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-006-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-006-rear.webp",
@@ -181,6 +187,7 @@
         "height": 110
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-007-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-007-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-007-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-007-rear.webp",
@@ -207,6 +214,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-008-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-008-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-008-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-008-rear.webp",
@@ -233,6 +241,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-009-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-009-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-009-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-009-rear.webp",
@@ -259,6 +268,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-010-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-010-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-010-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-010-rear.webp",
@@ -285,6 +295,7 @@
         "height": 12.097800254821777
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-011-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-011-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-011-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-011-rear.webp",
@@ -311,6 +322,7 @@
         "height": 65
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-012-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-012-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-012-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-012-rear.webp",
@@ -337,6 +349,7 @@
         "height": 12.953700065612793
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-013-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-013-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-013-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-013-rear.webp",
@@ -358,6 +371,7 @@
         "height": 13.350799560546875
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-014-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-014-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-014-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-014-rear.webp",
@@ -384,6 +398,7 @@
         "height": 12.696100234985352
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-015-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-015-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-015-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-015-rear.webp",
@@ -410,6 +425,7 @@
         "height": 12.024200439453125
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-016-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-016-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-016-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-016-rear.webp",
@@ -436,6 +452,7 @@
         "height": 12.0733003616333
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-017-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-017-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-017-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-017-rear.webp",
@@ -462,6 +479,7 @@
         "height": 12.216699600219727
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-018-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-018-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-018-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-018-rear.webp",
@@ -488,6 +506,7 @@
         "height": 12.058199882507324
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-019-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-019-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-019-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-019-rear.webp",
@@ -514,6 +533,7 @@
         "height": 12.673999786376953
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-020-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-020-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-020-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-020-rear.webp",
@@ -540,6 +560,7 @@
         "height": 12.582300186157227
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-021-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-021-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-021-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-021-rear.webp",
@@ -566,6 +587,7 @@
         "height": 14.097100257873535
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-022-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-022-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-022-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-022-rear.webp",
@@ -592,6 +614,7 @@
         "height": 12.53279972076416
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-023-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-023-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-023-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-023-rear.webp",
@@ -618,6 +641,7 @@
         "height": 12.698699951171875
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-024-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-024-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-024-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-024-rear.webp",
@@ -644,6 +668,7 @@
         "height": 12.538200378417969
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-025-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-025-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-025-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-025-rear.webp",
@@ -670,6 +695,7 @@
         "height": 12.866999626159668
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-026-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-026-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-026-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-026-rear.webp",
@@ -695,9 +721,15 @@
         "depth": 50.8,
         "height": 34
       },
-      "images": {},
+      "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-027-perspective.webp",
+        "front": "assets/premium/tf-willowbrook-village/wb-027-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-027-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-027-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-027-left.webp"
+      },
       "engineeringImages": {},
-      "modelReturned": false,
+      "modelReturned": true,
       "final": false
     },
     {
@@ -711,9 +743,15 @@
         "depth": 50.8,
         "height": 34
       },
-      "images": {},
+      "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-028-perspective.webp",
+        "front": "assets/premium/tf-willowbrook-village/wb-028-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-028-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-028-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-028-left.webp"
+      },
       "engineeringImages": {},
-      "modelReturned": false,
+      "modelReturned": true,
       "final": false
     },
     {
@@ -727,9 +765,15 @@
         "depth": 50.8,
         "height": 34
       },
-      "images": {},
+      "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-029-perspective.webp",
+        "front": "assets/premium/tf-willowbrook-village/wb-029-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-029-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-029-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-029-left.webp"
+      },
       "engineeringImages": {},
-      "modelReturned": false,
+      "modelReturned": true,
       "final": false
     },
     {
@@ -743,9 +787,15 @@
         "depth": 50.8,
         "height": 34
       },
-      "images": {},
+      "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-030-perspective.webp",
+        "front": "assets/premium/tf-willowbrook-village/wb-030-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-030-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-030-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-030-left.webp"
+      },
       "engineeringImages": {},
-      "modelReturned": false,
+      "modelReturned": true,
       "final": false
     },
     {
@@ -759,9 +809,15 @@
         "depth": 50.8,
         "height": 40
       },
-      "images": {},
+      "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-031-perspective.webp",
+        "front": "assets/premium/tf-willowbrook-village/wb-031-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-031-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-031-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-031-left.webp"
+      },
       "engineeringImages": {},
-      "modelReturned": false,
+      "modelReturned": true,
       "final": false
     },
     {
@@ -775,9 +831,15 @@
         "depth": 50.8,
         "height": 40
       },
-      "images": {},
+      "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-032-perspective.webp",
+        "front": "assets/premium/tf-willowbrook-village/wb-032-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-032-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-032-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-032-left.webp"
+      },
       "engineeringImages": {},
-      "modelReturned": false,
+      "modelReturned": true,
       "final": false
     },
     {
@@ -791,9 +853,15 @@
         "depth": 50.8,
         "height": 40
       },
-      "images": {},
+      "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-033-perspective.webp",
+        "front": "assets/premium/tf-willowbrook-village/wb-033-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-033-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-033-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-033-left.webp"
+      },
       "engineeringImages": {},
-      "modelReturned": false,
+      "modelReturned": true,
       "final": false
     },
     {
@@ -807,9 +875,15 @@
         "depth": 50.8,
         "height": 40
       },
-      "images": {},
+      "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-034-perspective.webp",
+        "front": "assets/premium/tf-willowbrook-village/wb-034-front.webp",
+        "right": "assets/premium/tf-willowbrook-village/wb-034-right.webp",
+        "rear": "assets/premium/tf-willowbrook-village/wb-034-rear.webp",
+        "left": "assets/premium/tf-willowbrook-village/wb-034-left.webp"
+      },
       "engineeringImages": {},
-      "modelReturned": false,
+      "modelReturned": true,
       "final": false
     },
     {
@@ -824,6 +898,7 @@
         "height": 35
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-035-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-035-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-035-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-035-rear.webp",
@@ -850,6 +925,7 @@
         "height": 35
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-036-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-036-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-036-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-036-rear.webp",
@@ -876,6 +952,7 @@
         "height": 77
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-037-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-037-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-037-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-037-rear.webp",
@@ -902,6 +979,7 @@
         "height": 65
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-038-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-038-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-038-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-038-rear.webp",
@@ -928,6 +1006,7 @@
         "height": 60
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-039-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-039-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-039-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-039-rear.webp",
@@ -954,6 +1033,7 @@
         "height": 60
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-040-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-040-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-040-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-040-rear.webp",
@@ -980,6 +1060,7 @@
         "height": 60
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-041-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-041-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-041-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-041-rear.webp",
@@ -1006,6 +1087,7 @@
         "height": 60
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-042-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-042-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-042-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-042-rear.webp",
@@ -1032,6 +1114,7 @@
         "height": 10
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-043-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-043-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-043-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-043-rear.webp",
@@ -1058,6 +1141,7 @@
         "height": 12
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-044-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-044-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-044-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-044-rear.webp",
@@ -1084,6 +1168,7 @@
         "height": 26
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-045-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-045-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-045-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-045-rear.webp",
@@ -1110,6 +1195,7 @@
         "height": 39.58709
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-046-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-046-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-046-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-046-rear.webp",
@@ -1136,6 +1222,7 @@
         "height": 22
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-047-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-047-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-047-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-047-rear.webp",
@@ -1162,6 +1249,7 @@
         "height": 30
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-048-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-048-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-048-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-048-rear.webp",
@@ -1188,6 +1276,7 @@
         "height": 20
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-049-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-049-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-049-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-049-rear.webp",
@@ -1214,6 +1303,7 @@
         "height": 40
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-050-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-050-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-050-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-050-rear.webp",
@@ -1240,6 +1330,7 @@
         "height": 28
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-051-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-051-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-051-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-051-rear.webp",
@@ -1266,6 +1357,7 @@
         "height": 28
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-052-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-052-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-052-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-052-rear.webp",
@@ -1292,6 +1384,7 @@
         "height": 30
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-053-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-053-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-053-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-053-rear.webp",
@@ -1318,6 +1411,7 @@
         "height": 30
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-054-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-054-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-054-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-054-rear.webp",
@@ -1344,6 +1438,7 @@
         "height": 60
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-055-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-055-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-055-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-055-rear.webp",
@@ -1370,6 +1465,7 @@
         "height": 55
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-056-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-056-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-056-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-056-rear.webp",
@@ -1396,6 +1492,7 @@
         "height": 25
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-057-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-057-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-057-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-057-rear.webp",
@@ -1422,6 +1519,7 @@
         "height": 30
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-058-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-058-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-058-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-058-rear.webp",
@@ -1448,6 +1546,7 @@
         "height": 82
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-059-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-059-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-059-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-059-rear.webp",
@@ -1469,6 +1568,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-060-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-060-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-060-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-060-rear.webp",
@@ -1495,6 +1595,7 @@
         "height": 55
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-061-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-061-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-061-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-061-rear.webp",
@@ -1521,6 +1622,7 @@
         "height": 55
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-062-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-062-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-062-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-062-rear.webp",
@@ -1547,6 +1649,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-063-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-063-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-063-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-063-rear.webp",
@@ -1573,6 +1676,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-064-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-064-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-064-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-064-rear.webp",
@@ -1599,6 +1703,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-065-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-065-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-065-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-065-rear.webp",
@@ -1625,6 +1730,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-066-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-066-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-066-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-066-rear.webp",
@@ -1651,6 +1757,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-067-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-067-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-067-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-067-rear.webp",
@@ -1677,6 +1784,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-068-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-068-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-068-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-068-rear.webp",
@@ -1703,6 +1811,7 @@
         "height": 30
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-069-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-069-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-069-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-069-rear.webp",
@@ -1729,6 +1838,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-070-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-070-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-070-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-070-rear.webp",
@@ -1755,6 +1865,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-071-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-071-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-071-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-071-rear.webp",
@@ -1781,6 +1892,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-072-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-072-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-072-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-072-rear.webp",
@@ -1807,6 +1919,7 @@
         "height": 110
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-073-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-073-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-073-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-073-rear.webp",
@@ -1833,6 +1946,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-074-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-074-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-074-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-074-rear.webp",
@@ -1859,6 +1973,7 @@
         "height": 70
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-075-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-075-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-075-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-075-rear.webp",
@@ -1885,6 +2000,7 @@
         "height": 45
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-076-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-076-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-076-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-076-rear.webp",
@@ -1911,6 +2027,7 @@
         "height": 60
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-077-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-077-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-077-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-077-rear.webp",
@@ -1937,6 +2054,7 @@
         "height": 50
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-078-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-078-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-078-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-078-rear.webp",
@@ -1963,6 +2081,7 @@
         "height": 100
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-079-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-079-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-079-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-079-rear.webp",
@@ -1989,6 +2108,7 @@
         "height": 40
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-080-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-080-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-080-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-080-rear.webp",
@@ -2015,6 +2135,7 @@
         "height": 12.863499641418457
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-081-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-081-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-081-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-081-rear.webp",
@@ -2041,6 +2162,7 @@
         "height": 12.623100280761719
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-082-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-082-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-082-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-082-rear.webp",
@@ -2067,6 +2189,7 @@
         "height": 12.734399795532227
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-083-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-083-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-083-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-083-rear.webp",
@@ -2093,6 +2216,7 @@
         "height": 12.632499694824219
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-084-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-084-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-084-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-084-rear.webp",
@@ -2119,6 +2243,7 @@
         "height": 12.131099700927734
       },
       "images": {
+        "perspective": "assets/premium/tf-willowbrook-village/wb-085-perspective.webp",
         "front": "assets/premium/tf-willowbrook-village/wb-085-front.webp",
         "right": "assets/premium/tf-willowbrook-village/wb-085-right.webp",
         "rear": "assets/premium/tf-willowbrook-village/wb-085-rear.webp",

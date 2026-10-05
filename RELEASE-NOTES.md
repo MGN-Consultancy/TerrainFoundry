@@ -1,3 +1,7 @@
+# Terrain Foundry 1.9.1
+
+Corrects the free Deepstone cave floors to the shared 8 mm OpenLOCK carrier datum. Updated editor geometry and full-resolution print meshes together, retained the existing connector zone and asset IDs, and regenerated the pack's file hashes. Floor-to-wall geometry is checked in software; print fit still needs a representative physical test.
+
 # Terrain Foundry 1.9.0
 
 Adds the free 50-piece Deepstone Cave & Grotto starter collection with integrated OpenLOCK sockets. Categorised, coloured editor meshes and full-resolution print STLs are cached locally. Door and pit-trap exports include separate inserts. Existing asset identities, saved scenes and worlds are preserved.

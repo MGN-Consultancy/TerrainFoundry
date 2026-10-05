@@ -6,3 +6,4 @@ for(const script of ['generate-official-socket.mjs','generate-village.mjs','gene
 for(const [script,args]of [['generate-dungeon-range.mjs',['--force']],['generate-curves.mjs',['--force']],['release/asset-packs.mjs',[]]]){const r=spawnSync(process.execPath,['scripts/'+script,...args],{stdio:'inherit'});if(r.status)process.exit(r.status||1);}
 
 const deepstone=spawnSync('python',['scripts/release/fetch-deepstone.py'],{stdio:'inherit'});if(deepstone.status)process.exit(deepstone.status||1);
+const correctedDeepstone=spawnSync(process.execPath,['scripts/release/correct-deepstone-floor-datum.mjs'],{stdio:'inherit'});if(correctedDeepstone.status)process.exit(correctedDeepstone.status||1);

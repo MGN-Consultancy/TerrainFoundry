@@ -14,7 +14,7 @@ function createCampaignStore(directory){
   if(previous&&c.revision!==previous.revision)throw Error('Campaign changed elsewhere. Reopen before saving.');if(!previous&&c.revision!==0)throw Error('Unknown campaign revision');
   c.revision++;c.revisions=[...(previous?.revisions||[]),{revision:c.revision,at:new Date().toISOString(),summary:previous?'Campaign saved':'Campaign created',notes:c.notes}].slice(-50);
   if(Buffer.byteLength(JSON.stringify(c))>15000000)throw Error('Campaign history exceeds the 15 MB storage limit');
-  const dir=await folder(c.id);await fs.mkdir(dir,{recursive:true});await require('./campaign-memory.cjs').writeMemory(dir,c);
+  const dir=await folder(c.id);await fs.mkdir(dir,{recursive:true});const memory=require('./campaign-memory.cjs');if(previous)await memory.archiveConversation(dir,previous.chat);await memory.writeMemory(dir,c);
   await atomicWrite(path.join(dir,'campaign.json'),JSON.stringify(c));const m=await manifest(c.id);await atomicWrite(path.join(dir,'campaign.tfcampaign'),JSON.stringify({...m,name:c.name},null,2));return c;
  }
  function save(value){return serial(()=>commit(value));}

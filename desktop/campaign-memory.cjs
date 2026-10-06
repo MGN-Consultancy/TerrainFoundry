@@ -13,8 +13,10 @@ async function writeMemory(folder,c){
  'current-session.md':`# Current session and unresolved threads\n\n${c.progress}\n\n${c.notes.map(x=>`## ${x.title} [${x.id}]\n${x.body}`).join('\n\n')}\n`,
  'context.md':`# Campaign working context\n\nGenerated from approved campaign records. Suggestions in conversation are not established facts. Exact positions remain in linked terrain files.\n\n${JSON.stringify(workingMemory(c),null,2)}\n`};
  for(const [name,text]of Object.entries(files)){const dest=path.join(dir,name);let old;try{old=await fs.readFile(dest,'utf8');}catch(e){if(e.code!=='ENOENT')throw e;}if(old!==text){if(old)await atomicWrite(path.join(dir,'history',name.replace('.md','')+'-'+digest(old)+'.md'),old);await atomicWrite(dest,text);}}
- await fs.mkdir(path.join(folder,'conversations'),{recursive:true});
- // Content-addressed chunks preserve the full conversation before the in-memory window is compacted.
- for(const message of c.chat){const text=JSON.stringify(message),file=path.join(folder,'conversations',digest(text)+'.json');try{await fs.access(file);}catch(e){if(e.code!=='ENOENT')throw e;await atomicWrite(file,text);}}
+ await archiveConversation(folder,c.chat);
 }
-module.exports={workingMemory,writeMemory};
+async function archiveConversation(folder,messages){
+ await fs.mkdir(path.join(folder,'conversations'),{recursive:true});
+ for(const message of messages){const text=JSON.stringify(message),file=path.join(folder,'conversations',digest(text)+'.json');try{await fs.access(file);}catch(e){if(e.code!=='ENOENT')throw e;await atomicWrite(file,text);}}
+}
+module.exports={workingMemory,writeMemory,archiveConversation};

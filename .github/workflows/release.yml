@@ -41,6 +41,8 @@ jobs:
       - run: pnpm build
       - run: node scripts/package.cjs
       - run: ./scripts/release/build-launcher.ps1
+      - name: Check launcher layout and editor startup lifecycle
+        run: ./scripts/release/test-launcher-lifecycle.ps1
       - uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}

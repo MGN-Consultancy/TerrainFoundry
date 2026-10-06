@@ -8,9 +8,9 @@ try{
  if(id&&!selected){$('catalogue-status').textContent='This collection could not be found.';$('all-packs').hidden=false;}
  else if(selected){
   document.title=selected.name+' — Terrain Foundry';$('pack-heading').textContent=selected.name;$('pack-intro').textContent=selected.summary;$('all-packs').hidden=false;$('pack-cards').hidden=true;$('pack-detail').hidden=false;
-  $('catalogue-status').textContent=selected.status==='in-development'?'In development · planned collection':'Production complete · purchase launch being prepared';
+  $('catalogue-status').textContent=selected.status==='in-development'?'In development · planned collection':'85 pieces · £9.99 · client and STL downloads';
   if(selected.purchaseAvailable===true){const config=await fetch('https://terrainfoundry-premium.azurewebsites.net/api/premium/config').then(r=>r.json()).catch(()=>({enabled:false}));if(config.enabled&&config.products?.some(p=>p.id===selected.id&&p.readyForSale)){const buy=node('a','Purchase pack','button');buy.href='premium-purchase.html?pack='+encodeURIComponent(selected.id);$('pack-summary').append(buy);}}
-  const summary=$('pack-summary');summary.append(node('p',`${selected.pieceCount} designs · ${selected.delivery}`),node('p',selected.licensing));
+  const summary=$('pack-summary');const licence=node('a','Read and save the scenery licence');licence.href='premium-licence.txt';summary.append(licence);summary.append(node('p',`${selected.pieceCount} designs · ${selected.delivery}`),node('p',selected.licensing));
   summary.append(node('p',selected.status==='in-development'?'This is the planned piece inventory. Individual preview artwork and finished models are still being prepared.':'Explore the individual piece previews below.','availability'));
   const categories=[...new Set(selected.pieces.map(p=>p.subcategory))].sort();for(const category of categories){const option=node('option',category);option.value=category;$('piece-category').append(option);}
   function render(){
@@ -26,7 +26,7 @@ try{
   }
   $('piece-search').addEventListener('input',render);$('piece-category').addEventListener('change',render);render();
  }else{
-  $('catalogue-status').textContent=data.packs.length?'Collections in development. Open a pack to explore its planned pieces.':'New collections are being prepared.';
-  for(const p of data.packs){const card=node('article',null,'pack-card');card.append(node('p',p.status==='in-development'?'IN DEVELOPMENT':'COMING SOON','pack-state'),node('h2',p.name),node('p',p.summary),node('p',`${p.pieceCount} designs`));const link=node('a','Explore every piece →','button');link.href='packs.html?pack='+encodeURIComponent(p.id);card.append(link);$('pack-cards').append(card);}
+  $('catalogue-status').textContent=data.packs.length?'Browse collections and view every piece before buying.':'New collections are being prepared.';
+  for(const p of data.packs){const card=node('article',null,'pack-card');card.append(node('p',p.status==='in-development'?'IN DEVELOPMENT':(p.purchaseAvailable?'£9.99 · AVAILABLE':'COMING SOON'),'pack-state'),node('h2',p.name),node('p',p.summary),node('p',`${p.pieceCount} designs`));const link=node('a','Explore every piece →','button');link.href='packs.html?pack='+encodeURIComponent(p.id);card.append(link);$('pack-cards').append(card);}
  }
 }catch{$('catalogue-status').textContent='The pack catalogue could not be loaded. Please try again later.';}

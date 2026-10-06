@@ -1,0 +1,8 @@
+// Metadata only: no meshes, local paths, keys or print-file contents reach a provider.
+function terrainContext(project,link={},inventory=[]) {
+ const all=project.items||[], selected=all.slice(0,300),names=new Map(inventory.map(a=>[a.id,a]));
+ const piece=({id,type,x,z,y,rotation,levelId,encounterId})=>({id,type,name:names.get(type)?.name||project.assets?.[type]?.name,category:names.get(type)?.category,x,z,y,rotation,levelId,encounterId});
+ const bounds=items=>items.length?{minX:Math.min(...items.map(i=>i.x)),maxX:Math.max(...items.map(i=>i.x)),minZ:Math.min(...items.map(i=>i.z)),maxZ:Math.max(...items.map(i=>i.z)),minY:Math.min(...items.map(i=>i.y)),maxY:Math.max(...items.map(i=>i.y))}:null;
+ return {id:link.id,name:project.name,kind:link.kind||project.kind||'scene',gridMm:project.grid,board:project.board,tableMm:project.world?{width:project.world.widthMm,depth:project.world.depthMm}:null,coordinateUnits:{x:'grid squares',z:'grid squares',y:'millimetres',rotation:'degrees'},levels:project.world?.levels,instances:(project.world?.instances||[]).map(g=>{const items=all.filter(i=>i.encounterId===g.id);return {id:g.id,name:g.name,templateId:g.templateId||null,pieceCount:items.length,bounds:bounds(items),levelIds:[...new Set(items.map(i=>i.levelId))],pieceIds:items.slice(0,60).map(i=>i.id),omittedPieceIds:Math.max(0,items.length-60)};}),encounterTemplates:(project.world?.encounters||[]).map(e=>({id:e.id,name:e.scene.name,pieceCount:e.scene.items.length,pieces:e.scene.items.slice(0,30).map(piece),omittedPieces:Math.max(0,e.scene.items.length-30)})),pieceCount:all.length,pieces:selected.map(piece),omittedPieces:all.length-selected.length};
+}
+module.exports={terrainContext};

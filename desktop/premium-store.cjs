@@ -46,6 +46,7 @@ function createPremiumStore({userData,safeStorage,device,issuerPublicKey,isReser
  }
  function readShape(id,connected){if(typeof connected!=='boolean'||!assets.has(id))throw Error('Unknown premium asset.');const {asset:a,pack}=assets.get(id),r=installed.get(pack),p=connected?a.connected:a.raw,bytes=readEntrySync(r.file,r.m,r.key,p.path);validateMesh(bytes,p);return {bytes,vertices:p.vertices,indices:p.indices};}
  function readPrint(id,connected=true){const row=assets.get(id);if(!row)throw Error('Unknown premium print asset.');if(typeof connected!=='boolean')throw Error('Invalid connector selection.');const r=installed.get(row.pack),files=connected||!row.asset.openlock.ports.length?row.asset.printFiles:row.asset.plainPrintFiles;if(!files)throw Error('This pack requires Integrated OpenLOCK for full-detail print exports.');return files.map(f=>{const data=readEntrySync(r.file,r.m,r.key,f.path);validateSTL(data);return {name:f.name,data};});}
- return {init,install,inventory:publicInventory,has:id=>assets.has(id),readShape,readPrint};
+ async function matchesManifest(m){const r=installed.get(m.packId);if(!r||r.m.version!==m.version||r.m.sha256!==m.sha256)return false;try{await verifyBlob(r.file,r.m);return true;}catch{return false;}}
+ return {init,install,matchesManifest,inventory:publicInventory,has:id=>assets.has(id),readShape,readPrint};
 }
 module.exports={createPremiumStore,verifyManifest,validateCatalogue,readEntrySync,MAX_PACK};

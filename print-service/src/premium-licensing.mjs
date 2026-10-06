@@ -36,5 +36,6 @@ export function premiumLicensing({store,payments,buyers,codeHashKey,outboxKey,si
  async function resend({code,session}){const path=await licenceFor(code);return store.lock(path,async(licence,save)=>{await owner(session,licence);await ensure('premium/outbox/'+licence.orderId+'.json',{path});licence.email.pending=true;licence.email.retryAfter=now();await save(licence);return {queued:true};});}
  // Only the server outbox worker receives this method; no HTTP route may return its code.
  async function deliveryForOrder(orderId){const licence=await store.get('premium/orders/'+safeId(orderId)+'.json');if(!licence||licence.state!=='issued')fail('Purchase not found.',404);return {to:licence.buyerEmail,code:open(licence.deliveryCode),licenceId:licence.licenceId,orderId,packId:licence.packId};}
- return {settle,challenge,activate,supportReset,resend,deliveryForOrder};
+ async function downloadAccess({code,session}){const path=await licenceFor(code),licence=await store.get(path);await owner(session,licence);if(licence.state!=='issued')fail('Licence is not available.',403);return {licenceId:licence.licenceId,packId:licence.packId};}
+ return {settle,challenge,activate,supportReset,resend,deliveryForOrder,downloadAccess};
 }

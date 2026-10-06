@@ -27,6 +27,6 @@ try{
   $('piece-search').addEventListener('input',render);$('piece-category').addEventListener('change',render);render();
  }else{
   $('catalogue-status').textContent=data.packs.length?'Browse collections and view every piece before buying.':'New collections are being prepared.';
-  for(const p of data.packs){const card=node('article',null,'pack-card');card.append(node('p',p.status==='in-development'?'IN DEVELOPMENT':(p.purchaseAvailable?'£9.99 · AVAILABLE':'COMING SOON'),'pack-state'),node('h2',p.name),node('p',p.summary),node('p',`${p.pieceCount} designs`));const link=node('a','Explore every piece →','button');link.href='packs.html?pack='+encodeURIComponent(p.id);card.append(link);$('pack-cards').append(card);}
+  for(const p of data.packs){const card=node('article',null,'pack-card');const preview=p.pieces?.find(piece=>piece.image&&/^assets\/premium\/[a-z0-9-]+\/[a-z0-9-]+\.(png|webp)$/.test(piece.image));if(preview){const img=node('img',null,'pack-cover');img.src=preview.image;img.alt=preview.name;img.width=1024;img.height=1024;card.append(img);}card.append(node('p',p.status==='in-development'?'IN DEVELOPMENT':(p.purchaseAvailable?'£9.99 · AVAILABLE':'COMING SOON'),'pack-state'),node('h2',p.name),node('p',p.summary),node('p',`${p.pieceCount} designs`));const link=node('a','Explore every piece →','button');link.href='packs.html?pack='+encodeURIComponent(p.id);card.append(link);$('pack-cards').append(card);}
  }
 }catch{$('catalogue-status').textContent='The pack catalogue could not be loaded. Please try again later.';}

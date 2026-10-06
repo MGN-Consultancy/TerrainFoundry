@@ -5,6 +5,7 @@ import {setupWorldUI} from './world-ui.js';
 import {tableSize,activeLevel,placementHeight,visibleItem,placeEncounter,selectionItems,transformSelection} from './world.js';
 import {CATEGORIES,classifyAsset,filterAssets} from './library-categories.js';
 import {setupLibraryBrowser} from './library-browser.js';
+import {setupCampaignStudio} from './campaign-studio.js';
 import {setupTutorial} from './tutorial.js';
 import {setupEditorChrome} from './editor-chrome.js';
 import openlockLogo from '../public/openlock-compatible.png';
@@ -206,7 +207,8 @@ for(const [id,create,prefix]of [['curves-demo',curveDemo,'a-'],['garden-demo',ga
 setupPrintEstimate({getProject:()=>project,makePrintFiles});
 
 setupEditorChrome();
-setupTutorial();
+const campaignStudio=setupCampaignStudio({getProject:()=>project,replace,toast,isDirty:()=>dirty});
+setupTutorial(()=>campaignStudio.home());
 
 $('blacksmith-demo').onclick=()=>{if(!dirty||confirm('Replace this scene with Ironbrook blacksmith?')){roofsHidden=false;replace(blacksmithDemo());category='All';library();fit();}};
 

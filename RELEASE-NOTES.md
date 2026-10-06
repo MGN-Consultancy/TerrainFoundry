@@ -1,3 +1,11 @@
+# Terrain Foundry 1.10.0
+
+Adds local Campaign Studio with startup campaign/world/scene choices, saved story and session context, editable records, relationships, maps/pins and characters. Optional OpenAI/Claude requests use separately entered OS-encrypted API keys, explicit confirmation and reviewed encounter proposals.
+
+Run campaigns fullscreen with persistent inline audio cues, original starter sounds, dice/initiative and linked terrain. Export DM/player books, duplex cards and player-approved JSON. Online portal hosting is not configured; the portal handoff does not enable live invitations. No provider credits are included.
+
+Existing terrain scenes, worlds and installed asset identities are preserved. Includes the committed Deepstone floor-height corrections. Physical connector fit remains unverified.
+
 # Terrain Foundry 1.9.1
 
 Corrects the free Deepstone Caverns floor carriers: standard floor surfaces are lowered from 12 mm to 8.4 mm, and the concealed pit trap surface to 8.6 mm to preserve its printable mesh. The original 0–8 mm connector zone, port counts and port positions are retained, including six ports on the long floor. Editor geometry and all full-resolution print meshes are rebuilt from the pinned sculpts with matching height transforms and refreshed hashes. All 1,502 release tests pass; physical print fit remains to be verified.

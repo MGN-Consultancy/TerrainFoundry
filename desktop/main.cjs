@@ -1,4 +1,4 @@
-const {app,BrowserWindow,dialog,ipcMain,Menu,shell,screen}=require('electron');
+const {app,BrowserWindow,dialog,ipcMain,Menu,shell,screen,safeStorage,net}=require('electron');
 const fs=require('node:fs/promises');const path=require('node:path');
 const {createProjectStore}=require('./project-store.cjs');
 const {createSceneryReader}=require('./scenery-store.cjs');
@@ -20,7 +20,7 @@ app.whenReady().then(async()=>{
  const readPrint=require('./print-scenery.cjs').createPrintSceneryReader(path.join(__dirname,'..'));
  ipcMain.on('print-scenery',(event,id)=>{try{event.returnValue={files:readPrint(id)};}catch(error){event.returnValue={error:error.message};}});
  ipcMain.on('builtin-shape',(event,id,connected)=>{try{event.returnValue=readBuiltin(id,connected);}catch(error){event.returnValue={error:error.message};}});
- let finishing=false;app.on('before-quit',e=>{if(!finishing){e.preventDefault();Promise.all([store.flush(),sceneLibrary.flush()]).finally(()=>{finishing=true;app.quit();});}});
+ let campaignServices;let finishing=false;app.on('before-quit',e=>{if(!finishing){e.preventDefault();Promise.all([store.flush(),sceneLibrary.flush(),campaignServices?.store.flush()]).finally(()=>{finishing=true;app.quit();});}});
  ipcMain.handle('load-recovery',()=>store.loadRecovery());
  ipcMain.handle('save-recovery',(_,data)=>store.saveRecovery(data));
  ipcMain.handle('storage-info',()=>({projects:store.projects,backups:store.backups,recovery:store.recovery,version:app.getVersion()}));
@@ -28,6 +28,8 @@ app.whenReady().then(async()=>{
  const area=screen.getDisplayNearestPoint(screen.getCursorScreenPoint()).workArea;
  const width=Math.min(1500,area.width),height=Math.min(960,area.height);
  const win=new BrowserWindow({x:area.x+Math.floor((area.width-width)/2),y:area.y+Math.floor((area.height-height)/2),width,height,minWidth:Math.min(1100,area.width),minHeight:Math.min(720,area.height),title:'Terrain Foundry',backgroundColor:'#111820',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
+ campaignServices=require('./campaign-native.cjs').setupCampaignNative({app,win,ipcMain,dialog,BrowserWindow,safeStorage,net});
+ ipcMain.handle('campaign-open-portal',async event=>{if(event.sender!==win.webContents)throw Error('Unapproved window');const target=process.env.TERRAIN_PORTAL_LOCAL_URL||'https://terrainfoundry.co.uk/campaign-portal.html';if(target!=='https://terrainfoundry.co.uk/campaign-portal.html'&&!/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+\/site\/campaign-portal\.html$/.test(target))throw Error('Invalid local portal test URL');await shell.openExternal(target);return true;});
  win.webContents.setWindowOpenHandler(({url})=>{if(['https://www.printablescenery.com/','https://www.printablescenery.com/2026/10/01/mgn-consultancy/'].includes(url))void shell.openExternal(url);return {action:'deny'};});
  win.webContents.on('will-navigate',e=>e.preventDefault());
  ipcMain.handle('print-website-pack',async(_,data)=>{if(!(data instanceof Uint8Array)||data.length>40*1024*1024||data[0]!==80||data[1]!==75)throw Error('Print pack must be a ZIP under 40 MB.');const result=await dialog.showSaveDialog(win,{title:'Save the print pack to upload on the website',defaultPath:path.join(app.getPath('documents'),'TerrainFoundry-print-quote.zip'),filters:[{name:'ZIP print pack',extensions:['zip']}]});if(result.canceled)return null;await fs.writeFile(result.filePath,data);await shell.openExternal('https://terrainfoundry.co.uk/#print-service');return result.filePath;});

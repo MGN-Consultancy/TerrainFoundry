@@ -1,18 +1,22 @@
 {
-  "version": "1.9.1",
-  "title": "Deepstone floor fit correction",
+  "version": "1.10.0",
+  "title": "Your campaign, from story to table",
   "features": [
     {
-      "title": "Lower, consistent floor carriers",
-      "description": "The standard Caverns floors now meet at 8.4 mm, much closer to the shared 8 mm OpenLOCK floor datum. The concealed pit trap uses 8.6 mm to preserve printable mesh detail."
+      "title": "Campaign Studio",
+      "description": "Save story context, notes, characters, maps and linked terrain locally. Optional OpenAI or Claude generation uses your API account."
     },
     {
-      "title": "Original sockets preserved",
-      "description": "Socket cuts were regenerated from the pinned sculpts using their original port layouts, including the long floor's six ports. The complete 0–8 mm connector zone is unchanged."
+      "title": "Run your adventure",
+      "description": "A full-window studio and fullscreen playbook with original starter audio, linked sound cues, dice and initiative."
     },
     {
-      "title": "Print meshes updated together",
-      "description": "The full-detail floor STLs and removable pit-trap insert use the same per-piece height adjustment as the editor meshes."
+      "title": "Books and player handouts",
+      "description": "Export campaign books, duplex cards and player-approved snapshots. The online sharing portal is not configured yet."
+    },
+    {
+      "title": "Deepstone starter fixes",
+      "description": "Includes the committed floor-height corrections for the free grotto starter collection."
     }
   ]
 }

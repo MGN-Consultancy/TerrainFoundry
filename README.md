@@ -77,3 +77,7 @@ If offline, only an identical previously checked pack and print selection can sh
 ## Free Deepstone starter
 
 Version 1.9.0 adds 50 original cave and grotto pieces. The launcher caches the coloured editor meshes and full-resolution STL files locally, in six separately verified downloads (about 1.9 GB total). Download once, then build, save and print-export offline. Door and pit trap exports use separate inserts. Physical print-fit testing remains pending. The pinned free geometry is restored by `scripts/release/fetch-deepstone.py`; model binaries stay in GitHub Releases rather than Git. Future premium collections are separate and currently unavailable.
+
+## Campaign Studio
+
+Version 1.10.0 adds local campaign planning, a fullscreen live playbook with sound cues and printable books/cards. Optional AI uses your provider API account and encrypted local keys. See [desktop/CAMPAIGNS.md](desktop/CAMPAIGNS.md). Online portal hosting is not configured; player JSON export is a manual handoff.

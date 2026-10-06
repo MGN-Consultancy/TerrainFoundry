@@ -14,7 +14,7 @@ Requests use POST /api/premium/{action} with JSON and Authorization: Bearer <ver
 
 An immutable .tfc blob concatenates independently AES-256-GCM encrypted files. The Ed25519 signed envelope payload contains schemaVersion 1, issuer TerrainFoundry, packId, version, complete ciphertext size/SHA256 and file records with path, offset, length, plainSize, plaintext SHA256, IV and tag. Each file uses authenticated data packId + newline + version + newline + path. The encrypted catalogue.json describes editor meshes, physical bounds, OpenLOCK ports and binary STL files. The native client verifies the fixed issuer, device-bound entitlement, full ciphertext inventory and every file; stores keys under Windows protection and decrypts geometry in memory.
 
-Pack source and final plaintext masters stay under ignored premium-assets. build-private-pack.mjs checks human approval, sale readiness and rights flags, and matches source hashes against a delivery spec. Its private-delivery-record.json contains a content key and belongs only in private premium-state storage, never public site/source/releases. Pack versions and blob hashes are immutable. Do not regenerate or replace the issuer key: existing installed content relies on it.
+Pack source and final plaintext masters stay under ignored premium-assets. build-private-pack.mjs checks human approval, sale readiness and rights flags, and matches source hashes against a delivery spec. upload-premium-pack.ps1 uploads the immutable ciphertext and registers the private delivery record without enabling sales. Its private-delivery-record.json contains a content key and belongs only in private premium-state storage, never public site/source/releases. Pack versions and blob hashes are immutable. Do not regenerate or replace the issuer key: existing installed content relies on it.
 
 ## Deployment and operational setup
 
@@ -24,7 +24,7 @@ PayPal credentials and the verified Azure Communication Email sender were inheri
 
 Refund/reversal notifications block future grants; already installed offline content remains usable. A buyer can copy exported printable files. This implementation deters cache copying between machines and does not claim to make authorised print exports uncopyable.
 
-Runtime token, code-hash, outbox encryption and issuer signing secrets must be backed up securely before rotation. Never rotate a code-hash/outbox key without migrating existing orders/codes. Support uses a separate protected operator token, not a customer code; keep reset records. Keep transactional order records for the published commercial retention period and the daily cleanup removes expired login/session/download records and old hourly rate limits. Set an Azure spending alert for storage, Functions and email usage.
+Runtime token, code-hash, outbox encryption and issuer signing secrets must be backed up securely before rotation. Never rotate a code-hash/outbox key without migrating existing orders/codes. Support uses a separate protected operator token, not a customer code; keep reset records. Keep transactional order records for the published commercial retention period. The daily cleanup removes expired login/session/download records and old hourly rate limits. Set an Azure spending alert for storage, Functions and email usage.
 
 ## Bounded evidence
 

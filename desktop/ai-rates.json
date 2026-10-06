@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "version": "2026-10-06-standard-v1",
+  "verifiedOn": "2026-10-06",
+  "currency": "USD",
+  "models": [
+    {
+      "provider": "openai", "model": "gpt-6.1-sol", "kind": "text",
+      "source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "input": 2, "cacheRead": 0.1, "cacheWrite": 2.5, "output": 10,
+      "maxEstimatedInputTokens": 200000
+    },
+    {
+      "provider": "claude", "model": "claude-sonnet-5-5", "kind": "text",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "input": 2, "cacheRead": 0.2, "cacheWrite5m": 2.5, "cacheWrite1h": 4, "output": 10
+    },
+    {
+      "provider": "openai", "model": "gpt-image-2.5-flare", "kind": "image",
+      "source": "https://developers.openai.com/api/docs/models/gpt-image-2.5-flare",
+      "textInput": 5, "imageInput": 8, "imageOutput": 30
+    }
+  ]
+}

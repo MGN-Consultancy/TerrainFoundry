@@ -1,7 +1,7 @@
 import {BlobServiceClient,StorageSharedKeyCredential,generateBlobSASQueryParameters,BlobSASPermissions} from '@azure/storage-blob';
 
 export class Store {
- constructor(connection){this.service=BlobServiceClient.fromConnectionString(connection);this.container=this.service.getContainerClient('print-orders');const values=Object.fromEntries(connection.split(';').filter(Boolean).map(s=>[s.slice(0,s.indexOf('=')),s.slice(s.indexOf('=')+1)]));this.credential=new StorageSharedKeyCredential(values.AccountName,values.AccountKey);}
+ constructor(connection,containerName='print-orders'){this.service=BlobServiceClient.fromConnectionString(connection);this.container=this.service.getContainerClient(containerName);const values=Object.fromEntries(connection.split(';').filter(Boolean).map(s=>[s.slice(0,s.indexOf('=')),s.slice(s.indexOf('=')+1)]));this.credential=new StorageSharedKeyCredential(values.AccountName,values.AccountKey);}
  async init(){await this.container.createIfNotExists();}
  blob(path){return this.container.getBlockBlobClient(path);}
  async put(path,data,options={}){return this.blob(path).uploadData(Buffer.isBuffer(data)?data:Buffer.from(JSON.stringify(data)),{blobHTTPHeaders:{blobContentType:Buffer.isBuffer(data)?'application/zip':'application/json'},...options});}

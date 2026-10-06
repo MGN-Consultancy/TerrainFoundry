@@ -1,3 +1,9 @@
+# Terrain Foundry 1.15.0
+
+Campaign workspaces link shared terrain revisions, preserve existing campaigns, retain conversation history and generate readable Markdown memory. Add offline Windows dictation (requires an installed Windows speech recognizer), optional OpenAI dictation and realtime voice conversation. API keys remain OS-protected; voice uses your API account and sends microphone audio/context to OpenAI. Voice sessions stop after ten minutes.
+
+The companion can propose validated campaign updates and linked-terrain moves with review and undo. Original terrain sources remain unchanged. Portable exports intentionally collect dependencies; ordinary workspaces share a revision cache.
+
 # Version 1.14.0
 
 Willowbrook collection activation downloads all 85 designs under one purchase code, with a separate STL download and a licence permitting physical print sales. Campaign guidance receives placed encounter identities, elevations and layout metadata; suggested answers can be edited before sending. Physical print fit remains unverified.

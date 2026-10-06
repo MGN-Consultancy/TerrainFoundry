@@ -1,40 +1,170 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description" content="Learn how Terrain Foundry's optional AI campaign studio works, what it can create, and how to configure your own provider key.">
-  <title>Campaign builder and optional AI — Terrain Foundry</title>
-  <link rel="canonical" href="https://terrainfoundry.co.uk/campaigns.html"><link rel="icon" href="assets/terrain-foundry-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="refresh.css"><link rel="stylesheet" href="landing.css?v=3"><script src="navigation.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Write and run local campaigns with DM runbooks, local audio and optional OpenAI chat, dictation and realtime voice.">
+<meta name="theme-color" content="#131a1c">
+<title>Campaigns, soundboard and optional AI — Terrain Foundry</title>
+<link rel="canonical" href="https://terrainfoundry.co.uk/campaigns.html">
+<link rel="icon" href="assets/terrain-foundry-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="showcase.css?v=1">
+<script src="navigation.js" defer>
+</script>
+<script src="showcase.js" defer>
+</script>
 </head>
-<body class="home landing-page inner-page">
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header"><a class="brand" href="/" aria-label="Terrain Foundry home"><img src="assets/terrain-foundry-mark.svg" width="48" height="48" alt=""><span>TERRAIN<b>FOUNDRY</b></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">Menu <span aria-hidden="true">☰</span></button><nav id="main-navigation" aria-label="Main navigation"><a href="/">Home</a><a href="editor.html">The editor</a><a href="how-it-works.html">How it works</a><a href="packs.html">Scenery packs</a><a href="about.html">About</a></nav></header>
-  <main id="main-content">
-    <section class="landing-hero campaign-feature" style="background-image:linear-gradient(90deg,#0c1715ed,#0c171599),url('assets/grotto-frames/48.webp');background-size:cover;background-position:center">
-      <div class="hero-copy"><p class="eyebrow">AN OPTIONAL CREATIVE COMPANION</p><h1>Your campaign.<br><em>Your whole world.</em></h1><p class="hero-lede">Keep your story, locations, missions and encounters together in a campaign workspace on your own PC. Ask for ideas, shape them with a chat or voice conversation, and connect the story to terrain you can actually build.</p><div class="hero-actions"><a class="button" href="https://github.com/MGN-Consultancy/TerrainFoundry/releases">Get the desktop editor ↗</a><a class="button secondary" href="#setup">See AI setup and privacy</a></div><p class="release-note">The campaign workspace is saved locally. AI is optional and needs an internet connection.</p></div>
-      <figure class="hero-image"><img src="assets/grotto-frames/48.webp" width="1440" height="1152" fetchpriority="high" alt="A richly detailed modular cavern encounter"><figcaption>A story and a playable place, built together.</figcaption></figure>
-    </section>
-    <div class="feature-ribbon"><span>Campaign and playbook</span><span>Worlds and encounters</span><span>Chat or dictate</span><span>Optional generated art</span><span>Locally saved projects</span></div>
-    <section class="wide-section editor-section">
-      <div class="section-heading"><p class="eyebrow">FROM YOUR FIRST IDEA TO GAME NIGHT</p><h2>A guide beside you,<br>not homework.</h2><p>Start with a short description. The campaign builder can ask friendly follow-up questions, offer sensible choices and help you decide what to work on next.</p></div>
-      <figure class="editor-shot"><img src="assets/workshop.png" width="1440" height="900" loading="lazy" alt="Terrain Foundry editor with a scene laid out in the 3D workspace"><figcaption>Your world and encounters can draw on pieces in the installed terrain library.</figcaption></figure>
-      <div class="feature-grid">
-        <article><span class="feature-index">01 / PLAN</span><h3>Shape the campaign</h3><p>Develop the setting, themes, player hooks, campaign length, key characters and an outline for each chapter.</p></article>
-        <article><span class="feature-index">02 / WRITE</span><h3>Make playable sessions</h3><p>Turn locations into scenes, missions, choices and consequences. Keep private DM notes separate from player handouts.</p></article>
-        <article><span class="feature-index">03 / BUILD</span><h3>Connect story to scenery</h3><p>Ask for encounter layouts using your installed terrain. Review suggestions, then edit the scene in the desktop builder.</p></article>
-        <article><span class="feature-index">04 / ILLUSTRATE</span><h3>Give it a visual identity</h3><p>Generate campaign covers and scene art through a supported image model, then save the images with your campaign files.</p></article>
-      </div>
-    </section>
-    <section class="campaign-feature" style="grid-template-columns:1fr 1fr">
-      <div class="campaign-copy"><p class="eyebrow">TALK OR TYPE</p><h2>Think out loud.<br>Build as you go.</h2><p>Use ordinary text chat, dictate a thought, or choose a realtime voice conversation. Explain the idea in your own words; ask for options when you are unsure; request a change when a suggestion does not fit.</p><ul class="check-list"><li>Voice and dictation are optional tools, not required setup.</li><li>Choose standard campaign chat or a live voice model in AI settings.</li><li>Ask the assistant what is already in your campaign, then continue from there.</li><li>Choose review-first suggestions or enable workspace agent actions in the client settings.</li></ul><p class="ai-cost-note"><strong>You remain in control.</strong> Generated writing and images can be reviewed and edited. The app cannot replace your rules books or decide how your table must play.</p></div>
-      <div class="campaign-copy"><p class="eyebrow">AI SETTINGS</p><h2>Pick the tools<br>that suit you.</h2><p>The model names below are presets available in the client. AI choices can change over time as providers update their services.</p><div class="feature-grid" style="grid-template-columns:1fr 1fr"><article><span class="feature-index">STANDARD CHAT</span><h3>GPT-6 Luna</h3><p>Default, efficient campaign model.</p></article><article><span class="feature-index">PRO OPTION</span><h3>GPT-6 Astra</h3><p>Optional higher-capability choice.</p></article><article><span class="feature-index">VOICE</span><h3>GPT-Live 1</h3><p>Realtime spoken conversation.</p></article><article><span class="feature-index">IMAGES</span><h3>GPT Image 2.5 Sunburst</h3><p>Campaign art generation.</p></article></div></div>
-    </section>
-    <section id="setup" class="wide-section next-worlds">
-      <div><p class="eyebrow">OPTIONAL MEANS OPTIONAL</p><h2>Stay offline, or<br>bring your own AI.</h2><p>The map editor, installed scenery and local project files do not require an AI account. If you enable AI, you connect it yourself in the client. Your provider bills AI usage directly according to your account and model.</p><a class="button secondary" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">OpenAI API key settings ↗</a></div>
-      <div class="hobby-list"><article><span>01</span><div><h3>Create your own API key</h3><p>Make an OpenAI platform account if needed, add a payment method there and create a secret API key. ChatGPT Plus and an API account are billed separately.</p></div></article><article><span>02</span><div><h3>Enter it inside the client</h3><p>Open Terrain Foundry → AI settings → OpenAI. Paste the key directly into the desktop app. Never post it in chat, a campaign note or a public file.</p></div></article><article><span>03</span><div><h3>Choose models and test</h3><p>Select Luna, Astra, voice or image generation, then try a small prompt. You can remove the key or turn AI off at any time.</p></div></article><article><span>04</span><div><h3>Know what leaves your PC</h3><p>Only the prompt and campaign context needed for your request are sent to the provider you select. The provider processes that request under its own terms. Campaign files stay in your local workspace.</p></div></article></div>
-    </section>
-    <section class="offline-panel"><div class="offline-icon" aria-hidden="true">✓</div><div><p class="eyebrow">YOUR CHOICE, EVERY TIME</p><h2>No AI key? Keep building.</h2><p>Terrain Foundry remains a local desktop editor. Build terrain, save worlds and encounters, browse installed scenery and export print files with AI switched off and no account signup.</p></div><a class="text-link" href="how-it-works.html#offline">Read the offline guide →</a></section>
-  </main>
-  <footer class="site-footer"><div class="footer-brand"><a class="brand" href="/"><img src="assets/terrain-foundry-mark.svg" width="42" height="42" alt=""><span>TERRAIN<b>FOUNDRY</b></span></a><p>Independent terrain and campaign tools from MGN Consultancy Ltd.</p></div><div><strong>Explore</strong><a href="editor.html">Desktop editor</a><a href="how-it-works.html">How it works</a><a href="packs.html">Scenery packs</a></div><div><strong>Campaigns</strong><a href="campaigns.html">Campaign builder</a><a href="#setup">AI settings and privacy</a><a href="https://github.com/MGN-Consultancy/TerrainFoundry">Open-source code ↗</a></div><div><strong>Company</strong><a href="about.html">About and licences</a><a href="https://www.printablescenery.com/">Printable Scenery ↗</a></div><p class="footer-legal">AI services require an internet connection and your own provider account. Review generated material before using it at your table.</p></footer>
-</body></html>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+<a class="brand" href="/" aria-label="Terrain Foundry home">
+<img src="assets/terrain-foundry-mark.svg" width="43" height="47" alt="">
+<span>TERRAIN<b>FOUNDRY</b>
+</span>
+</a>
+<button class="menu-toggle" aria-expanded="false" aria-controls="main-navigation" type="button">Menu ☰</button>
+<nav id="main-navigation" aria-label="Main navigation">
+<a href="editor.html">The editor</a>
+<a href="campaigns.html">Campaigns &amp; AI</a>
+<a href="index.html#collections">Scenery</a>
+<a href="print.html">Print it for me</a>
+<a href="about.html">About</a>
+<a class="nav-download" href="index.html#download-link">Get the free app ↗</a>
+</nav>
+</header>
+<main id="main-content">
+<section class="inner-hero">
+<p class="eyebrow">YOUR CAMPAIGN WORKSHOP</p>
+<h1>Less juggling.<br>
+<em>More adventure.</em>
+</h1>
+<p>Keep your story, characters, worlds and encounters in a local campaign workspace. Prepare the session, set the atmosphere, then run the adventure.</p>
+</section>
+<section id="campaign-builder" class="section campaign-area">
+<div class="section-head">
+<div>
+<p class="eyebrow">FROM FIRST IDEA TO GAME NIGHT</p>
+<h2>A campaign worth<br>gathering around.</h2>
+</div>
+<p>Write the adventure, build its locations, and run it at the table. Your notes, encounters and sounds belong together.</p>
+</div>
+<div class="campaign-grid">
+<div>
+<div class="screen-tabs" aria-label="Preview campaign features">
+<button type="button" aria-pressed="true" data-screen="assets/campaign-soundboard.webp" data-alt="Campaign workspace and local soundboard">Soundboard &amp; voice</button>
+<button type="button" aria-pressed="false" data-screen="assets/campaign-runbook.webp" data-alt="Dungeon-master runbook with scene notes and audio cues">DM runbook</button>
+</div>
+<figure class="screen">
+<img id="campaign-screen" src="assets/campaign-soundboard.webp" width="1800" height="1118" loading="lazy" alt="Campaign workspace and local soundboard">
+<figcaption id="campaign-caption" aria-live="polite">Campaign workspace and local soundboard · actual desktop client</figcaption>
+</figure>
+</div>
+<div class="copy">
+<p class="eyebrow">PREPARE. PLAY. KEEP THE STORY GOING.</p>
+<h3>Your whole session,<br>in one place.</h3>
+<ul class="feature-list">
+<li>
+<strong>Dungeon-master runbooks</strong>
+<span>Read-aloud scenes, private notes, choices and consequences.</span>
+</li>
+<li>
+<strong>A soundboard with atmosphere</strong>
+<span>Local audio, looping ambience and cues for your adventure.</span>
+</li>
+<li>
+<strong>A creative companion, if you want one</strong>
+<span>Discuss ideas by text or live voice; develop stories, art and terrain layouts.</span>
+</li>
+</ul>
+<p class="small-note">Optional online AI requires your own OpenAI API key and separately billed usage. Manual campaign editing and local sounds work offline.</p>
+<a class="text-link" href="campaigns.html">Explore the campaign builder →</a>
+</div>
+</div>
+</section>
+<section class="section light">
+<div class="section-head">
+<div>
+<p class="eyebrow">AN OPTIONAL CREATIVE COMPANION</p>
+<h2>Talk it through.<br>Make it your own.</h2>
+</div>
+<p>AI can help when the blank page is the hardest part. You decide what becomes part of the story.</p>
+</div>
+<div class="info-grid">
+<article>
+<h3>Plan the adventure</h3>
+<p>Discuss tone, campaign length, player hooks and what happens next. Ask for choices and suggestions when you’re unsure.</p>
+</article>
+<article>
+<h3>Write &amp; illustrate</h3>
+<p>Develop characters, encounters, DM notes and handouts. Use optional image generation for campaign covers and scene artwork.</p>
+</article>
+<article>
+<h3>Build together</h3>
+<p>Give the assistant campaign and terrain context. Review proposed changes, or enable workspace agent actions in the client settings.</p>
+</article>
+</div>
+</section>
+<section id="setup" class="section light">
+<div class="section-head">
+<div>
+<p class="eyebrow">AI IS OPTIONAL · PERSONAL OPENAI API REQUIRED</p>
+<h2>Your key. Your choice.</h2>
+</div>
+<p>The editor works without AI. Online AI requests use your own provider account and are billed separately.</p>
+</div>
+<div class="info-grid">
+<article>
+<span class="step-no">01</span>
+<h3>Set up your API account</h3>
+<p>Create an OpenAI platform account, configure API billing and create a secret key. API usage is separate from a ChatGPT subscription.</p>
+<a class="text-link" href="https://platform.openai.com/api-keys" rel="noopener noreferrer" target="_blank">OpenAI API settings ↗</a>
+</article>
+<article>
+<span class="step-no">02</span>
+<h3>Connect inside the app</h3>
+<p>Open AI setup in Terrain Foundry, enter your key and select your chat, voice and image models. Model access depends on your provider account.</p>
+</article>
+<article>
+<span class="step-no">03</span>
+<h3>Choose what to use</h3>
+<p>Type, dictate or talk live. Requests send your prompt and relevant campaign context to the selected provider; live voice also sends audio. Review generated content before play.</p>
+</article>
+</div>
+<div class="notice">
+<strong>Local projects. Optional online services.</strong>
+<p>Your saved campaign stays on your PC. Choosing AI involves online processing under the provider’s terms. Turn it off and continue editing, using your runbook and playing local sounds offline.</p>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="footer-brand">
+<a class="brand" href="/">
+<img src="assets/terrain-foundry-mark.svg" width="43" height="47" alt="">
+<span>TERRAIN<b>FOUNDRY</b>
+</span>
+</a>
+<p>Your desktop. Your world. Your table.</p>
+</div>
+<div>
+<strong>Make something</strong>
+<a href="editor.html">Desktop editor</a>
+<a href="campaigns.html">Campaigns &amp; AI</a>
+<a href="how-it-works.html">Getting started</a>
+</div>
+<div>
+<strong>Fill your world</strong>
+<a href="index.html#free-scenery">Free scenery</a>
+<a href="packs.html">Willowbrook pack</a>
+<a href="print.html">Print it for me</a>
+</div>
+<div class="footer-company">
+<strong>MGN Consultancy Ltd</strong>
+<a href="about.html">About &amp; licences</a>
+<a href="https://github.com/MGN-Consultancy/TerrainFoundry">Open-source project ↗</a>
+<a href="print-terms.html">Terms &amp; privacy</a>
+<a href="https://www.printablescenery.com/">OpenLOCK by Printable Scenery ↗</a>
+</div>
+<p class="footer-note">© MGN Consultancy Ltd. Original Terrain Foundry scenery. Editor, scenery and OpenLOCK components have separate licence terms. Concept artwork is labelled; model galleries show actual assets.</p>
+</footer>
+</body>
+</html>

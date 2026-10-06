@@ -1,0 +1,12 @@
+import {createCipheriv,createDecipheriv,createHash,randomBytes,sign,verify} from 'node:crypto';
+export const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const safePath=p=>typeof p==='string'&&p.length<=240&&!p.includes('\\')&&!p.includes(':')&&!p.startsWith('/')&&!p.split('/').some(s=>!s||s==='.'||s==='..');
+export function encryptPack({packId,version,files,key=randomBytes(32),signingKey}){
+ if(!/^tf-[a-z0-9-]+$/.test(packId)||!/^\d+\.\d+\.\d+$/.test(version)||!Buffer.isBuffer(key)||key.length!==32||!Array.isArray(files)||!files.length||files.length>10000)throw Error('Invalid premium pack');
+ let offset=0;const chunks=[],entries=[],names=new Set();
+ for(const {path,bytes} of files){if(!safePath(path)||names.has(path)||!Buffer.isBuffer(bytes))throw Error('Invalid or duplicate pack file');names.add(path);const iv=randomBytes(12),cipher=createCipheriv('aes-256-gcm',key,iv);cipher.setAAD(Buffer.from(packId+'\n'+version+'\n'+path));const encrypted=Buffer.concat([cipher.update(bytes),cipher.final()]);chunks.push(encrypted);entries.push({path,offset,length:encrypted.length,plainSize:bytes.length,sha256:sha(bytes),iv:iv.toString('base64'),tag:cipher.getAuthTag().toString('base64')});offset+=encrypted.length;if(offset>1000000000)throw Error('Pack exceeds 1 GB');}
+ const blob=Buffer.concat(chunks),payload=Buffer.from(JSON.stringify({schemaVersion:1,issuer:'TerrainFoundry',packId,version,size:blob.length,sha256:sha(blob),files:entries}));return {blob,key,manifest:{payload:payload.toString('base64'),signature:sign(null,payload,signingKey).toString('base64')}};
+}
+export function readPackFile({blob,key,manifest,publicKey,path}){
+ const bytes=Buffer.from(manifest.payload,'base64');if(!verify(null,bytes,publicKey,Buffer.from(manifest.signature,'base64')))throw Error('Pack signature failed');const m=JSON.parse(bytes);if(m.schemaVersion!==1||m.issuer!=='TerrainFoundry'||m.size!==blob.length||sha(blob)!==m.sha256)throw Error('Pack inventory failed');const f=m.files.find(x=>x.path===path);if(!f||!safePath(f.path)||!Number.isSafeInteger(f.offset)||!Number.isSafeInteger(f.length)||f.offset<0||f.length<0||f.offset+f.length>blob.length)throw Error('Invalid pack entry');const d=createDecipheriv('aes-256-gcm',key,Buffer.from(f.iv,'base64'));d.setAAD(Buffer.from(m.packId+'\n'+m.version+'\n'+f.path));d.setAuthTag(Buffer.from(f.tag,'base64'));const out=Buffer.concat([d.update(blob.subarray(f.offset,f.offset+f.length)),d.final()]);if(out.length!==f.plainSize||sha(out)!==f.sha256)throw Error('Asset inventory failed');return out;
+}

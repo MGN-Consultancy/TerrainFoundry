@@ -1,0 +1,40 @@
+import {randomBytes,createHash,createHmac,createCipheriv,createDecipheriv,createPublicKey,sign,verify} from 'node:crypto';
+export const WILLOWBROOK_PRODUCT=Object.freeze({id:'tf-willowbrook-village',currency:'GBP',priceMinor:999,deviceAllowance:2,supportEmail:'nigel.webster@mgnconsultancy.co.uk'});
+const hash=s=>createHash('sha256').update(s).digest('hex');
+const fail=(message,status=400)=>{throw Object.assign(Error(message),{status});};
+const normalEmail=s=>{if(typeof s!=='string'||s.length>254||!/^\S+@\S+\.\S+$/.test(s))fail('A verified purchase email is required.');return s.trim().toLowerCase();};
+const safeId=s=>{if(typeof s!=='string'||!/^[a-zA-Z0-9_-]{1,100}$/.test(s))fail('Invalid reference.');return s;};
+export function premiumLicensing({store,payments,buyers,codeHashKey,outboxKey,signingKey,merchantId,product=WILLOWBROOK_PRODUCT,now=Date.now}){
+ if(!store||!payments||!buyers||!merchantId||!Buffer.isBuffer(codeHashKey)||codeHashKey.length<32||!Buffer.isBuffer(outboxKey)||outboxKey.length!==32||!signingKey)throw Error('Premium licensing dependencies are incomplete.');
+ const digest=code=>createHmac('sha256',codeHashKey).update(code).digest('hex');
+ function seal(code){const iv=randomBytes(12),c=createCipheriv('aes-256-gcm',outboxKey,iv),bytes=Buffer.concat([c.update(code,'utf8'),c.final()]);return {iv:iv.toString('base64'),tag:c.getAuthTag().toString('base64'),bytes:bytes.toString('base64')};}
+ function open(c){const d=createDecipheriv('aes-256-gcm',outboxKey,Buffer.from(c.iv,'base64'));d.setAuthTag(Buffer.from(c.tag,'base64'));return Buffer.concat([d.update(Buffer.from(c.bytes,'base64')),d.final()]).toString('utf8');}
+ async function ensure(path,value){try{await store.put(path,value,{conditions:{ifNoneMatch:'*'}});}catch(e){if(![409,412].includes(e.statusCode))throw e;}}
+ async function owner(session,licence){const buyer=await buyers.verify(session);if(!buyer||!buyer.emailVerified||normalEmail(buyer.email)!==licence.buyerEmail)fail('Verify the purchase email before using this licence.',403);return buyer;}
+ async function licenceFor(code){if(typeof code!=='string'||!/^TF-[A-Z2-7]{32}$/.test(code))fail('Check your pack code.',403);const index=await store.get('premium/codes/'+digest(code)+'.json');if(!index)fail('Check your pack code.',403);return index.path;}
+ function device(publicKey){let key;try{key=createPublicKey(publicKey);}catch{fail('Invalid device key.');}if(key.asymmetricKeyType!=='ed25519')fail('Unsupported device key.');const der=key.export({type:'spki',format:'der'});return {key,fingerprint:hash(der)};}
+ async function settle(paymentId){
+  safeId(paymentId);const receipt=await payments.verifiedSettlement(paymentId);
+  if(!receipt||receipt.id!==paymentId||receipt.status!=='COMPLETED'||receipt.merchantId!==merchantId||receipt.packId!==product.id||receipt.currency!==product.currency||receipt.amountMinor!==product.priceMinor)fail('Payment has not been confirmed for this pack.',409);
+  const email=normalEmail(receipt.buyerEmail),path='premium/orders/'+paymentId+'.json';await ensure(path,{orderId:paymentId,state:'pending',createdAt:now()});
+  return store.lock(path,async(order,save)=>{
+   if(order.state==='revoked')fail('Purchase licence has been revoked.',403);
+   if(order.state==='issued'){await ensure('premium/licences/'+order.licenceId+'.json',{path});if(order.email.pending)await ensure('premium/outbox/'+paymentId+'.json',{path});return {orderId:paymentId,licenceId:order.licenceId,state:'issued',emailPending:order.email.pending};}
+   // Save the encrypted delivery code before creating its lookup. A crash resumes the same grant.
+   if(!order.licenceId){const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567',code='TF-'+[...randomBytes(32)].map(v=>alphabet[v&31]).join('');Object.assign(order,{licenceId:hash('premium:'+paymentId),buyerEmail:email,packId:product.id,deviceAllowance:product.deviceAllowance,devices:{},deliveryCode:seal(code),codeHash:digest(code),email:{pending:true,attempts:0},payment:{id:paymentId,amountMinor:product.priceMinor,currency:product.currency,merchantId}});await save(order);}
+   await ensure('premium/codes/'+order.codeHash+'.json',{path});await ensure('premium/licences/'+order.licenceId+'.json',{path});await ensure('premium/outbox/'+paymentId+'.json',{path});order.state='issued';await save(order);return {orderId:paymentId,licenceId:order.licenceId,state:'issued',emailPending:order.email.pending};
+  });
+ }
+ async function challenge({code,session,publicKey}){const path=await licenceFor(code),licence=await store.get(path);await owner(session,licence);if(licence.state!=='issued')fail('Licence is not available.',403);const d=device(publicKey),nonce=randomBytes(32).toString('base64url'),id=randomBytes(16).toString('hex'),message=`TerrainFoundry.activate.v1\n${licence.licenceId}\n${d.fingerprint}\n${nonce}`;await ensure('premium/challenges/'+id+'.json',{licencePath:path,fingerprint:d.fingerprint,message,expiresAt:now()+300000,used:false});return {challengeId:id,message,expiresAt:now()+300000};}
+ async function activate({code,session,publicKey,challengeId,signature}){const path=await licenceFor(code),d=device(publicKey),challengePath='premium/challenges/'+safeId(challengeId)+'.json';return store.lock(challengePath,async(c,saveChallenge)=>{
+  if(!c||c.used||c.expiresAt<now()||c.licencePath!==path||c.fingerprint!==d.fingerprint)fail('Activation challenge expired. Please try again.',403);
+  let signatureValid=false;try{signatureValid=verify(null,Buffer.from(c.message),d.key,Buffer.from(signature,'base64'));}catch{}if(!signatureValid)fail('Device proof is invalid.',403);
+  const grant=await store.lock(path,async(licence,save)=>{await owner(session,licence);if(licence.state!=='issued')fail('Licence is not available.',403);if(!licence.devices[d.fingerprint]&&Object.keys(licence.devices).length>=licence.deviceAllowance)fail('Both computers are activated. Contact support to release an old activation.',409);licence.devices[d.fingerprint]??={activatedAt:now()};await save(licence);const payload={schemaVersion:1,issuer:'TerrainFoundry',licenceId:licence.licenceId,packId:licence.packId,deviceFingerprint:d.fingerprint,issuedAt:now(),offlineUse:true};const bytes=Buffer.from(JSON.stringify(payload));return {payload:bytes.toString('base64'),signature:sign(null,bytes,signingKey).toString('base64')};});
+  c.used=true;await saveChallenge(c);return grant;
+ });}
+ async function supportReset({operatorSession,orderId,deviceFingerprint}){const operator=await buyers.verifySupport(operatorSession);if(!operator?.authorised)fail('Support authorisation required.',403);if(!/^[a-f0-9]{64}$/.test(deviceFingerprint))fail('Invalid device reference.');return store.lock('premium/orders/'+safeId(orderId)+'.json',async(licence,save)=>{if(!licence||licence.state!=='issued')fail('Purchase not found.',404);delete licence.devices[deviceFingerprint];licence.resetHistory??=[];licence.resetHistory.push({at:now(),operatorId:safeId(operator.id),deviceFingerprint,reason:'verified-purchase-reinstall-or-replacement'});await save(licence);return {reset:true,licenceId:licence.licenceId,remainingDevices:Object.keys(licence.devices).length};});}
+ async function resend({code,session}){const path=await licenceFor(code);return store.lock(path,async(licence,save)=>{await owner(session,licence);await ensure('premium/outbox/'+licence.orderId+'.json',{path});licence.email.pending=true;licence.email.retryAfter=now();await save(licence);return {queued:true};});}
+ // Only the server outbox worker receives this method; no HTTP route may return its code.
+ async function deliveryForOrder(orderId){const licence=await store.get('premium/orders/'+safeId(orderId)+'.json');if(!licence||licence.state!=='issued')fail('Purchase not found.',404);return {to:licence.buyerEmail,code:open(licence.deliveryCode),licenceId:licence.licenceId,orderId,packId:licence.packId};}
+ return {settle,challenge,activate,supportReset,resend,deliveryForOrder};
+}

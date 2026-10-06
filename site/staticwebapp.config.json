@@ -1,6 +1,6 @@
 {
   "globalHeaders": {
-    "Content-Security-Policy": "default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self'; connect-src 'self' https://terrainfoundry-print.azurewebsites.net https://api.github.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self'; connect-src 'self' https://terrainfoundry-print.azurewebsites.net https://terrainfoundry-premium.azurewebsites.net https://api.github.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "X-Content-Type-Options": "nosniff"
   },
@@ -10,7 +10,7 @@
       "headers": {
         "Cache-Control": "no-store",
         "Referrer-Policy": "no-referrer",
-        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.paypalobjects.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.paypal.com https://*.paypalobjects.com; connect-src 'self' https://*.paypal.com https://*.paypalobjects.com https://terrainfoundry-print.azurewebsites.net https://api.github.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com https://*.paypal.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.paypalobjects.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.paypal.com https://*.paypalobjects.com; connect-src 'self' https://*.paypal.com https://*.paypalobjects.com https://terrainfoundry-print.azurewebsites.net https://terrainfoundry-premium.azurewebsites.net https://api.github.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com https://*.paypal.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
       }
     },
     {

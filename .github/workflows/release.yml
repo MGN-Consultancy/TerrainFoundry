@@ -43,6 +43,8 @@ jobs:
       - run: ./scripts/release/build-launcher.ps1
       - name: Check launcher layout and editor startup lifecycle
         run: ./scripts/release/test-launcher-lifecycle.ps1
+      - name: Check launcher self-update across processes
+        run: ./scripts/release/test-launcher-handoff.ps1
       - uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}

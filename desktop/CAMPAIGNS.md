@@ -1,6 +1,12 @@
 # Campaign Studio — local implementation
 
-This source candidate is not in the public 1.9.0 installer. It does not enable live paid API tests or publish the website.
+Campaign Studio was introduced in 1.10. The 1.12 update adds persistent guided chat, reviewed client actions and private usage accounting. Provider requests occur only when requested by the user.
+
+Chat remains available across campaign tabs. New campaigns begin with one question at a time and a separate draft brief. Applying a reviewed brief, record or terrain layout is explicit; progress describes saved content rather than a guessed completion percentage. Native reviews expire after 15 minutes and are bound to the campaign revision. AI cannot execute code or select arbitrary file paths.
+
+Setup defaults to GPT-6.1 Sol or Claude Sonnet 5.5. Advanced settings preserve custom models separately for each provider. Test API key sends a small request with no campaign context and may incur a provider charge. It never retries automatically.
+
+The private native usage ledger retains 500 recent requests and lifetime totals, without prompts, responses or keys. Costs use dated standard USD list prices, not a provider balance or invoice; tax, exchange rates and other applications are excluded. Unknown models, incomplete usage and unsupported pricing show cost unavailable. Historical estimates retain their rate snapshot. OpenAI cache reads and writes are subtracted from ordinary input, and reasoning is not counted twice. Claude cache-write duration must be reported to price it. OpenAI requests above 200,000 reported input tokens are conservatively unpriced. Separate simultaneous clients sharing one profile are not supported for usage accounting.
 
 Startup opens Campaigns / Worlds / Encounters after the introductory guide. Campaign files are stored under Documents/Terrain Foundry/Campaigns. Native OS encryption stores provider keys under the existing application profile, separate from campaign files. Keys are entered in a separate sandboxed window; the editor receives configured status only. AI requests require explicit native confirmation, use fixed provider endpoints, have no automatic retry and show reported token usage. No prices are invented. The OpenAI image path requires a configured gpt-image model; Claude is text only. Original generated output remains a draft; encounter layouts need explicit application and can be undone.
 

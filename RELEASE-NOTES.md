@@ -1,3 +1,11 @@
+# Terrain Foundry 1.12.0
+
+Build campaigns through a persistent AI conversation, with a live draft brief and clear next steps. Review and apply proposed characters, missions, saved-scene links and terrain layouts using your installed scenery.
+
+AI setup now offers friendly OpenAI and Claude defaults, an explicit API-key test, and private token and estimated USD cost tracking across restarts. Provider calls require your own key and may incur charges. Offline campaign editing remains available without a key.
+
+Premium scenery sales remain disabled. This update preserves saved campaigns, worlds, encounters and scenery.
+
 # Terrain Foundry 1.11.0
 
 Adds native premium pack activation: verify the purchase email, enter the emailed code, and download an encrypted pack. Signed inventories, device-bound entitlements, ciphertext and per-file hashes are checked before an atomic installation. Content keys use Windows protected storage; asset data is decrypted in memory when needed.

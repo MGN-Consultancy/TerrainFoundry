@@ -1,5 +1,5 @@
 using System;using System.IO;using System.IO.Compression;using System.Net;using System.Net.Http;using System.Linq;using System.Text;using System.Collections.Generic;using System.Security.Cryptography;using System.Diagnostics;using System.Threading;using System.Threading.Tasks;using System.Web.Script.Serialization;using System.Windows.Forms;
-[assembly:System.Reflection.AssemblyVersion("1.11.0.0")]
+[assembly:System.Reflection.AssemblyVersion("1.12.0.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
  public class Launcher:Form {

@@ -11,7 +11,7 @@ const wasm=await Module();wasm.setup();
 for(const k of KIT)test(k.id+': integrated geometry is closed and declared ports are unobstructed',()=>{
  const geo=geometry(k.id,25.4,{},true),spec=connectionSpec(k.id),solid=meshSolid(wasm,geo);
  assert.equal(solid.status(),'NoError');const parts=solid.decompose();assert.equal(parts.length,1);parts.forEach(s=>s.delete());assert.ok(solid.volume()>0);
- geo.computeBoundingBox();assert.ok(Math.abs(geo.boundingBox.min.y)<.00001);if(spec.revision===3)assert.ok(spec.ports.length>0);else assert.equal(spec.ports.length,spec.kind==='floor'?4:spec.kind==='wall'?1:0);
+ geo.computeBoundingBox();assert.ok(Math.abs(geo.boundingBox.min.y)<.00001);if(spec.revision>=3)assert.ok(spec.ports.length>0);else assert.equal(spec.ports.length,spec.kind==='floor'?4:spec.kind==='wall'?1:0);
  // A concave latch recess cannot be inset by uniform scaling: it moves notches into solid.
  const cut=socketCut(wasm);
  for(const port of spec.ports){const transformed=cut.translate([0,-3.5,0]).rotate([port.roll||0,0,0]).rotate([0,port.angle,0]).translate([port.x,port.y??3.5,port.z]);const obstructed=solid.intersect(transformed);assert.ok(Math.abs(obstructed.volume())<.01,'port cavity is empty');obstructed.delete();transformed.delete();}

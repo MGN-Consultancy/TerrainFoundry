@@ -1,7 +1,8 @@
-// Preserve the OpenLOCK connector zone and lower the 12 mm floor carrier to
-// the shared 8 mm datum with a 0.05 mm printable feather.
-export function mapDeepstoneFloorY(y) {
+// Preserve the complete 0-8 mm OpenLOCK connector zone. Compress the old
+// 8-12 mm carrier shoulder to a printable transition, then translate the
+// sculpt above it. The slope is adjustable for topology-sensitive sculpts.
+export function mapDeepstoneFloorY(y, shoulderSlope = 0.1) {
   if (y <= 8) return y;
-  if (y < 12) return 8 + (y - 8) * 0.0125;
-  return y - 3.95;
+  if (y < 12) return 8 + (y - 8) * shoulderSlope;
+  return y - 4 + 4 * shoulderSlope;
 }

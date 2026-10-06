@@ -35,8 +35,8 @@ export function solidData(solid){
  for(let i=0;i<mesh.vertProperties.length;i+=mesh.numProp){positions.push(...mesh.vertProperties.slice(i,i+3));colors.push(...mesh.vertProperties.slice(i+3,i+6));}
  return {positions,colors,indices:Array.from(mesh.triVerts)};
 }
-export function connectAsset(wasm,geo,category,type=''){
- const spec=baseSpec(geo,category,type),original=meshSolid(wasm,geo),M=wasm.Manifold;
+export function connectAsset(wasm,geo,category,type='',specOverride){
+ const spec=specOverride??baseSpec(geo,category,type),original=meshSolid(wasm,geo),M=wasm.Manifold;
  let body;
  if(spec.kind==='scenic'){const data={...solidData(original),openlock:spec,volume:original.volume()};original.delete();return data;}
  if(spec.kind==='floor'){

@@ -54,3 +54,5 @@ header{height:78px;padding:0 20px;gap:16px;background:linear-gradient(#1d2a36,#1
 .campaign-workspace aside>header{height:auto;display:block;flex:none;padding:0;background:transparent;border:0}
 
 .campaign-workshop #campaign-tabs{gap:5px}.campaign-workshop #campaign-tabs button{font-size:12px;padding:8px 10px;margin:0}.campaign-action-preview p{white-space:pre-wrap;font-size:14px;line-height:1.6}.campaign-action-preview ul{font-size:13px;line-height:1.6}.campaign-review .campaign-cover{border-radius:12px;width:560px;max-width:100%}
+
+.campaign-workshop #campaign-body[data-tab=Story]{display:block}.campaign-workshop #campaign-body[data-tab=Story]>*{grid-column:auto}

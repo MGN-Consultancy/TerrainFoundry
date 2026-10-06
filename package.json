@@ -1,6 +1,6 @@
 {
   "name": "dnd-terrain-builder",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "private": true,
   "description": "Offline tabletop terrain designer",
   "main": "desktop/main.cjs",

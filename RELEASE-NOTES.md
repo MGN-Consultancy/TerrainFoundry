@@ -1,3 +1,11 @@
+# Terrain Foundry 1.13.0
+
+Adds a persistent coloured/unpainted appearance choice to the terrain library and editor. Both views retain the same asset identities, dimensions and OpenLOCK geometry. The expanded library keeps appearance and category controls together.
+
+Verified scenery print files up to 250 MB are supported for high-definition pieces, with bounded export validation. Existing scenes, worlds, campaigns and protected scenery keys are preserved.
+
+Willowbrook owner-preview delivery is separate from the free scenery update. Premium sales remain disabled; physical print fit remains unverified.
+
 # Terrain Foundry 1.12.0
 
 Build campaigns through a persistent AI conversation, with a live draft brief and clear next steps. Review and apply proposed characters, missions, saved-scene links and terrain layouts using your installed scenery.

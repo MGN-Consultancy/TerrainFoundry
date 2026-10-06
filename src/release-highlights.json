@@ -1,22 +1,18 @@
 {
-  "version": "1.12.0",
-  "title": "Your campaign companion",
+  "version": "1.13.0",
+  "title": "Choose your terrain finish",
   "features": [
     {
-      "title": "Build through conversation",
-      "description": "Keep your campaign chat beside every tab. Answer questions one at a time and review your draft campaign brief."
+      "title": "Coloured or unpainted scenery",
+      "description": "Switch the asset library and scene between their original colours and a plain unpainted view. Your choice is remembered on this PC; OpenLOCK geometry stays the same."
     },
     {
-      "title": "Preview before applying",
-      "description": "Review proposed missions, characters, scene links and terrain layouts before the client applies them."
+      "title": "Browse in a bigger workspace",
+      "description": "The expanded library keeps appearance, category and subcategory controls together."
     },
     {
-      "title": "Simpler AI setup",
-      "description": "Choose OpenAI or Claude, enter your key and explicitly test it. Advanced model settings remain optional. Provider requests may incur charges."
-    },
-    {
-      "title": "Private usage tracking",
-      "description": "View reported tokens and estimated USD costs across restarts. Your campaign files stay local, and manual editing still works offline."
+      "title": "Full-detail printable assets",
+      "description": "The client supports larger high-definition printable pieces while retaining file validation and preserving saved scenes."
     }
   ]
 }

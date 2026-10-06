@@ -17,9 +17,10 @@ app.whenReady().then(async()=>{
  ipcMain.handle('print-estimate-config',()=>estimator.config());
  ipcMain.handle('print-estimate',(_,files,selection)=>estimator.estimate(files,selection));
  const readBuiltin=createSceneryReader(path.join(__dirname,'..'));
+ let premiumServices;
  const readPrint=require('./print-scenery.cjs').createPrintSceneryReader(path.join(__dirname,'..'));
- ipcMain.on('print-scenery',(event,id)=>{try{event.returnValue={files:readPrint(id)};}catch(error){event.returnValue={error:error.message};}});
- ipcMain.on('builtin-shape',(event,id,connected)=>{try{event.returnValue=readBuiltin(id,connected);}catch(error){event.returnValue={error:error.message};}});
+ ipcMain.on('print-scenery',(event,id,connected=true)=>{try{event.returnValue={files:premiumServices?.store.has(id)?premiumServices.store.readPrint(id,connected):readPrint(id)};}catch(error){event.returnValue={error:error.message};}});
+ ipcMain.on('builtin-shape',(event,id,connected)=>{try{event.returnValue=premiumServices?.store.has(id)?premiumServices.store.readShape(id,connected):readBuiltin(id,connected);}catch(error){event.returnValue={error:error.message};}});
  let campaignServices;let finishing=false;app.on('before-quit',e=>{if(!finishing){e.preventDefault();Promise.all([store.flush(),sceneLibrary.flush(),campaignServices?.store.flush()]).finally(()=>{finishing=true;app.quit();});}});
  ipcMain.handle('load-recovery',()=>store.loadRecovery());
  ipcMain.handle('save-recovery',(_,data)=>store.saveRecovery(data));
@@ -28,6 +29,7 @@ app.whenReady().then(async()=>{
  const area=screen.getDisplayNearestPoint(screen.getCursorScreenPoint()).workArea;
  const width=Math.min(1500,area.width),height=Math.min(960,area.height);
  const win=new BrowserWindow({x:area.x+Math.floor((area.width-width)/2),y:area.y+Math.floor((area.height-height)/2),width,height,minWidth:Math.min(1100,area.width),minHeight:Math.min(720,area.height),title:'Terrain Foundry',backgroundColor:'#111820',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
+ premiumServices=await require('./premium-native.cjs').setupPremiumNative({app,win,ipcMain,BrowserWindow,safeStorage,net,isReserved:id=>readBuiltin.has(id)});
  campaignServices=require('./campaign-native.cjs').setupCampaignNative({app,win,ipcMain,dialog,BrowserWindow,safeStorage,net});
  ipcMain.handle('campaign-open-portal',async event=>{if(event.sender!==win.webContents)throw Error('Unapproved window');const target=process.env.TERRAIN_PORTAL_LOCAL_URL||'https://terrainfoundry.co.uk/campaign-portal.html';if(target!=='https://terrainfoundry.co.uk/campaign-portal.html'&&!/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+\/site\/campaign-portal\.html$/.test(target))throw Error('Invalid local portal test URL');await shell.openExternal(target);return true;});
  win.webContents.setWindowOpenHandler(({url})=>{if(['https://www.printablescenery.com/','https://www.printablescenery.com/2026/10/01/mgn-consultancy/'].includes(url))void shell.openExternal(url);return {action:'deny'};});

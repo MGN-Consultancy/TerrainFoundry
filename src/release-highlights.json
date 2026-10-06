@@ -1,18 +1,18 @@
 {
-  "version": "1.13.0",
-  "title": "Choose your terrain finish",
+  "version": "1.14.0",
+  "title": "Willowbrook and a guided campaign companion",
   "features": [
     {
-      "title": "Coloured or unpainted scenery",
-      "description": "Switch the asset library and scene between their original colours and a plain unpainted view. Your choice is remembered on this PC; OpenLOCK geometry stays the same."
+      "title": "One code for the complete collection",
+      "description": "Activate Willowbrook’s 85 designs with one purchase code. The separate STL download works with other slicers; the scenery licence permits sales of physical prints."
     },
     {
-      "title": "Browse in a bigger workspace",
-      "description": "The expanded library keeps appearance, category and subcategory controls together."
+      "title": "Your world informs your campaign",
+      "description": "Optional AI guidance receives linked-world encounter names, elevations and piece positions, with clear limits when layouts are too large. Your worlds stay on this PC unless you approve sending context to your provider."
     },
     {
-      "title": "Full-detail printable assets",
-      "description": "The client supports larger high-definition printable pieces while retaining file validation and preserving saved scenes."
+      "title": "Simple suggested answers",
+      "description": "The campaign companion guides new players one question at a time. Suggested answers fill an editable message; you decide when to send it and which proposed changes to apply."
     }
   ]
 }

@@ -2,13 +2,13 @@
 
 Azure subscription: existing Terrain Foundry sponsorship subscription. Resource group: rg-terrainfoundry. Private UK South storage: tfpremium5xc3ig54fujlw; containers premium-packs and premium-state. Public blob access is disabled at account and container level; HTTPS and TLS 1.2 are enforced. Dedicated service: https://terrainfoundry-premium.azurewebsites.net/api/premium/config . Managed identity has Storage Blob Data Reader and Storage Blob Delegator on this storage account only. The existing print service was not replaced.
 
-Nigel confirmed Willowbrook at GBP 9.99, two simultaneously activated computers and free support-assisted replacement transfers. Commercial checkout remains disabled until an approved sale-ready pack exists. A synthetic tf-delivery-qa fixture is private, hidden from the public catalogue, and never available for purchase.
+Nigel confirmed Willowbrook at GBP 9.99, two simultaneously activated computers and free support-assisted replacement transfers. Willowbrook launch is authorised at GBP 9.99 under the premium scenery licence (2026-10-06), permitting personal use and sale of physical prints, prohibiting redistribution/resale of original digital scenery. The OpenLOCK component notices remain separate. Paid checkout is enabled only after the signed 1.14.0 client, all 22 bundle records and the STL ZIP are verified. A synthetic tf-delivery-qa fixture is private, hidden from the public catalogue, and never available for purchase.
 
 ## Customer flow
 
 Verify email with a ten-minute six-digit number, approve PayPal purchase, server confirms exact settled pack/currency/amount/merchant, durable outbox emails one activation code. Redeem in Packs, verify the purchase email, prove possession of the protected device key, then download. Retries and repairs on the same device reuse its slot. Support can release an old slot after verifying the purchase.
 
-Requests use POST /api/premium/{action} with JSON and Authorization: Bearer <verified device-bound session> where required. Actions: login-start, login-verify, checkout, confirm, webhook, challenge, activate, download-challenge, download, resend, support-reset. Public GET config exposes only the issuer public key and public product terms. Client/browser tokens must not enter campaign/project exports or logs.
+Requests use POST /api/premium/{action} with JSON and Authorization: Bearer <verified device-bound session> where required. Actions: login-start, login-verify, checkout, confirm, webhook, challenge, activate, download-challenge, download, files, resend, support-reset. Public GET config exposes only the issuer public key and public product terms. Client/browser tokens must not enter campaign/project exports or logs.
 
 ## Encrypted format
 
@@ -29,3 +29,9 @@ Runtime token, code-hash, outbox encryption and issuer signing secrets must be b
 ## Bounded evidence
 
 Backend tests cover verified settlement, idempotent code issuance, durable email retries, two-device enforcement, stolen-code denial, proof replay/expiry, support reset, OTP/session binding, ciphertext tampering and fail-closed pack readiness. Live synthetic Azure test verifies anonymous blob denial, managed-identity user-delegation SAS, read-only HTTPS download, wrong-device and replay denial, and correct decryption. Native tests and installer publication are separate gates. Local receipts are in work/premium-setup/azure-delivery-receipt.json; they contain no signed URLs, keys or activation codes.
+
+## Willowbrook collection delivery
+
+One paid product maps to 22 immutable encrypted component bundles containing 85 designs. The purchase code and two-computer allowance belong to the parent product. Each child receives a signed device entitlement derived from the verified parent licence; users cannot request an unrelated child. The native client checks every signature and renews each scoped download link immediately before fetching it. Verified matching installed archives are reused on retry. A failure preserves completed bundle installations. A private STL ZIP is separately available to a verified purchase-email session holding the activation code; refund/reversal blocks future downloads. Installed offline content remains usable. No key or plaintext model is committed to the open-source repository.
+
+Customer acceptance of the versioned scenery licence and immediate digital supply is required before creating a PayPal order. The accepted terms are frozen on the checkout record and provided in the purchase email. A code is issued only after the server verifies the exact settled amount, currency and merchant. No live test payment was taken by automated checks.

@@ -4,8 +4,8 @@
   "channel": "stable",
   "minimumWindows": "10",
   "connector": "OpenLOCK",
-  "assetLicense": "CC0-1.0 original sculpts; CC-BY-NC-4.0 OpenLOCK derivatives",
+  "assetLicense": "CC0-1.0 free original sculpts; separate premium scenery licence; MGN commercial BSD OpenLOCK terms",
   "sourceLicense": "MIT",
   "schema": 1,
-  "launcherVersion": "1.13.0"
+  "launcherVersion": "1.14.0"
 }

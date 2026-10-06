@@ -1,3 +1,7 @@
+# Version 1.14.0
+
+Willowbrook collection activation downloads all 85 designs under one purchase code, with a separate STL download and a licence permitting physical print sales. Campaign guidance receives placed encounter identities, elevations and layout metadata; suggested answers can be edited before sending. Physical print fit remains unverified.
+
 # Terrain Foundry 1.13.0
 
 Adds a persistent coloured/unpainted appearance choice to the terrain library and editor. Both views retain the same asset identities, dimensions and OpenLOCK geometry. The expanded library keeps appearance and category controls together.

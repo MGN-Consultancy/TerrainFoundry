@@ -1,9 +1,9 @@
 # Terrain Foundry licence scope
 
-OpenLOCK system, official tessellation templates 8.6 and Clip 5.4 by Printable Scenery (https://www.printablescenery.com/). Terrain Foundry sockets are derived directly from the official A-TRP-v7.0 template; two sacrificial entrance supports are omitted. MGN Consultancy uses the system under its non-transferable commercial BSD licence: https://www.printablescenery.com/2026/10/01/mgn-consultancy/. The MGN licence is not transferred to recipients. Other users retain the public CC BY-NC 4.0 terms unless they obtain their own commercial permission. Original connector-free Terrain Foundry sculpts are CC0; imported models retain their own rights. Print a fit test first; physical fit is not yet verified.
+OpenLOCK system, official tessellation templates 8.6 and Clip 5.4 by Printable Scenery (https://www.printablescenery.com/). Terrain Foundry sockets are derived directly from the official A-TRP-v7.0 template; two sacrificial entrance supports are omitted. MGN Consultancy uses the system under its non-transferable commercial BSD licence: https://www.printablescenery.com/2026/10/01/mgn-consultancy/. The MGN licence is not transferred to recipients. Other users retain the public CC BY-NC 4.0 terms unless they obtain their own commercial permission. Original connector-free free Terrain Foundry sculpts are CC0; premium original scenery uses its separate purchase licence; imported models retain their own rights. Print a fit test first; physical fit is not yet verified.
 
 * Editor and launcher application code: MIT.
-* Original connector-free sculpts: CC0-1.0; prior grants are unchanged.
+* Free original connector-free sculpts: CC0-1.0; prior grants are unchanged. Premium original scenery: the versioned Terrain Foundry Premium Scenery Licence supplied at purchase. No previous CC0 grant is revoked.
 * Official OpenLOCK templates, generated socket data, socketed derivatives and clip: Printable Scenery public CC BY-NC 4.0 terms; MGN Consultancy has the separately documented commercial grant. Do not treat that company-specific grant as a transferable BSD licence for everyone.
 * Logos and names retain their respective owners’ rights and are used for attribution, not as an endorsement.
 

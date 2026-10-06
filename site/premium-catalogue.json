@@ -5,12 +5,12 @@
       "id": "tf-willowbrook-village",
       "name": "Willowbrook Medieval Village",
       "version": "1.0.0",
-      "status": "in-development",
-      "purchaseAvailable": false,
+      "status": "available",
+      "purchaseAvailable": true,
       "pieceCount": 85,
       "summary": "A rearrangeable medieval village with aged timber cottages, village services, market-square paving and OpenLOCK-compatible scenery.",
-      "delivery": "Code delivered by email; redeem in the Windows client.",
-      "licensing": "Activated devices. Redownloads and pack updates reuse the same activation.",
+      "delivery": "\u00a39.99 \u00b7 One emailed code \u00b7 85 pieces \u00b7 client activation and STL download",
+      "licensing": "Personal use and sale of physical prints permitted. No sharing or resale of digital files. Two activated PCs; offline after installation.",
       "pieces": [
         {
           "id": "wb-001",
@@ -610,7 +610,10 @@
           "subcategory": "Narrow paving fillers",
           "optional": false
         }
-      ]
+      ],
+      "priceMinor": 999,
+      "currency": "GBP",
+      "licenceUrl": "premium-licence.txt"
     }
   ]
 }

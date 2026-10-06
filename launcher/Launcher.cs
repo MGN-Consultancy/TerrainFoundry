@@ -1,5 +1,5 @@
 using System;using System.IO;using System.IO.Compression;using System.Net;using System.Net.Http;using System.Linq;using System.Text;using System.Collections.Generic;using System.Security.Cryptography;using System.Diagnostics;using System.Threading;using System.Threading.Tasks;using System.Web.Script.Serialization;using System.Windows.Forms;
-[assembly:System.Reflection.AssemblyVersion("1.15.0.0")]
+[assembly:System.Reflection.AssemblyVersion("1.15.1.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
  sealed class WorkshopButton:Button {
@@ -31,7 +31,7 @@ namespace TerrainFoundry {
   string pendingEnvelope;Dictionary<string,object> pendingRelease;
   static string approvedChannel;
   bool busy,launchAfterCancel,closeAfterCancel; CancellationTokenSource cancellation=new CancellationTokenSource(); static HttpClient http=new HttpClient{Timeout=TimeSpan.FromMinutes(30)};
-  [STAThread] public static void Main(string[] args){approvedChannel=args.FirstOrDefault(x=>x.StartsWith("--approved-channel="));ServicePointManager.SecurityProtocol=SecurityProtocolType.Tls12;Directory.CreateDirectory(Root);using(var mutex=new Mutex(false,"Local\\TerrainFoundryLauncher")){if(!mutex.WaitOne(0))return;Application.EnableVisualStyles();Application.Run(new Launcher());}}
+  [STAThread] public static void Main(string[] args){if(args.Length>0&&args[0].StartsWith("--finish-launcher-update=")){FinishLauncherUpdate(args);return;}approvedChannel=args.FirstOrDefault(x=>x.StartsWith("--approved-channel="));ServicePointManager.SecurityProtocol=SecurityProtocolType.Tls12;Directory.CreateDirectory(Root);using(var mutex=new Mutex(false,"Local\\TerrainFoundryLauncher")){if(!mutex.WaitOne(0))return;Application.EnableVisualStyles();Application.Run(new Launcher());}}
   Launcher(){
    Icon=System.Drawing.Icon.ExtractAssociatedIcon(typeof(Launcher).Assembly.Location);
    Text="Terrain Foundry";ClientSize=new System.Drawing.Size(800,620);MinimumSize=new System.Drawing.Size(740,620);StartPosition=FormStartPosition.CenterScreen;AutoScaleMode=AutoScaleMode.Dpi;
@@ -131,7 +131,7 @@ throw new Exception("The package does not have a valid MGN Consultancy publisher
      string next=Path.Combine(Root,"TerrainFoundryLauncher-next.exe");await Download(launcher,next);await Task.Run(()=>VerifyPublisher(next));
      if(System.Reflection.AssemblyName.GetAssemblyName(next).Version!=new Version(Str(launcher,"version")))throw new Exception("Launcher version mismatch.");
      string destination=Path.Combine(Root,"TerrainFoundryLauncher.exe");File.Copy(next,destination+".pending",true);
-     WriteRestart(destination,EnvelopeHash(envelope));status.Text="Launcher update verified. Restarting to finish your approved update-";busy=false;Close();return;
+     WriteRestart(destination,EnvelopeHash(envelope));status.Text="Launcher update verified. Restarting to finish your approved update...";busy=false;Close();return;
     }
     string client=await Install(Obj(release["client"]),true);var assets=new Dictionary<string,string>();
     foreach(var p in (System.Collections.IEnumerable)release["assets"]){var asset=Obj(p);assets.Add(Str(asset,"id"),await Install(asset,false));}
@@ -141,35 +141,42 @@ throw new Exception("The package does not have a valid MGN Consultancy publisher
    }catch(Exception e){status.Text="Update not applied: "+e.Message+(File.Exists(StateFile)?"\nYour installed editor is still available offline.":"\nYou can retry the installation.");}
    finally{busy=false;StopProgress();offer.Visible=pendingRelease!=null;install.Text="Retry update";install.Enabled=pendingRelease!=null;play.Enabled=File.Exists(StateFile);if(closeAfterCancel)Close();else if(launchAfterCancel){launchAfterCancel=false;Launch();}}
   }
-static void WriteRestart(string target,string approvedHash){string script=Path.Combine(Root,"finish-launcher-update.ps1");string t=target.Replace("'","''");File.WriteAllText(script,"$ErrorActionPreference='Stop';Wait-Process -Id "+Process.GetCurrentProcess().Id+" -ErrorAction SilentlyContinue;Move-Item -LiteralPath '"+t+".pending' -Destination '"+t+"' -Force;Start-Process -FilePath '"+t+"' -ArgumentList '--approved-channel="+approvedHash+"'");var restart=new ProcessStartInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System),"WindowsPowerShell","v1.0","powershell.exe"),"-NoProfile -NonInteractive -WindowStyle Hidden -File \""+script+"\""){UseShellExecute=false,CreateNoWindow=true};restart.EnvironmentVariables["PSModulePath"]=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System),"WindowsPowerShell","v1.0","Modules");Process.Start(restart);}
+static void WriteRestart(string target,string approvedHash){
+   var helper=new ProcessStartInfo(Path.Combine(Root,"TerrainFoundryLauncher-next.exe")){UseShellExecute=false,CreateNoWindow=true,WorkingDirectory=Root};
+   helper.Arguments="--finish-launcher-update="+Process.GetCurrentProcess().Id+" --approved-channel="+SafeHash(approvedHash);
+   using(var process=Process.Start(helper)){if(process==null)throw new Exception("Could not start the launcher update helper.");}
+  }
+  static void ReplaceLauncherFile(string pending,string target,string expectedHash){
+   if(Hash(pending)!=SafeHash(expectedHash))throw new Exception("The staged launcher changed before replacement.");
+   var deadline=DateTime.UtcNow.AddSeconds(30);
+   for(;;){try{if(File.Exists(target))File.Replace(pending,target,target+".previous");else File.Move(pending,target);return;}
+    catch(IOException){if(DateTime.UtcNow>=deadline)throw;Thread.Sleep(250);}
+    catch(UnauthorizedAccessException){if(DateTime.UtcNow>=deadline)throw;Thread.Sleep(250);}
+   }
+  }
+  static void FinishLauncherUpdate(string[] args){
+   try{
+    if(args.Length!=2||!args[1].StartsWith("--approved-channel="))throw new Exception("Invalid update handoff.");
+    int parent=Int32.Parse(args[0].Substring("--finish-launcher-update=".Length));string approval=SafeHash(args[1].Substring("--approved-channel=".Length));
+    string source=Path.GetFullPath(typeof(Launcher).Assembly.Location),target=Path.Combine(Root,"TerrainFoundryLauncher.exe"),pending=target+".pending";
+    if(!String.Equals(source,Path.GetFullPath(Path.Combine(Root,"TerrainFoundryLauncher-next.exe")),StringComparison.OrdinalIgnoreCase))throw new Exception("Update helper is outside the installation folder.");
+    try{using(var old=Process.GetProcessById(parent)){if(!old.WaitForExit(30000))throw new Exception("The previous launcher did not close.");}}catch(ArgumentException){}
+#if !TEST_HANDOFF
+    VerifyPublisher(source);
+#endif
+    string expected=Hash(source);ReplaceLauncherFile(pending,target,expected);
+    var start=new ProcessStartInfo(target,"--approved-channel="+approval){UseShellExecute=false,WorkingDirectory=Root};
+    using(var next=Process.Start(start)){if(next==null)throw new Exception("The updated launcher could not be opened.");}
+    File.WriteAllText(Path.Combine(Root,"launcher-update.log"),"Launcher replacement completed. Version "+typeof(Launcher).Assembly.GetName().Version);
+   }catch(Exception e){
+    Environment.ExitCode=1;string message="Launcher update could not finish: "+e.Message+"\nRun the latest Terrain Foundry MSI installer to repair the launcher. Your saved projects are preserved.";
+    try{File.WriteAllText(Path.Combine(Root,"launcher-update.log"),message);}catch{}
+#if !TEST_HANDOFF
+    MessageBox.Show(message,"Terrain Foundry update",MessageBoxButtons.OK,MessageBoxIcon.Error);
+#endif
+   }
+  }
   async Task OpenVerifiedEditor(string client,Dictionary<string,object> assets){var start=new ProcessStartInfo(Path.Combine(client,"TerrainFoundry.exe")){UseShellExecute=false,WorkingDirectory=client};start.EnvironmentVariables["TERRAIN_ASSET_PACKS"]=Json.Serialize(assets);using(var editor=Process.Start(start)){if(editor==null)throw new Exception("The editor could not be started. Please try again.");await Task.Run(()=>{try{editor.WaitForInputIdle(5000);}catch(InvalidOperationException){}});if(editor.HasExited)throw new Exception("The editor closed during startup. Your launcher remains available; please try again.");}busy=false;Close();}
   async void Launch(){if(busy)return;busy=true;play.Enabled=false;offer.Visible=false;Progress("Checking installed editor and scenery...");try{var state=ReadState();string client=Str(state,"client");var release=VerifyEnvelope(Str(state,"envelope"));await Task.Run(()=>CheckInventory(client,Obj(release["client"])));var assets=Obj(state["assets"]);foreach(var a in (System.Collections.IEnumerable)release["assets"]){var pack=Obj(a);await Task.Run(()=>CheckInventory(Convert.ToString(assets[Str(pack,"id")]),pack));}await OpenVerifiedEditor(client,assets);}catch(Exception e){status.Text=e.Message;}finally{busy=false;StopProgress();play.Enabled=File.Exists(StateFile);}}
  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

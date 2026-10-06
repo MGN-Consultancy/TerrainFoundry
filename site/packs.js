@@ -18,7 +18,7 @@ try{
    const pieces=selected.pieces.filter(p=>(!category||p.subcategory===category)&&`${p.name} ${p.category} ${p.subcategory}`.toLowerCase().includes(search));
    $('piece-count').textContent=`Showing ${pieces.length} of ${selected.pieceCount} pieces`;$('piece-grid').replaceChildren();
    for(const p of pieces){const card=node('article',null,'piece-card');
-    if(p.image&&/^assets\/premium\/[a-z0-9-]+\/[a-z0-9-]+\.png$/.test(p.image)){const image=node('img');image.src=p.image;image.alt=p.name;image.loading='lazy';image.width=1024;image.height=1024;card.append(image);}
+    if(p.image&&/^assets\/premium\/[a-z0-9-]+\/[a-z0-9-]+\.(png|webp)$/.test(p.image)){const image=node('img');image.src=p.image;image.alt=p.name;image.loading='lazy';image.width=1024;image.height=1024;card.append(image);}
     else card.append(node('p','Individual preview in preparation','piece-preview-pending'));
     card.append(node('h3',p.name),node('p',`${p.id} · ${p.subcategory}${p.optional?' · Optional scenery':''}`));$('piece-grid').append(card);
    }

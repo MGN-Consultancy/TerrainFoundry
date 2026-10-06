@@ -1,0 +1,616 @@
+{
+  "schemaVersion": 1,
+  "packs": [
+    {
+      "id": "tf-willowbrook-village",
+      "name": "Willowbrook Medieval Village",
+      "version": "1.0.0",
+      "status": "in-development",
+      "purchaseAvailable": false,
+      "pieceCount": 85,
+      "summary": "A rearrangeable medieval village with aged timber cottages, village services, market-square paving and OpenLOCK-compatible scenery.",
+      "delivery": "Code delivered by email; redeem in the Windows client.",
+      "licensing": "Activated devices. Redownloads and pack updates reuse the same activation.",
+      "pieces": [
+        {
+          "id": "wb-001",
+          "name": "Cottage body A, 2x2, solid exterior shell and integrated base, one print",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false,
+          "image": "assets/premium/tf-willowbrook-village/wb-001-perspective.webp"
+        },
+        {
+          "id": "wb-002",
+          "name": "Cottage A removable pitched roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false,
+          "image": "assets/premium/tf-willowbrook-village/wb-002-perspective.webp"
+        },
+        {
+          "id": "wb-003",
+          "name": "Cottage body B, 2x2, stone lower walls, one print",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false,
+          "image": "assets/premium/tf-willowbrook-village/wb-003-perspective.webp"
+        },
+        {
+          "id": "wb-004",
+          "name": "Cottage B removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-005",
+          "name": "Cottage body C, 2x2, timber and cracked plaster, one print",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-006",
+          "name": "Cottage C removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-007",
+          "name": "Tavern body, 3x2, taller two-storey exterior, one print",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-008",
+          "name": "Tavern removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-009",
+          "name": "Blacksmith body, 3x2, stone chimney base and open work bay, one print",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-010",
+          "name": "Blacksmith removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-011",
+          "name": "Blacksmith forge-yard floor, 2x2",
+          "category": "Floors",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-012",
+          "name": "Blacksmith sturdy separate canopy",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-013",
+          "name": "Worn flagstone floor A",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-014",
+          "name": "Worn flagstone floor B",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-015",
+          "name": "Chipped flagstone floor C",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-016",
+          "name": "Small cobblestone floor",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-017",
+          "name": "Large cobblestone floor",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-018",
+          "name": "Market-square centre floor, 2x2, fountain mounting pad",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-019",
+          "name": "Market paving border full floor straight",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-020",
+          "name": "Market paving border full floor corner",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-021",
+          "name": "Drain and gutter floor",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-022",
+          "name": "Dirt-to-stone transition",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-023",
+          "name": "Straight cobbled lane",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-024",
+          "name": "Corner cobbled lane",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-025",
+          "name": "T-junction cobbled lane",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-026",
+          "name": "Crossroads cobbled lane",
+          "category": "Floors",
+          "subcategory": "Market floors and roads",
+          "optional": false
+        },
+        {
+          "id": "wb-027",
+          "name": "Low stone wall straight",
+          "category": "Walls",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-028",
+          "name": "Low stone wall corner",
+          "category": "Walls",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-029",
+          "name": "Low stone wall end",
+          "category": "Walls",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-030",
+          "name": "Low stone wall gate opening",
+          "category": "Walls",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-031",
+          "name": "Timber fence straight",
+          "category": "Walls",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-032",
+          "name": "Timber fence corner",
+          "category": "Walls",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-033",
+          "name": "Timber fence end",
+          "category": "Walls",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-034",
+          "name": "Timber gate with posts",
+          "category": "Walls",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-035",
+          "name": "Stone doorstep",
+          "category": "Details",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-036",
+          "name": "Broad stone steps",
+          "category": "Details",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-037",
+          "name": "Timber porch with integrated plinth",
+          "category": "Details",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-038",
+          "name": "Village entrance sign on sturdy posts",
+          "category": "Details",
+          "subcategory": "Boundaries and access",
+          "optional": false
+        },
+        {
+          "id": "wb-039",
+          "name": "Old market stall body A on 2x1 connected base",
+          "category": "Details",
+          "subcategory": "Market and fountain",
+          "optional": false
+        },
+        {
+          "id": "wb-040",
+          "name": "Stall A removable chunky canopy",
+          "category": "Details",
+          "subcategory": "Market and fountain",
+          "optional": false
+        },
+        {
+          "id": "wb-041",
+          "name": "Old market stall body B on 2x1 connected base",
+          "category": "Details",
+          "subcategory": "Market and fountain",
+          "optional": false
+        },
+        {
+          "id": "wb-042",
+          "name": "Stall B removable chunky canopy",
+          "category": "Details",
+          "subcategory": "Market and fountain",
+          "optional": false
+        },
+        {
+          "id": "wb-043",
+          "name": "Produce display tray",
+          "category": "Details",
+          "subcategory": "Market and fountain",
+          "optional": false
+        },
+        {
+          "id": "wb-044",
+          "name": "Cloth-and-pottery display tray",
+          "category": "Details",
+          "subcategory": "Market and fountain",
+          "optional": false
+        },
+        {
+          "id": "wb-045",
+          "name": "Stone fountain basin on connected base, dry interior",
+          "category": "Details",
+          "subcategory": "Market and fountain",
+          "optional": false
+        },
+        {
+          "id": "wb-046",
+          "name": "Fountain central carved pedestal, separate print",
+          "category": "Details",
+          "subcategory": "Market and fountain",
+          "optional": false
+        },
+        {
+          "id": "wb-047",
+          "name": "Barrel",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-048",
+          "name": "Stacked barrels",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-049",
+          "name": "Crate",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-050",
+          "name": "Crate stack",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-051",
+          "name": "Bench",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-052",
+          "name": "Horse trough",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-053",
+          "name": "Handcart",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-054",
+          "name": "Firewood stack",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-055",
+          "name": "Village noticeboard on connected base",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-056",
+          "name": "Forge hearth on connected base",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-057",
+          "name": "Anvil on sturdy stump",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-058",
+          "name": "Blacksmith workbench",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-059",
+          "name": "Compact village orchard tree on single tile",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-060",
+          "name": "Bush and planter on connected base",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-061",
+          "name": "Hay cart with chunky sculpted loose hay load",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-062",
+          "name": "Hay-bale cart with stacked chunky bales",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-063",
+          "name": "General store body, 3x2, shuttered display window and recessed doorway",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-064",
+          "name": "General store removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-065",
+          "name": "Stables body, 3x2, three open horse bays and feed passage",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-066",
+          "name": "Stables removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-067",
+          "name": "Barn body, 3x2, wide plank doors and hayloft",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-068",
+          "name": "Barn removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-069",
+          "name": "Village well basin, dry interior, stone round curb on square base",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-070",
+          "name": "Village well timber hood, posts and chunky fixed windlass",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-071",
+          "name": "Small chapel body, 2x3, stone arch doorway and narrow windows",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-072",
+          "name": "Small chapel removable roof with modest bell housing",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-073",
+          "name": "Guardhouse body, 2x2, stout stone lower walls and timber upper floor",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-074",
+          "name": "Guardhouse removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-075",
+          "name": "Bakery body, 2x2, bread hatch and exterior oven chimney",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-076",
+          "name": "Bakery removable roof",
+          "category": "Details",
+          "subcategory": "Buildings and roofs",
+          "optional": false
+        },
+        {
+          "id": "wb-077",
+          "name": "Village privy, 1x1, weathered plank hut with fixed roof",
+          "category": "Details",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-078",
+          "name": "Village stocks on stone platform, empty head and hand holes",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-079",
+          "name": "Optional guillotine scenery, empty static timber frame on platform",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": true
+        },
+        {
+          "id": "wb-080",
+          "name": "Hitching rail on cobbled base, thick posts and beam",
+          "category": "Props",
+          "subcategory": "Village props",
+          "optional": false
+        },
+        {
+          "id": "wb-081",
+          "name": "Sandstone sett floor",
+          "category": "Floors",
+          "subcategory": "Narrow paving fillers",
+          "optional": false
+        },
+        {
+          "id": "wb-082",
+          "name": "Large limestone slab floor",
+          "category": "Floors",
+          "subcategory": "Narrow paving fillers",
+          "optional": false
+        },
+        {
+          "id": "wb-083",
+          "name": "Fan-pattern cobble floor",
+          "category": "Floors",
+          "subcategory": "Narrow paving fillers",
+          "optional": false
+        },
+        {
+          "id": "wb-084",
+          "name": "Herringbone stone floor",
+          "category": "Floors",
+          "subcategory": "Narrow paving fillers",
+          "optional": false
+        },
+        {
+          "id": "wb-085",
+          "name": "Patched flagstone floor",
+          "category": "Floors",
+          "subcategory": "Narrow paving fillers",
+          "optional": false
+        }
+      ]
+    }
+  ]
+}

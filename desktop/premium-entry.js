@@ -1,0 +1,8 @@
+const $=id=>document.getElementById(id);let busy=false;
+async function run(task){if(busy)return;busy=true;document.querySelectorAll('button,input').forEach(e=>e.disabled=true);try{await task();}catch(e){$('status').textContent=e.message||'Activation could not be completed.';}finally{busy=false;document.querySelectorAll('button,input').forEach(e=>e.disabled=false);}}
+$('email-form').onsubmit=e=>{e.preventDefault();run(async()=>{await window.packEntry.start($('email').value);$('email').value='';$('email-form').hidden=true;$('verify-form').hidden=false;$('status').textContent='Check your purchase email for the verification number.';});};
+$('verify-form').onsubmit=e=>{e.preventDefault();run(async()=>{await window.packEntry.verify($('otp').value);$('otp').value='';$('verify-form').hidden=true;$('code-form').hidden=false;$('status').textContent='Email verified. Enter your pack code.';});};
+$('code-form').onsubmit=e=>{e.preventDefault();run(async()=>{const result=await window.packEntry.activate($('code').value.trim());$('code').value='';$('progress').hidden=true;$('status').textContent=`Pack ready offline: ${result.pieceCount} pieces. Close this window to browse your scenery.`;$('code-form').hidden=true;});};
+window.packEntry.progress(s=>{$('status').textContent=s.stage;if(Number.isFinite(s.total)&&s.total>0){$('progress').hidden=false;$('progress').max=s.total;$('progress').value=s.received;}});
+
+$('restart').onclick=()=>{if(busy)return;for(const id of ['email','otp','code'])$(id).value='';$('email-form').hidden=false;$('verify-form').hidden=true;$('code-form').hidden=true;$('progress').hidden=true;$('status').textContent='Enter your purchase email to verify again.';};

@@ -1,22 +1,22 @@
 {
-  "version": "1.10.0",
-  "title": "Your campaign, from story to table",
+  "version": "1.11.0",
+  "title": "Purchased scenery, ready offline",
   "features": [
     {
-      "title": "Campaign Studio",
-      "description": "Save story context, notes, characters, maps and linked terrain locally. Optional OpenAI or Claude generation uses your API account."
+      "title": "Activate with your pack code",
+      "description": "Open Activate purchased scenery in the terrain library. Verify your purchase email, then enter its activation code."
     },
     {
-      "title": "Run your adventure",
-      "description": "A full-window studio and fullscreen playbook with original starter audio, linked sound cues, dice and initiative."
+      "title": "Protected downloads",
+      "description": "Signed scenery inventories are checked before installation. Pack keys use Windows protected storage; scenery is cached encrypted."
     },
     {
-      "title": "Books and player handouts",
-      "description": "Export campaign books, duplex cards and player-approved snapshots. The online sharing portal is not configured yet."
+      "title": "Keep building offline",
+      "description": "Once installed, purchased scenery appears in the usual categories and can be placed, saved and exported without internet."
     },
     {
-      "title": "Deepstone starter fixes",
-      "description": "Includes the committed floor-height corrections for the free grotto starter collection."
+      "title": "Your free starter stays free",
+      "description": "The 50-piece Deepstone starter, Campaign Studio and existing scene files are preserved. Premium collections launch separately."
     }
   ]
 }

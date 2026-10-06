@@ -1,3 +1,11 @@
+# Terrain Foundry 1.11.0
+
+Adds native premium pack activation: verify the purchase email, enter the emailed code, and download an encrypted pack. Signed inventories, device-bound entitlements, ciphertext and per-file hashes are checked before an atomic installation. Content keys use Windows protected storage; asset data is decrypted in memory when needed.
+
+Installed pieces appear in the existing categories and retain stable IDs in saved scenes and worlds. Updates cannot remove existing IDs or downgrade installed versions. Rendering and full-detail print reads work after an offline restart. Closing activation cancels pending network work without replacing a working pack.
+
+The free 50-piece Deepstone starter and Campaign Studio remain included. This client feature does not enable premium sales; collections become purchasable separately after their checks are complete. No paid model content is included in public client source or releases.
+
 # Terrain Foundry 1.10.0
 
 Adds local Campaign Studio with startup campaign/world/scene choices, saved story and session context, editable records, relationships, maps/pins and characters. Optional OpenAI/Claude requests use separately entered OS-encrypted API keys, explicit confirmation and reviewed encounter proposals.

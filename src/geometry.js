@@ -23,3 +23,5 @@ export function geometry(type,g,assets={},openlock=false){
 }
 
 
+
+export function clearConnectedGeometry(ids){for(const id of ids){connectedCache.get(id)?.dispose();connectedCache.delete(id);}}

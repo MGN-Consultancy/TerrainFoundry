@@ -5,6 +5,7 @@ function createCampaignActions({store,inventory,savedScenes,sceneLibrary,chooseP
   for(const [key,p]of plans)if(p.expires<now())plans.delete(key);if(plans.size>=100)throw Error('Too many pending reviews. Reopen the campaign.');
   const c=await store.load(id),{validateAction}=await import('./campaign-actions.mjs');
   const checked=validateAction(action,c,{inventory:await inventory(),savedScenes:await savedScenes()}),token=randomUUID();
+  if(checked.type==='editLinkedProject')await require('./campaign-terrain-actions.cjs').terrainEdit(await store.project(id,checked.id),checked.changes,await inventory());
   plans.set(token,{id,revision:c.revision,action:checked,expires:now()+15*60000});
   let preview=null;if(checked.type==='linkSavedScene'){const entries=await savedScenes();preview=entries.find(x=>x.id===checked.id)||null;}if(checked.type==='openLinkedProject')preview=c.links.find(x=>x.id===checked.id)||null;return {token,revision:c.revision,action:checked,preview};
  }
@@ -13,6 +14,7 @@ function createCampaignActions({store,inventory,savedScenes,sceneLibrary,chooseP
   const c=await store.load(id);if(c.revision!==plan.revision)throw Error('Campaign changed since this preview. Review the proposal again.');
   plans.delete(token);const action=plan.action;
   if(['updateBrief','upsertRecord'].includes(action.type)){const {applyCampaignAction}=await import('./campaign-actions.mjs');return {campaign:await store.save(applyCampaignAction(c,action))};}
+  if(action.type==='editLinkedProject'){const p=await require('./campaign-terrain-actions.cjs').terrainEdit(await store.project(id,action.id),action.changes,await inventory());return {campaign:await store.setProjectRevision(id,action.id,p,plan.revision)};}
   if(action.type==='linkSavedScene'){const scene=await sceneLibrary.load(action.id);return {campaign:await store.addProject(id,scene.data,plan.revision)};}
   if(action.type==='chooseProjectFile'){const text=await chooseProject();if(text===null)return {cancelled:true};return {campaign:await store.addProject(id,text,plan.revision)};}
   if(action.type==='openLinkedProject')return {project:await store.project(id,action.id)};

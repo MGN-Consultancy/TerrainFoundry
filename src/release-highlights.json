@@ -1,18 +1,18 @@
 {
-  "version": "1.14.0",
-  "title": "Willowbrook and a guided campaign companion",
+  "version": "1.15.0",
+  "title": "Campaign workspaces and voice",
   "features": [
     {
-      "title": "One code for the complete collection",
-      "description": "Activate Willowbrook’s 85 designs with one purchase code. The separate STL download works with other slicers; the scenery licence permits sales of physical prints."
+      "title": "Speak with your campaign companion",
+      "description": "Offline Windows dictation, optional OpenAI online dictation and live conversation with reviewed campaign and linked-terrain changes. Voice uses your OpenAI API account."
     },
     {
-      "title": "Your world informs your campaign",
-      "description": "Optional AI guidance receives linked-world encounter names, elevations and piece positions, with clear limits when layouts are too large. Your worlds stay on this PC unless you approve sending context to your provider."
+      "title": "Reusable campaign workspaces",
+      "description": "Open a campaign.tfcampaign workspace, link shared terrain files, review source updates and export a portable campaign."
     },
     {
-      "title": "Simple suggested answers",
-      "description": "The campaign companion guides new players one question at a time. Suggested answers fill an editable message; you decide when to send it and which proposed changes to apply."
+      "title": "Readable local campaign memory",
+      "description": "Markdown memory, retained conversations and previous summaries stay on your PC. AI summaries remain drafts until approved."
     }
   ]
 }

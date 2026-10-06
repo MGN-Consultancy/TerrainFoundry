@@ -21,6 +21,6 @@ function createCampaignAI({directory,safeStorage,fetchImpl=fetch,inventory,linke
  }finally{busy=false;}
  }
  function generate(...args){const task=generateRequest(...args);pending.add(task);task.then(()=>pending.delete(task),()=>pending.delete(task));return task;}
- return {status,configure,saveKey,forget,generate,test:async()=>{const {createCampaign}=await import('./campaign-schema.mjs');return generate(createCampaign('API connection test'),'Reply OK','test');},flush:async()=>{await Promise.allSettled([...pending]);await settingsQueue;await ledger.summary();},cancel:()=>{controller?.abort();return true;}};
+ return {voiceKey:async()=>{await secure();const s=await settings();if(!s.keys.openai)throw Error("Enter an OpenAI API key in AI setup for live voice");return safeStorage.decryptString(Buffer.from(s.keys.openai,"base64"));},status,configure,saveKey,forget,generate,test:async()=>{const {createCampaign}=await import('./campaign-schema.mjs');return generate(createCampaign('API connection test'),'Reply OK','test');},flush:async()=>{await Promise.allSettled([...pending]);await settingsQueue;await ledger.summary();},cancel:()=>{controller?.abort();return true;}};
 }
 module.exports={createCampaignAI};

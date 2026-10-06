@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';import path from 'node:path';
 import {encryptPack,sha} from '../../print-service/src/premium-pack.mjs';
-import {safePath} from './pack-tools.mjs';
+const safePath=(root,p)=>{if(typeof p!=='string'||!p||p.includes('\\')||p.includes(':')||path.isAbsolute(p)||p.split('/').some(x=>!x||x==='..'||x==='.'))throw Error('Unsafe source path');const full=path.resolve(root,p);if(!full.startsWith(path.resolve(root)+path.sep))throw Error('Source escaped pack');return full;};
 const [root,specFile,output]=process.argv.slice(2);if(!root||!specFile||!output)throw Error('Usage: build-private-pack <approved-pack-root> <delivery-spec.json> <private-output-folder>');
 const pack=JSON.parse(await fs.readFile(path.join(root,'pack.json'),'utf8')),spec=JSON.parse(await fs.readFile(specFile,'utf8'));
 if(pack.distribution?.readyForSale!==true||pack.review?.allPiecesApproved!==true||pack.pieces.some(p=>p.validation?.rightsApproved!==true))throw Error('Pack has not passed its human approval and sale-readiness gates');

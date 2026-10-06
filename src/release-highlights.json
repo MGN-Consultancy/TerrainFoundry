@@ -1,18 +1,18 @@
 {
-  "version": "1.9.0",
-  "title": "Deepstone: 50 detailed free starter pieces",
+  "version": "1.9.1",
+  "title": "Deepstone floor fit correction",
   "features": [
     {
-      "title": "Build your grotto",
-      "description": "Browse 50 original detailed cave walls, floors, pools, curves, treasure and trap pieces by category."
+      "title": "Lower, consistent floor carriers",
+      "description": "The standard Caverns floors now meet at 8.4 mm, much closer to the shared 8 mm OpenLOCK floor datum. The concealed pit trap uses 8.6 mm to preserve printable mesh detail."
     },
     {
-      "title": "Full-detail printing",
-      "description": "Lighter coloured meshes keep the editor responsive. Print packs use the full-resolution STL geometry, including separate door and pit-cover inserts."
+      "title": "Original sockets preserved",
+      "description": "Socket cuts were regenerated from the pinned sculpts using their original port layouts, including the long floor's six ports. The complete 0–8 mm connector zone is unchanged."
     },
     {
-      "title": "Your offline workshop",
-      "description": "The starter scenery downloads through the launcher and stays on your computer. Existing scenes and worlds remain unchanged."
+      "title": "Print meshes updated together",
+      "description": "The full-detail floor STLs and removable pit-trap insert use the same per-piece height adjustment as the editor meshes."
     }
   ]
 }

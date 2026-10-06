@@ -1,6 +1,6 @@
 # Terrain Foundry 1.9.1
 
-Corrects the free Deepstone cave floors to the shared 8 mm OpenLOCK carrier datum. Updated editor geometry and full-resolution print meshes together, retained the existing connector zone and asset IDs, and regenerated the pack's file hashes. Floor-to-wall geometry is checked in software; print fit still needs a representative physical test.
+Corrects the free Deepstone Caverns floor carriers: standard floor surfaces are lowered from 12 mm to 8.4 mm, and the concealed pit trap surface to 8.6 mm to preserve its printable mesh. The original 0–8 mm connector zone, port counts and port positions are retained, including six ports on the long floor. Editor geometry and all full-resolution print meshes are rebuilt from the pinned sculpts with matching height transforms and refreshed hashes. All 1,502 release tests pass; physical print fit remains to be verified.
 
 # Terrain Foundry 1.9.0
 

@@ -2,6 +2,17 @@ using System;using System.IO;using System.IO.Compression;using System.Net;using 
 [assembly:System.Reflection.AssemblyVersion("1.15.0.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
+ sealed class WorkshopButton:Button {
+  public WorkshopButton(){FlatStyle=FlatStyle.Flat;FlatAppearance.BorderSize=0;Cursor=Cursors.Hand;UseVisualStyleBackColor=false;SetStyle(ControlStyles.UserPaint|ControlStyles.OptimizedDoubleBuffer|ControlStyles.AllPaintingInWmPaint,true);}
+  protected override void OnPaint(PaintEventArgs e){var g=e.Graphics;g.SmoothingMode=System.Drawing.Drawing2D.SmoothingMode.AntiAlias;var r=new System.Drawing.Rectangle(1,1,Width-3,Height-5);using(var shape=Rounded(r,12))using(var fill=new System.Drawing.Drawing2D.LinearGradientBrush(r,Enabled?System.Drawing.Color.FromArgb(242,216,160):System.Drawing.Color.FromArgb(76,87,96),Enabled?System.Drawing.Color.FromArgb(196,156,85):System.Drawing.Color.FromArgb(54,66,77),90)){using(var shadow=new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(7,13,20)))g.FillRectangle(shadow,8,Height-8,Width-16,5);g.FillPath(fill,shape);using(var edge=new System.Drawing.Pen(System.Drawing.Color.FromArgb(139,116,74)))g.DrawPath(edge,shape);}TextRenderer.DrawText(g,Text,Font,r,Enabled?System.Drawing.Color.FromArgb(20,30,37):System.Drawing.Color.FromArgb(165,176,184),TextFormatFlags.HorizontalCenter|TextFormatFlags.VerticalCenter);if(Focused)ControlPaint.DrawFocusRectangle(g,new System.Drawing.Rectangle(7,7,Width-14,Height-18));}
+  internal static System.Drawing.Drawing2D.GraphicsPath Rounded(System.Drawing.Rectangle r,int radius){var p=new System.Drawing.Drawing2D.GraphicsPath();p.AddArc(r.Left,r.Top,radius,radius,180,90);p.AddArc(r.Right-radius,r.Top,radius,radius,270,90);p.AddArc(r.Right-radius,r.Bottom-radius,radius,radius,0,90);p.AddArc(r.Left,r.Bottom-radius,radius,radius,90,90);p.CloseFigure();return p;}
+ }
+ sealed class WorkshopHero:Panel {
+  System.Drawing.Image art;
+  public WorkshopHero(){DoubleBuffered=true;using(var source=typeof(Launcher).Assembly.GetManifestResourceStream("launcher-scene.png")){if(source!=null)using(var image=System.Drawing.Image.FromStream(source))art=new System.Drawing.Bitmap(image);}}
+  protected override void Dispose(bool disposing){if(disposing&&art!=null)art.Dispose();base.Dispose(disposing);}
+  protected override void OnPaint(PaintEventArgs e){base.OnPaint(e);var g=e.Graphics;float scale=g.DpiX/96f;g.SmoothingMode=System.Drawing.Drawing2D.SmoothingMode.AntiAlias;if(art!=null){float ratio=Math.Max((float)Width/art.Width,(float)Height/art.Height);g.DrawImage(art,Width-art.Width*ratio,(Height-art.Height*ratio)/2,art.Width*ratio,art.Height*ratio);}using(var shade=new System.Drawing.Drawing2D.LinearGradientBrush(ClientRectangle,System.Drawing.Color.FromArgb(247,12,22,31),System.Drawing.Color.FromArgb(55,12,22,31),0f))g.FillRectangle(shade,ClientRectangle);using(var gold=new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(226,192,126)))using(var white=new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(243,242,235)))using(var muted=new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(185,201,210)))using(var title=new System.Drawing.Font("Segoe UI",24,System.Drawing.FontStyle.Bold))using(var small=new System.Drawing.Font("Segoe UI",9,System.Drawing.FontStyle.Bold))using(var text=new System.Drawing.Font("Segoe UI",11)){var x=28*scale;using(var icon=System.Drawing.Icon.ExtractAssociatedIcon(typeof(Launcher).Assembly.Location)){if(icon!=null)g.DrawIcon(icon,new System.Drawing.Rectangle((int)x,(int)(22*scale),(int)(48*scale),(int)(48*scale)));}g.DrawString("TERRAIN FOUNDRY",title,white,x,80*scale);g.DrawString("Your desktop. Your world.",text,muted,x,126*scale);g.DrawString("OFFLINE BY CHOICE  ·  NO ACCOUNT REQUIRED",small,gold,x,165*scale);g.DrawString("SIGNED RELEASES  ·  MGN CONSULTANCY LIMITED",small,muted,x,198*scale);}}
+ }
  public class Launcher:Form {
   const string Repo="MGN-Consultancy/TerrainFoundry",Publisher="MGN CONSULTANCY LIMITED";
   #if TEST_TRANSPORT
@@ -12,9 +23,9 @@ namespace TerrainFoundry {
 #endif
   static JavaScriptSerializer Json=new JavaScriptSerializer{MaxJsonLength=4194304};
   Label status=new Label{Dock=DockStyle.Fill,Text="Checking for updates...",Padding=new Padding(24,16,24,8),AutoSize=false};
-  Button play=new Button{Text="Open Editor",Width=150,Height=38,Enabled=false};
-  Button install=new Button{Text="Update now",Width=130,Height=38,Enabled=false};
-  Button decline=new Button{Text="Not now",Width=110,Height=38};
+  Button play=new WorkshopButton{Text="Open Editor",Width=150,Height=38,Enabled=false};
+  Button install=new WorkshopButton{Text="Update now",Width=130,Height=38,Enabled=false};
+  Button decline=new WorkshopButton{Text="Not now",Width=110,Height=38};
   FlowLayoutPanel offer=new FlowLayoutPanel{Dock=DockStyle.Bottom,Height=52,Padding=new Padding(24,4,0,4),Visible=false};
   ProgressBar progress=new ProgressBar{Dock=DockStyle.Fill,Style=ProgressBarStyle.Marquee,MarqueeAnimationSpeed=28};
   string pendingEnvelope;Dictionary<string,object> pendingRelease;
@@ -22,28 +33,34 @@ namespace TerrainFoundry {
   bool busy,launchAfterCancel,closeAfterCancel; CancellationTokenSource cancellation=new CancellationTokenSource(); static HttpClient http=new HttpClient{Timeout=TimeSpan.FromMinutes(30)};
   [STAThread] public static void Main(string[] args){approvedChannel=args.FirstOrDefault(x=>x.StartsWith("--approved-channel="));ServicePointManager.SecurityProtocol=SecurityProtocolType.Tls12;Directory.CreateDirectory(Root);using(var mutex=new Mutex(false,"Local\\TerrainFoundryLauncher")){if(!mutex.WaitOne(0))return;Application.EnableVisualStyles();Application.Run(new Launcher());}}
   Launcher(){
-   Icon=System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-   Text="Terrain Foundry - MGN Consultancy";Width=620;Height=420;MinimumSize=new System.Drawing.Size(620,420);StartPosition=FormStartPosition.CenterScreen;
-   Font=new System.Drawing.Font("Segoe UI",10);BackColor=System.Drawing.Color.FromArgb(16,39,31);ForeColor=System.Drawing.Color.FromArgb(244,220,160);
-   var publisher=new Label{Dock=DockStyle.Top,Height=68,Padding=new Padding(24,12,24,0),Text="TERRAIN FOUNDRY\nMGN CONSULTANCY LIMITED - Local projects - Official OpenLOCK - MGN commercially licensed"};
-   var location=new Label{Dock=DockStyle.Bottom,Height=44,Padding=new Padding(24,2,24,2),AutoEllipsis=true,Text="Installation folder:\n"+Root};
-   var actions=new FlowLayoutPanel{Dock=DockStyle.Bottom,Height=60,Padding=new Padding(24,8,0,8)};actions.Controls.Add(play);
-   var progressArea=new Panel{Dock=DockStyle.Bottom,Height=28,Padding=new Padding(24,6,24,6)};progressArea.Controls.Add(progress);
-   offer.Controls.Add(install);offer.Controls.Add(decline);
-   Controls.Add(status);Controls.Add(offer);Controls.Add(progressArea);Controls.Add(actions);Controls.Add(location);Controls.Add(publisher);
-   foreach(var button in new[]{install,play,decline}){button.FlatStyle=FlatStyle.Flat;button.BackColor=System.Drawing.Color.FromArgb(216,182,111);button.ForeColor=System.Drawing.Color.FromArgb(16,39,31);}
+   Icon=System.Drawing.Icon.ExtractAssociatedIcon(typeof(Launcher).Assembly.Location);
+   Text="Terrain Foundry";ClientSize=new System.Drawing.Size(800,620);MinimumSize=new System.Drawing.Size(740,620);StartPosition=FormStartPosition.CenterScreen;AutoScaleMode=AutoScaleMode.Dpi;
+   Font=new System.Drawing.Font("Segoe UI",10);BackColor=System.Drawing.Color.FromArgb(16,25,34);ForeColor=System.Drawing.Color.FromArgb(233,237,240);
+   var hero=new WorkshopHero{Dock=DockStyle.Top,Height=244};
+   var location=new Label{Dock=DockStyle.Bottom,Height=58,Padding=new Padding(28,8,28,8),AutoEllipsis=true,ForeColor=System.Drawing.Color.FromArgb(153,172,184),Text="Installation folder\n"+Root};
+   var actions=new FlowLayoutPanel{Dock=DockStyle.Bottom,Height=64,Padding=new Padding(28,6,0,10)};play.Width=184;play.Height=44;actions.Controls.Add(play);
+   var progressArea=new Panel{Dock=DockStyle.Bottom,Height=20,Padding=new Padding(28,2,28,6)};progressArea.Controls.Add(progress);
+   offer.Height=58;offer.Padding=new Padding(28,6,0,6);install.Height=44;decline.Height=44;offer.Controls.Add(install);offer.Controls.Add(decline);
+   status.Padding=new Padding(28,20,28,8);status.Font=new System.Drawing.Font("Segoe UI",11);
+   Controls.Add(status);Controls.Add(offer);Controls.Add(progressArea);Controls.Add(actions);Controls.Add(location);Controls.Add(hero);
+   AcceptButton=play;
    play.Click+=(sender,e)=>Launch();
    decline.Click+=(sender,e)=>DeclineUpdate();install.Click+=async(sender,e)=>await ApplyUpdate();
    FormClosing+=(sender,e)=>{if(busy){e.Cancel=true;closeAfterCancel=true;cancellation.Cancel();}};
-   Shown+=async(sender,e)=>{await Update();
-#if TEST_TRANSPORT
+   Shown+=async(sender,e)=>{
+#if TEST_UI
+    status.Text="Ready to build. Your projects stay on this computer.";play.Enabled=true;StopProgress();return;
+#else
+    await Update();
+#endif
+#if TEST_TRANSPORT && !TEST_UI
     await ApplyUpdate();File.WriteAllText(Path.Combine(Root,"integration-result.txt"),status.Text);Environment.ExitCode=File.Exists(StateFile)?0:1;Close();
 #endif
    };
   }
   void DeclineUpdate(){if(busy)return;offer.Visible=false;status.Text=File.Exists(StateFile)?"Ready. You can update next time you open the launcher.":"Installation postponed. Reopen the launcher when you are ready.";play.Enabled=File.Exists(StateFile);}
-  void Progress(string message,int percent=-1){status.Text=message;progress.Style=percent<0?ProgressBarStyle.Marquee:ProgressBarStyle.Continuous;if(percent>=0)progress.Value=Math.Max(0,Math.Min(100,percent));}
-  void StopProgress(){progress.Style=ProgressBarStyle.Continuous;progress.Value=File.Exists(StateFile)?100:0;}
+  void Progress(string message,int percent=-1){progress.Visible=true;status.Text=message;progress.Style=percent<0?ProgressBarStyle.Marquee:ProgressBarStyle.Continuous;if(percent>=0)progress.Value=Math.Max(0,Math.Min(100,percent));}
+  void StopProgress(){progress.Visible=false;progress.Style=ProgressBarStyle.Continuous;progress.Value=File.Exists(StateFile)?100:0;}
   static Dictionary<string,object> Obj(object v){return (Dictionary<string,object>)v;}
   static string Str(Dictionary<string,object> o,string k){return Convert.ToString(o[k]);}
   static string Hash(string f){using(var s=File.OpenRead(f))using(var h=SHA256.Create())return BitConverter.ToString(h.ComputeHash(s)).Replace("-","").ToLowerInvariant();}
@@ -125,9 +142,13 @@ throw new Exception("The package does not have a valid MGN Consultancy publisher
    finally{busy=false;StopProgress();offer.Visible=pendingRelease!=null;install.Text="Retry update";install.Enabled=pendingRelease!=null;play.Enabled=File.Exists(StateFile);if(closeAfterCancel)Close();else if(launchAfterCancel){launchAfterCancel=false;Launch();}}
   }
 static void WriteRestart(string target,string approvedHash){string script=Path.Combine(Root,"finish-launcher-update.ps1");string t=target.Replace("'","''");File.WriteAllText(script,"$ErrorActionPreference='Stop';Wait-Process -Id "+Process.GetCurrentProcess().Id+" -ErrorAction SilentlyContinue;Move-Item -LiteralPath '"+t+".pending' -Destination '"+t+"' -Force;Start-Process -FilePath '"+t+"' -ArgumentList '--approved-channel="+approvedHash+"'");var restart=new ProcessStartInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System),"WindowsPowerShell","v1.0","powershell.exe"),"-NoProfile -NonInteractive -WindowStyle Hidden -File \""+script+"\""){UseShellExecute=false,CreateNoWindow=true};restart.EnvironmentVariables["PSModulePath"]=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System),"WindowsPowerShell","v1.0","Modules");Process.Start(restart);}
-  async void Launch(){if(busy)return;busy=true;play.Enabled=false;offer.Visible=false;Progress("Checking installed editor and scenery...");try{var state=ReadState();string client=Str(state,"client");var release=VerifyEnvelope(Str(state,"envelope"));await Task.Run(()=>CheckInventory(client,Obj(release["client"])));var assets=Obj(state["assets"]);foreach(var a in (System.Collections.IEnumerable)release["assets"]){var pack=Obj(a);await Task.Run(()=>CheckInventory(Convert.ToString(assets[Str(pack,"id")]),pack));}var start=new ProcessStartInfo(Path.Combine(client,"TerrainFoundry.exe")){UseShellExecute=false,WorkingDirectory=client};start.EnvironmentVariables["TERRAIN_ASSET_PACKS"]=Json.Serialize(assets);Process.Start(start);status.Text="Editor opened. Projects are saved locally.";}catch(Exception e){status.Text=e.Message;}finally{busy=false;StopProgress();play.Enabled=File.Exists(StateFile);}}
+  async Task OpenVerifiedEditor(string client,Dictionary<string,object> assets){var start=new ProcessStartInfo(Path.Combine(client,"TerrainFoundry.exe")){UseShellExecute=false,WorkingDirectory=client};start.EnvironmentVariables["TERRAIN_ASSET_PACKS"]=Json.Serialize(assets);using(var editor=Process.Start(start)){if(editor==null)throw new Exception("The editor could not be started. Please try again.");await Task.Run(()=>{try{editor.WaitForInputIdle(5000);}catch(InvalidOperationException){}});if(editor.HasExited)throw new Exception("The editor closed during startup. Your launcher remains available; please try again.");}busy=false;Close();}
+  async void Launch(){if(busy)return;busy=true;play.Enabled=false;offer.Visible=false;Progress("Checking installed editor and scenery...");try{var state=ReadState();string client=Str(state,"client");var release=VerifyEnvelope(Str(state,"envelope"));await Task.Run(()=>CheckInventory(client,Obj(release["client"])));var assets=Obj(state["assets"]);foreach(var a in (System.Collections.IEnumerable)release["assets"]){var pack=Obj(a);await Task.Run(()=>CheckInventory(Convert.ToString(assets[Str(pack,"id")]),pack));}await OpenVerifiedEditor(client,assets);}catch(Exception e){status.Text=e.Message;}finally{busy=false;StopProgress();play.Enabled=File.Exists(StateFile);}}
  }
 }
+
+
+
 
 
 

@@ -9,7 +9,7 @@ function normalizeSettings(value={}){
  const p=Object.hasOwn(DEFAULTS,value.provider)?value.provider:'openai',providers={};
  for(const id of Object.keys(DEFAULTS))providers[id]=selection(value.providers?.[id]||(id===p?value:undefined),id);
  const keys={};for(const id of Object.keys(DEFAULTS))if(typeof value.keys?.[id]==='string'&&value.keys[id].length<=4000)keys[id]=value.keys[id];
- return {schemaVersion:2,provider:p,providers,keys,voiceProvider:value.voiceProvider==='live'?'live':'realtime'};
+ return {schemaVersion:2,provider:p,providers,keys,voiceProvider:value.voiceProvider==='live'?'live':'realtime',agentMode:value.agentMode===true};
 }
 function modelName(p,model){return model===DEFAULTS[p].model?(p==='openai'?'GPT‑6.1 Sol':'Claude Sonnet 5.5'):'Custom model';}
 module.exports={DEFAULTS,provider,validModel,normalizeSettings,modelName};

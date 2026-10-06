@@ -1,5 +1,9 @@
 # Terrain Foundry 1.15.0
 
+Optional Agent mode applies validated campaign documents, story records, illustrations and linked-world building without approval on each action. Activity history and undo preserve control. Dock the companion beside the terrain editor. Shared local game-style.md preferences guide artwork, pacing and beginner support across campaigns; campaign secrets stay separate. Images use the configured OpenAI image model even when Claude handles text. Voice and image requests use your own billed API account.
+
+
+AI settings now offer Realtime or GPT-Live conversational voice, using your protected OpenAI key. GPT-Live delegates campaign work to your selected text AI; both are billed separately.
 
 AI settings now offer Realtime or GPT-Live conversational voice, using your protected OpenAI key. GPT-Live delegates campaign work to your selected text AI; both are billed separately.
 

@@ -1,0 +1,53 @@
+import {randomBytes,randomUUID,createHash,timingSafeEqual} from 'node:crypto';
+const hash=s=>createHash('sha256').update(s).digest('hex');
+const token=()=>randomBytes(32).toString('base64url');
+const problem=(message,status=400)=>{throw Object.assign(Error(message),{status});};
+const text=(v,n)=>{if(typeof v!=='string'||v.length>n)problem('Invalid or oversized text');return v;};
+const email=v=>{const e=text(v,254).trim().toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e))problem('Enter a valid email address');return e;};
+const equal=(a,b)=>{if(typeof a!=='string'||typeof b!=='string')return false;const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
+const id=v=>{if(typeof v!=='string'||! /^[a-f0-9-]{16,40}$/.test(v))problem('Invalid identity');return v;};
+const array=(v,n)=>{if(!Array.isArray(v)||v.length>n)problem('Invalid collection');return v;};
+export const initialState=()=>({schema:1,users:{},loginTokens:{},sessions:{},campaigns:{},invitations:{},limits:{}});
+
+// Only the client-selected player projection is accepted. Unknown fields, keys,
+// chat, private summaries, revisions, geometry and audio are never persisted.
+export function playerSnapshot(v){
+ if(v?.schema!==1||v.kind!=='campaign-player-handout')problem('Export a player handout from Campaign Studio first');
+ const visible=x=>x.visible===true;
+ const common=x=>({id:id(x.id),title:text(x.title||x.name,160),body:text(x.body||x.details||'',20000),visible:true});
+ const items=array(v.items,1000).filter(visible).map(x=>({...common(x),category:text(x.category,80)}));
+ const itemIds=new Set(items.map(x=>x.id));if(itemIds.size!==items.length)problem('Duplicate item identity');
+ const linked=x=>visible(x)&&(!x.itemId||itemIds.has(x.itemId));
+ const image=s=>{if(typeof s!=='string'||s.length>6000000||!/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(s))problem('Invalid image');return s;};
+ const maps=array(v.maps,30).filter(visible).map(x=>({id:id(x.id),title:text(x.title,160),image:image(x.image),visible:true}));
+ const mapIds=new Set(maps.map(x=>x.id));
+ const out={schema:1,kind:v.kind,name:text(v.name,120),sourceCampaignId:v.sourceCampaignId?id(v.sourceCampaignId):null,sourceRevision:Number.isSafeInteger(v.sourceRevision)&&v.sourceRevision>=0?v.sourceRevision:null,items,
+ relationships:array(v.relationships,1000).filter(x=>visible(x)&&itemIds.has(x.from)&&itemIds.has(x.to)).map(x=>({id:id(x.id),from:x.from,to:x.to,label:text(x.label,160),body:text(x.body||'',20000),visible:true})),
+ notes:array(v.notes,1000).filter(linked).map(x=>({...common(x),itemId:x.itemId||null})),
+ timeline:array(v.timeline,1000).filter(linked).map(x=>({...common(x),itemId:x.itemId||null,date:text(x.date,80)})),maps,
+ pins:array(v.pins,1000).filter(x=>linked(x)&&mapIds.has(x.mapId)).map(x=>{if(![x.x,x.y].every(n=>Number.isFinite(n)&&n>=0&&n<=1))problem('Invalid map pin');return {...common(x),mapId:x.mapId,itemId:x.itemId||null,x:x.x,y:x.y};}),
+ characters:array(v.characters,100).filter(visible).map(x=>({id:id(x.id),name:text(x.name,160),details:text(x.details||'',20000),abilities:text(x.abilities||'',5000),equipment:text(x.equipment||'',10000),spells:text(x.spells||'',10000),portrait:x.portrait?image(x.portrait):null,hp:Number.isFinite(x.hp)?x.hp:0,ac:Number.isFinite(x.ac)?x.ac:0,visible:true})),cover:v.cover?image(v.cover):null};
+ if(JSON.stringify(out).length>15000000)problem('Player handout exceeds 15 MB',413);return out;
+}
+
+export function createPortal({store,sendMail,origin,now=Date.now}){
+ const base=new URL(origin);if(!['http:','https:'].includes(base.protocol)||base.pathname!=='/')throw Error('Portal origin must be a root URL');
+ const mailLink=(kind,t)=>base.origin+'/campaign-portal.html#'+kind+'='+t;
+ function budget(s,key,max){const hour=Math.floor(now()/3600000);for(const [k,v] of Object.entries(s.limits))if(v.hour<hour-2)delete s.limits[k];for(const [k,v] of Object.entries(s.loginTokens))if(v.expires<=now())delete s.loginTokens[k];for(const [k,v] of Object.entries(s.sessions))if(v.expires<=now())delete s.sessions[k];for(const [k,v] of Object.entries(s.invitations))if(v.expires<=now())delete s.invitations[k];const bucket=hash(key+':'+hour);s.limits[bucket]??={count:0,hour};s.limits[bucket].count++;if(s.limits[bucket].count>max)problem('Too many requests. Try again later.',429);if(Object.keys(s.limits).length>50000)problem('Service rate capacity reached',503);}
+ function session(s,sessionToken,csrf,write=false){const entry=s.sessions[hash(sessionToken||'')];if(!entry||entry.expires<=now()||!s.users[entry.userId])problem('Sign in again',401);if(write&&!equal(entry.csrf,csrf))problem('Invalid session request',403);return s.users[entry.userId];}
+ function campaign(s,user,campaignId,owner=false){const c=s.campaigns[campaignId];if(!c||(c.owner!==user.id&&!c.members[user.id]))problem('Campaign unavailable',404);if(owner&&c.owner!==user.id)problem('Only the dungeon master can do that',403);return c;}
+ function overview(c,user){return {id:c.id,name:c.snapshot.name,revision:c.revision,sourceCampaignId:c.snapshot.sourceCampaignId,role:c.owner===user.id?'dm':'player'};}
+ return {
+  async loginLink(address,peer){const e=email(address),t=token();await store.transact(s=>{budget(s,'login-peer:'+peer,10);budget(s,'login-email:'+e,3);s.loginTokens[hash(t)]={email:e,expires:now()+15*60000};});await sendMail({to:e,subject:'Sign in to Terrain Foundry campaigns',text:'Use this one-time link within 15 minutes:\n'+mailLink('login',t)+'\n\nIf you did not request this, ignore it.'});return {message:'Check your inbox for the sign-in link. It expires in 15 minutes.'};},
+  async login(t){if(typeof t!=='string'||! /^[A-Za-z0-9_-]{43}$/.test(t))problem('Sign-in link is invalid or expired',403);const sessionToken=token();const result=await store.transact(s=>{const h=hash(t),entry=s.loginTokens[h];if(!entry||entry.expires<=now())problem('Sign-in link is invalid or expired',403);delete s.loginTokens[h];let user=Object.values(s.users).find(u=>u.email===entry.email);if(!user){if(Object.keys(s.users).length>=10000)problem('Account capacity reached',503);user={id:randomUUID(),email:entry.email,name:entry.email.split('@')[0]};s.users[user.id]=user;}const csrf=token();s.sessions[hash(sessionToken)]={userId:user.id,csrf,expires:now()+7*86400000};return {user,csrf};});return {...result,sessionToken};},
+  async me(t){return store.read(s=>{const user=session(s,t);return {user,csrf:s.sessions[hash(t)].csrf};});},
+  async logout(t,csrf){return store.transact(s=>{session(s,t,csrf,true);delete s.sessions[hash(t)];return {signedOut:true};});},
+  async list(t){return store.read(s=>{const user=session(s,t);return Object.values(s.campaigns).filter(c=>c.owner===user.id||c.members[user.id]).map(c=>overview(c,user));});},
+  async publish(t,csrf,v,expectedRevision){const snapshot=playerSnapshot(v);return store.transact(s=>{const user=session(s,t,csrf,true);let c=snapshot.sourceCampaignId?Object.values(s.campaigns).find(c=>c.owner===user.id&&c.snapshot.sourceCampaignId===snapshot.sourceCampaignId):null;if(c){if(expectedRevision!==c.revision)problem('Portal campaign changed. Refresh before publishing.',409);if(snapshot.sourceRevision!==null&&c.snapshot.sourceRevision!==null&&snapshot.sourceRevision<c.snapshot.sourceRevision)problem('This handout is older than the published version',409);c.snapshot=snapshot;c.revision++;}else{if(Object.values(s.campaigns).filter(c=>c.owner===user.id).length>=30)problem('Thirty hosted campaigns per account are supported');c={id:randomUUID(),owner:user.id,members:{},snapshot,revision:1,notes:[]};s.campaigns[c.id]=c;}return overview(c,user);});},
+  async get(t,campaignId){return store.read(s=>{const user=session(s,t),c=campaign(s,user,id(campaignId));return {...overview(c,user),snapshot:playerSnapshot(c.snapshot),notes:c.notes.map(({revisions,...n})=>n),members:c.owner===user.id?Object.keys(c.members).map(userId=>({id:userId,name:s.users[userId]?.name,email:s.users[userId]?.email})):undefined};});},
+  async invite(t,csrf,campaignId,address){const e=email(address),invitationToken=token();const result=await store.transact(s=>{const user=session(s,t,csrf,true),c=campaign(s,user,id(campaignId),true);budget(s,'invite-owner:'+user.id,30);budget(s,'invite-email:'+e,5);const invitation={id:randomUUID(),campaignId:c.id,email:e,expires:now()+7*86400000};s.invitations[hash(invitationToken)]=invitation;return {id:invitation.id,name:c.snapshot.name};});await sendMail({to:e,subject:'Invitation to '+result.name,text:'You have been invited to a Terrain Foundry campaign. Sign in with '+e+' and accept this invitation within seven days:\n'+mailLink('invite',invitationToken)+'\n\nOnly the invited email account can accept it.'});return {invitationId:result.id,message:'Invitation request accepted by the email service; inbox delivery is not guaranteed.'};},
+  async accept(t,csrf,invitationToken){return store.transact(s=>{const user=session(s,t,csrf,true),h=hash(text(invitationToken,100)),entry=s.invitations[h];if(!entry||entry.expires<=now()||entry.email!==user.email)problem('Invitation is invalid, expired or belongs to another email',403);const c=s.campaigns[entry.campaignId];if(!c)problem('Campaign unavailable',404);if(Object.keys(c.members).length>=100)problem('Campaign membership capacity reached');if(user.id!==c.owner)c.members[user.id]={joined:now()};delete s.invitations[h];return overview(c,user);});},
+  async revoke(t,csrf,campaignId,memberId){return store.transact(s=>{const user=session(s,t,csrf,true),c=campaign(s,user,id(campaignId),true);const removed=id(memberId),address=s.users[removed]?.email;delete c.members[removed];for(const [key,invite] of Object.entries(s.invitations))if(invite.campaignId===c.id&&invite.email===address)delete s.invitations[key];return {removed:true};});},
+  async saveNote(t,csrf,campaignId,value){return store.transact(s=>{const user=session(s,t,csrf,true),c=campaign(s,user,id(campaignId));let note=value.id?c.notes.find(n=>n.id===value.id):null;if(value.id&&!note)problem('Note unavailable',404);if(note&&note.authorId!==user.id&&c.owner!==user.id)problem('Only the author or dungeon master can edit that note',403);if(note&&value.revision!==note.revision)problem('Note changed; refresh before editing',409);if(!note){if(c.notes.length>=1000)problem('Note limit reached');note={id:randomUUID(),authorId:user.id,author:user.name,revision:0,revisions:[]};c.notes.push(note);}note.revisions.push({revision:note.revision,title:note.title||'',body:note.body||'',by:user.id,at:now()});note.revisions=note.revisions.slice(-50);note.title=text(value.title,160);note.body=text(value.body,20000);note.revision++;note.modified=now();return {...note};});}
+ };
+}

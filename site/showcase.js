@@ -7,3 +7,8 @@ function schedule(){if(!raf&&!document.hidden)raf=requestAnimationFrame(update);
 button.addEventListener('click',()=>{moving=!moving;button.setAttribute('aria-pressed',String(moving));button.textContent=moving?'Use still image':'Enable scroll animation';schedule();});
 addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);visualViewport?.addEventListener('resize',schedule);new ResizeObserver(schedule).observe(story);document.addEventListener('visibilitychange',schedule);schedule();
 const cards=document.querySelectorAll('.scenery-card');if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}},{threshold:.08});for(const card of cards){card.classList.add('reveal');observer.observe(card);}}
+
+// View swaps keep full-detail rendered previews lightweight on phones.
+const premium=document.querySelector('.premium-gallery');let premiumFrame=-1;
+function updatePremium(){if(!premium)return;const box=premium.getBoundingClientRect(),progress=Math.max(0,Math.min(1,(innerHeight*.8-box.top)/Math.max(1,box.height)));const frame=Math.min(4,Math.floor(progress*5));if(frame===premiumFrame)return;premiumFrame=frame;for(const card of premium.querySelectorAll('[data-views]')){const views=card.dataset.views.split('|');const img=card.querySelector('img');img.src=views[frame];card.dataset.view=String(frame);}}
+addEventListener('scroll',updatePremium,{passive:true});addEventListener('resize',updatePremium);updatePremium();

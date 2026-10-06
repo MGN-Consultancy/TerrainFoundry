@@ -1,22 +1,22 @@
 {
-  "version": "1.11.0",
-  "title": "Purchased scenery, ready offline",
+  "version": "1.12.0",
+  "title": "Your campaign companion",
   "features": [
     {
-      "title": "Activate with your pack code",
-      "description": "Open Activate purchased scenery in the terrain library. Verify your purchase email, then enter its activation code."
+      "title": "Build through conversation",
+      "description": "Keep your campaign chat beside every tab. Answer questions one at a time and review your draft campaign brief."
     },
     {
-      "title": "Protected downloads",
-      "description": "Signed scenery inventories are checked before installation. Pack keys use Windows protected storage; scenery is cached encrypted."
+      "title": "Preview before applying",
+      "description": "Review proposed missions, characters, scene links and terrain layouts before the client applies them."
     },
     {
-      "title": "Keep building offline",
-      "description": "Once installed, purchased scenery appears in the usual categories and can be placed, saved and exported without internet."
+      "title": "Simpler AI setup",
+      "description": "Choose OpenAI or Claude, enter your key and explicitly test it. Advanced model settings remain optional. Provider requests may incur charges."
     },
     {
-      "title": "Your free starter stays free",
-      "description": "The 50-piece Deepstone starter, Campaign Studio and existing scene files are preserved. Premium collections launch separately."
+      "title": "Private usage tracking",
+      "description": "View reported tokens and estimated USD costs across restarts. Your campaign files stay local, and manual editing still works offline."
     }
   ]
 }

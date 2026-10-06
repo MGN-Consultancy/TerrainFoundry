@@ -1,5 +1,5 @@
 const fs=require('node:fs'),fsp=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
-const MAX_PACK=1000000000,MAX_FILE=130000000;
+const MAX_PACK=1000000000,MAX_FILE=250000000;
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const packId=s=>typeof s==='string'&&/^tf-[a-z0-9-]{1,80}$/.test(s);
 const assetId=s=>typeof s==='string'&&/^[a-z][a-z0-9-]{0,80}$/.test(s)&&!['__proto__','constructor','prototype'].includes(s);

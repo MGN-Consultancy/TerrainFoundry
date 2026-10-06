@@ -1,6 +1,12 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs/promises';import path from 'node:path';import os from 'node:os';import {createRequire} from 'node:module';import {generateKeyPairSync,randomBytes,createHash,createCipheriv,createDecipheriv,sign,verify} from 'node:crypto';
 const require=createRequire(import.meta.url),{createPremiumDevice}=require('../desktop/premium-device.cjs'),{createPremiumStore,verifyManifest}=require('../desktop/premium-store.cjs'),{createPremiumClient}=require('../desktop/premium-client.cjs');
 const sha=b=>createHash('sha256').update(b).digest('hex');
+test('signed high-definition print entries fit the bounded reader while oversized entries are rejected',()=>{
+ const issuer=generateKeyPairSync('ed25519');
+ function grant(length){const metadata={schemaVersion:1,issuer:'TerrainFoundry',packId:'tf-density',version:'1.0.0',size:length+1,sha256:'a'.repeat(64),files:[{path:'catalogue.json',offset:0,length:1,plainSize:1,sha256:'b'.repeat(64),iv:Buffer.alloc(12).toString('base64'),tag:Buffer.alloc(16).toString('base64')},{path:'print/stacked-barrels.stl',offset:1,length,plainSize:length,sha256:'c'.repeat(64),iv:Buffer.alloc(12).toString('base64'),tag:Buffer.alloc(16).toString('base64')}]};const payload=Buffer.from(JSON.stringify(metadata));return {payload:payload.toString('base64'),signature:sign(null,payload,issuer.privateKey).toString('base64')};}
+ assert.equal(verifyManifest(grant(208330884),issuer.publicKey,'tf-density').files[1].length,208330884);
+ assert.throws(()=>verifyManifest(grant(250000001),issuer.publicKey,'tf-density'),/Unsafe pack file/);
+});
 export function protectedStorage(){const key=randomBytes(32);return {isEncryptionAvailable:()=>true,encryptString(s){const iv=randomBytes(12),c=createCipheriv('aes-256-gcm',key,iv);return Buffer.concat([iv,c.update(s),c.final(),c.getAuthTag()]);},decryptString(b){const d=createDecipheriv('aes-256-gcm',key,b.subarray(0,12));d.setAuthTag(b.subarray(-16));return Buffer.concat([d.update(b.subarray(12,-16)),d.final()]).toString();}};}
 function fixture(issuer,asset='qa-001',badMesh=false,version='1.0.0'){
  const positions=new Float32Array([0,0,0,1,0,0,0,.1,1]),colors=new Float32Array(9).fill(.7),indices=new Uint32Array([0,1,2]);if(badMesh)positions[1]=NaN;const mesh=Buffer.concat([Buffer.from(positions.buffer),Buffer.from(colors.buffer),Buffer.from(indices.buffer)]),stl=Buffer.alloc(134);stl.writeUInt32LE(1,80);for(let i=0;i<9;i++)stl.writeFloatLE(positions[i],96+i*4);

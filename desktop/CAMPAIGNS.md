@@ -36,3 +36,10 @@ Voice tools can refresh bounded context, search installed/saved terrain, retriev
 ### Voice provider choice
 
 AI integration settings offer Realtime (the default) and GPT-Live. Both use the protected OpenAI key. GPT-Live delegates campaign requests to the selected text companion; both voice duration and backend requests are provider billed. The backend retains the existing app-context validation and proposal review. Realtime remains the online dictation service; Windows dictation is offline. Switching engines applies to the next session and does not erase keys, campaigns or history. No Platform-hosted saved prompt is required. GPT-Live sends a session-close command before disconnecting; the client keeps received text fragments locally and does not save raw audio. Provider access, microphone quality and real account billing still require a user trial.
+
+
+## Workspace agent and illustrated planning
+
+AI setup offers Review mode (default) and Agent mode. Agent mode validates and automatically applies supported Markdown, campaign, artwork and linked-world actions. It cannot execute commands or modify the installation. Inspect Agent activity and undo the latest action; newer user edits are preserved. Ten action snapshots are retained. World changes use real installed assets in batches of up to 100.
+
+Reusable artistic, tone, pacing and accessibility preferences are stored locally in Documents/Terrain Foundry/Preferences/game-style.md. Edit them in AI setup or ask the agent to remember an explicitly stated preference. Campaign plots and DM secrets belong in campaign notes, not shared preferences. Story and World tab context directs suggestions. Original artwork uses your OpenAI image API key and model, including when Claude handles text; scene illustrations are not guaranteed scale-accurate battle maps. Agent-generated artwork is saved inside the campaign artwork folder and retained in campaign records. Playbook Markdown is included as DM-only content in exports.

@@ -1,6 +1,8 @@
 # Terrain Foundry 1.15.0
 
 
+AI settings now offer Realtime or GPT-Live conversational voice, using your protected OpenAI key. GPT-Live delegates campaign work to your selected text AI; both are billed separately.
+
 The launcher has a scenery banner, clearer offline and publisher information, and rounded controls. It closes after the editor starts successfully and remains open if startup fails.
 Campaign workspaces link shared terrain revisions, preserve existing campaigns, retain conversation history and generate readable Markdown memory. Add offline Windows dictation (requires an installed Windows speech recognizer), optional OpenAI dictation and realtime voice conversation. API keys remain OS-protected; voice uses your API account and sends microphone audio/context to OpenAI. Voice sessions stop after ten minutes.
 

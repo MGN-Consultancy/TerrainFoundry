@@ -143,11 +143,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: pwsh
         run: |
+          $ErrorActionPreference='Stop'
           $v=(Get-Content package.json -Raw | ConvertFrom-Json).version
-          $args=@('release','create',$env:TERRAIN_RELEASE_TAG,'--target',$env:GITHUB_SHA,'--title',"Terrain Foundry $v — $env:TERRAIN_COMPONENT update",'--notes-file','RELEASE-NOTES.md')
-          if('${{ inputs.publish }}' -ne 'true'){$args+='--draft'}
-          $args+=(Get-ChildItem release/publish -File | Where-Object Name -ne 'package-files.json' | ForEach-Object FullName)
-          if('${{ inputs.publish }}' -eq 'true'){$args+='--latest'}
-          & gh @args
-          if($LASTEXITCODE -ne 0){throw 'Release publication failed'}
-
+          $files=@(Get-ChildItem release/publish -File | Where-Object Name -ne 'package-files.json' | Sort-Object Name)
+          if($files.Count -lt 1){throw 'No release files were packaged.'}
+          if($files.Count -gt 1000){throw "GitHub release asset limit exceeded: $($files.Count) files."}
+          $create=@('release','create',$env:TERRAIN_RELEASE_TAG,'--target',$env:GITHUB_SHA,'--title',"Terrain Foundry $v — $env:TERRAIN_COMPONENT update",'--notes-file','RELEASE-NOTES.md','--draft')
+          & gh @create
+          if($LASTEXITCODE -ne 0){throw 'Could not create the private draft release.'}
+          for($i=0;$i -lt $files.Count;$i+=25){
+            $last=[Math]::Min($i+24,$files.Count-1)
+            $batch=@($files[$i..$last] | ForEach-Object FullName)
+            $upload=@('release','upload',$env:TERRAIN_RELEASE_TAG)+$batch
+            & gh @upload
+            if($LASTEXITCODE -ne 0){throw "Release asset batch $([int]($i/25)+1) failed; release remains a draft."}
+          }
+          if('${{ inputs.publish }}' -eq 'true'){
+            & gh release edit $env:TERRAIN_RELEASE_TAG --draft=false --latest
+            if($LASTEXITCODE -ne 0){throw 'All assets uploaded, but the release could not be made public.'}
+          }

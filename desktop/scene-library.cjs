@@ -22,6 +22,7 @@ function createSceneLibrary({directory}){
  }
  async function load(id){validId(id);if(!(await index()).some(e=>e.id===id))throw Error('Saved scene is unavailable');const file=path.join(directory,id+'.terrain'),stat=await fs.lstat(file);if(!stat.isFile()||stat.size>100000000)throw Error('Invalid saved scene file');const data=await fs.readFile(file,'utf8');check(data);if(JSON.parse(data).kind==='world')throw Error('Invalid saved scene');return {data,revision:createHash('sha256').update(data).digest('hex')};}
  async function list({query='',page=0,metadataOnly=false}={}){if(typeof metadataOnly!=='boolean'||typeof query!=='string'||query.length>120||!Number.isInteger(page)||page<0||page>1000)throw Error('Invalid library query');const entries=(await index()).filter(e=>e.name.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>b.modified-a.modified||a.id.localeCompare(b.id));const pages=Math.max(1,Math.ceil(entries.length/12)),current=Math.min(page,pages-1),shown=entries.slice(current*12,current*12+12);return {page:current,pages,total:entries.length,entries:metadataOnly?shown:await Promise.all(shown.map(async e=>{let preview=null;try{const file=path.join(directory,e.id+'.png'),s=await fs.lstat(file);if(!s.isFile()||s.size>450000)throw Error('Invalid preview');const bytes=await fs.readFile(file);preview=PNG+bytes.toString('base64');previewBytes(preview);}catch{}return {...e,preview};}))};}
- return {directory,save,list,load,flush:()=>queue};
+ async function listAllMetadata(){return (await index()).slice().sort((a,b)=>b.modified-a.modified||a.id.localeCompare(b.id));}
+ return {directory,save,list,listAllMetadata,load,flush:()=>queue};
 }
 module.exports={createSceneLibrary,previewBytes};

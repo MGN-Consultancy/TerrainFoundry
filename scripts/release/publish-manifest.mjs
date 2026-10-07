@@ -6,7 +6,7 @@ import {clientSourceHash} from './client-source-hash.mjs';
 const pkg=JSON.parse(await fs.readFile('package.json','utf8'));
 const repo='MGN-Consultancy/TerrainFoundry',tag=process.env.TERRAIN_RELEASE_TAG||'v'+pkg.version,root='release/publish';
 const component=(process.env.TERRAIN_COMPONENT||'full').toLowerCase();
-if(!['full','launcher','client','content'].includes(component))throw Error('Unknown release component');
+if(!['full','migration','launcher','client','content'].includes(component))throw Error('Unknown release component');
 const url=name=>`https://github.com/${repo}/releases/download/${tag}/${encodeURIComponent(name)}`;
 const filesMeta=JSON.parse(await fs.readFile(root+'/package-files.json','utf8'));
 async function entry(name,extra={}){const data=await fs.readFile(path.join(root,name));return {name,url:url(name),size:data.length,sha256:createHash('sha256').update(data).digest('hex'),...extra};}
@@ -18,12 +18,12 @@ const componentEnvelope=await readEnvelope('release/previous-component-channel.j
 const legacy=legacyEnvelope?verifyEnvelope(legacyEnvelope):null;
 const prior=componentEnvelope?verifyEnvelope(componentEnvelope):(legacy?legacy:null);
 if(!legacy&&component!=='full')throw Error('A previous legacy channel is required for an independent component update');
-if(prior?.schema===1&&component!=='full')throw Error('Publish one full migration release before independent component releases');
+if(prior?.schema===1&&!['full','migration'].includes(component))throw Error('Publish one content migration release before independent component releases');
 const product=JSON.parse(await fs.readFile('release-config/product.json','utf8'));
 let launcher=prior?.launcher,client=prior?.client,assets=prior?.assets||[];
-const legacyLauncher=(component==='full'||component==='launcher')?await entry('TerrainFoundryLauncher.exe',{version:(product.launcherVersion||'1.0.0')+'.0'}):(legacy?.launcher||launcher);
-if(component==='full'||component==='launcher')launcher=legacyLauncher;
-if(component==='full'||component==='client'){
+const legacyLauncher=(component==='full'||component==='migration'||component==='launcher')?await entry('TerrainFoundryLauncher.exe',{version:(product.launcherVersion||'1.0.0')+'.0'}):(legacy?.launcher||launcher);
+if(component==='full'||component==='migration'||component==='launcher')launcher=legacyLauncher;
+if(component==='full'||component==='migration'||component==='client'){
  const published={};
  for(const [relative,meta] of Object.entries(filesMeta.client?.files||{})){
   const oldFile=prior?.schema===2?prior.client.files?.[relative]:null;
@@ -38,7 +38,7 @@ if(component==='content'&&prior?.schema===2){
  const currentSourceHash=await clientSourceHash();
  if(currentSourceHash!==prior.client.sourceHash)throw Error('Content catalogue or OpenLOCK metadata changed. Publish a client update so installed editors can read the new content safely.');
 }
-if(component==='full'||component==='content'){
+if(component==='full'||component==='migration'||component==='content'){
  const byId=new Map(assets.map(a=>[a.id,a]));
  for(const [id,pack] of Object.entries(filesMeta.content||{})){
   const old=byId.get(id),published={};

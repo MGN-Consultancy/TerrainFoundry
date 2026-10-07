@@ -1,3 +1,7 @@
+# Terrain Foundry 1.16.1 — Client update
+
+The opening workshop now gives D&D campaigns, worlds and reusable encounters clear roles, original illustrated cards, and recent saved files. Each category opens its own local folder and can show the full saved list. Encounters include entries from the local scene library. AI and voice configuration is available from the settings cog in the workshop and campaign workspace.
+
 # Terrain Foundry Launcher 1.16.1
 
 The launcher uses a shorter, scene-backed window. Update checks and large file verification run without blocking the window. During installation, the progress header names the editor, scenery packs and final verification as distinct stages, and the progress bar resets at each stage.

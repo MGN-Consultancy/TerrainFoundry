@@ -1,18 +1,18 @@
 {
-  "version": "1.16.0",
-  "title": "Smaller, independent updates",
+  "version": "1.16.1",
+  "title": "A clearer campaign workshop",
   "features": [
     {
-      "title": "Update only what changed",
-      "description": "The signed updater checks launcher, editor and scenery separately. It downloads only changed editor files and scenery models, and shows the changed piece names and estimated download size."
+      "title": "Campaigns, worlds and scenes have their own home",
+      "description": "Create or continue a D&D campaign, a full tabletop world, or a reusable encounter. Each workspace shows recent files and opens its own folder."
     },
     {
-      "title": "Keep installed scenery",
-      "description": "Matching scenery files are reused and verified. Existing combined scenery packs are split locally during the first migration, avoiding a full scenery download when their model files match."
+      "title": "See your saved work at a glance",
+      "description": "The workshop lists recent campaigns, worlds and saved encounters, including scenes in your local encounter library. Browse the full list whenever you need it."
     },
     {
-      "title": "Separate release paths",
-      "description": "Launcher, editor and scenery releases can be published independently, so an editor change does not rebuild or re-sign unchanged scenery."
+      "title": "Optional AI settings stay in one place",
+      "description": "Open provider and voice options from the settings cog. Campaign files and terrain remain on your computer; online AI is optional."
     }
   ]
 }

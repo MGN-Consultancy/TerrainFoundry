@@ -1,3 +1,7 @@
+# Terrain Foundry Launcher 1.16.1
+
+The launcher uses a shorter, scene-backed window. Update checks and large file verification run without blocking the window. During installation, the progress header names the editor, scenery packs and final verification as distinct stages, and the progress bar resets at each stage.
+
 # Terrain Foundry 1.16.0
 
 Launcher, editor and scenery now have independent update components. Client-only and launcher-only releases skip scenery generation and packaging. Scenery is stored as individually hashed model files, so a content release downloads only changed or newly added models; installed matching files are reused and verified. Client files are also updated by hash. The one-time channel migration splits the already-published, checksum-verified scenery packs without regenerating their meshes. Existing installs migrate locally by reusing matching model data, avoiding a full scenery redownload.

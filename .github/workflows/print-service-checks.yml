@@ -1,10 +1,10 @@
 name: Check print service
 on:
   pull_request:
-    paths: ['print-service/**', 'site/**', 'tests/quote-ui.cjs', 'tests/quote-catalog.test.mjs', 'scripts/build-quote-catalog.mjs', 'scripts/quote-preview-renderer.*', 'package.json', 'pnpm-lock.yaml', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
+    paths: ['desktop/premium-*', 'tests/premium-entry-ui.cjs', 'print-service/**', 'site/**', 'tests/quote-ui.cjs', 'tests/quote-catalog.test.mjs', 'scripts/build-quote-catalog.mjs', 'scripts/quote-preview-renderer.*', 'package.json', 'pnpm-lock.yaml', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
   push:
     branches: [main]
-    paths: ['print-service/**', 'site/**', 'tests/quote-ui.cjs', 'tests/quote-catalog.test.mjs', 'scripts/build-quote-catalog.mjs', 'scripts/quote-preview-renderer.*', 'package.json', 'pnpm-lock.yaml', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
+    paths: ['desktop/premium-*', 'tests/premium-entry-ui.cjs', 'print-service/**', 'site/**', 'tests/quote-ui.cjs', 'tests/quote-catalog.test.mjs', 'scripts/build-quote-catalog.mjs', 'scripts/quote-preview-renderer.*', 'package.json', 'pnpm-lock.yaml', 'infra/print-service.bicep', '.github/workflows/print-service-checks.yml']
 permissions:
   contents: read
 jobs:
@@ -38,6 +38,7 @@ jobs:
       - run: pnpm exec playwright install --with-deps chromium
       - run: node --test tests/quote-catalog.test.mjs
       - run: node tests/quote-ui.cjs
+      - run: node tests/premium-entry-ui.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

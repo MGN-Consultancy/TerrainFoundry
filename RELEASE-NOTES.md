@@ -1,3 +1,9 @@
+# Terrain Foundry 1.16.0
+
+Launcher, editor and scenery now have independent update components. Client-only releases skip scenery generation and content signing. Scenery is stored as individually hashed model files, so a content release downloads only the changed models; installed matching files are reused and verified. Client files are also updated by hash. Existing combined scenery installs migrate locally by extracting each model from its verified pack, avoiding a full scenery redownload.
+
+The old signed launcher channel remains available for existing launchers during migration. Failed or interrupted updates leave the previous verified editor and scenery available.
+
 # Terrain Foundry 1.15.2
 
 Scenery installation now shows overall progress, total data size and completed sections, including already installed content. Verification stays visible until each section is ready. The launcher also shows progress across the whole editor/scenery update.

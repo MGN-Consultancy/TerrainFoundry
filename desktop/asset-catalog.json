@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "release": "1.9.0",
+  "release": "1.16.0",
   "policy": "Built-in asset IDs resolve to this installed catalogue; imported geometry stays in the project.",
   "assets": {
     "dg-001": {
@@ -497,7 +497,7 @@
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -533,14 +533,14 @@
           }
         ]
       },
-      "sha256": "8628b25e162051866720e6a747b2779f7b71cd053211dececf0502196a0608ff"
+      "sha256": "201dde5091e36656a85fbb5987a18fd1328631dc32ac2128d555730300300f7b"
     },
     "dg-022": {
       "name": "Deepstone · Broken strata floor",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -576,14 +576,14 @@
           }
         ]
       },
-      "sha256": "856a7c0c9c2459a01ff19c17b7acf6f2132afd707a5380eaeffa2c6d81741b4b"
+      "sha256": "c4f2ff95cd84ff5f296d25b59f051a6e91ca7e9e613d24a773aa4f61ade45483"
     },
     "dg-023": {
       "name": "Deepstone · Calcite ripple floor",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -619,14 +619,14 @@
           }
         ]
       },
-      "sha256": "a2ff003acaf7623b9797303447a1797a3cdb42b8f982aa5270158bcca4fa1a64"
+      "sha256": "8e70c23ee8e942a8d7a3283bf6ad425466650edfa7917b369179d9357b0cf717"
     },
     "dg-024": {
       "name": "Deepstone · Embedded rubble floor",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -662,14 +662,14 @@
           }
         ]
       },
-      "sha256": "d7e8bfbfff1f78a5af8b229f09d72aab89499d5b9a5abd584b0c1fbeac1c090d"
+      "sha256": "bd5e9f3ee210889b5657a4e5ad38578a84a575151fd475376d4fa1d54717dc71"
     },
     "dg-025": {
       "name": "Deepstone · Fossil bed floor",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -705,14 +705,14 @@
           }
         ]
       },
-      "sha256": "6bc0fb4fc2bdfc9b52607b3d64ef005da544cfcc053448cf42d4672c174c46a5"
+      "sha256": "e3404c08db6944869bff3bec506d7d2c967871862803ab5f1f570b7220668907"
     },
     "dg-026": {
       "name": "Deepstone · Small cave floor",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 25.4,
         "depth": 25.4,
@@ -748,14 +748,14 @@
           }
         ]
       },
-      "sha256": "408a2ed9fb3633cd318c351bfc56cd10e0fdd38956f5887d9a0f5c912bcdad5f"
+      "sha256": "85d91dac89fd7dd90ef35f9b808501519d1866ee65c6499a393081be7cfe4c11"
     },
     "dg-027": {
       "name": "Deepstone · Long cave floor",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 101.6,
         "depth": 50.8,
@@ -805,14 +805,14 @@
           }
         ]
       },
-      "sha256": "2ce3608e00d775f4f8f7fd56f428f954c03f94a18520b35e09cde966753e7143"
+      "sha256": "72657109e0dd2c5c4eab985546e0001bac6a7b44cc9d27a7115be3f94e78f84a"
     },
     "dg-028": {
       "name": "Deepstone · Grotto pool closed basin",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -848,14 +848,14 @@
           }
         ]
       },
-      "sha256": "c001c255f2895ae9d196e06e5cdd43b0be550fe973fccd275ad6be22f6d0816c"
+      "sha256": "17aae4b6d975d1e6da2d4c678eeab1e69e26b2fae997a7f206d921265fde31f2"
     },
     "dg-029": {
       "name": "Deepstone · Pool straight channel",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -891,14 +891,14 @@
           }
         ]
       },
-      "sha256": "46d244c9bbbc7b07c373bfe124e56db709c5349fad57e21e82895b886ee083a1"
+      "sha256": "fbc965c424e2fb9e101e47dcdeb6324a6195e4916de3e0c124bcd07e2329a534"
     },
     "dg-030": {
       "name": "Deepstone · Pool bend channel",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -934,14 +934,14 @@
           }
         ]
       },
-      "sha256": "aa268cf41d66d822d757bc004405fc0ee55e0baf2dd2785c39ccde17898f6c98"
+      "sha256": "08457e7b1bff170dae1e6c58c2186015194b5c79de9fb8510688ff26584544a7"
     },
     "dg-031": {
       "name": "Deepstone · Pool widening chamber",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -977,14 +977,14 @@
           }
         ]
       },
-      "sha256": "aa497cb2f86bbfaea7493fb8f150573f11bdc4d7e156a3617c6005ca83e3e52c"
+      "sha256": "2f3248fdcd7cbac76a04b49481c802147ce402c9f30badb43425a33753804f03"
     },
     "dg-032": {
       "name": "Deepstone · Pool ending shore",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -1020,7 +1020,7 @@
           }
         ]
       },
-      "sha256": "21c319a4d9ac6fc98f4171f178c24c097589a85f1540614b032173a85774a866"
+      "sha256": "54bed7605ef2686eb5df0ce143c4194acc00b61b24aeabffd13e4be39d7d45f2"
     },
     "dg-033": {
       "name": "Deepstone · Natural cave entrance",
@@ -1113,7 +1113,7 @@
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -1149,7 +1149,7 @@
           }
         ]
       },
-      "sha256": "1783fe42af11e2933e9ddfde59e81b1c9bf6219090b14f890ef23de3eb352543"
+      "sha256": "a77140e7bfa2ae2bbf5a77872ef95c4271d891b6392954d331a2cec73882f377"
     },
     "dg-036": {
       "name": "Deepstone · Worn ascending steps",
@@ -1647,7 +1647,7 @@
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -1683,14 +1683,14 @@
           }
         ]
       },
-      "sha256": "784f819a4664d6e392c7ddbbfa00370175e11adcc1846381b39c468d6b235589"
+      "sha256": "8db84532578937eae5ba84751ebeacfc45eb6b5bea3469eac08b3bb9a52b1749"
     },
     "dg-048": {
       "name": "Deepstone · Pressure plate trap tile",
       "category": "Floors",
       "connection": {
         "templateSource": "printable-scenery-8.6",
-        "revision": 3,
+        "revision": 4,
         "kind": "floor",
         "width": 50.8,
         "depth": 50.8,
@@ -1726,7 +1726,7 @@
           }
         ]
       },
-      "sha256": "fb7b8cd125779086618e72252db8e97d1f9b6250e88018dafdd6d26d2c6ebcb5"
+      "sha256": "12ccad1f15699f57c1909985af0a8f6dfe1698ab6659e612467eb45c890d1c5f"
     },
     "dg-049": {
       "name": "Deepstone · Rockfall trap tile",

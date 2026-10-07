@@ -1,21 +1,38 @@
-"""Deterministic archives; unchanged scenery keeps its hash across client releases."""
-import hashlib,json,zipfile
+"""Package editor and scenery as independently verifiable files."""
+import hashlib,json
 from pathlib import Path
+import os
 root=Path(__file__).resolve().parents[2]
 version=json.loads((root/'package.json').read_text(encoding='utf-8-sig'))['version']
 out=root/'release/publish';out.mkdir(parents=True,exist_ok=True)
-lists={}
-def archive(folder,name):
-    hashes={}
-    with zipfile.ZipFile(out/name,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6,allowZip64=True) as z:
-        for f in sorted(folder.rglob('*')):
-            if f.is_symlink():raise ValueError('Symlink in release')
-            if not f.is_file():continue
-            data=f.read_bytes();rel=f.relative_to(folder).as_posix();hashes[rel]=hashlib.sha256(data).hexdigest()
-            info=zipfile.ZipInfo(rel,(2026,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o100644<<16;z.writestr(info,data)
-    lists[name]=hashes;print(name,(out/name).stat().st_size,flush=True)
-archive(root/f'release/desktop-{version}/TerrainFoundry-win32-x64',f'TerrainFoundry-client-{version}-win-x64.zip')
-for folder in sorted((root/'release/asset-packs').iterdir()):
-    if folder.is_dir():archive(folder,'scenery-'+folder.name+'.zip')
+component=os.environ.get('TERRAIN_COMPONENT','full').lower()
+if component not in {'full','launcher','client','content'}:raise ValueError('Unknown release component')
+lists={'component':component,'content':{}}
+if component in {'full','client'}:
+    client=root/f'release/desktop-{version}/TerrainFoundry-win32-x64'
+    client_files={}
+    for file in sorted(client.rglob('*')):
+        if file.is_symlink():raise ValueError('Symlink in client package')
+        if not file.is_file():continue
+        rel=file.relative_to(client).as_posix();data=file.read_bytes();digest=hashlib.sha256(data).hexdigest()
+        path_id=hashlib.sha256(rel.encode('utf-8')).hexdigest()[:16]
+        name=f'client-{path_id}-{digest[:16]}.bin'
+        (out/name).write_bytes(data)
+        client_files[rel]={'artifact':name,'size':len(data),'sha256':digest}
+    lists['client']={'files':client_files}
+if component in {'full','content'}:
+    for folder in sorted((root/'release/asset-packs').iterdir()):
+        if not folder.is_dir():continue
+        files={}
+        for file in sorted(folder.rglob('*')):
+            if file.is_symlink():raise ValueError('Symlink in release')
+            if not file.is_file() or file.name=='index.json':continue
+            rel=file.relative_to(folder).as_posix();data=file.read_bytes();digest=hashlib.sha256(data).hexdigest()
+            path_id=hashlib.sha256(rel.encode('utf-8')).hexdigest()[:16]
+            name=f'content-{folder.name}-{path_id}-{digest[:16]}.bin'
+            (out/name).write_bytes(data)
+            files[rel]={'artifact':name,'size':len(data),'sha256':digest}
+        lists['content'][folder.name]={'files':files,'index':json.loads((folder/'index.json').read_text(encoding='utf-8'))}
+if component in {'full','launcher'}:
+    (out/'TerrainFoundryLauncher.exe').write_bytes((root/'launcher/TerrainFoundryLauncher.exe').read_bytes())
 (out/'package-files.json').write_text(json.dumps(lists),encoding='utf-8')
-(out/'TerrainFoundryLauncher.exe').write_bytes((root/'launcher/TerrainFoundryLauncher.exe').read_bytes())

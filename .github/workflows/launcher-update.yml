@@ -1,0 +1,21 @@
+name: Build and publish a launcher-only update
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the verified component release immediately
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  id-token: write
+concurrency:
+  group: terrainfoundry-release
+  cancel-in-progress: false
+jobs:
+  release:
+    uses: ./.github/workflows/release.yml
+    with:
+      component: launcher
+      publish: ${{ inputs.publish }}
+    secrets: inherit

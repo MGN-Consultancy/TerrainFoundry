@@ -34,6 +34,10 @@ if(component==='full'||component==='client'){
  const aggregate=createHash('sha256').update(JSON.stringify(Object.entries(published).map(([p,f])=>[p,f.sha256]).sort())).digest('hex');
  client={name:'Terrain Foundry editor',version:pkg.version,sourceHash,sha256:aggregate,size:Object.values(published).reduce((n,f)=>n+f.size,0),files:published};
 }
+if(component==='content'&&prior?.schema===2){
+ const currentSourceHash=await clientSourceHash();
+ if(currentSourceHash!==prior.client.sourceHash)throw Error('Content catalogue or OpenLOCK metadata changed. Publish a client update so installed editors can read the new content safely.');
+}
 if(component==='full'||component==='content'){
  const byId=new Map(assets.map(a=>[a.id,a]));
  for(const [id,pack] of Object.entries(filesMeta.content||{})){

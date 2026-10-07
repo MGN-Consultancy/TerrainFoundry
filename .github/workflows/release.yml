@@ -15,10 +15,6 @@ on:
         description: Publish the verified release immediately (otherwise create a draft)
         type: boolean
         default: false
-      scenery_only:
-        description: Reuse the previous client if only existing scenery geometry changed
-        type: boolean
-        default: false
       component:
         description: Update only one independently versioned component
         type: choice
@@ -107,7 +103,6 @@ jobs:
       - name: Sign the update channel
         env:
           TERRAIN_RELEASE_KEY: ${{ secrets.TERRAIN_RELEASE_KEY }}
-          TERRAIN_SCENERY_ONLY: ${{ inputs.scenery_only }}
           TERRAIN_COMPONENT: ${{ inputs.component || 'full' }}
           GH_TOKEN: ${{ github.token }}
         shell: pwsh
@@ -139,6 +134,7 @@ jobs:
           $args=@('release','create',$env:TERRAIN_RELEASE_TAG,'--target',$env:GITHUB_SHA,'--title',"Terrain Foundry $v — $env:TERRAIN_COMPONENT update",'--notes-file','RELEASE-NOTES.md')
           if('${{ inputs.publish }}' -ne 'true'){$args+='--draft'}
           $args+=(Get-ChildItem release/publish -File | Where-Object Name -ne 'package-files.json' | ForEach-Object FullName)
+          if('${{ inputs.publish }}' -eq 'true'){$args+='--latest'}
           & gh @args
           if($LASTEXITCODE -ne 0){throw 'Release publication failed'}
 

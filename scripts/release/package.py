@@ -6,9 +6,9 @@ root=Path(__file__).resolve().parents[2]
 version=json.loads((root/'package.json').read_text(encoding='utf-8-sig'))['version']
 out=root/'release/publish';out.mkdir(parents=True,exist_ok=True)
 component=os.environ.get('TERRAIN_COMPONENT','full').lower()
-if component not in {'full','launcher','client','content'}:raise ValueError('Unknown release component')
+if component not in {'full','migration','launcher','client','content'}:raise ValueError('Unknown release component')
 lists={'component':component,'content':{}}
-if component in {'full','client'}:
+if component in {'full','migration','client'}:
     client=root/f'release/desktop-{version}/TerrainFoundry-win32-x64'
     client_files={}
     for file in sorted(client.rglob('*')):
@@ -20,7 +20,7 @@ if component in {'full','client'}:
         (out/name).write_bytes(data)
         client_files[rel]={'artifact':name,'size':len(data),'sha256':digest}
     lists['client']={'files':client_files}
-if component in {'full','content'}:
+if component in {'full','migration','content'}:
     for folder in sorted((root/'release/asset-packs').iterdir()):
         if not folder.is_dir():continue
         files={}
@@ -33,6 +33,6 @@ if component in {'full','content'}:
             (out/name).write_bytes(data)
             files[rel]={'artifact':name,'size':len(data),'sha256':digest}
         lists['content'][folder.name]={'files':files,'index':json.loads((folder/'index.json').read_text(encoding='utf-8'))}
-if component in {'full','launcher'}:
+if component in {'full','migration','launcher'}:
     (out/'TerrainFoundryLauncher.exe').write_bytes((root/'launcher/TerrainFoundryLauncher.exe').read_bytes())
 (out/'package-files.json').write_text(json.dumps(lists),encoding='utf-8')

@@ -18,7 +18,7 @@ on:
       component:
         description: Update only one independently versioned component
         type: choice
-        options: [full, launcher, client, content]
+        options: [full, migration, launcher, client, content]
         default: full
 permissions:
   contents: write
@@ -49,51 +49,64 @@ jobs:
         with:
           version: '11.19.0'
       - run: pnpm install --frozen-lockfile
-        if: inputs.component == 'full' || inputs.component == 'client' || inputs.component == 'content'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client' || inputs.component == 'content'
       - name: Install geometry validation dependencies
         if: inputs.component == 'full' || inputs.component == 'content'
         run: pnpm --dir print-service install --ignore-workspace --frozen-lockfile --ignore-scripts
       - name: Generate scenery from official licensed OpenLOCK templates
         if: inputs.component == 'full' || inputs.component == 'content'
         run: node scripts/release/generate-all.mjs
+      - name: Split the already-published scenery for the first file-level channel
+        if: inputs.component == 'migration'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          New-Item -ItemType Directory -Force release/legacy | Out-Null
+          gh release download --pattern 'channel.json' --dir release/legacy --clobber
+          if($LASTEXITCODE -ne 0){throw 'Cannot retrieve the current signed scenery channel.'}
+          gh release download --pattern 'scenery-*.zip' --dir release/legacy --clobber
+          if($LASTEXITCODE -ne 0){throw 'Cannot retrieve the current published scenery packs.'}
+          node --expose-gc scripts/release/migrate-legacy-content.mjs
       - name: Verify full scenery, layout, connector and updater suite
         if: inputs.component == 'full' || inputs.component == 'content'
         run: node --test tests/*.test.mjs
       - name: Verify editor update and local scenery-store regressions
-        if: inputs.component == 'client'
-        run: node --test tests/incremental-content-layout.test.mjs tests/builtin-shapes.test.mjs tests/scenery-store.test.mjs
+        if: inputs.component == 'client' || inputs.component == 'migration'
+        run: node --test tests/incremental-content-layout.test.mjs tests/builtin-shapes.test.mjs tests/scenery-store.test.mjs tests/legacy-content-migration.test.mjs
       - run: pnpm build
-        if: inputs.component == 'full' || inputs.component == 'client'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
       - run: node scripts/package.cjs
-        if: inputs.component == 'full' || inputs.component == 'client'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
       - run: ./scripts/release/build-launcher.ps1
-        if: inputs.component == 'full' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'launcher'
       - name: Check launcher layout and editor startup lifecycle
-        if: inputs.component == 'full' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'launcher'
         run: ./scripts/release/test-launcher-lifecycle.ps1
       - name: Check launcher self-update across processes
-        if: inputs.component == 'full' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'launcher'
         run: ./scripts/release/test-launcher-handoff.ps1
       - uses: azure/login@v2
-        if: inputs.component == 'full' || inputs.component == 'client' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client' || inputs.component == 'launcher'
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - name: Sign editor and launcher with MGN Consultancy
-        if: inputs.component == 'full' || inputs.component == 'client' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client' || inputs.component == 'launcher'
         shell: pwsh
         run: |
           $v=(Get-Content package.json -Raw | ConvertFrom-Json).version
           if('${{ inputs.component }}' -ne 'launcher'){./scripts/release/sign.ps1 -File "$PWD/release/desktop-$v/TerrainFoundry-win32-x64/TerrainFoundry.exe"}
           if('${{ inputs.component }}' -ne 'client'){./scripts/release/sign.ps1 -File "$PWD/launcher/TerrainFoundryLauncher.exe"}
       - name: Prepare pinned WiX tools
-        if: inputs.component == 'full' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'launcher'
         run: node scripts/release/wix.mjs
       - run: node scripts/release/launcher-msi.mjs
-        if: inputs.component == 'full' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'launcher'
       - shell: pwsh
-        if: inputs.component == 'full' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'launcher'
         run: |
           $v=(Get-Content release-config/product.json -Raw | ConvertFrom-Json).launcherVersion
           ./scripts/release/sign.ps1 -File "$PWD/release/publish/TerrainFoundryLauncher-$v-win-x64.msi"
@@ -113,11 +126,11 @@ jobs:
           Copy-Item release/previous/channel.json release/previous-legacy-channel.json
           gh release download --pattern component-channel.json --dir release/previous --clobber
           if($LASTEXITCODE -eq 0){Copy-Item release/previous/component-channel.json release/previous-component-channel.json}
-          elseif($env:TERRAIN_COMPONENT -ne 'full'){throw 'A previous component channel is required for an independent component release'}
+          elseif($env:TERRAIN_COMPONENT -notin @('full','migration')){throw 'A previous component channel is required for an independent component release'}
           node scripts/release/publish-manifest.mjs
           if($LASTEXITCODE -ne 0){throw 'Manifest signing failed'}
       - name: Verify launcher rejects modified manifests and installed files
-        if: inputs.component == 'full' || inputs.component == 'launcher'
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'launcher'
         run: |
           ./scripts/release/test-launcher.ps1 -Manifest release/publish/component-channel.json
           ./scripts/release/test-launcher.ps1 -Manifest release/publish/channel.json

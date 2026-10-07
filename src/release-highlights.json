@@ -1,14 +1,18 @@
 {
-  "version": "1.15.2",
-  "title": "Clearer scenery downloads and licences",
+  "version": "1.16.0",
+  "title": "Smaller, independent updates",
   "features": [
     {
-      "title": "See the whole download",
-      "description": "Overall percentage, data size and completed sections show how much scenery is ready. Existing sections are recognised when you retry."
+      "title": "Update only what changed",
+      "description": "The signed updater checks launcher, editor and scenery separately. It downloads only changed editor files and scenery models, and shows the changed piece names and estimated download size."
     },
     {
-      "title": "Read and accept the scenery licence",
-      "description": "Full model usage terms are available in the activation window. Agree to the terms before activating your pack; your acceptance version is saved locally."
+      "title": "Keep installed scenery",
+      "description": "Matching scenery files are reused and verified. Existing combined scenery packs are split locally during the first migration, avoiding a full scenery download when their model files match."
+    },
+    {
+      "title": "Separate release paths",
+      "description": "Launcher, editor and scenery releases can be published independently, so an editor change does not rebuild or re-sign unchanged scenery."
     }
   ]
 }

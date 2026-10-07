@@ -7,3 +7,4 @@ for(const [script,args]of [['generate-dungeon-range.mjs',['--force']],['generate
 
 const deepstone=spawnSync('python',['scripts/release/fetch-deepstone.py'],{stdio:'inherit'});if(deepstone.status)process.exit(deepstone.status||1);
 const correctedDeepstone=spawnSync(process.execPath,['scripts/release/correct-deepstone-floor-datum.mjs'],{stdio:'inherit'});if(correctedDeepstone.status)process.exit(correctedDeepstone.status||1);
+const splitContent=spawnSync(process.execPath,['scripts/release/split-combined-content.mjs'],{stdio:'inherit'});if(splitContent.status)process.exit(splitContent.status||1);

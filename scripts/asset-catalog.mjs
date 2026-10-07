@@ -3,7 +3,9 @@ import rangeIndex from '../src/generated/dungeon-range-index.json' with {type:'j
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {KIT} from '../src/model.js';
-const meshes=JSON.parse(await fs.readFile('src/generated/openlock.json','utf8'));
+// Client-only releases do not regenerate scenery. Use the checked-in asset index
+// when the full geometry build has not produced its temporary OpenLOCK overlay.
+const meshes=JSON.parse(await fs.readFile('src/generated/openlock.json','utf8').catch(error=>{if(error.code==='ENOENT')return '{}';throw error;}));
 const pkg=JSON.parse(await fs.readFile('package.json','utf8'));
 // Provenance describes licensing, not the position or dimensions of a connection.
 const layout=({templateSource,...geometry})=>geometry;

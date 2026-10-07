@@ -8,7 +8,7 @@ function selection(value,p){
 function normalizeSettings(value={}){
  const p=Object.hasOwn(DEFAULTS,value.provider)?value.provider:'openai',providers={};
  for(const id of Object.keys(DEFAULTS))providers[id]=selection(value.providers?.[id]||(id===p?value:undefined),id);
- const keys={};for(const id of Object.keys(DEFAULTS))if(typeof value.keys?.[id]==='string'&&value.keys[id].length<=4000)keys[id]=value.keys[id];
+ const keys={};for(const id of [...Object.keys(DEFAULTS),'meshy'])if(typeof value.keys?.[id]==='string'&&value.keys[id].length<=4000)keys[id]=value.keys[id];
  for(const id of Object.keys(DEFAULTS))if(providers[id].model==='gpt-6.1-sol')providers[id].model=id==='openai'?'gpt-6-luna':providers[id].model;
  if(providers.openai.imageModel==='gpt-image-2.5-flare')providers.openai.imageModel='gpt-image-2.5-sunburst';
  return {schemaVersion:3,provider:p,providers,keys,voiceProvider:value.voiceProvider==='realtime'?'realtime':'live',agentMode:value.agentMode===true};

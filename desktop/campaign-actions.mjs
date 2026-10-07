@@ -46,7 +46,7 @@ export function validateAction(action,c,{inventory=[],savedScenes=[]}={}){
   if(action.collection==='items'){r.category??='Lore';if(!c.categories.includes(r.category))throw Error('Unknown campaign category');r.body??='';}
   if(action.collection==='characters'){r.details??='';r.abilities??='';r.equipment??='';r.spells??='';r.hp??=0;r.ac??=0;r.portrait=c.characters.find(x=>x.id===r.id)?.portrait||null;}
   if(['notes','timeline'].includes(action.collection)){r.itemId??=null;r.body??='';}if(action.collection==='relationships')r.body??='';
-  const candidate=campaignRecordCandidate(c,action.collection,r);const normalized=candidate[action.collection].find(x=>x.id===r.id);return {type:action.type,collection:action.collection,record:Object.fromEntries(fields[action.collection].filter(k=>k!=='id'||action.record.id).map(k=>[k,normalized[k]]))};
+  const candidate=campaignRecordCandidate(c,action.collection,r);const normalized=candidate[action.collection].find(x=>x.id===r.id);return {type:action.type,collection:action.collection,record:Object.fromEntries([...fields[action.collection],...(action.collection==='characters'?['modelFile']:[])].filter(k=>(k!=='id'||action.record.id)&&normalized[k]!==undefined).map(k=>[k,normalized[k]]))};
  }
  if(action.type==='linkSavedScene'){
   exact(action,['type','id']);if(!savedScenes.some(x=>x.id===action.id))throw Error('Saved encounter is unavailable');return {type:action.type,id:action.id};
@@ -72,6 +72,6 @@ export const assistantInstructions=`For assistant mode return ONLY JSON {message
 
 export function applyCampaignAction(c,action){
  if(action.type==='updateBrief'){const next=briefCandidate(c,action.brief);next.assistant={phase:'studio',nextStep:'Brief saved. Ask your assistant to draft an opening mission or character.',draftBrief:null};return next;}
- if(action.type==='upsertRecord'){const record={...action.record,id:action.record.id||crypto.randomUUID()};if(action.collection==='characters')record.portrait=c.characters.find(x=>x.id===record.id)?.portrait||null;return campaignRecordCandidate(c,action.collection,record);}
+ if(action.type==='upsertRecord'){const record={...action.record,id:action.record.id||crypto.randomUUID()};if(action.collection==='characters'){const old=c.characters.find(x=>x.id===record.id);record.portrait=old?.portrait||null;record.modelFile=old?.modelFile||'';}return campaignRecordCandidate(c,action.collection,record);}
  throw Error('Action requires a project review');
 }

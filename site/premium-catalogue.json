@@ -5,11 +5,11 @@
       "id": "tf-willowbrook-village",
       "name": "Willowbrook Medieval Village",
       "version": "1.0.0",
-      "status": "available",
-      "purchaseAvailable": true,
+      "status": "print-review",
+      "purchaseAvailable": false,
       "pieceCount": 85,
-      "summary": "A rearrangeable medieval village with aged timber cottages, village services, market-square paving and OpenLOCK-compatible scenery.",
-      "delivery": "£9.99 · One emailed code · 85 pieces · client activation and STL download",
+      "summary": "The 85-piece collection is under print-readiness review. Its image previews are available; downloads and checkout are paused while we correct inconsistent STL references and verify base height, wall thickness and sliced detail.",
+      "delivery": "Download and checkout temporarily paused during print-readiness review.",
       "licensing": "Personal use and sale of physical prints permitted. No sharing or resale of digital files. Two activated PCs; offline after installation.",
       "pieces": [
         {

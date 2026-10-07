@@ -7,7 +7,7 @@
 <meta name="description" content="Explore premium Terrain Foundry collections and browse every piece before purchase.">
 <link rel="icon" href="assets/terrain-foundry-mark.svg">
 <link rel="stylesheet" href="packs.css">
-<link rel="stylesheet" href="showcase.css?v=1">
+<link rel="stylesheet" href="showcase.css?v=2">
 <script src="navigation.js" defer>
 </script>
 <script type="module" src="packs.js">
@@ -55,12 +55,18 @@
 <div id="piece-grid" class="piece-grid">
 </div>
 </section>
+<dialog id="piece-preview" class="image-dialog pack-image-dialog" aria-label="Scenery image preview">
+<div class="preview-heading"><p>Scenery image preview</p><button type="button" aria-label="Close image preview">Close ✕</button></div>
+<div id="pack-preview-controls" class="preview-controls" hidden><div role="group" aria-label="Preview detail options"><span>Colour</span><button type="button" data-preview-texture="on" aria-pressed="true">Textured</button><button type="button" data-preview-texture="off" aria-pressed="false">Plain</button><span class="control-spacer"></span><span>OpenLOCK base</span><button type="button" data-preview-base="on" aria-pressed="true">Show</button><button type="button" data-preview-base="off" aria-pressed="false">Hide</button></div><nav id="pack-preview-views" aria-label="Pre-rendered image angles"><button type="button" data-preview-angle="front" aria-pressed="true">Front</button><button type="button" data-preview-angle="right" aria-pressed="false">Right</button><button type="button" data-preview-angle="rear" aria-pressed="false">Rear</button><button type="button" data-preview-angle="left" aria-pressed="false">Left</button></nav></div>
+<div class="zoom-controls" role="group" aria-label="Image zoom"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="reset">100%</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+<div class="preview-image-window"><img id="piece-preview-image" alt=""></div><p id="piece-preview-caption">Image preview only.</p>
+</dialog>
 <section class="redemption-guide">
 <a href="https://www.printablescenery.com/">
 <img src="assets/openlock-compatible.png" width="130" alt="OpenLOCK Compatible">
 </a>
 <p>Our original scenery uses OpenLOCK fixtures under MGN’s commercial grant. The grant is not transferred to buyers. Commercial use of OpenLOCK components must satisfy Printable Scenery’s separate permissions; <a href="https://www.printablescenery.com/2020/02/10/the-openlock-license/">read about its free commercial licence</a>.</p>
-<h2>From purchase to your terrain library</h2>
+<h2>Willowbrook print-readiness review</h2>
 <ol>
 <li>
 <strong>Choose a pack.</strong> Browse its complete piece catalogue before buying.</li>
@@ -72,7 +78,7 @@
 <strong>Build offline.</strong> Once installed, use the pack without a continuous internet connection.</li>
 </ol>
 <p>Pack licences count activated devices. Download retries and updates on an activated device do not use another activation. The free Deepstone starter remains free.</p>
-<p class="availability">Willowbrook includes client activation and STL downloads for £9.99. Read the scenery licence before purchase. The pack has passed digital checks; physical print fit is not yet verified.</p>
+<p class="availability">Willowbrook downloads and checkout are paused while we correct its pack records and verify the exact delivered STL files. Several records still point to older models instead of the selected candidates. We are checking the OpenLOCK base height, minimum wall thickness and sliced surface detail before making the pack available again. Preview images are not proof that a file is print-ready.</p>
 </section>
 </main>
 <footer class="site-footer">

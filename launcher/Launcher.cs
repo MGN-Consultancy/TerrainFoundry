@@ -1,5 +1,5 @@
 using System;using System.IO;using System.IO.Compression;using System.Net;using System.Net.Http;using System.Linq;using System.Text;using System.Collections.Generic;using System.Security.Cryptography;using System.Diagnostics;using System.Threading;using System.Threading.Tasks;using System.Web.Script.Serialization;using System.Windows.Forms;
-[assembly:System.Reflection.AssemblyVersion("1.15.1.0")]
+[assembly:System.Reflection.AssemblyVersion("1.15.2.0")]
 [assembly:System.Reflection.AssemblyProduct("Terrain Foundry Launcher")]
 namespace TerrainFoundry {
  sealed class WorkshopButton:Button {
@@ -59,7 +59,10 @@ namespace TerrainFoundry {
    };
   }
   void DeclineUpdate(){if(busy)return;offer.Visible=false;status.Text=File.Exists(StateFile)?"Ready. You can update next time you open the launcher.":"Installation postponed. Reopen the launcher when you are ready.";play.Enabled=File.Exists(StateFile);}
-  void Progress(string message,int percent=-1){progress.Visible=true;status.Text=message;progress.Style=percent<0?ProgressBarStyle.Marquee:ProgressBarStyle.Continuous;if(percent>=0)progress.Value=Math.Max(0,Math.Min(100,percent));}
+  long batchTotal=0,batchComplete=0,batchCurrent=0;int batchCount=0,batchDone=0;
+  static string DataSize(long n){return n>=1000000000L?(n/1000000000.0).ToString("0.00")+" GB":(n/1000000.0).ToString("0.0")+" MB";}
+  async Task<string> InstallTracked(Dictionary<string,object> package,bool client){batchCurrent=0;string result=await Install(package,client);batchComplete+=Convert.ToInt64(package["size"]);batchDone++;batchCurrent=0;return result;}
+  void Progress(string message,int percent=-1){if(batchTotal>0){long ready=batchComplete+batchCurrent;percent=(int)Math.Min(99,ready*100/batchTotal);message="Overall "+percent+"% - "+batchDone+" of "+batchCount+" packages ready\n"+DataSize(ready)+" / "+DataSize(batchTotal)+" prepared\n\n"+message;}progress.Visible=true;status.Text=message;progress.Style=percent<0?ProgressBarStyle.Marquee:ProgressBarStyle.Continuous;if(percent>=0)progress.Value=Math.Max(0,Math.Min(100,percent));}
   void StopProgress(){progress.Visible=false;progress.Style=ProgressBarStyle.Continuous;progress.Value=File.Exists(StateFile)?100:0;}
   static Dictionary<string,object> Obj(object v){return (Dictionary<string,object>)v;}
   static string Str(Dictionary<string,object> o,string k){return Convert.ToString(o[k]);}
@@ -77,7 +80,7 @@ throw new Exception("The package does not have a valid MGN Consultancy publisher
    #if TEST_TRANSPORT
    string fixture=Path.Combine(Environment.GetEnvironmentVariable("TERRAIN_TEST_RELEASE"),Path.GetFileName(new Uri(url).AbsolutePath));await Task.Run(()=>File.Copy(fixture,destination,true));if(new FileInfo(destination).Length!=size||Hash(destination)!=hash)throw new Exception("Fixture checksum mismatch.");return null;
 #else
-   using(var response=await http.GetAsync(url,HttpCompletionOption.ResponseHeadersRead,cancellation.Token)){response.EnsureSuccessStatusCode();using(var input=await response.Content.ReadAsStreamAsync())using(var output=new FileStream(destination,FileMode.Create,FileAccess.Write)){byte[] buffer=new byte[131072];long total=0;int n;while((n=await input.ReadAsync(buffer,0,buffer.Length,cancellation.Token))>0){total+=n;if(total>size)throw new Exception("Package exceeds signed size.");await output.WriteAsync(buffer,0,n,cancellation.Token);Progress("Downloading "+Str(p,"name")+" — "+(total*100/size)+"%",(int)(total*100/size));}if(total!=size)throw new Exception("Incomplete package.");}}
+   using(var response=await http.GetAsync(url,HttpCompletionOption.ResponseHeadersRead,cancellation.Token)){response.EnsureSuccessStatusCode();using(var input=await response.Content.ReadAsStreamAsync())using(var output=new FileStream(destination,FileMode.Create,FileAccess.Write)){byte[] buffer=new byte[131072];long total=0;int n;while((n=await input.ReadAsync(buffer,0,buffer.Length,cancellation.Token))>0){total+=n;if(total>size)throw new Exception("Package exceeds signed size.");await output.WriteAsync(buffer,0,n,cancellation.Token);batchCurrent=total;Progress("Downloading "+Str(p,"name")+" — "+(total*100/size)+"%",(int)(total*100/size));}if(total!=size)throw new Exception("Incomplete package.");}}
    if(await Task.Run(()=>Hash(destination))!=hash)throw new Exception("Package checksum mismatch.");return null;
 #endif
   }
@@ -133,13 +136,15 @@ throw new Exception("The package does not have a valid MGN Consultancy publisher
      string destination=Path.Combine(Root,"TerrainFoundryLauncher.exe");File.Copy(next,destination+".pending",true);
      WriteRestart(destination,EnvelopeHash(envelope));status.Text="Launcher update verified. Restarting to finish your approved update...";busy=false;Close();return;
     }
-    string client=await Install(Obj(release["client"]),true);var assets=new Dictionary<string,string>();
-    foreach(var p in (System.Collections.IEnumerable)release["assets"]){var asset=Obj(p);assets.Add(Str(asset,"id"),await Install(asset,false));}
+    batchTotal=Convert.ToInt64(Obj(release["client"])["size"]);batchCount=1;batchComplete=0;batchDone=0;batchCurrent=0;
+    foreach(var p in (System.Collections.IEnumerable)release["assets"]){batchTotal+=Convert.ToInt64(Obj(p)["size"]);batchCount++;}
+    string client=await InstallTracked(Obj(release["client"]),true);var assets=new Dictionary<string,string>();
+    foreach(var p in (System.Collections.IEnumerable)release["assets"]){var asset=Obj(p);assets.Add(Str(asset,"id"),await InstallTracked(asset,false));}
     var state=new Dictionary<string,object>{{"schema",1},{"sequence",release["sequence"]},{"version",release["version"]},{"client",client},{"assets",assets},{"envelope",envelope}};
     Atomic(StateFile,Json.Serialize(state));status.Text="Ready - "+Str(release,"version")+".\n\nOpen the installed editor. Your scenes remain on this PC. Updates apply the next time you open the editor.";
     pendingRelease=null;pendingEnvelope=null;
    }catch(Exception e){status.Text="Update not applied: "+e.Message+(File.Exists(StateFile)?"\nYour installed editor is still available offline.":"\nYou can retry the installation.");}
-   finally{busy=false;StopProgress();offer.Visible=pendingRelease!=null;install.Text="Retry update";install.Enabled=pendingRelease!=null;play.Enabled=File.Exists(StateFile);if(closeAfterCancel)Close();else if(launchAfterCancel){launchAfterCancel=false;Launch();}}
+   finally{batchTotal=0;batchCurrent=0;busy=false;StopProgress();offer.Visible=pendingRelease!=null;install.Text="Retry update";install.Enabled=pendingRelease!=null;play.Enabled=File.Exists(StateFile);if(closeAfterCancel)Close();else if(launchAfterCancel){launchAfterCancel=false;Launch();}}
   }
 static void WriteRestart(string target,string approvedHash){
    var helper=new ProcessStartInfo(Path.Combine(Root,"TerrainFoundryLauncher-next.exe")){UseShellExecute=false,CreateNoWindow=true,WorkingDirectory=Root};

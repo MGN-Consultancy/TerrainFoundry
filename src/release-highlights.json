@@ -1,18 +1,14 @@
 {
-  "version": "1.15.0",
-  "title": "Campaign workspaces and voice",
+  "version": "1.15.2",
+  "title": "Clearer scenery downloads and licences",
   "features": [
     {
-      "title": "Speak with your campaign companion",
-      "description": "Offline Windows dictation, optional OpenAI online dictation and live conversation with reviewed campaign and linked-terrain changes. Voice uses your OpenAI API account."
+      "title": "See the whole download",
+      "description": "Overall percentage, data size and completed sections show how much scenery is ready. Existing sections are recognised when you retry."
     },
     {
-      "title": "Reusable campaign workspaces",
-      "description": "Open a campaign.tfcampaign workspace, link shared terrain files, review source updates and export a portable campaign."
-    },
-    {
-      "title": "Readable local campaign memory",
-      "description": "Markdown memory, retained conversations and previous summaries stay on your PC. AI summaries remain drafts until approved."
+      "title": "Read and accept the scenery licence",
+      "description": "Full model usage terms are available in the activation window. Agree to the terms before activating your pack; your acceptance version is saved locally."
     }
   ]
 }

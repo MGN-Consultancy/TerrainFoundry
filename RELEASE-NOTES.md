@@ -1,3 +1,9 @@
+# Terrain Foundry 1.15.2
+
+Scenery installation now shows overall progress, total data size and completed sections, including already installed content. Verification stays visible until each section is ready. The launcher also shows progress across the whole editor/scenery update.
+
+Pack activation displays the full model usage terms without Willowbrook pricing or promotional copy. Accept the unticked licence checkbox before activation. The native client validates acceptance and saves the accepted version locally. Existing purchase rights and OpenLOCK notices remain unchanged.
+
 # Terrain Foundry 1.15.0
 
 Optional Agent mode applies validated campaign documents, story records, illustrations and linked-world building without approval on each action. Activity history and undo preserve control. Dock the companion beside the terrain editor. Shared local game-style.md preferences guide artwork, pacing and beginner support across campaigns; campaign secrets stay separate. Images use the configured OpenAI image model even when Claude handles text. Voice and image requests use your own billed API account.

@@ -14,9 +14,13 @@ function createCampaignStore(directory,{protectedRoots=[]}={}){
   if(Buffer.byteLength(JSON.stringify(value))>15000000)throw Error('Campaign exceeds limit');const validate=(await import('./campaign-schema.mjs')).validateCampaign;const incoming=[];if(Array.isArray(value.chat))for(let i=0;i<value.chat.length;i+=500)incoming.push(...validate({...value,chat:value.chat.slice(i,i+500)}).chat);const c=validate({...value,chat:Array.isArray(value.chat)?value.chat.slice(-500):value.chat});let previous;try{previous=await load(c.id);}catch(e){if(e.code!=='ENOENT')throw e;}
   if(previous&&c.revision!==previous.revision)throw Error('Campaign changed elsewhere. Reopen before saving.');if(!previous&&c.revision!==0)throw Error('Unknown campaign revision');
   c.revision++;c.revisions=[...(previous?.revisions||[]),{revision:c.revision,at:new Date().toISOString(),summary:previous?'Campaign saved':'Campaign created',notes:c.notes}].slice(-50);
+  while(c.revisions.length>1&&Buffer.byteLength(JSON.stringify(c.revisions))>2*1024*1024)c.revisions.shift();
   if(Buffer.byteLength(JSON.stringify(c))>15000000)throw Error('Campaign history exceeds the 15 MB storage limit');
   const dir=await folder(c.id);await fs.mkdir(dir,{recursive:true});const memory=require('./campaign-memory.cjs');if(previous)await memory.archiveConversation(dir,previous.chat);await memory.archiveConversation(dir,incoming);await memory.writeMemory(dir,c);
-  await atomicWrite(path.join(dir,'campaign.json'),JSON.stringify(c));const m=await manifest(c.id);await atomicWrite(path.join(dir,'campaign.tfcampaign'),JSON.stringify({...m,name:c.name},null,2));return c;
+  await atomicWrite(path.join(dir,'campaign.json'),JSON.stringify(c));const m=await manifest(c.id);await atomicWrite(path.join(dir,'campaign.tfcampaign'),JSON.stringify({...m,name:c.name},null,2));
+  // Retention is best effort after the durable save. A corrupt undo log must not
+  // cause a successful save to appear to have failed or lose its protected data.
+  try{await require('./campaign-retention.cjs').retainCampaignHistory(dir,c);}catch{}return c;
  }
  function save(value){return serial(()=>commit(value));}
  async function list(){await fs.mkdir(directory,{recursive:true});const entries=await fs.readdir(directory,{withFileTypes:true}),ids=new Set(Object.keys(await registry()));for(const e of entries){if(/^[a-f0-9-]{16,40}\.campaign\.json$/.test(e.name))ids.add(e.name.split('.')[0]);else if(e.isDirectory()&&/^[a-f0-9-]{16,40}$/.test(e.name))ids.add(e.name);}const out=[];for(const id of [...ids].slice(0,1000)){try{const c=await load(id);if(c.workspaceKind==='design')continue;let stat;try{stat=await fs.stat(path.join(await folder(id),'campaign.json'));}catch(e){if(e.code!=='ENOENT')throw e;stat=await fs.stat(legacy(id));}out.push({id:c.id,name:c.name,revision:c.revision,modified:stat.mtimeMs});}catch(e){if(e.code!=='ENOENT')throw e;}}return out.sort((a,b)=>b.modified-a.modified);}

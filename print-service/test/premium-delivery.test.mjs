@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {randomBytes,generateKeyPairSync,sign} from 'node:crypto';import {premiumDelivery} from '../src/premium-delivery.mjs';import {encryptPack,readPackFile} from '../src/premium-pack.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import {randomBytes,generateKeyPairSync,sign,createHash,verify} from 'node:crypto';import {premiumDelivery} from '../src/premium-delivery.mjs';import {encryptPack,readPackFile} from '../src/premium-pack.mjs';
 function setup(options={}){const values=new Map(),tails=new Map(),mail=[],issuer=generateKeyPairSync('ed25519'),device=generateKeyPairSync('ed25519'),publicKey=device.publicKey.export({format:'pem',type:'spki'});let time=1000000,settled=false;
  const store={async put(p,v,o){if(o?.conditions?.ifNoneMatch==='*'&&values.has(p))throw Object.assign(Error('exists'),{statusCode:412});values.set(p,structuredClone(v));},async get(p){return structuredClone(values.get(p)||null);},async remove(p){values.delete(p);},async *list(prefix){for(const key of values.keys())if(key.startsWith(prefix))yield key;},async lock(p,fn){const previous=tails.get(p)||Promise.resolve();let release;tails.set(p,new Promise(r=>release=r));await previous;try{return await fn(await store.get(p),v=>store.put(p,v));}finally{release();}},async budget(p,max){const key='limit/'+p,v=values.get(key)||0;if(v>=max)throw Object.assign(Error('limited'),{status:429});values.set(key,v+1);}};
  const env={PREMIUM_TOKEN_SECRET:randomBytes(32).toString('base64'),PREMIUM_CODE_HASH_KEY:randomBytes(32).toString('base64'),PREMIUM_OUTBOX_KEY:randomBytes(32).toString('base64'),PREMIUM_SIGNING_KEY:issuer.privateKey.export({format:'pem',type:'pkcs8'}),PAYPAL_MERCHANT_ID:'MERCHANT',PREMIUM_SITE_ORIGIN:'https://terrainfoundry.co.uk',PREMIUM_SERVICE_ENABLED:'true',PREMIUM_PRODUCTS_JSON:JSON.stringify([options.product||{id:'tf-test',name:'Test pack',currency:'GBP',priceMinor:999,deviceAllowance:2,readyForSale:true}])};
@@ -24,4 +24,39 @@ test('one paid collection issues a code for signed child bundles and permits a s
  assert.equal((await download('tf-child-one')).bundles.length,1);await assert.rejects(download('tf-unrelated'),/not part/);
  assert.equal((await f.service.files(t,{code})).sha256,product.stlSha256);await assert.rejects(f.service.files(t,{code:'TF-'+'A'.repeat(32)}),/code/);
  await f.service.webhook(new Headers(),{event_type:'PAYMENT.CAPTURE.REFUNDED',resource:{supplementary_data:{related_ids:{capture_id:'CAPTURE1'}}}});await assert.rejects(f.service.files(t,{code}),/available/);
+});
+
+
+function signedUpdateGrant(f,{packId='tf-test',parentPackId,licenceId='c'.repeat(64),issuer='TerrainFoundry'}={}){
+ const fingerprint=createHash('sha256').update(f.device.publicKey.export({format:'der',type:'spki'})).digest('hex'),payload={schemaVersion:1,issuer,licenceId,packId,deviceFingerprint:fingerprint,issuedAt:1000000,offlineUse:true};if(parentPackId)payload.parentPackId=parentPackId;const bytes=Buffer.from(JSON.stringify(payload)),grant={payload:bytes.toString('base64'),signature:sign(null,bytes,f.issuer.privateKey).toString('base64')};
+ const path='premium/orders/UPDATE-TEST.json';f.values.set(path,{state:'issued',licenceId,packId:parentPackId||packId,devices:{[fingerprint]:{activatedAt:1000000}},deviceAllowance:2,buyerEmail:'buyer@example.com'});f.values.set('premium/licences/'+licenceId+'.json',{path});return grant;
+}
+function updatePack(f,id='tf-test',version='1.0.1'){
+ const pack=encryptPack({packId:id,version,files:[{path:'catalogue.json',bytes:Buffer.from('{}')},{path:'editor/one.bin',bytes:Buffer.from('changed mesh')}],signingKey:f.issuer.privateKey}),m=JSON.parse(Buffer.from(pack.manifest.payload,'base64'));f.values.set('catalogue/'+id+'.json',{approved:true,blob:'packs/'+id+'/'+version+'/'+m.sha256+'.tfc',manifest:pack.manifest,key:pack.key.toString('base64')});return pack;
+}
+async function proveUpdate(f,entitlement,bundleId){const args={entitlement,publicKey:f.publicKey,...(bundleId?{bundleId}:{})},c=await f.service.updateChallenge(args);return {...args,challengeId:c.challengeId,signature:sign(null,Buffer.from(c.message),f.device.privateKey).toString('base64')};}
+
+test('startup updates work with activated entitlement alone while sales paused and never email or change slots',async()=>{
+ const f=setup({product:{id:'tf-test',name:'Paused pack',currency:'GBP',priceMinor:999,deviceAllowance:2,readyForSale:false}}),entitlement=signedUpdateGrant(f),pack=updatePack(f),before=structuredClone(f.values.get('premium/orders/UPDATE-TEST.json'));
+ const args=await proveUpdate(f,entitlement),result=await f.service.updates(args);assert.equal(result.key,pack.key.toString('base64'));assert.equal(JSON.parse(Buffer.from(result.manifest.payload,'base64')).version,'1.0.1');assert.deepEqual(result.entitlement,entitlement);assert.deepEqual(f.values.get('premium/orders/UPDATE-TEST.json'),before);assert.equal(f.mail.length,0);assert.equal([...f.values.keys()].some(p=>p.startsWith('sessions/')),false);await assert.rejects(f.service.updates(args),/expired or invalid/);
+});
+
+test('startup update rejects revoked licence or released device before issuing download credentials',async()=>{
+ const f=setup(),entitlement=signedUpdateGrant(f);updatePack(f);const args=await proveUpdate(f,entitlement),row=f.values.get('premium/orders/UPDATE-TEST.json');row.state='revoked';await assert.rejects(f.service.updates(args),/Activation unavailable/);await assert.rejects(f.service.updateChallenge({entitlement,publicKey:f.publicKey}),/Activation unavailable/);row.state='issued';row.devices={};await assert.rejects(f.service.updateChallenge({entitlement,publicKey:f.publicKey}),/Activation unavailable/);assert.equal(f.values.get('updates/'+args.challengeId+'.json').used,false);
+});
+
+test('startup updates reject issuer tampering, other devices, wrong signing key, expiry and endpoint replay',async()=>{
+ const f=setup(),entitlement=signedUpdateGrant(f);updatePack(f);const args=await proveUpdate(f,entitlement),other=generateKeyPairSync('ed25519');await assert.rejects(f.service.updateChallenge({entitlement,publicKey:other.publicKey.export({format:'pem',type:'spki'})}),/another computer/);await assert.rejects(f.service.updates({...args,signature:sign(null,Buffer.from('wrong-message'),f.device.privateKey).toString('base64')}),/invalid/);await assert.rejects(f.service.updateChallenge({entitlement:{...entitlement,signature:sign(null,Buffer.from(entitlement.payload,'base64'),other.privateKey).toString('base64')},publicKey:f.publicKey}),/Invalid entitlement/);
+ const wrongIssuer=signedUpdateGrant(f,{issuer:'Other'});await assert.rejects(f.service.updateChallenge({entitlement:wrongIssuer,publicKey:f.publicKey}),/Invalid entitlement/);f.expire();await assert.rejects(f.service.updates(args),/expired/);assert.equal(f.mail.length,0);
+});
+
+test('collection updates bind target bundle rights and accept only signed child-to-purchase linkage',async()=>{
+ const p={id:'tf-collection',name:'Collection',currency:'GBP',priceMinor:999,deviceAllowance:2,readyForSale:false,bundleIds:['tf-child-one','tf-child-two']},f=setup({product:p}),entitlement=signedUpdateGrant(f,{packId:p.id});updatePack(f,'tf-child-one');updatePack(f,'tf-child-two');updatePack(f,'tf-unrelated');
+ const args=await proveUpdate(f,entitlement,'tf-child-one');await assert.rejects(f.service.updates({...args,bundleId:'tf-child-two'}),/invalid/);await assert.rejects(f.service.updateChallenge({entitlement,publicKey:f.publicKey,bundleId:'tf-unrelated'}),/not part/);const result=await f.service.updates(args);assert.equal(result.productId,p.id);assert.equal(result.bundles.length,1);const child=result.bundles[0].entitlement,childPayload=JSON.parse(Buffer.from(child.payload,'base64'));assert.equal(childPayload.parentPackId,p.id);assert.equal(childPayload.packId,'tf-child-one');assert.equal(verify(null,Buffer.from(child.payload,'base64'),f.issuer.publicKey,Buffer.from(child.signature,'base64')),true);
+ const childResult=await f.service.updates(await proveUpdate(f,child));assert.equal(childResult.bundles.length,1);await assert.rejects(f.service.updateChallenge({entitlement:child,publicKey:f.publicKey,bundleId:'tf-child-two'}),/not part of this entitlement/);
+ const forgedLink=signedUpdateGrant(f,{packId:'tf-unrelated',parentPackId:p.id});await assert.rejects(f.service.updateChallenge({entitlement:forgedLink,publicKey:f.publicKey}),/not part/);
+});
+
+test('update refuses unapproved delivery and mismatched active licence product even with valid signature',async()=>{
+ const f=setup(),entitlement=signedUpdateGrant(f);const args=await proveUpdate(f,entitlement);await assert.rejects(f.service.updates(args),/not ready/);updatePack(f);f.values.get('premium/orders/UPDATE-TEST.json').packId='tf-unrelated';await assert.rejects(f.service.updates(args),/Activation unavailable/);assert.equal(f.values.get('updates/'+args.challengeId+'.json').used,false);
 });

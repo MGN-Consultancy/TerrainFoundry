@@ -48,7 +48,7 @@ export function validateAction(action,c,{inventory=[],savedScenes=[]}={}){
   exact(action,['type','brief']);const candidate=briefCandidate(c,action.brief);return {type:action.type,brief:{name:candidate.name,setup:candidate.setup,summary:candidate.summary,progress:candidate.progress}};
  }
  if(action.type==='upsertRecord'){
-  exact(action,['type','collection','record']);const fields={items:['id','category','title','body','visible'],characters:['id','name','details','abilities','equipment','spells','hp','ac','visible'],notes:['id','title','body','visible','itemId'],timeline:['id','date','title','body','visible','itemId'],relationships:['id','from','to','label','body','visible']};
+  exact(action,['type','collection','record']);const fields={items:['id','category','title','body','visible','artworkId'],characters:['id','name','details','abilities','equipment','spells','hp','ac','visible'],notes:['id','title','body','visible','itemId'],timeline:['id','date','title','body','visible','itemId'],relationships:['id','from','to','label','body','visible']};
   if(!fields[action.collection])throw Error('This campaign record action is unsupported');exact(action.record,fields[action.collection]);
   if(action.record.id&&!c[action.collection].some(x=>x.id===action.record.id))throw Error('Cannot update an unknown campaign record');
   const old=action.record.id?c[action.collection].find(x=>x.id===action.record.id):null;const r={...old,...action.record,id:action.record.id||crypto.randomUUID(),visible:action.record.visible===undefined?(old?.visible||false):action.record.visible};

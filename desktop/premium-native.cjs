@@ -8,6 +8,9 @@ const trust=require('./premium-trust.cjs');
 async function setupPremiumNative({app,win,ipcMain,BrowserWindow,safeStorage,net,isReserved}){
  const device=createPremiumDevice({userData:app.getPath('userData'),safeStorage});
  const store=createPremiumStore({userData:app.getPath('userData'),safeStorage,device,issuerPublicKey:trust.issuerPublicKey,isReserved});await store.init();let entry;
+ const updater=createPremiumClient({device,store,fetchImpl:(...args)=>net.fetch(...args),onProgress:status=>{if(!win.isDestroyed())win.webContents.send('premium-update-progress',status);}});let update=null;
+ ipcMain.handle('premium-sync',event=>{if(event.sender!==win.webContents)throw Error('Unapproved window.');if(!update)update=updater.sync().finally(()=>{update=null;});return update;});
+ win.once('closed',()=>updater.cancel());
  ipcMain.handle('premium-inventory',event=>{if(event.sender!==win.webContents)throw Error('Unapproved window.');return store.inventory();});
  ipcMain.handle('premium-open',async event=>{
   if(event.sender!==win.webContents)throw Error('Unapproved window.');if(entry){entry.focus();return false;}

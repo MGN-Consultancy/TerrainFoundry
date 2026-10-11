@@ -1,3 +1,11 @@
+# Terrain Foundry 1.17.1 — One companion, three input modes
+
+Choose Text, Dictation or Live voice below the message box. Mode changes stop the previous microphone without clearing the conversation or draft. Native dictation transcribes into your draft; Send remains explicit. Live voice requires your own working OpenAI API key.
+
+Starting a new character or scenery design asks for its name and immediately creates its local folder. Reopen the saved asset to continue its brief, concepts, model, sheet and design discussion. When designing within a campaign, the same campaign companion stays active and only the new design discussion is retained with the asset.
+
+Client-only update; existing launcher and scenery remain unchanged.
+
 # Terrain Foundry 1.17.0 â€” Campaign and asset workspaces
 
 Characters and scenery now have reusable local libraries and guided design workspaces. The campaign companion keeps the same conversation and voice controls as it opens a designer, updates its brief and prepares visual concepts. Characters progress through Brief, Appearance, 3D model and Character sheet, with printable full sheets and compact cards. Scenery saves into named personal packs.

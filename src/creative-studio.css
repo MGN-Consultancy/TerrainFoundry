@@ -31,3 +31,18 @@
 @media(prefers-reduced-motion:reduce){.campaign-activity-form,.campaign-activity-form g{animation:none!important;transition:none!important}}
 
 .creative-panel input,.creative-panel textarea,.creative-panel select{background:#101d26;color:#e4eeee;border:1px solid #48616d;box-sizing:border-box}
+
+/* One input surface, with modes directly below the draft. */
+#campaign-assistant .campaign-voice-controls{border:0;padding:0;margin:0;display:block}
+#campaign-assistant .campaign-voice-actions{display:flex;flex-wrap:wrap;gap:5px;width:100%}
+#campaign-assistant .campaign-voice-actions button{width:auto;min-height:31px;font-size:11px;padding:5px 8px;margin:0}
+#campaign-assistant .campaign-voice-actions button[aria-pressed=true]{background:#304b43;border-color:#e4b367;color:#f4d398;box-shadow:inset 0 -2px #e4b367}
+#campaign-assistant .campaign-voice-actions .primary{margin-left:auto}
+#campaign-assistant .campaign-voice-actions .campaign-audio-settings{margin-left:0;width:31px}
+#campaign-assistant #campaign-prompt-form{display:flex;flex-direction:column;gap:7px}
+#campaign-assistant #campaign-prompt{order:0}
+#campaign-assistant #campaign-voice-status{margin-top:6px}
+.creative-start{width:min(440px,calc(100vw - 36px));padding:24px;border:1px solid #48616d;border-radius:14px;background:#13232d;color:#e4eeee;box-shadow:0 25px 90px #0009}
+.creative-start::backdrop{background:#071018bc}.creative-start form{display:flex;flex-direction:column;gap:12px}.creative-start h2,.creative-start p{margin:0}.creative-start p{color:#adc0c8;font-size:13px;line-height:1.5}.creative-start label{display:flex;flex-direction:column;gap:6px}.creative-start input{width:100%;box-sizing:border-box;padding:10px}.creative-start .creative-actions{margin:6px 0 0}
+
+#campaign-assistant #campaign-suggested-choices{display:flex;flex-wrap:wrap;gap:5px;margin:0}#campaign-assistant #campaign-suggested-choices:empty{display:none}#campaign-assistant #campaign-suggested-choices button{font-size:11px;text-align:left;padding:6px 8px;margin:0}

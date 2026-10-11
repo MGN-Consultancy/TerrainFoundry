@@ -1,18 +1,9 @@
 {
-  "version": "1.17.0",
-  "title": "Design characters and scenery with your campaign companion",
+  "version": "1.17.1",
+  "title": "One companion, three ways to work",
   "features": [
-    {
-      "title": "One conversation from idea to character",
-      "description": "Keep chatting or talking as you develop the brief, choose visual concepts, prepare a Meshy model and build a printable character sheet or compact card. Online generation requires your own working provider keys."
-    },
-    {
-      "title": "Your reusable character and scenery libraries",
-      "description": "Create or continue characters and named scenery packs from the workshop. Import STL, OBJ, GLB, 3MF or ZIP packs, then place saved models into your worlds and encounters."
-    },
-    {
-      "title": "Approve concepts, keep your work and back it up",
-      "description": "Retain the concepts you like and approve a reference before submitting it to Meshy. Export local asset backups or smaller reference backups. Generated geometry still needs thickness, slicing and connector review before printing."
-    }
+    {"title":"Text, dictation or live voice", "description":"Choose your input mode below the message box. Dictation writes into your draft for you to send; live voice continues the conversation using your own OpenAI account. Switching modes keeps your conversation and draft."},
+    {"title":"Name your design and keep developing it", "description":"Choose a name when starting a character or scenery piece. Its folder, brief, concepts, model and design conversation remain in your local library so you can reopen it for adjustments."},
+    {"title":"Your campaign remains the orchestrator", "description":"Character and scenery design use the same companion as the campaign. Relevant design discussion is retained with the asset, while campaign planning stays in the campaign workspace."}
   ]
 }

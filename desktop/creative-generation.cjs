@@ -18,7 +18,7 @@ function conceptReferences(workspace,options={}){
   const references=[...concepts,...uploads.map(r=>({...r,referenceType:'upload'}))];
   if(references.length>4)throw Error('Use at most four reference images in total. Disable an uploaded reference before adding another concept view.');
   if(new Set(references.map(r=>r.id)).size!==references.length)throw Error('Concept and upload reference identities must be distinct.');
-  references.forEach(r=>imageData(r.image));return references;
+  references.forEach(r=>{imageData(r.image);if(r.image.length>20*1024*1024)throw Error('Reference image data URL exceeds the provider 20 MB limit. Use a smaller image.');});return references;
 }
 
 function imageData(value) {

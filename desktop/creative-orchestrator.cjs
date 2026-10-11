@@ -1,9 +1,9 @@
-function createCreativeOrchestrator({library,generation}){
+function createCreativeOrchestrator({library,generation,conversationContext=async()=>null}){
  async function inventory(){const records=await library.list();return {total:records.length,shown:Math.min(records.length,100),assets:records.slice(0,100).map(a=>({id:a.id,kind:a.kind,name:a.name,packName:a.packName,stage:a.stage,hasModel:!!a.model,validationStatus:a.model?.validation?.status||null}))};}
  async function context(view){
   const {designerView}=await import('./creative-actions.mjs'),v=designerView(view);if(!v)return null;
   const a=await library.load(v.assetId);if(a.kind!==v.kind)throw Error('Designer kind does not match the library asset');
-  return {id:a.id,kind:a.kind,name:a.name,description:a.description,stage:a.stage,packName:a.packName,design:a.design,sheet:a.sheet,concepts:a.concepts.map(({id,name,approved,retained})=>({id,name,approved,retained})),selectedConceptId:a.selectedConceptId,model:a.model?{status:a.model.validation?.status,validation:a.model.validation}:null};
+  return {id:a.id,kind:a.kind,name:a.name,description:a.description,stage:a.stage,packName:a.packName,design:a.design,sheet:a.sheet,discussion:await conversationContext(a.id),concepts:a.concepts.map(({id,name,approved,retained})=>({id,name,approved,retained})),selectedConceptId:a.selectedConceptId,model:a.model?{status:a.model.validation?.status,validation:a.model.validation}:null};
  }
  async function dispatch(values){
   const {validateCreativeAction,canonicalSheetPatch}=await import('./creative-actions.mjs');const results=[];

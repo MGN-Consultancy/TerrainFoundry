@@ -1,18 +1,18 @@
 {
-  "version": "1.16.1",
-  "title": "A clearer campaign workshop",
+  "version": "1.17.0",
+  "title": "Design characters and scenery with your campaign companion",
   "features": [
     {
-      "title": "Campaigns, worlds and scenes have their own home",
-      "description": "Create or continue a D&D campaign, a full tabletop world, or a reusable encounter. Each workspace shows recent files and opens its own folder."
+      "title": "One conversation from idea to character",
+      "description": "Keep chatting or talking as you develop the brief, choose visual concepts, prepare a Meshy model and build a printable character sheet or compact card. Online generation requires your own working provider keys."
     },
     {
-      "title": "See your saved work at a glance",
-      "description": "The workshop lists recent campaigns, worlds and saved encounters, including scenes in your local encounter library. Browse the full list whenever you need it."
+      "title": "Your reusable character and scenery libraries",
+      "description": "Create or continue characters and named scenery packs from the workshop. Import STL, OBJ, GLB, 3MF or ZIP packs, then place saved models into your worlds and encounters."
     },
     {
-      "title": "Optional AI settings stay in one place",
-      "description": "Open provider and voice options from the settings cog. Campaign files and terrain remain on your computer; online AI is optional."
+      "title": "Approve concepts, keep your work and back it up",
+      "description": "Retain the concepts you like and approve a reference before submitting it to Meshy. Export local asset backups or smaller reference backups. Generated geometry still needs thickness, slicing and connector review before printing."
     }
   ]
 }

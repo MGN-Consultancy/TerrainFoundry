@@ -1,4 +1,5 @@
 const crypto = require('node:crypto');
+const {providerError,reportedCredits}=require('./provider-errors.cjs');
 
 const MESHY = 'https://api.meshy.ai/openapi/v1';
 const OPENAI = 'https://api.openai.com/v1';
@@ -78,21 +79,25 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     for(;;){const item=await reader.read();if(item.done)break;size+=item.value.length;if(size>limit){await reader.cancel();throw Error('Provider output exceeds the download limit.');}parts.push(Buffer.from(item.value));}
     return Buffer.concat(parts);
   }
-  async function request(url,options={},limit=2*1024*1024) {
-    let response;try{response=await fetchImpl(url,{...options,redirect:'error',signal:AbortSignal.timeout(options.method==='POST'?120000:30000)});}catch{throw Error('Provider connection failed. Check your connection; paid requests are never retried automatically.');}
-    if(!response.ok){const reason={400:'The provider rejected these generation settings.',401:'The API key was rejected. Update it in Settings.',402:'Your Meshy account has insufficient credits.',403:'This API key cannot access this operation. Check its permissions.',404:'The selected model or task is unavailable.',429:'The provider has reached its usage or billing limit.'}[response.status]||'The provider could not complete this request.';const error=Error(reason+' (HTTP '+response.status+').');error.httpStatus=response.status;throw error;}
+  async function request(url,options={},limit=2*1024*1024,onSent) {
+    await ai.requireConsent?.();
+    const provider=url.startsWith(OPENAI)?'openai':'meshy';
+    let response;try{onSent?.();response=await fetchImpl(url,{...options,redirect:'error',signal:AbortSignal.timeout(options.method==='POST'?120000:30000)});}catch(cause){throw providerError({provider,cause});}
+    if(!response.ok){let body=null;try{body=(await bounded(response,16384)).toString('utf8');}catch{}throw providerError({provider,status:response.status,body,requestId:response.headers?.get('x-request-id')||response.headers?.get('request-id')});}
     return bounded(response,limit);
   }
-  async function json(url,options,limit){try{return JSON.parse((await request(url,options,limit)).toString('utf8'));}catch(e){if(e instanceof SyntaxError)throw Error('Provider returned invalid JSON.');throw e;}}
+  async function json(url,options,limit,onSent){try{return JSON.parse((await request(url,options,limit,onSent)).toString('utf8'));}catch(e){if(e instanceof SyntaxError)throw Error('Provider returned invalid JSON.');throw e;}}
   async function keyFor(provider){return provider==='openai'?ai.voiceKey():ai.meshyKey();}
   async function validateProvider(provider,{force=false}={}) {
     if(!['openai','meshy'].includes(provider))throw Error('Unknown AI provider.');
-    let key;try{key=await keyFor(provider);}catch{return {provider,configured:false,working:false,message:'Add your '+(provider==='openai'?'OpenAI':'Meshy')+' API key in Settings to enable this feature.'};}
+    await ai.requireConsent?.();
+    let key;try{key=await keyFor(provider);}catch(e){if(e.code==='consent_required'||/consent/i.test(e.message))throw e;return {provider,configured:false,working:false,message:'Add your '+(provider==='openai'?'OpenAI':'Meshy')+' API key in Settings to enable this feature.'};}
     const fingerprint=crypto.createHash('sha256').update(key).digest('hex'),cached=verified.get(provider);
     if(!force&&cached?.fingerprint===fingerprint&&now()-cached.checkedAt<60000)return {...cached.result};
     let result;
-    try{const value=await json(provider==='openai'?OPENAI+'/models':MESHY+'/balance',{headers:{Authorization:'Bearer '+key}});if(provider==='openai'&&!Array.isArray(value.data))throw Error('OpenAI returned no model list.');if(provider==='meshy'&&(!Number.isFinite(value.balance)||value.balance<0))throw Error('Meshy returned no valid balance.');result={provider,configured:true,working:true,checkedAt:now(),message:'API credentials accepted. Individual model permissions and billing are checked when generating.',...(provider==='meshy'?{balance:value.balance}:{})};}
+    try{const value=await json(provider==='openai'?OPENAI+'/models':MESHY+'/balance',{headers:{Authorization:'Bearer '+key}});if(provider==='openai'&&!Array.isArray(value.data))throw Error('OpenAI returned no model list.');if(provider==='meshy'&&(!Number.isFinite(value.balance)||value.balance<0))throw Error('Meshy returned no valid balance.');result={provider,configured:true,working:true,checkedAt:now(),message:provider==='meshy'&&value.balance===0?'Meshy key accepted, but this account has no credits. Add credits before model generation.':'API credentials accepted. Individual model permissions and billing are checked when generating.',...(provider==='meshy'?{balance:value.balance}:{})};}
     catch(e){result={provider,configured:true,working:false,checkedAt:now(),message:e.message};}
+    await ai.rememberProviderTest?.(provider,{working:result.working,message:result.message,checkedAt:result.checkedAt});
     verified.set(provider,{fingerprint,checkedAt:now(),result});return {...result};
   }
   async function gate(provider){const status=await validateProvider(provider);if(!status.working)throw Error(status.message);if(provider==='meshy'&&status.balance===0)throw Error('Your Meshy API key works, but its account has no credits. Add credits in Meshy before generating a model.');return keyFor(provider);}
@@ -112,10 +117,15 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     const body={model:imageModel,prompt:(instructions+'\nAsset name: '+workspace.name+'\nExisting design description: '+workspace.description+'\nDesign brief: '+JSON.stringify(workspace.design||{}).slice(0,4000)+editGuide+'\nRequested change: '+safePrompt).split(key).join('[removed]'),n:1,size:'1024x1024',output_format:'png'};
     if(references.length)body.images=references.map(r=>({image_url:r.image}));
     emit(id,'Generating concept',0);
-    const result=await json(OPENAI+(references.length?'/images/edits':'/images/generations'),{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify(body)},IMAGE_LIMIT*1.4);
+    let usage=null,outcome='failed',requestSent=false;
+    await ai.requireConsent?.();
+    try{
+    const result=await json(OPENAI+(references.length?'/images/edits':'/images/generations'),{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify(body)},IMAGE_LIMIT*1.4,()=>{requestSent=true;});
+    usage=result.usage||null;outcome='unusable-output';
     const b64=result.data?.[0]?.b64_json;if(typeof b64!=='string')throw Error('OpenAI did not return an image. No automatic retry was made.');
     const concept={id:crypto.randomUUID(),name:'Concept '+((workspace.concepts?.length||0)+1),image:imageData('data:image/png;base64,'+b64),prompt:safePrompt,approved:false,retained:true,createdAt:now(),provider:'openai',model:imageModel,usage:result.usage||null,referenceIds:references.map(r=>r.id),...(references.find(r=>r.referenceType==='concept')?{parentConceptId:references.find(r=>r.referenceType==='concept').id}:{})};
-    const saved=await mutate(id,w=>{w.concepts||=[];w.concepts.push(concept);});emit(id,'Concept ready for review',100);return saved;
+    const saved=await mutate(id,w=>{w.concepts||=[];w.concepts.push(concept);});emit(id,'Concept ready for review',100);outcome='completed';return saved;
+    }finally{if(requestSent)await ai.recordUsage?.({provider:'openai',model:imageModel,kind:'image',usage,outcome});}
   });}
   async function download(url) {
     let address;try{address=new URL(url);}catch{throw Error('Meshy returned an invalid download address.');}
@@ -135,7 +145,8 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
       if(!['PENDING','IN_PROGRESS','SUCCEEDED','FAILED','CANCELED'].includes(task.status))throw Error('Meshy returned an unknown task state. Resume the saved task later.');
       const progress=Number.isFinite(task.progress)?Math.max(0,Math.min(100,task.progress)):0;
       await mutate(id,w=>{if(w.modelJob?.taskId!==job.taskId)throw Error('The current design task changed.');Object.assign(w.modelJob,{status:task.status,progress});});emit(id,'Meshy '+task.status.toLowerCase().replace('_',' '),progress);
-      if(['FAILED','CANCELED'].includes(task.status))throw Error('Meshy could not generate this model. No automatic retry was made.');
+      if(['SUCCEEDED','FAILED','CANCELED'].includes(task.status))await ai.recordUsage?.({provider:'meshy',model:'meshy-7.1',kind:'meshy',usage:null,credits:reportedCredits(task),outcome:task.status==='SUCCEEDED'?'completed':task.status==='CANCELED'?'cancelled':'failed',dedupeKey:'meshy:'+job.taskId});
+      if(['FAILED','CANCELED'].includes(task.status))throw providerError({provider:'meshy',body:task});
       if(task.status!=='SUCCEEDED')continue;
       if(typeof task.model_urls?.stl!=='string')throw Error('Completed Meshy task has no STL. Its task ID remains saved for recovery.');
       const rawStl=await download(task.model_urls.stl);

@@ -1,3 +1,15 @@
+# Terrain Foundry 1.18.2 — Responsive browsing and connected content
+
+Purchased packs check existing device entitlements at startup without another activation code or activation slot. Signed updated manifests reuse unchanged verified entries and download changed or missing entries. An interrupted update preserves the previous installed pack.
+
+Terrain thumbnails are deferred between search results. The Content library links installed free/premium terrain, characters, personal scenery and campaign sounds. Campaign record cards explicitly select artwork and use compact forms. Current approved work and active undo snapshots are protected while recognised archived history has count and byte limits.
+
+Optional structured connection points and access constraints validate road/river seams, stair landing heights and rotated entrance clearance in proposed placement batches. Missing metadata produces warnings rather than a claim of geometric fit. Public pack suggestions use only available catalogue entries and exclude known owned packs. These checks do not certify structural support, print thickness or physical connector fit.
+
+AI settings now require explicit security/data-sharing acceptance before online requests, explain local encryption and its limits, and show dated provider tests. Account-credit and rate-limit errors are distinct. Resettable session usage retains all-time text, image, reported voice and Meshy usage.
+
+Client-only update: existing launcher and scenery files are unchanged. Willowbrook repair candidates are not included and remain under geometry/slicer review.
+
 # Terrain Foundry 1.18.1 â€” Required scenery planning metadata
 
 New scenery and imported personal assets carry a versioned required metadata draft covering purpose, style, environment, era, scale, materials, functional tags, dimensions, grid, floor datum, placement support, connectors, compatibility, seam rules, entrances, traversal, elevations, visual quality and spacing. The companion collects it progressively; a collapsed editor supports manual completion.

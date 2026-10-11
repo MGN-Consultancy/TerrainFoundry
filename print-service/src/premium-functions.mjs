@@ -32,6 +32,8 @@ export async function premiumHandler(request,context,overrides){try{
  else if(action==='activate')result=await service.activate(t,args);
  else if(action==='download-challenge')result=await service.downloadChallenge(t,args);
  else if(action==='download')result=await service.download(t,args);
+ else if(action==='update-challenge')result=await service.updateChallenge(args);
+ else if(action==='updates')result=await service.updates(args);
  else if(action==='files')result=await service.files(t,args);
  else if(action==='resend')result=await service.resend(t,args);
  else if(action==='support-reset')result=await service.supportReset(t,args);
@@ -41,5 +43,5 @@ export async function premiumHandler(request,context,overrides){try{
 app.http('premium-service',{route:'premium/{action?}',methods:['GET','POST'],authLevel:'anonymous',handler:premiumHandler});
 app.timer('premium-email-outbox',{schedule:'0 */1 * * * *',handler:async()=>{if(!env.PREMIUM_STORAGE_CONNECTION_STRING)return;const {store,service}=dependencies();await store.init();await service.outbox();}});
 
-export async function cleanupPremiumAuth(store,now=Date.now()){for(const prefix of ['login/','sessions/','downloads/','premium/challenges/','limits/'])for await(const path of store.list(prefix)){const v=await store.get(path);if(v&&(((v.expires||v.expiresAt)&&(v.expires||v.expiresAt)<now-86400000)||(prefix==='limits/'&&v.createdAt<now-2*86400000)))await store.remove(path);}}
+export async function cleanupPremiumAuth(store,now=Date.now()){for(const prefix of ['login/','sessions/','downloads/','updates/','premium/challenges/','limits/'])for await(const path of store.list(prefix)){const v=await store.get(path);if(v&&(((v.expires||v.expiresAt)&&(v.expires||v.expiresAt)<now-86400000)||(prefix==='limits/'&&v.createdAt<now-2*86400000)))await store.remove(path);}}
 app.timer('premium-auth-cleanup',{schedule:'0 30 3 * * *',handler:async()=>{if(!env.PREMIUM_STORAGE_CONNECTION_STRING)return;const {store}=dependencies();await store.init();await cleanupPremiumAuth(store);}});

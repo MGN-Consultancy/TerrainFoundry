@@ -1,18 +1,22 @@
 {
-  "version": "1.18.1",
-  "title": "Required scenery planning metadata",
+  "version": "1.18.2",
+  "title": "A more connected, responsive workshop",
   "features": [
     {
-      "title": "Scenery the builder can understand",
-      "description": "New personal scenery and imports carry a required metadata draft for style, scale, materials, environment, dimensions, floor datum, connectors, entrances, traversal and spacing."
+      "title": "Purchased packs stay current",
+      "description": "Already-activated packs check for updates at startup. Changed files download while verified unchanged files are reused; interrupted updates preserve the installed pack."
     },
     {
-      "title": "Complete before automatic placement",
-      "description": "The companion gathers missing details progressively. Incomplete scenery stays available for manual work but cannot be placed automatically. Placement uses actual model footprints and checks declared spacing."
+      "title": "Browse and build more comfortably",
+      "description": "Terrain previews load progressively. A Content library brings terrain, characters, personal scenery and campaign sounds together, with artwork cards and compact campaign tools."
     },
     {
-      "title": "A standard for future scenery packs",
-      "description": "New official scenery IDs and premium pack delivery require complete per-piece planning metadata. Metadata travels with your library and project references; it does not certify printability or connector fit."
+      "title": "Better planning and bounded history",
+      "description": "Structured roads, rivers, landings and access areas can be checked during placement. Campaign history has storage limits that preserve current work and active undo snapshots."
+    },
+    {
+      "title": "Understand and control online AI",
+      "description": "Review key encryption, data sharing and provider charges before enabling AI. Test OpenAI, Claude and Meshy separately, see account errors clearly, and reset session usage while retaining lifetime totals."
     }
   ]
 }

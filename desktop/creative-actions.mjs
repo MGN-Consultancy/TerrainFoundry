@@ -1,0 +1,41 @@
+const uuid=v=>typeof v==='string'&&/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(v);
+const plain=v=>v&&typeof v==='object'&&!Array.isArray(v);
+const exact=(v,keys)=>{if(!plain(v)||Object.keys(v).some(k=>!keys.includes(k)))throw Error('Unsupported designer fields');};
+const text=(v,n=20000)=>{if(typeof v!=='string'||v.length>n)throw Error('Designer text exceeds its limit');return v;};
+const abilityNames=['strength','dexterity','constitution','intelligence','wisdom','charisma'];
+const sheetKeys=['species','class','background','alignment','level','experience','proficiencyBonus','abilities','saves','skills','hitPoints','currentHitPoints','temporaryHitPoints','armourClass','speed','initiative','equipment','attacks','spells','features','personality','ideals','bonds','flaws','playerName','rules','biography'];
+export function canonicalSheetPatch(value){
+ if(!plain(value))throw Error('Invalid character sheet');const sheet=structuredClone(value),aliases={abilityScores:'abilities',hp:'hitPoints',maxHp:'hitPoints',temporaryHp:'temporaryHitPoints',ac:'armourClass',ancestry:'species',savingThrows:'saves'};
+ if(sheet.maxHp!==undefined){if(sheet.hitPoints===undefined)sheet.hitPoints=sheet.maxHp;if(sheet.hp!==undefined&&sheet.currentHitPoints===undefined)sheet.currentHitPoints=sheet.hp;delete sheet.maxHp;delete sheet.hp;}
+ for(const [old,current] of Object.entries(aliases))if(sheet[old]!==undefined){if(sheet[current]===undefined)sheet[current]=sheet[old];delete sheet[old];}
+ exact(sheet,sheetKeys);
+ for(const [key,v] of Object.entries(sheet)){
+  if(['abilities','saves','skills'].includes(key)){if(!plain(v)||Object.keys(v).length>30)throw Error('Invalid character abilities or skills');for(const [name,n] of Object.entries(v)){if(key!=='skills'&&!abilityNames.includes(name))throw Error('Unknown character ability');if(key==='abilities'){if(!Number.isInteger(n)||n<1||n>30)throw Error('Ability scores must be whole numbers from 1 to 30');}else if(typeof n!=='boolean')throw Error('Skill and saving throw proficiency must be true or false');}}
+  else if(['level','experience','proficiencyBonus','hitPoints','currentHitPoints','temporaryHitPoints','armourClass','speed','initiative'].includes(key)){const ranges={level:[1,20],initiative:[-100,100],armourClass:[0,100],proficiencyBonus:[0,12],experience:[0,100000000]};const [min,max]=ranges[key]||[0,10000];if(!Number.isFinite(v)||v<min||v>max)throw Error('Character '+key+' is outside its permitted range');}
+  else text(v,12000);
+ }return sheet;
+}
+export const creativeActionTypes=['openDesigner','updateDesign','generateDesignConcept','prepareDesignModel','placeDesign'];
+export function validateCreativeAction(a){
+ if(!creativeActionTypes.includes(a?.type))throw Error('Unsupported designer action');
+ if(a.type==='openDesigner'){
+  exact(a,['type','kind','id','name','packName']);if(!['character','scenery'].includes(a.kind))throw Error('Choose character or scenery');
+  if(a.id&&!uuid(a.id))throw Error('Unknown library asset identity');
+  return {type:a.type,kind:a.kind,...(a.id?{id:a.id}:{}),name:text(a.name||'Untitled '+a.kind,120),...(a.packName||a.kind==='scenery'?{packName:text(a.packName||'My scenery',120)}:{})};
+ }
+ if(!uuid(a.id))throw Error('Use an existing library asset identity');
+ if(a.type==='updateDesign'){
+  exact(a,['type','id','patch']);exact(a.patch,['name','description','sheet','design']);
+  for(const k of ['name','description'])if(a.patch[k]!==undefined)text(a.patch[k],k==='name'?120:20000);
+  for(const k of ['sheet','design'])if(a.patch[k]!==undefined){if(!plain(a.patch[k])||JSON.stringify(a.patch[k]).length>30000)throw Error('Designer draft exceeds its limit');}
+  const result=structuredClone(a);if(result.patch.sheet)result.patch.sheet=canonicalSheetPatch(result.patch.sheet);
+  if(result.patch.design){const d=result.patch.design;for(const key of ['heightMm','widthMm','depthMm','gridWidth','gridDepth','minimumWallMm'])if(d[key]!==undefined&&(!Number.isFinite(d[key])||d[key]<=0||d[key]>10000))throw Error('Invalid design dimensions');if(d.openlock!==undefined&&typeof d.openlock!=='boolean')throw Error('OpenLOCK choice must be true or false');if(d.floorHeightMm!==undefined&&d.floorHeightMm!==8)throw Error('The OpenLOCK joining datum is 8 mm');if(d.upAxis!==undefined&&!['y','z'].includes(d.upAxis))throw Error('Choose Y or Z as the model up axis');}
+  return result;
+ }
+ if(a.type==='generateDesignConcept'){exact(a,['type','id','prompt']);return {type:a.type,id:a.id,prompt:text(a.prompt,4000)};}
+ exact(a,['type','id']);return {type:a.type,id:a.id};
+}
+export function designerView(v){
+ if(v==null)return null;exact(v,['assetId','kind','step']);if(!uuid(v.assetId)||!['character','scenery'].includes(v.kind)||!['brief','concept','model','sheet','pack'].includes(v.step))throw Error('Invalid designer context');return {...v};
+}
+export const creativeInstructions=`You are the single conversation orchestrator for campaigns, characters and scenery. Never send the user to another chat. Open the appropriate workspace with openDesigner {kind:character|scenery,name,packName} or {kind,id} when asked to develop an asset. The app returns the new stable asset ID; use that ID in later actions. While view.designer is active, use designerAsset as the current working draft. Ask one manageable question at a time and keep one evolving description and sheet with updateDesign {id,patch:{name,description,design,sheet}}. Merge explicit answers; do not invent missing stats. Character steps: brief, appearance concepts, approved concept to Meshy 3D, D&D character sheet. Scenery steps: brief, appearance concepts, approved concept to Meshy 3D, named pack. Use generateDesignConcept {id,prompt} only when the user requests new visual concepts. Keep style and front/rear continuity, describe readable print geometry. Never generate branded or copied third-party designs. Use prepareDesignModel {id} to open the 3D review step; it never spends Meshy credits. Only the user can lock a concept and approve a paid Meshy submission in the visual workspace. Never claim that an image, model, approval or library addition exists until the app confirms it. Do not modify concept approval, model paths, task IDs, filenames or licensing through draft tools. Character sheet fields: species,class,background,alignment,level,experience,proficiencyBonus,abilities:{strength,dexterity,constitution,intelligence,wisdom,charisma},saves:{abilityName:boolean},skills:{skillName:boolean},hitPoints,currentHitPoints,temporaryHitPoints,armourClass,speed,initiative,equipment,attacks,spells,features,biography,personality,ideals,bonds,flaws,playerName,rules. Skill and saving-throw values are proficiency booleans, not modifiers. Text fields are strings. Ask the selected D&D edition, ability-generation method and level; do not present invented rules as official. Scenery design fields include heightMm,widthMm,depthMm,gridWidth,gridDepth,openlock,floorHeightMm,minimumWallMm. OpenLOCK joining datum is 8mm, not an 8mm extra tray; sockets and clearances are engineering templates, never invented image geometry. Use the designerLibrary inventory to select existing asset IDs rather than inventing them. Use placeDesign {id} when asked to place an existing saved model in the active terrain editor; this requests renderer placement and is not applied until the editor confirms it. Imported assets remain original unless the user requests a derivative and has the rights. Events and places can have campaign artwork; they only need a Meshy model if a physical prop or scenery representation is requested. Paid jobs require the correct provider key and explicit concept approval. Manual editing/import remains available without AI.`;

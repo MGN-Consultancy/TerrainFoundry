@@ -21,7 +21,7 @@ app.whenReady().then(async()=>{
  const readPrint=require('./print-scenery.cjs').createPrintSceneryReader(path.join(__dirname,'..'));
  ipcMain.on('print-scenery',(event,id,connected=true)=>{try{event.returnValue={files:premiumServices?.store.has(id)?premiumServices.store.readPrint(id,connected):readPrint(id)};}catch(error){event.returnValue={error:error.message};}});
  ipcMain.on('builtin-shape',(event,id,connected)=>{try{event.returnValue=premiumServices?.store.has(id)?premiumServices.store.readShape(id,connected):readBuiltin(id,connected);}catch(error){event.returnValue={error:error.message};}});
- let campaignServices;let finishing=false;app.on('before-quit',e=>{if(!finishing){e.preventDefault();campaignServices?.ai.cancel();campaignServices?.voice.stop();campaignServices?.voice.stopDictation();Promise.all([store.flush(),sceneLibrary.flush(),campaignServices?.store.flush(),campaignServices?.ai.flush(),campaignServices?.creative.library.flush()]).finally(()=>{finishing=true;app.quit();});}});
+ let campaignServices;let finishing=false;app.on('before-quit',e=>{if(!finishing){e.preventDefault();campaignServices?.ai.cancel();campaignServices?.voice.stop();campaignServices?.voice.stopDictation();(async()=>{await campaignServices?.creative.flush?.();await Promise.all([store.flush(),sceneLibrary.flush(),campaignServices?.store.flush(),campaignServices?.ai.flush(),campaignServices?.creative.library.flush()]);})().finally(()=>{finishing=true;app.quit();});}});
  ipcMain.handle('load-recovery',()=>store.loadRecovery());
  ipcMain.handle('save-recovery',(_,data)=>store.saveRecovery(data));
  ipcMain.handle('storage-info',()=>({projects:store.projects,backups:store.backups,recovery:store.recovery,version:app.getVersion()}));

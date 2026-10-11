@@ -33,3 +33,20 @@ test('project catalogue separates worlds and scenes, discovers legacy files, and
   await assert.rejects(store.listProjects('campaign'),/Choose a world or encounter folder/);
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
+
+
+test('project and recovery autosaves deduplicate while retaining bounded exact revisions',async t=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'terrain-bounded-backups-'));t.after(()=>fs.rm(root,{recursive:true,force:true}));
+ const options={userData:path.join(root,'Profile'),documents:path.join(root,'Documents'),installRoot:path.join(root,'Install')};await fs.mkdir(options.installRoot);const store=createProjectStore(options);await store.init();const file=path.join(store.projects,'Repeated.terrain'),first=project('First'),second=project('Second'),revisionsData=Array.from({length:16},(_,i)=>project('Revision '+i));
+ await store.save(file,first);await store.save(file,second);await store.save(file,first);await store.save(file,second);assert.equal((await fs.readdir(store.backups)).length,2);
+ await store.saveRecovery(first);await store.saveRecovery(second);await store.saveRecovery(second);assert.equal(await fs.readFile(store.recovery+'.previous','utf8'),first);
+ for(let i=0;i<16;i++)await store.save(file,revisionsData[i]);const names=await fs.readdir(store.backups);assert.equal(names.length,10);const revisions=await Promise.all(names.map(n=>fs.readFile(path.join(store.backups,n),'utf8')));assert.ok(revisions.includes(revisionsData[14]));assert.equal(await fs.readFile(file,'utf8'),revisionsData[15]);
+ const unchangedStat=await fs.stat(file);await store.save(file,revisionsData[15]);assert.equal((await fs.stat(file)).mtimeMs,unchangedStat.mtimeMs);assert.equal((await fs.readdir(store.backups)).length,10);
+});
+
+
+test('backup retention caps global files and leaves unrelated files untouched',async t=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'terrain-global-backups-'));t.after(()=>fs.rm(root,{recursive:true,force:true}));const options={userData:path.join(root,'Profile'),documents:path.join(root,'Documents'),installRoot:path.join(root,'Install')};await fs.mkdir(options.installRoot);const store=createProjectStore(options);await store.init();
+ for(let i=0;i<105;i++){const key=i.toString(16).padStart(12,'0');await fs.writeFile(path.join(store.backups,`Fixture-${key}-${'a'.repeat(64)}.terrain`),'retained backup');}
+ await fs.writeFile(path.join(store.backups,'README.txt'),'keep this');const file=path.join(store.projects,'Trigger.terrain');await store.save(file,project('First'));await store.save(file,project('Second'));const files=await fs.readdir(store.backups);assert.equal(files.filter(f=>f.endsWith('.terrain')).length,100);assert.equal(await fs.readFile(path.join(store.backups,'README.txt'),'utf8'),'keep this');
+});

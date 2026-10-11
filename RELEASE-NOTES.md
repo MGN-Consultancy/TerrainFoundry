@@ -1,4 +1,14 @@
-# Terrain Foundry 1.17.1 � One companion, three input modes
+# Terrain Foundry 1.18.0 — Connected library and terrain companion
+
+Worlds and encounters now have persistent companion conversations and one evolving plan. Proposed batches appear provisionally on the canvas: keep, retry, adjust manually or discard. The current layout stays unchanged until acceptance, which creates one undo step. Proposals validate asset identities, table bounds, levels and footprint collisions. Protect selected pieces from agent movement. The local library shelf offers available personal models and reusable saved encounters.
+
+Character and scenery designs support D&D, railway, racing and other purposes. Upload up to four active reference images; refine retained concepts with reference continuity or start fresh. Choose a main concept and explicitly approve retained views before Meshy submission. Inspect actual STL, OBJ and embedded GLB geometry and save a model thumbnail. Generated meshes still require geometry, wall-thickness, slicing and physical-fit review; this release does not certify generated OpenLOCK connections.
+
+Storage settings show campaigns, local models, installed packs, recovery, caches and logs. Export or restore personal asset backups and clear temporary library cache files. Recovery snapshots are bounded and duplicate snapshots are avoided.
+
+Uses your own OpenAI and Meshy API keys. Client-only update: the existing launcher and official scenery remain unchanged. Terrain suggestions do not certify routes, structural support or print fit; review the visible placement before acceptance.
+
+# Terrain Foundry 1.17.1 — One companion, three input modes
 
 Choose Text, Dictation or Live voice below the message box. Mode changes stop the previous microphone without clearing the conversation or draft. Native dictation transcribes into your draft; Send remains explicit. Live voice requires your own working OpenAI API key.
 

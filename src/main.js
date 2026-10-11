@@ -7,6 +7,9 @@ import {tableSize,activeLevel,placementHeight,visibleItem,placeEncounter,selecti
 import {CATEGORIES,classifyAsset,filterAssets} from './library-categories.js';
 import {setupLibraryBrowser} from './library-browser.js';
 import {setupCampaignStudio} from './campaign-studio.js';
+import {setupTerrainLibraryDrawer} from './terrain-library-drawer.js';
+import {setupLibraryStorage} from './library-storage.js';
+import {terrainBatch} from '../desktop/terrain-planner.mjs';
 import {setupTutorial} from './tutorial.js';
 import {setupEditorChrome} from './editor-chrome.js';
 import openlockLogo from '../public/openlock-compatible.png';
@@ -148,7 +151,7 @@ async function save(){if(fileOperation)return;try{if(['INPUT','SELECT','TEXTAREA
 
 
 function download(name,data){const u=URL.createObjectURL(new Blob([data],{type:'application/octet-stream'}));const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
-function replace(p){checkpoint();project=p;if(project.kind==='world')$('place-height').value=activeLevel(project).elevation;else $('place-height').value=0;selected=null;category='All';$('family').value='All';$('search').value='';changed();setTool(null);fit();if(project.connectors==='openlock'&&connectionReport(project).overlaps.length)toast('All pieces have Integrated OpenLOCK. This older layout needs more spacing; check the overlapping-base count.');}
+function replace(p){checkpoint();project=p;discardTerrain();campaignStudio?.projectChanged?.();if(project.kind==='world')$('place-height').value=activeLevel(project).elevation;else $('place-height').value=0;selected=null;category='All';$('family').value='All';$('search').value='';changed();setTool(null);fit();if(project.connectors==='openlock'&&connectionReport(project).overlaps.length)toast('All pieces have Integrated OpenLOCK. This older layout needs more spacing; check the overlapping-base count.');}
 $('save').onclick=save;$('new').onclick=()=>{if(!dirty||confirm('Start a new scene? Save first to keep the current scene as a separate project.'))replace(defaults());};$('demo').onclick=()=>{if(!dirty||confirm('Replace this scene with the example dungeon?'))replace(demo());};$('open').onclick=async()=>{if(fileOperation)return;if(dirty&&!confirm('Open another project and replace this scene? Save first if needed.'))return;const revision=editRevision;fileBusy('open');try{if(window.desktop){const opened=await window.desktop.open({withPath:true});if(opened){if(editRevision!==revision){toast('Your project changed while opening a file. Open it again when ready.',true);return;}const p=validateProject(JSON.parse(opened.data));replace(p);try{await rememberScene(p,opened.path);}catch(e){toast('Project opened, but the library preview could not be saved: '+e.message,true);}}}else{const f=document.createElement('input');f.type='file';f.accept='.terrain';f.onchange=async()=>{try{if(f.files[0]){if(f.files[0].size>100000000)throw Error('Project exceeds 100 MB.');const text=await f.files[0].text();if(editRevision!==revision)throw Error('Your project changed while opening. Open the file again when ready.');replace(validateProject(JSON.parse(text)));}}catch(e){toast(e.message,true);}};f.click();}}catch(e){toast('Could not open project: '+e.message,true);}finally{fileBusy(null);}};
 
 function printFiles(){return makePrintFiles(project);}
@@ -230,7 +233,19 @@ async function placeCreativeAsset(record){
  category='Imported';$('search').value='';$('family').value='All';setTool(null);inspectFront();toast(record.name+' added to the scene. Save the project to keep this model revision.');
  return {assetId,itemId:item.id};
 }
-const campaignStudio=setupCampaignStudio({getProject:()=>project,replace,toast,isDirty:()=>dirty,onPlaceAsset:placeCreativeAsset});
+const provisional=new THREE.Group();scene.add(provisional);let pendingTerrain=null;
+const terrainReview=document.createElement('section');terrainReview.className='terrain-batch-review';terrainReview.hidden=true;terrainReview.setAttribute('aria-label','Provisional terrain batch');terrainReview.innerHTML='<strong></strong><small></small><div><button data-keep>Keep batch</button><button data-retry>Try another</button><button data-adjust>Adjust manually</button><button data-cancel>Discard</button></div>';document.body.append(terrainReview);
+function discardTerrain(){pendingTerrain=null;while(provisional.children.length)dispose(provisional.children[0]);terrainReview.hidden=true;}
+function terrainInventory(){return allKit().map(a=>{const s=connectionSpec(a.id,project.assets);return {id:a.id,name:a.name,widthMm:s?.width,depthMm:s?.depth,footprints:s?.footprints,...(project.assets?.[a.id]?{widthMm:s.width*project.grid/25.4,depthMm:s.depth*project.grid/25.4}: {})};});}
+async function previewTerrain(action){const checked=terrainBatch(project,action,terrainInventory());discardTerrain();pendingTerrain={action,revision:editRevision};for(const item of checked.added){const mesh=new THREE.Mesh(geometry(item.type,project.grid,project.assets),new THREE.MeshStandardMaterial({color:'#65d5e4',transparent:true,opacity:.6,roughness:.8,depthWrite:false}));mesh.position.set(item.x*project.grid,item.y,item.z*project.grid);mesh.rotation.y=item.rotation*Math.PI/180;provisional.add(mesh);}terrainReview.querySelector('strong').textContent=action.name+' · '+checked.added.length+' provisional pieces';terrainReview.querySelector('small').textContent=checked.warnings.join(' ');terrainReview.hidden=false;}
+function keepTerrain(manual=false){if(!pendingTerrain)return;if(pendingTerrain.revision!==editRevision){discardTerrain();throw Error('The terrain changed while this preview was open. Ask for a fresh batch.');}const checked=terrainBatch(project,pendingTerrain.action,terrainInventory());worldChange(()=>{project.items=checked.project.items;if(manual)selected=checked.added[0].id;});discardTerrain();toast('Batch kept. Undo restores the previous terrain.');}
+terrainReview.querySelector('[data-keep]').onclick=()=>{try{keepTerrain();}catch(e){toast(e.message,true);}};
+terrainReview.querySelector('[data-adjust]').onclick=()=>{try{keepTerrain(true);setTool(null);inspectFront();}catch(e){toast(e.message,true);}};
+terrainReview.querySelector('[data-cancel]').onclick=discardTerrain;
+terrainReview.querySelector('[data-retry]').onclick=()=>{discardTerrain();campaignStudio.request?.('Try another terrain batch using the same agreed plan. Keep my existing placements.');};
+const campaignStudio=setupCampaignStudio({getProject:()=>project,replace,toast,isDirty:()=>dirty,onPlaceAsset:placeCreativeAsset,onTerrainProposal:previewTerrain,onTerrainIdentity:id=>{project.companionId=id;changed();}});
+const libraryStorage=setupLibraryStorage({api:window.desktop,toast});const storageButton=document.createElement('button');storageButton.textContent='Storage & backup';storageButton.onclick=()=>libraryStorage.open();document.getElementById('campaign-setup-dialog')?.append(storageButton);
+const companionButton=document.createElement('button');companionButton.id='terrain-companion';companionButton.textContent='World / scene companion';companionButton.onclick=()=>campaignStudio.terrain().catch(e=>toast(e.message,true));document.querySelector('.header-actions').append(companionButton);
 setupTutorial(()=>campaignStudio.home());
 
 $('blacksmith-demo').onclick=()=>{if(!dirty||confirm('Replace this scene with Ironbrook blacksmith?')){roofsHidden=false;replace(blacksmithDemo());category='All';library();fit();}};
@@ -247,3 +262,11 @@ sceneLibrary=setupSceneLibrary({toast,useScene:async(scene,entry,point)=>{
  document.querySelector(`[data-encounter="${template.id}"]`).click();
  if(point)place(point,null);else toast('Click the table to place '+scene.name+' · Shift places more');
 }});
+
+const terrainShelf=setupTerrainLibraryDrawer({api:window.desktop,toast,onPlaceAsset:placeCreativeAsset,onOpenScene:async({entry,mode,loaded})=>{
+ const saved=validateProject(JSON.parse(loaded.data));if(mode==='open'){if(dirty&&!confirm('Open this scene? Save your current terrain first if needed.'))return;replace(saved);return;}
+ if(project.kind!=='world')throw Error('Open a world to place a reusable encounter, or choose Open scene.');
+ let template;worldChange(()=>{template=addEncounter(project,saved);template.libraryId=entry.id;template.libraryRevision=loaded.revision;});document.querySelector(`[data-encounter="${template.id}"]`).click();toast('Click the table to place this independent scene copy.');
+}});
+const shelfButton=document.createElement('button');shelfButton.textContent='My library';shelfButton.onclick=()=>terrainShelf.toggle();document.querySelector('.header-actions').append(shelfButton);
+const protectButton=document.createElement('button');protectButton.textContent='Protect / unprotect from AI';protectButton.title='Protect the selected piece or encounter from AI terrain edits';protectButton.onclick=()=>{const item=project.items.find(i=>i.id===selected);if(!item){toast('Select a piece or encounter first.');return;}const protect=!item.locked;worldChange(()=>selectionItems(project,item).forEach(i=>i.locked=protect));toast(protect?'Selection protected from AI changes.':'Selection can be edited by AI.');};document.querySelector('.right').append(protectButton);

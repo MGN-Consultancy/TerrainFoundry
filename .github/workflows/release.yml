@@ -77,7 +77,7 @@ jobs:
         run: node --test tests/incremental-content-layout.test.mjs tests/builtin-shapes.test.mjs tests/scenery-store.test.mjs tests/legacy-content-migration.test.mjs
       - name: Verify campaign orchestration and reusable creative libraries
         if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
-        run: node --test tests/campaign*.test.mjs tests/creative*.test.mjs
+        run: node --test tests/campaign*.test.mjs tests/creative*.test.mjs tests/terrain*.test.mjs tests/storage-audit.test.mjs tests/project-store.test.mjs
       - run: pnpm build
         if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
       - run: node scripts/package.cjs

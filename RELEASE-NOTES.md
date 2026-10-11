@@ -1,3 +1,13 @@
+# Terrain Foundry 1.17.0 — Campaign and asset workspaces
+
+Characters and scenery now have reusable local libraries and guided design workspaces. The campaign companion keeps the same conversation and voice controls as it opens a designer, updates its brief and prepares visual concepts. Characters progress through Brief, Appearance, 3D model and Character sheet, with printable full sheets and compact cards. Scenery saves into named personal packs.
+
+OpenAI and Meshy use your own encrypted API keys. Retain or remove image concepts, select and approve the reference, then explicitly approve the paid Meshy submission. Tasks persist for safe resumption; raw geometry and textured previews are retained. Generated models remain candidates for geometry, thickness, orientation and slicing review. OpenLOCK design requirements are stored with the brief; an AI-generated connector is never represented as a verified official template.
+
+Import STL, OBJ, GLB and 3MF models, including ZIP scenery packs, and place saved models into scenes with stable library references and undo. Original provider files and licence text are retained. Export and restore personal asset backups; official free/premium pack references can be included without transferring activation credentials. Premium packs retain their activation requirements.
+
+This is a client-only release. Existing launcher and official scenery content remain independently versioned and are reused.
+
 # Terrain Foundry 1.16.1 — Client update
 
 The opening workshop now gives D&D campaigns, worlds and reusable encounters clear roles, original illustrated cards, and recent saved files. Each category opens its own local folder and can show the full saved list. Encounters include entries from the local scene library. AI and voice configuration is available from the settings cog in the workshop and campaign workspace.

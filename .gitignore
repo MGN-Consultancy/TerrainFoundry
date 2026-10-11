@@ -31,3 +31,4 @@ src/generated/*.json
 
 # Local provider credentials must never enter source control.
 meshy.txt
+/desktop/vendor/

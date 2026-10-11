@@ -5,6 +5,10 @@ function setupCreativeNative({app,win,ipcMain,dialog,BrowserWindow,ai,store,net,
  const generation=require('./creative-generation.cjs').createCreativeGeneration({library,ai,fetchImpl:(...args)=>net.fetch(...args),onProgress:value=>{if(!win.isDestroyed())win.webContents.send('creative-progress',value);}});
  const orchestrator=require('./creative-orchestrator.cjs').createCreativeOrchestrator({library,generation});
  const sessions=new Map(),confirming=new Set(),ownedFile=path.join(directory,'owned-packs.json');
+ const discussionBindings=new Map();let discussionQueue=Promise.resolve();
+ const discussionSerial=fn=>{const task=discussionQueue.then(fn);discussionQueue=task.catch(()=>{});return task;};
+ const messageHash=m=>require('node:crypto').createHash('sha256').update(JSON.stringify({role:m.role,text:m.text,at:m.at})).digest('hex');
+ const safeMessage=m=>({role:m.role,text:m.text.replace(/\b(?:sk-[A-Za-z0-9_-]{12,}|msy_[A-Za-z0-9_-]{12,})\b/g,'[removed API key]'),at:m.at});
  async function ownedReferences(){try{const stat=await fs.lstat(ownedFile);if(!stat.isFile()||stat.isSymbolicLink()||stat.size>2000000)throw Error('Invalid restored pack references');return (await import('./creative-schema.mjs')).validateOwnedReferences(JSON.parse(await fs.readFile(ownedFile,'utf8')));}catch(e){if(e.code==='ENOENT')return [];throw e;}}
  async function persistReferences(values){const refs=(await import('./creative-schema.mjs')).validateOwnedReferences(values);await fs.mkdir(directory,{recursive:true});try{const stat=await fs.lstat(ownedFile);if(!stat.isFile()||stat.isSymbolicLink())throw Error('Invalid restored pack references');}catch(e){if(e.code!=='ENOENT')throw e;}await require('./project-store.cjs').atomicWrite(ownedFile,JSON.stringify(refs,null,2));return refs;}
  async function session(id){
@@ -17,9 +21,30 @@ function setupCreativeNative({app,win,ipcMain,dialog,BrowserWindow,ai,store,net,
    const {createCampaign}=await import('./campaign-schema.mjs');let c=createCampaign((a.name+' design').slice(0,120),{theme:a.description.slice(0,2000),rules:a.sheet?.rules||'D&D 5e'});c.workspaceKind='design';c=await store.save(c);await store.moveWorkspace(c.id,folder);const latest=await library.load(id);await library.save({...latest,references:[...latest.references.filter(r=>r.type!=='design-conversation'),{type:'design-conversation',campaignId:c.id}]});return c;
   })();sessions.set(id,task);try{return await task;}finally{sessions.delete(id);}
  }
+ async function rememberDiscussion(assetId,campaignId){
+  const binding=discussionBindings.get(assetId);if(!binding||binding.campaignId!==campaignId)return {remembered:0,active:false};
+  const source=await store.load(campaignId),conversation=await session(assetId);if(source.id===conversation.id)return {remembered:0,active:true,conversationId:conversation.id};
+  const anchor=binding.lastHash?source.chat.findLastIndex(m=>messageHash(m)===binding.lastHash):-1;
+  if(binding.lastHash&&anchor<0)throw Error('The source conversation history changed. Reopen this designer to resume saving its discussion safely.');
+  const incoming=source.chat.slice(anchor+1),seen=new Set(conversation.chat.map(messageHash)),messages=incoming.map(safeMessage).filter(m=>{const hash=messageHash(m);if(seen.has(hash))return false;seen.add(hash);return true;});
+  if(messages.length){const asset=await library.load(assetId);conversation.chat=[...conversation.chat,...messages].slice(-500);conversation.summary=asset.description.slice(0,20000);conversation.setup.theme=asset.description.slice(0,2000);await store.save(conversation);}
+  // This cursor contains only identity/hashes, never unrelated source text or credentials.
+  const folder=await store.folder(conversation.id),cursor=path.join(folder,'discussion-cursor.json');try{const stat=await fs.lstat(cursor);if(!stat.isFile()||stat.isSymbolicLink())throw Error('Invalid design discussion cursor');}catch(e){if(e.code!=='ENOENT')throw e;}
+  binding.lastHash=source.chat.length?messageHash(source.chat.at(-1)):null;await require('./project-store.cjs').atomicWrite(cursor,JSON.stringify({schema:1,sourceCampaignId:source.id,lastMessageHash:binding.lastHash,sourceRevision:source.revision}));
+  return {remembered:messages.length,active:true,conversationId:conversation.id};
+ }
+ async function bindDiscussion(assetId,campaignId){
+  await library.load(assetId);const source=await store.load(campaignId),existing=discussionBindings.get(assetId);
+  if(existing?.campaignId===campaignId)return {bound:true,conversationId:(await session(assetId)).id};
+  for(const [previousId,previous] of discussionBindings)if(previousId===assetId||previous.campaignId===campaignId){try{await rememberDiscussion(previousId,previous.campaignId);}finally{discussionBindings.delete(previousId);}}
+  const conversation=await session(assetId);if(conversation.id===source.id)return {bound:false,conversationId:conversation.id};
+  discussionBindings.set(assetId,{campaignId,lastHash:source.chat.length?messageHash(source.chat.at(-1)):null});return {bound:true,conversationId:conversation.id};
+ }
+ async function unbindDiscussion(assetId,campaignId){try{return await rememberDiscussion(assetId,campaignId);}finally{if(discussionBindings.get(assetId)?.campaignId===campaignId)discussionBindings.delete(assetId);}}
  const handle=(name,fn)=>ipcMain.handle(name,async(e,...args)=>{if(e.sender!==win.webContents)throw Error('Unapproved asset library window');return fn(...args);});
  handle('creative-list',options=>library.list(options));handle('creative-packs',()=>library.listPacks());handle('creative-create',value=>library.create(value));handle('creative-load',id=>library.load(id));handle('creative-save',value=>library.save(value));handle('creative-read-model',async id=>{const r=await library.readModel(id);return {...r,bytes:new Uint8Array(r.bytes)};});
  handle('creative-session',session);handle('creative-provider-validate',(provider,options)=>generation.validateProvider(provider,options));handle('creative-owned-references',ownedReferences);
+ handle('creative-bind-conversation',(assetId,campaignId)=>discussionSerial(()=>bindDiscussion(assetId,campaignId)));handle('creative-remember-conversation',(assetId,campaignId)=>discussionSerial(()=>rememberDiscussion(assetId,campaignId)));handle('creative-unbind-conversation',(assetId,campaignId)=>discussionSerial(()=>unbindDiscussion(assetId,campaignId)));
  handle('creative-generate-concept',(id,prompt)=>generation.generateConcept(id,prompt));
  handle('creative-generate-model',async(id,conceptId)=>{
   if(confirming.has(id))throw Error('This model generation is already awaiting confirmation.');confirming.add(id);try{
@@ -48,6 +73,6 @@ function setupCreativeNative({app,win,ipcMain,dialog,BrowserWindow,ai,store,net,
   const a=await library.load(assetId);if(a.kind!=='character')throw Error('Choose a character asset');const c=await store.load(campaignId),{normaliseCharacterSheet}=await import('./character-sheet.mjs'),{canonicalSheetPatch}=await import('./creative-actions.mjs'),sheet=normaliseCharacterSheet(canonicalSheetPatch(a.sheet||{})),old=c.characters.find(x=>x.libraryAssetId===assetId),record={id:old?.id||require('node:crypto').randomUUID(),libraryAssetId:assetId,name:a.name,details:[a.description,sheet.biography].filter(Boolean).join('\n\n').slice(0,20000),abilities:JSON.stringify(sheet.abilities),equipment:sheet.equipment,spells:sheet.spells,hp:sheet.currentHitPoints,ac:sheet.armourClass,portrait:a.concepts.find(x=>x.id===a.selectedConceptId&&x.approved&&x.retained)?.image||null,modelFile:'',visible:old?.visible||false};
   if(record.portrait?.length>5500000){const image=require('electron').nativeImage.createFromDataURL(record.portrait);if(image.isEmpty())throw Error('Approved portrait could not be read');record.portrait='data:image/jpeg;base64,'+image.resize({width:Math.min(1024,image.getSize().width)}).toJPEG(85).toString('base64');}const i=c.characters.findIndex(x=>x.id===record.id);if(i<0)c.characters.push(record);else c.characters[i]=record;return store.save(c);
  });
- return {library,generation,orchestrator,session,ownedReferences};
+ return {library,generation,orchestrator,session,ownedReferences,flush:()=>discussionQueue};
 }
 module.exports={setupCreativeNative};

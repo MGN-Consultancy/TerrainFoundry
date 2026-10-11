@@ -21,7 +21,9 @@ import {KIT,defaults,blacksmithDemo,caveDemo,demo,villageDemo,dungeonDemo,benchm
 import {geometry as buildGeometry,connectionSpec} from './geometry.js';
 const geometry=(type,g,assets)=>buildGeometry(type,g,assets,project.connectors==='openlock');
 import './style.css';
+import './creative-studio.css';
 import {importSTL} from './import-mesh.js';
+import {importCreativeMesh} from './creative-mesh.js';
 import {terrainMaterial} from './surfaces.js';
 import {makeThumbnails} from './thumbnails.js';
 let thumbnails={};
@@ -212,7 +214,23 @@ for(const [id,create,prefix]of [['curves-demo',curveDemo,'a-'],['garden-demo',ga
 setupPrintEstimate({getProject:()=>project,makePrintFiles});
 
 setupEditorChrome();
-const campaignStudio=setupCampaignStudio({getProject:()=>project,replace,toast,isDirty:()=>dirty});
+async function placeCreativeAsset(record){
+ if(!record?.id||!['character','scenery'].includes(record.kind))throw Error('Choose a saved character or scenery asset.');
+ if(!window.desktop?.creativeReadModel)throw Error('Library models can be placed in the desktop client.');
+ if(project.items.length>=5000)throw Error('Project limit is 5,000 pieces.');
+ if(project.kind==='world'&&!activeLevel(project).visible)throw Error('Show the active world level before placing an asset.');
+ const target=project,gridSize=project.grid;toast('Checking library model geometry...');
+ const model=await window.desktop.creativeReadModel(record.id);
+ if(!model?.metadata?.sha256||!/^[a-f0-9]{64}$/.test(model.metadata.sha256))throw Error('The model has no valid library revision.');
+ const assetId='u-'+record.id+'-'+model.metadata.sha256.slice(0,12);
+ let asset=project.assets?.[assetId];
+ if(!asset){if(Object.keys(project.assets||{}).length>=30)throw Error('A project supports 30 imported model revisions.');asset=await importCreativeMesh(model.bytes,model.ext,{name:record.name,kind:record.kind},gridSize);asset.libraryId=record.id;asset.libraryRevision=model.metadata.sha256;asset.packId=record.packId||null;}
+ if(project!==target||project.grid!==gridSize)throw Error('The active project changed while importing. Place the asset again.');
+ let item;worldChange(()=>{project.assets={...project.assets,[assetId]:asset};item={...piece(assetId,0,0,0,project.kind==='world'?placementHeight(project):0),color:'#ffffff'};if(project.kind==='world')item.levelId=project.world.activeLevel;project.items.push(item);selected=item.id;});
+ category='Imported';$('search').value='';$('family').value='All';setTool(null);inspectFront();toast(record.name+' added to the scene. Save the project to keep this model revision.');
+ return {assetId,itemId:item.id};
+}
+const campaignStudio=setupCampaignStudio({getProject:()=>project,replace,toast,isDirty:()=>dirty,onPlaceAsset:placeCreativeAsset});
 setupTutorial(()=>campaignStudio.home());
 
 $('blacksmith-demo').onclick=()=>{if(!dirty||confirm('Replace this scene with Ironbrook blacksmith?')){roofsHidden=false;replace(blacksmithDemo());category='All';library();fit();}};

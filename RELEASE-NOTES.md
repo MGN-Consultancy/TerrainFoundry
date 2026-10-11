@@ -16,7 +16,7 @@ Starting a new character or scenery design asks for its name and immediately cre
 
 Client-only update; existing launcher and scenery remain unchanged.
 
-# Terrain Foundry 1.17.0 â€” Campaign and asset workspaces
+# Terrain Foundry 1.17.0 — Campaign and asset workspaces
 
 Characters and scenery now have reusable local libraries and guided design workspaces. The campaign companion keeps the same conversation and voice controls as it opens a designer, updates its brief and prepares visual concepts. Characters progress through Brief, Appearance, 3D model and Character sheet, with printable full sheets and compact cards. Scenery saves into named personal packs.
 
@@ -26,7 +26,7 @@ Import STL, OBJ, GLB and 3MF models, including ZIP scenery packs, and place save
 
 This is a client-only release. Existing launcher and official scenery content remain independently versioned and are reused.
 
-# Terrain Foundry 1.16.1 â€” Client update
+# Terrain Foundry 1.16.1 — Client update
 
 The opening workshop now gives D&D campaigns, worlds and reusable encounters clear roles, original illustrated cards, and recent saved files. Each category opens its own local folder and can show the full saved list. Encounters include entries from the local scene library. AI and voice configuration is available from the settings cog in the workshop and campaign workspace.
 
@@ -98,7 +98,7 @@ Existing terrain scenes, worlds and installed asset identities are preserved. In
 
 # Terrain Foundry 1.9.1
 
-Corrects the free Deepstone Caverns floor carriers: standard floor surfaces are lowered from 12 mm to 8.4 mm, and the concealed pit trap surface to 8.6 mm to preserve its printable mesh. The original 0â€“8 mm connector zone, port counts and port positions are retained, including six ports on the long floor. Editor geometry and all full-resolution print meshes are rebuilt from the pinned sculpts with matching height transforms and refreshed hashes. All 1,502 release tests pass; physical print fit remains to be verified.
+Corrects the free Deepstone Caverns floor carriers: standard floor surfaces are lowered from 12 mm to 8.4 mm, and the concealed pit trap surface to 8.6 mm to preserve its printable mesh. The original 0–8 mm connector zone, port counts and port positions are retained, including six ports on the long floor. Editor geometry and all full-resolution print meshes are rebuilt from the pinned sculpts with matching height transforms and refreshed hashes. All 1,502 release tests pass; physical print fit remains to be verified.
 
 # Terrain Foundry 1.9.0
 
@@ -108,7 +108,7 @@ Geometry, editor imports and nominal joining heights checked in software; physic
 
 # Terrain Foundry 1.8.1
 
-Saved encounters now appear in **Encounters & scenesâ€¦** with a rendered preview of their complete build. Save updates the same library entry; old scene files can be added with **Add existing sceneâ€¦**. The searchable library is paginated and persists locally across editor restarts.
+Saved encounters now appear in **Encounters & scenes…** with a rendered preview of their complete build. Save updates the same library entry; old scene files can be added with **Add existing scene…**. The searchable library is paginated and persists locally across editor restarts.
 
 Click a library scene to place it in a world or reopen it as an editable encounter. Drag a preview onto a world for direct grouped placement. World encounter cards also display complete-build previews. Scene files embed PNG previews and the local library retains independent snapshots, including imported geometry. Existing world files remain compatible; scenery packs are unchanged.
 

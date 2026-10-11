@@ -21,7 +21,7 @@ const harness=(_request,response)=>{
  window.ready=true;
  </script></body></html>`);
 };
-const server=await createServer({plugins:[{name:'creative-smoke-harness',configureServer(server){server.middlewares.use('/__creative_smoke',harness)}}],server:{host:'127.0.0.1',port:0},logLevel:'error'});
+const server=await createServer({configFile:false,publicDir:false,plugins:[{name:'creative-smoke-harness',configureServer(server){server.middlewares.use('/__creative_smoke',harness)}}],server:{host:'127.0.0.1',port:0},logLevel:'error'});
 await server.listen();
 const browser=await chromium.launch({headless:true,...(process.env.TERRAIN_BROWSER_EXECUTABLE?{executablePath:process.env.TERRAIN_BROWSER_EXECUTABLE}:{})}),page=await browser.newPage({viewport:{width:1365,height:900}});
 try {

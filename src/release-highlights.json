@@ -1,22 +1,18 @@
 {
-  "version": "1.18.0",
-  "title": "Your library, concepts and terrain connected",
+  "version": "1.18.1",
+  "title": "Required scenery planning metadata",
   "features": [
     {
-      "title": "One companion for worlds and encounters",
-      "description": "Shape a single evolving plan using text or voice, preview proposed batches on your terrain, then keep, retry or adjust them. Conversations stay with each saved project."
+      "title": "Scenery the builder can understand",
+      "description": "New personal scenery and imports carry a required metadata draft for style, scale, materials, environment, dimensions, floor datum, connectors, entrances, traversal and spacing."
     },
     {
-      "title": "Keep your designs visually consistent",
-      "description": "Use up to four active reference images, refine a retained concept or start fresh, and choose the main thumbnail. Approve retained views before submitting them to Meshy. Inspect the actual returned model in 3D."
+      "title": "Complete before automatic placement",
+      "description": "The companion gathers missing details progressively. Incomplete scenery stays available for manual work but cannot be placed automatically. Placement uses actual model footprints and checks declared spacing."
     },
     {
-      "title": "Build from your local library",
-      "description": "Find available personal assets and saved encounters in the terrain library shelf. Character and scenery designs support D&D, model railway, racing and other purposes."
-    },
-    {
-      "title": "Understand and protect local storage",
-      "description": "See storage used by campaigns, models, official packs, recovery and caches. Export or restore your personal library and remove temporary library cache files without deleting saved designs."
+      "title": "A standard for future scenery packs",
+      "description": "New official scenery IDs and premium pack delivery require complete per-piece planning metadata. Metadata travels with your library and project references; it does not certify printability or connector fit."
     }
   ]
 }

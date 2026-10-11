@@ -69,6 +69,9 @@ jobs:
           gh release download --pattern 'scenery-*.zip' --dir release/legacy --clobber
           if($LASTEXITCODE -ne 0){throw 'Cannot retrieve the current published scenery packs.'}
           node --expose-gc scripts/release/migrate-legacy-content.mjs
+      - name: Require planning metadata for new scenery
+        if: inputs.component == 'full' || inputs.component == 'content'
+        run: node scripts/asset-catalog.mjs
       - name: Verify full scenery, layout, connector and updater suite
         if: inputs.component == 'full' || inputs.component == 'content'
         run: node --test tests/*.test.mjs
@@ -77,7 +80,7 @@ jobs:
         run: node --test tests/incremental-content-layout.test.mjs tests/builtin-shapes.test.mjs tests/scenery-store.test.mjs tests/legacy-content-migration.test.mjs
       - name: Verify campaign orchestration and reusable creative libraries
         if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
-        run: node --test tests/campaign*.test.mjs tests/creative*.test.mjs tests/terrain*.test.mjs tests/storage-audit.test.mjs tests/project-store.test.mjs
+        run: node --test tests/campaign*.test.mjs tests/creative*.test.mjs tests/terrain*.test.mjs tests/storage-audit.test.mjs tests/project-store.test.mjs tests/scenery-metadata.test.mjs tests/premium*.test.mjs
       - run: pnpm build
         if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
       - run: node scripts/package.cjs

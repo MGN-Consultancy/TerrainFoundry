@@ -57,7 +57,7 @@ test('universal design metadata and four active references survive backup withou
  assert.equal(validateRecord(r),r);
  const image='data:image/png;base64,aGVsbG8=',refs=Array.from({length:5},(_,i)=>({id:randomUUID(),name:'View '+i,image,active:i<4,createdAt:Date.now()})),concept={id:randomUUID(),name:'Approved platform',image,approved:true,retained:true,createdAt:Date.now(),referenceIds:refs.slice(0,4).map(r=>r.id),parentConceptId:randomUUID()};
  r={...r,referenceImages:refs,concepts:[concept],mainConceptId:concept.id,design:{purpose:'railway',style:'Weathered Victorian brick',scaleRatio:76.2,connectors:{type:'openlock',status:'adapter-required'},physicalDimensions:{heightMm:40,measured:false}}};
- await library.save(r);await target.library.importBackup(await library.exportBackup());const restored=await target.library.load(r.id);assert.deepEqual(restored.referenceImages,refs);assert.deepEqual(restored.design,r.design);assert.equal(restored.mainConceptId,concept.id);
+ r=await library.save(r);await target.library.importBackup(await library.exportBackup());const restored=await target.library.load(r.id);assert.deepEqual(restored.referenceImages,refs);assert.deepEqual(restored.design,r.design);assert.equal(restored.mainConceptId,concept.id);
  await assert.rejects(library.save({...r,referenceImages:refs.map(x=>({...x,active:true}))}),/four active/);
  await assert.rejects(library.save({...r,mainConceptId:randomUUID()}),/retained concept/);
  await assert.rejects(library.save({...r,design:{purpose:'unknown'}}),/purpose/);

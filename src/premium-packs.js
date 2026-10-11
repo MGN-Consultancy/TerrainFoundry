@@ -6,7 +6,7 @@ export async function loadPremiumInventory(kit){
  for(const asset of inventory.assets){
   const existing=kit.find(k=>k.id===asset.id);if(existing&&!existing.premium)throw Error('Premium asset conflicts with installed free scenery.');
   builtinIndex[asset.id]={raw:asset.raw,connected:asset.connected,openlock:asset.openlock,dimensionsMm:asset.dimensionsMm,printFiles:asset.printFiles,premium:true};
-  const definition={id:asset.id,name:asset.name,category:asset.category,subcategory:asset.subcategory,hint:asset.hint,explicitCategory:true,premium:true};if(existing)Object.assign(existing,definition);else kit.push(definition);
+  const definition={id:asset.id,name:asset.name,category:asset.category,subcategory:asset.subcategory,hint:asset.hint,explicitCategory:true,premium:true,...(asset.design?{design:asset.design}:{})};if(existing)Object.assign(existing,definition);else kit.push(definition);
  }
  return inventory;
 }

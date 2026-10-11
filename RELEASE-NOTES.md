@@ -1,3 +1,11 @@
+# Terrain Foundry 1.18.1 — Required scenery planning metadata
+
+New scenery and imported personal assets carry a versioned required metadata draft covering purpose, style, environment, era, scale, materials, functional tags, dimensions, grid, floor datum, placement support, connectors, compatibility, seam rules, entrances, traversal, elevations, visual quality and spacing. The companion collects it progressively; a collapsed editor supports manual completion.
+
+Automatic placement refuses personal scenery with incomplete metadata. Measured model footprints remain authoritative and declared spacing is checked before a batch can be accepted. Metadata remains separate from geometry, thickness and physical-fit verification. New official scenery IDs and future premium delivery require complete per-piece metadata, while existing installed content remains compatible.
+
+Client-only update: existing launcher and official scenery are unchanged.
+
 # Terrain Foundry 1.18.0 — Connected library and terrain companion
 
 Worlds and encounters now have persistent companion conversations and one evolving plan. Proposed batches appear provisionally on the canvas: keep, retry, adjust manually or discard. The current layout stays unchanged until acceptance, which creates one undo step. Proposals validate asset identities, table bounds, levels and footprint collisions. Protect selected pieces from agent movement. The local library shelf offers available personal models and reusable saved encounters.

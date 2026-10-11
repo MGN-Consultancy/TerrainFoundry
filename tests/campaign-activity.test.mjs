@@ -1,0 +1,5 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {activityPresentation} from '../src/campaign-activity.js';
+test('companion activity is static when ready or only listening',()=>{assert.deepEqual(activityPresentation(new Map()),{phase:'ready',active:false,label:'Ready',detail:'Tell me what you want to create.'});const result=activityPresentation(new Map([['voice',{phase:'listening',active:false,order:1}]]));assert.equal(result.active,false);assert.equal(result.label,'Listening');});
+test('actual in-flight work takes precedence over connected voice and returns on finish',()=>{const states=new Map([['voice',{phase:'listening',active:false,order:3}],['text',{phase:'thinking',active:true,order:2}]]);assert.equal(activityPresentation(states).label,'Thinking');states.set('creative:a',{phase:'model',active:true,order:4,detail:'Meshy in progress · 35%'});assert.equal(activityPresentation(states).detail,'Meshy in progress · 35%');states.delete('creative:a');states.delete('text');assert.equal(activityPresentation(states).label,'Listening');assert.equal(activityPresentation(states).active,false);});

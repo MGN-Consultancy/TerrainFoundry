@@ -1,3 +1,4 @@
+import './ai-settings-security.css';
 import {loadPremiumInventory,setupPremiumPacks} from './premium-packs.js';
 import {setupSceneLibrary} from './scene-library-ui.js';
 import {scenePreview} from './scene-preview.js';

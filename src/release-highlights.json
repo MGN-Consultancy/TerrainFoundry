@@ -13,6 +13,10 @@
     {
       "title": "Better planning and bounded history",
       "description": "Structured roads, rivers, landings and access areas can be checked during placement. Campaign history has storage limits that preserve current work and active undo snapshots."
+    },
+    {
+      "title": "Understand and control online AI",
+      "description": "Review key encryption, data sharing and provider charges before enabling AI. Test OpenAI, Claude and Meshy separately, see account errors clearly, and reset session usage while retaining lifetime totals."
     }
   ]
 }

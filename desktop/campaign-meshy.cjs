@@ -1,13 +1,14 @@
+const {providerError,reportedCredits}=require('./provider-errors.cjs');
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 function createCampaignMeshy({store,ai,fetchImpl=fetch,onProgress=()=>{}}){
  let busy=false;const recent=[];
  async function json(response){
   let size=0;const parts=[];if(!response.body)throw Error('Meshy returned an empty response.');const reader=response.body.getReader();
   for(;;){const r=await reader.read();if(r.done)break;size+=r.value.length;if(size>2_000_000){await reader.cancel();throw Error('Meshy response exceeded the safety limit.');}parts.push(Buffer.from(r.value));}
-  const data=JSON.parse(Buffer.concat(parts).toString('utf8'));
-  if(!response.ok)throw Error(response.status===401?'Meshy rejected the saved API key. Re-enter it in AI settings.':response.status===402?'Meshy reports that this account has insufficient credits.':response.status===429?'Meshy rate limit reached. Wait before trying again.':'Meshy could not complete the model request (HTTP '+response.status+').');return data;
+  let data;try{data=JSON.parse(Buffer.concat(parts).toString('utf8'));}catch{if(!response.ok)throw providerError({provider:'meshy',status:response.status});throw Error('Meshy returned invalid JSON.');}
+  if(!response.ok)throw providerError({provider:'meshy',status:response.status,body:data,requestId:response.headers?.get('x-request-id')});return data;
  }
- async function request(url,options){return json(await fetchImpl(url,{...options,redirect:'error',signal:AbortSignal.timeout(60000)}));}
+ async function request(url,options){await ai.requireConsent?.();let response;try{response=await fetchImpl(url,{...options,redirect:'error',signal:AbortSignal.timeout(60000)});}catch(cause){throw providerError({provider:'meshy',cause});}return json(response);}
  async function resizeBinarySTL(source){
   if(source.length<134)throw Error('Meshy did not return a complete STL.');const count=source.readUInt32LE(80);
   if(count<4||count>600_000||84+count*50!==source.length)throw Error('Meshy returned an unsupported STL encoding or size.');
@@ -18,7 +19,7 @@ function createCampaignMeshy({store,ai,fetchImpl=fetch,onProgress=()=>{}}){
   inspectSTL(out,[64,64,64]);return out;
  }
  async function downloadSTL(url){
-  const download=await fetchImpl(url,{redirect:'error',signal:AbortSignal.timeout(120000)});if(!download.ok||!download.body)throw Error('Meshy model download failed.');
+  await ai.requireConsent?.();const download=await fetchImpl(url,{redirect:'error',signal:AbortSignal.timeout(120000)});if(!download.ok||!download.body)throw Error('Meshy model download failed.');
   const reader=download.body.getReader(),parts=[];let size=0;for(;;){const part=await reader.read();if(part.done)break;size+=part.value.length;if(size>100_000_000){await reader.cancel();throw Error('Meshy model is larger than the 100 MB safety limit.');}parts.push(Buffer.from(part.value));}return Buffer.concat(parts);
  }
  async function installModel(campaign,character,stl){
@@ -46,7 +47,7 @@ function createCampaignMeshy({store,ai,fetchImpl=fetch,onProgress=()=>{}}){
    const key=await ai.meshyKey(),headers={'Content-Type':'application/json',Authorization:'Bearer '+key};onProgress({phase:'Submitting',percent:0});
    const created=await request('https://api.meshy.ai/openapi/v1/image-to-3d',{method:'POST',headers,body:JSON.stringify({image_url:character.portrait,model_type:'standard',ai_model:'meshy-7.1',should_texture:false,should_remesh:false,pose_mode:'a-pose',target_formats:['stl'],moderation:true})});
    if(typeof created.result!=='string'||!/^[a-zA-Z0-9-]{8,100}$/.test(created.result))throw Error('Meshy did not return a valid task.');
-   const taskId=created.result;let result;for(let i=0;i<180;i++){if(i>0)await new Promise(resolve=>setTimeout(resolve,10000));result=await request('https://api.meshy.ai/openapi/v1/image-to-3d/'+encodeURIComponent(taskId),{method:'GET',headers:{Authorization:'Bearer '+key}});if(result.status==='SUCCEEDED')break;if(result.status==='FAILED'||result.status==='CANCELED')throw Error('Meshy could not generate this model. No retry was made.');if(!['PENDING','IN_PROGRESS'].includes(result.status))throw Error('Meshy returned an unknown task state.');onProgress({phase:'Generating 32 mm miniature',percent:Math.min(90,5+Math.floor((i/180)*85))});}
+   const taskId=created.result;let result;for(let i=0;i<180;i++){if(i>0)await new Promise(resolve=>setTimeout(resolve,10000));result=await request('https://api.meshy.ai/openapi/v1/image-to-3d/'+encodeURIComponent(taskId),{method:'GET',headers:{Authorization:'Bearer '+key}});if(['SUCCEEDED','FAILED','CANCELED'].includes(result.status))await ai.recordUsage?.({provider:'meshy',model:'meshy-7.1',kind:'meshy',usage:null,credits:reportedCredits(result),outcome:result.status==='SUCCEEDED'?'completed':result.status==='CANCELED'?'cancelled':'failed',dedupeKey:'meshy:'+taskId});if(result.status==='SUCCEEDED')break;if(result.status==='FAILED'||result.status==='CANCELED')throw providerError({provider:'meshy',body:result});if(!['PENDING','IN_PROGRESS'].includes(result.status))throw Error('Meshy returned an unknown task state.');onProgress({phase:'Generating 32 mm miniature',percent:Math.min(90,5+Math.floor((i/180)*85))});}
    if(result?.status!=='SUCCEEDED'||typeof result.model_urls?.stl!=='string')throw Error('Meshy task timed out before an STL was ready. Check Meshy task history before retrying.');
    const assetUrl=new URL(result.model_urls.stl);if(assetUrl.protocol!=='https:'||assetUrl.hostname!=='assets.meshy.ai')throw Error('Meshy returned an untrusted model download address.');
    onProgress({phase:'Preparing 32 mm STL',percent:93});const stl=await resizeBinarySTL(await downloadSTL(assetUrl));const saved=await installModel(campaign,character,stl);onProgress({phase:'Saved to this campaign',percent:100});return saved;

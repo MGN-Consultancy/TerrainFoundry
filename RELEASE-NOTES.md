@@ -6,6 +6,8 @@ Terrain thumbnails are deferred between search results. The Content library link
 
 Optional structured connection points and access constraints validate road/river seams, stair landing heights and rotated entrance clearance in proposed placement batches. Missing metadata produces warnings rather than a claim of geometric fit. Public pack suggestions use only available catalogue entries and exclude known owned packs. These checks do not certify structural support, print thickness or physical connector fit.
 
+AI settings now require explicit security/data-sharing acceptance before online requests, explain local encryption and its limits, and show dated provider tests. Account-credit and rate-limit errors are distinct. Resettable session usage retains all-time text, image, reported voice and Meshy usage.
+
 Client-only update: existing launcher and scenery files are unchanged. Willowbrook repair candidates are not included and remain under geometry/slicer review.
 
 # Terrain Foundry 1.18.1 — Required scenery planning metadata

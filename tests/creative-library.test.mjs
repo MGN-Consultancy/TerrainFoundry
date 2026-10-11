@@ -50,3 +50,27 @@ test('chosen-name folder exists immediately and designer adjustments reopen with
   assert.equal(path.resolve(await createCampaignStore(storeDirectory).folder(reopened.id)),path.join(folder,'Conversation'));
  }finally{if(previous===undefined)delete process.env.TERRAIN_CREATIVE_LIBRARY;else process.env.TERRAIN_CREATIVE_LIBRARY=previous;}
 });
+
+
+test('universal design metadata and four active references survive backup without changing legacy assets',async t=>{
+ const {library}=await fixture(t),target=await fixture(t);let r=await library.create({kind:'scenery',name:'Railway platform'});
+ assert.equal(validateRecord(r),r);
+ const image='data:image/png;base64,aGVsbG8=',refs=Array.from({length:5},(_,i)=>({id:randomUUID(),name:'View '+i,image,active:i<4,createdAt:Date.now()})),concept={id:randomUUID(),name:'Approved platform',image,approved:true,retained:true,createdAt:Date.now(),referenceIds:refs.slice(0,4).map(r=>r.id),parentConceptId:randomUUID()};
+ r={...r,referenceImages:refs,concepts:[concept],mainConceptId:concept.id,design:{purpose:'railway',style:'Weathered Victorian brick',scaleRatio:76.2,connectors:{type:'openlock',status:'adapter-required'},physicalDimensions:{heightMm:40,measured:false}}};
+ await library.save(r);await target.library.importBackup(await library.exportBackup());const restored=await target.library.load(r.id);assert.deepEqual(restored.referenceImages,refs);assert.deepEqual(restored.design,r.design);assert.equal(restored.mainConceptId,concept.id);
+ await assert.rejects(library.save({...r,referenceImages:refs.map(x=>({...x,active:true}))}),/four active/);
+ await assert.rejects(library.save({...r,mainConceptId:randomUUID()}),/retained concept/);
+ await assert.rejects(library.save({...r,design:{purpose:'unknown'}}),/purpose/);
+ await assert.rejects(library.save({...r,design:{scaleRatio:0}}),/scale/);
+});
+
+test('storage categories reconcile and cache cleanup preserves model, concepts and conversations',async t=>{
+ const {library}=await fixture(t);let r=await library.create({kind:'character',name:'Thumbnail knight'});const image='data:image/png;base64,aGVsbG8=';
+ r=await library.save({...r,concepts:[{id:randomUUID(),name:'Knight',image,approved:false,retained:true,createdAt:Date.now()}]});await library.installModel(r.id,{bytes:stl});
+ const thumbnail=await library.setModelThumbnail(r.id,image);assert.equal(thumbnail.model.thumbnail,image);assert.equal(thumbnail.model.sha256,(await library.readModel(r.id)).metadata.sha256);
+ const folder=await library.folder(r.id);await fs.mkdir(path.join(folder,'Conversation'),{recursive:true});await fs.writeFile(path.join(folder,'Conversation','notes.md'),'retain me');
+ await fs.mkdir(library.cacheDirectory,{recursive:true});await fs.writeFile(path.join(library.cacheDirectory,'temporary.tmp'),'discard');await fs.writeFile(path.join(library.cacheDirectory,'keep.json'),'not disposable');
+ const before=await library.storageUsage();assert.equal(before.assets,1);assert.equal(before.modelsBytes,stl.length);assert.equal(before.conceptsBytes,Buffer.byteLength(image));assert.ok(before.conversationBytes>0);assert.equal(before.totalBytes,before.modelsBytes+before.conceptsBytes+before.conversationBytes+before.cacheBytes+before.otherBytes);
+ assert.deepEqual(await library.cleanupCache(),{removedBytes:7,removedFiles:1});assert.equal((await library.storageUsage()).totalBytes,before.totalBytes-7);assert.deepEqual((await library.readModel(r.id)).bytes,stl);assert.equal(await fs.readFile(path.join(folder,'Conversation','notes.md'),'utf8'),'retain me');assert.equal(await fs.readFile(path.join(library.cacheDirectory,'keep.json'),'utf8'),'not disposable');
+ await assert.rejects(library.setModelThumbnail(r.id,'https://example.com/image.png'),/compressed/);
+});

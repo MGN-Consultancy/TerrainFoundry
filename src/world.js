@@ -4,7 +4,7 @@ const id=()=>crypto.randomUUID();
 // Imported asset objects are immutable; cache their exact content once per object.
 const encodings=new WeakMap();const encode=a=>{if(!encodings.has(a))encodings.set(a,JSON.stringify(a));return encodings.get(a);};
 export function toWorld(scene,widthMm=1828.8,depthMm=1219.2){
- const p=structuredClone(scene);p.version=2;p.kind='world';p.world={widthMm,depthMm,activeLevel:'ground',placementOffset:0,levels:[{id:'ground',name:'Ground',elevation:0,visible:true}],encounters:[],instances:[]};
+ const p=structuredClone(scene);delete p.companionId;p.version=2;p.kind='world';p.world={widthMm,depthMm,activeLevel:'ground',placementOffset:0,levels:[{id:'ground',name:'Ground',elevation:0,visible:true}],encounters:[],instances:[]};
  p.items.forEach(i=>{i.levelId='ground';delete i.encounterId;});return validateProject(p);
 }
 export const tableSize=p=>p.kind==='world'?[p.world.widthMm,p.world.depthMm]:[p.board*p.grid,p.board*p.grid];

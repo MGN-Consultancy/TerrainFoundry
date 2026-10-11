@@ -1,9 +1,22 @@
 {
-  "version": "1.17.1",
-  "title": "One companion, three ways to work",
+  "version": "1.18.0",
+  "title": "Your library, concepts and terrain connected",
   "features": [
-    {"title":"Text, dictation or live voice", "description":"Choose your input mode below the message box. Dictation writes into your draft for you to send; live voice continues the conversation using your own OpenAI account. Switching modes keeps your conversation and draft."},
-    {"title":"Name your design and keep developing it", "description":"Choose a name when starting a character or scenery piece. Its folder, brief, concepts, model and design conversation remain in your local library so you can reopen it for adjustments."},
-    {"title":"Your campaign remains the orchestrator", "description":"Character and scenery design use the same companion as the campaign. Relevant design discussion is retained with the asset, while campaign planning stays in the campaign workspace."}
+    {
+      "title": "One companion for worlds and encounters",
+      "description": "Shape a single evolving plan using text or voice, preview proposed batches on your terrain, then keep, retry or adjust them. Conversations stay with each saved project."
+    },
+    {
+      "title": "Keep your designs visually consistent",
+      "description": "Use up to four active reference images, refine a retained concept or start fresh, and choose the main thumbnail. Approve retained views before submitting them to Meshy. Inspect the actual returned model in 3D."
+    },
+    {
+      "title": "Build from your local library",
+      "description": "Find available personal assets and saved encounters in the terrain library shelf. Character and scenery designs support D&D, model railway, racing and other purposes."
+    },
+    {
+      "title": "Understand and protect local storage",
+      "description": "See storage used by campaigns, models, official packs, recovery and caches. Export or restore your personal library and remove temporary library cache files without deleting saved designs."
+    }
   ]
 }

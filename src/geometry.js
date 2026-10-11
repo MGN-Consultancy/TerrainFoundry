@@ -4,7 +4,8 @@ import * as THREE from 'three';
 import {geometry as original} from './raw-geometry.js';
 
 const connectedCache=new Map();
-export function connectionSpec(type,assets={}){return builtinIndex[type]?.openlock;}
+const importedSpecs=new WeakMap();
+export function connectionSpec(type,assets={}){const a=assets[type];if(!a)return builtinIndex[type]?.openlock;if(a.connected?.openlock)return a.connected.openlock;if(importedSpecs.has(a))return importedSpecs.get(a);let minX=Infinity,maxX=-Infinity,minZ=Infinity,maxZ=-Infinity;for(let i=0;i<a.positions.length;i+=3){minX=Math.min(minX,a.positions[i]);maxX=Math.max(maxX,a.positions[i]);minZ=Math.min(minZ,a.positions[i+2]);maxZ=Math.max(maxZ,a.positions[i+2]);}const s={width:maxX-minX,depth:maxZ-minZ,height:0,ports:[]};importedSpecs.set(a,s);return s;}
 export function geometry(type,g,assets={},openlock=false){
  if(!openlock)return original(type,g,assets);
  if(Math.abs(g-25.4)>.00001)throw Error('OpenLOCK requires a 25.4 mm grid. Do not scale connectors.');

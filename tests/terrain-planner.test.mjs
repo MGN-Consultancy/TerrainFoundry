@@ -17,3 +17,11 @@ test('convex decomposed measured polygons permit real gaps but constrain extents
 test('degenerate and concave footprint metadata is refused rather than misleading SAT collision checks',()=>{for(const footprint of [[[0,0],[1,0],[2,0]],[[0,0],[10,0],[5,5],[10,10],[0,10]]])assert.throws(()=>terrainBatch(project(),action(piece()),[{id:'tile',widthMm:50,depthMm:50,footprints:[footprint]}]),/footprint/);});
 test('campaign action retains active terrain context and validates provisional owned IDs without mutation',()=>{const p=project(),before=structuredClone(p),proposal=action(piece());assert.equal(assistantContext({terrain:'scene'}).terrain,'scene');assert.deepEqual(validateAction(proposal,{}, {inventory}),proposal);assert.throws(()=>validateAction(action(piece('unowned')),{}, {inventory}),/Invalid terrain/);assert.deepEqual(p,before);});
 test('active canvas context includes measured grid and placements while excluding file data and secrets',()=>{const p=project();p.items=[{...piece(),id:'piece',locked:true,privateKey:'secret',rawMesh:'huge mesh'}];p.assets={tile:{name:'Floor',path:'C:/private/model.stl',bytes:'private contents'}};const context=terrainContext(p,{},[{...inventory[0],name:'Known floor',category:'Floors'}]);assert.equal(context.gridMm,50);assert.equal(context.pieces[0].name,'Known floor');assert.equal(context.pieces[0].locked,true);assert.ok(!JSON.stringify(context).includes('private'));assert.ok(!JSON.stringify(context).includes('huge mesh'));assert.deepEqual(context.coordinateUnits,{x:'grid squares',z:'grid squares',y:'millimetres',rotation:'degrees'});});
+
+// Imported geometry metadata reaches the planner without sending vertex arrays.
+test('imported asset inventory measures the real scaled bounds and rejects invalid coordinates',()=>{
+ const {editorInventory}=createRequire(import.meta.url)('../desktop/campaign-terrain-context.cjs');
+ const values=editorInventory({grid:50.8,assets:{'u-fixture':{name:'My bridge',positions:[-10,0,-5,10,20,5],libraryId:'personal'}}});
+ assert.equal(values.length,1);assert.equal(values[0].widthMm,40);assert.equal(values[0].depthMm,20);assert.equal(values[0].heightMm,40);assert.equal(values[0].connector,'unverified');assert.equal(values[0].positions,undefined);
+ assert.throws(()=>editorInventory({grid:25.4,assets:{'u-fixture':{positions:[NaN,0,0]}}}),/Invalid imported/);
+});

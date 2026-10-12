@@ -15,3 +15,9 @@ export function setupPremiumPacks({kit,onChange,toast}){
  // explicit activation in Settings, without polling or downloading here.
  window.addEventListener('premium-assets-changed',async()=>{try{const inventory=await loadPremiumInventory(kit);onChange();if(inventory.warnings.length)toast(inventory.warnings[0],true);}catch(e){toast(e.message,true);}});
 }
+export function schedulePremiumPackSync({api,onUpdated=()=>{},onError=()=>{},delayMs=1800}){
+ if(typeof api?.premiumSync!=='function')return null;
+ let timer,finish;
+ const done=new Promise(resolve=>{finish=resolve;timer=setTimeout(async()=>{try{const result=await api.premiumSync();if(result?.updated)onUpdated(result);resolve(result);}catch(error){onError(error);resolve(null);}},delayMs);});
+ return {done,cancel(){clearTimeout(timer);finish(null);}};
+}

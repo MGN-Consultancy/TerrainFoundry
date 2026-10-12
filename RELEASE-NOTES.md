@@ -1,152 +1,164 @@
-# Terrain Foundry 1.18.2 � Responsive browsing and connected content
-
-Purchased packs check existing device entitlements at startup without another activation code or activation slot. Signed updated manifests reuse unchanged verified entries and download changed or missing entries. An interrupted update preserves the previous installed pack.
-
-Terrain thumbnails are deferred between search results. The Content library links installed free/premium terrain, characters, personal scenery and campaign sounds. Campaign record cards explicitly select artwork and use compact forms. Current approved work and active undo snapshots are protected while recognised archived history has count and byte limits.
-
-Optional structured connection points and access constraints validate road/river seams, stair landing heights and rotated entrance clearance in proposed placement batches. Missing metadata produces warnings rather than a claim of geometric fit. Public pack suggestions use only available catalogue entries and exclude known owned packs. These checks do not certify structural support, print thickness or physical connector fit.
-
-AI settings now require explicit security/data-sharing acceptance before online requests, explain local encryption and its limits, and show dated provider tests. Account-credit and rate-limit errors are distinct. Resettable session usage retains all-time text, image, reported voice and Meshy usage.
-
-Client-only update: existing launcher and scenery files are unchanged. Willowbrook repair candidates are not included and remain under geometry/slicer review.
-
-# Terrain Foundry 1.18.1 — Required scenery planning metadata
-
-New scenery and imported personal assets carry a versioned required metadata draft covering purpose, style, environment, era, scale, materials, functional tags, dimensions, grid, floor datum, placement support, connectors, compatibility, seam rules, entrances, traversal, elevations, visual quality and spacing. The companion collects it progressively; a collapsed editor supports manual completion.
-
-Automatic placement refuses personal scenery with incomplete metadata. Measured model footprints remain authoritative and declared spacing is checked before a batch can be accepted. Metadata remains separate from geometry, thickness and physical-fit verification. New official scenery IDs and future premium delivery require complete per-piece metadata, while existing installed content remains compatible.
-
-Client-only update: existing launcher and official scenery are unchanged.
-
-# Terrain Foundry 1.18.0 — Connected library and terrain companion
-
-Worlds and encounters now have persistent companion conversations and one evolving plan. Proposed batches appear provisionally on the canvas: keep, retry, adjust manually or discard. The current layout stays unchanged until acceptance, which creates one undo step. Proposals validate asset identities, table bounds, levels and footprint collisions. Protect selected pieces from agent movement. The local library shelf offers available personal models and reusable saved encounters.
-
-Character and scenery designs support D&D, railway, racing and other purposes. Upload up to four active reference images; refine retained concepts with reference continuity or start fresh. Choose a main concept and explicitly approve retained views before Meshy submission. Inspect actual STL, OBJ and embedded GLB geometry and save a model thumbnail. Generated meshes still require geometry, wall-thickness, slicing and physical-fit review; this release does not certify generated OpenLOCK connections.
-
-Storage settings show campaigns, local models, installed packs, recovery, caches and logs. Export or restore personal asset backups and clear temporary library cache files. Recovery snapshots are bounded and duplicate snapshots are avoided.
-
-Uses your own OpenAI and Meshy API keys. Client-only update: the existing launcher and official scenery remain unchanged. Terrain suggestions do not certify routes, structural support or print fit; review the visible placement before acceptance.
-
-# Terrain Foundry 1.17.1 — One companion, three input modes
-
-Choose Text, Dictation or Live voice below the message box. Mode changes stop the previous microphone without clearing the conversation or draft. Native dictation transcribes into your draft; Send remains explicit. Live voice requires your own working OpenAI API key.
-
-Starting a new character or scenery design asks for its name and immediately creates its local folder. Reopen the saved asset to continue its brief, concepts, model, sheet and design discussion. When designing within a campaign, the same campaign companion stays active and only the new design discussion is retained with the asset.
-
-Client-only update; existing launcher and scenery remain unchanged.
-
-# Terrain Foundry 1.17.0 — Campaign and asset workspaces
-
-Characters and scenery now have reusable local libraries and guided design workspaces. The campaign companion keeps the same conversation and voice controls as it opens a designer, updates its brief and prepares visual concepts. Characters progress through Brief, Appearance, 3D model and Character sheet, with printable full sheets and compact cards. Scenery saves into named personal packs.
-
-OpenAI and Meshy use your own encrypted API keys. Retain or remove image concepts, select and approve the reference, then explicitly approve the paid Meshy submission. Tasks persist for safe resumption; raw geometry and textured previews are retained. Generated models remain candidates for geometry, thickness, orientation and slicing review. OpenLOCK design requirements are stored with the brief; an AI-generated connector is never represented as a verified official template.
-
-Import STL, OBJ, GLB and 3MF models, including ZIP scenery packs, and place saved models into scenes with stable library references and undo. Original provider files and licence text are retained. Export and restore personal asset backups; official free/premium pack references can be included without transferring activation credentials. Premium packs retain their activation requirements.
-
-This is a client-only release. Existing launcher and official scenery content remain independently versioned and are reused.
-
-# Terrain Foundry 1.16.1 — Client update
-
-The opening workshop now gives D&D campaigns, worlds and reusable encounters clear roles, original illustrated cards, and recent saved files. Each category opens its own local folder and can show the full saved list. Encounters include entries from the local scene library. AI and voice configuration is available from the settings cog in the workshop and campaign workspace.
-
-# Terrain Foundry Launcher 1.16.1
-
-The launcher uses a shorter, scene-backed window. Update checks and large file verification run without blocking the window. During installation, the progress header names the editor, scenery packs and final verification as distinct stages, and the progress bar resets at each stage.
-
-# Terrain Foundry 1.16.0
-
-Launcher, editor and scenery now have independent update components. Client-only and launcher-only releases skip scenery generation and packaging. Scenery is stored as individually hashed model files, so a content release downloads only changed or newly added models; installed matching files are reused and verified. Client files are also updated by hash. The one-time channel migration splits the already-published, checksum-verified scenery packs without regenerating their meshes. Existing installs migrate locally by reusing matching model data, avoiding a full scenery redownload.
-
-The old signed launcher channel remains available for existing launchers during migration. Failed or interrupted updates leave the previous verified editor and scenery available.
-
-# Terrain Foundry 1.15.2
-
-Scenery installation now shows overall progress, total data size and completed sections, including already installed content. Verification stays visible until each section is ready. The launcher also shows progress across the whole editor/scenery update.
-
-Pack activation displays the full model usage terms without Willowbrook pricing or promotional copy. Accept the unticked licence checkbox before activation. The native client validates acceptance and saves the accepted version locally. Existing purchase rights and OpenLOCK notices remain unchanged.
-
-# Terrain Foundry 1.15.0
-
-Optional Agent mode applies validated campaign documents, story records, illustrations and linked-world building without approval on each action. Activity history and undo preserve control. Dock the companion beside the terrain editor. Shared local game-style.md preferences guide artwork, pacing and beginner support across campaigns; campaign secrets stay separate. Images use the configured OpenAI image model even when Claude handles text. Voice and image requests use your own billed API account.
-
-
-AI settings now offer Realtime or GPT-Live conversational voice, using your protected OpenAI key. GPT-Live delegates campaign work to your selected text AI; both are billed separately.
-
-AI settings now offer Realtime or GPT-Live conversational voice, using your protected OpenAI key. GPT-Live delegates campaign work to your selected text AI; both are billed separately.
-
-The launcher has a scenery banner, clearer offline and publisher information, and rounded controls. It closes after the editor starts successfully and remains open if startup fails.
-Campaign workspaces link shared terrain revisions, preserve existing campaigns, retain conversation history and generate readable Markdown memory. Add offline Windows dictation (requires an installed Windows speech recognizer), optional OpenAI dictation and realtime voice conversation. API keys remain OS-protected; voice uses your API account and sends microphone audio/context to OpenAI. Voice sessions stop after ten minutes.
-
-The companion can propose validated campaign updates and linked-terrain moves with review and undo. Original terrain sources remain unchanged. Portable exports intentionally collect dependencies; ordinary workspaces share a revision cache.
-
-# Version 1.14.0
-
-Willowbrook collection activation downloads all 85 designs under one purchase code, with a separate STL download and a licence permitting physical print sales. Campaign guidance receives placed encounter identities, elevations and layout metadata; suggested answers can be edited before sending. Physical print fit remains unverified.
-
-# Terrain Foundry 1.13.0
-
-Adds a persistent coloured/unpainted appearance choice to the terrain library and editor. Both views retain the same asset identities, dimensions and OpenLOCK geometry. The expanded library keeps appearance and category controls together.
-
-Verified scenery print files up to 250 MB are supported for high-definition pieces, with bounded export validation. Existing scenes, worlds, campaigns and protected scenery keys are preserved.
-
-Willowbrook owner-preview delivery is separate from the free scenery update. Premium sales remain disabled; physical print fit remains unverified.
-
-# Terrain Foundry 1.12.0
-
-Build campaigns through a persistent AI conversation, with a live draft brief and clear next steps. Review and apply proposed characters, missions, saved-scene links and terrain layouts using your installed scenery.
-
-AI setup now offers friendly OpenAI and Claude defaults, an explicit API-key test, and private token and estimated USD cost tracking across restarts. Provider calls require your own key and may incur charges. Offline campaign editing remains available without a key.
-
-Premium scenery sales remain disabled. This update preserves saved campaigns, worlds, encounters and scenery.
-
-# Terrain Foundry 1.11.0
-
-Adds native premium pack activation: verify the purchase email, enter the emailed code, and download an encrypted pack. Signed inventories, device-bound entitlements, ciphertext and per-file hashes are checked before an atomic installation. Content keys use Windows protected storage; asset data is decrypted in memory when needed.
-
-Installed pieces appear in the existing categories and retain stable IDs in saved scenes and worlds. Updates cannot remove existing IDs or downgrade installed versions. Rendering and full-detail print reads work after an offline restart. Closing activation cancels pending network work without replacing a working pack.
-
-The free 50-piece Deepstone starter and Campaign Studio remain included. This client feature does not enable premium sales; collections become purchasable separately after their checks are complete. No paid model content is included in public client source or releases.
-
-# Terrain Foundry 1.10.0
-
-Adds local Campaign Studio with startup campaign/world/scene choices, saved story and session context, editable records, relationships, maps/pins and characters. Optional OpenAI/Claude requests use separately entered OS-encrypted API keys, explicit confirmation and reviewed encounter proposals.
-
-Run campaigns fullscreen with persistent inline audio cues, original starter sounds, dice/initiative and linked terrain. Export DM/player books, duplex cards and player-approved JSON. Online portal hosting is not configured; the portal handoff does not enable live invitations. No provider credits are included.
-
-Existing terrain scenes, worlds and installed asset identities are preserved. Includes the committed Deepstone floor-height corrections. Physical connector fit remains unverified.
-
-# Terrain Foundry 1.9.1
-
-Corrects the free Deepstone Caverns floor carriers: standard floor surfaces are lowered from 12 mm to 8.4 mm, and the concealed pit trap surface to 8.6 mm to preserve its printable mesh. The original 0–8 mm connector zone, port counts and port positions are retained, including six ports on the long floor. Editor geometry and all full-resolution print meshes are rebuilt from the pinned sculpts with matching height transforms and refreshed hashes. All 1,502 release tests pass; physical print fit remains to be verified.
-
-# Terrain Foundry 1.9.0
-
-Adds the free 50-piece Deepstone Cave & Grotto starter collection with integrated OpenLOCK sockets. Categorised, coloured editor meshes and full-resolution print STLs are cached locally. Door and pit-trap exports include separate inserts. Existing asset identities, saved scenes and worlds are preserved.
-
-Geometry, editor imports and nominal joining heights checked in software; physical print fit remains to be tested.
-
-# Terrain Foundry 1.8.1
-
-Saved encounters now appear in **Encounters & scenes…** with a rendered preview of their complete build. Save updates the same library entry; old scene files can be added with **Add existing scene…**. The searchable library is paginated and persists locally across editor restarts.
-
-Click a library scene to place it in a world or reopen it as an editable encounter. Drag a preview onto a world for direct grouped placement. World encounter cards also display complete-build previews. Scene files embed PNG previews and the local library retains independent snapshots, including imported geometry. Existing world files remain compatible; scenery packs are unchanged.
-
-## Terrain Foundry 1.8.0
-
-
-Build a whole gaming table from reusable locally saved scenes. Add scenes to a world library and place independent encounter groups; move, rotate, duplicate and elevate complete buildings together, with individual scenery and roads between them.
-
-- Rectangular table presets and custom dimensions, with a Fit table camera.
-- Named elevation levels, independent visibility, and scene export for a complete level or selected encounter.
-- Local version-2 world files embed templates and imported meshes. Version-1 scenes remain supported; recovery and backups support both formats.
-- World grids retain the 25.4 mm OpenLOCK spacing. Group movement preserves internal connector alignment; sockets can still snap between individual pieces.
-- Three existing grotto walls are trimmed flat at the print plane; this is a print-preparation correction, not the pending detailed grotto remaster.
-
-World building and scene reuse work without internet. Hidden levels remain in print packs. Print a connector fit test before a full build; physical fit remains unverified. The detailed grotto remaster and replacement website animation assets are still awaiting an actual-mesh quality prototype.
-
-# Terrain Foundry 1.7.0
-
-Adds Ironbrook blacksmith: thirteen original modular pieces and an assembled example scene. Includes worn flagstone, braced walls, doorway and service window, two removable tiled roof variants, gable, forge/chimney, anvil, workbench, quenching trough, tool rack and yard canopy.
-
-Search **blacksmith** or load **Ironbrook blacksmith** from Example scenes. Floors and walls use integrated OpenLOCK; furniture is freestanding and roofs rest on the walls. Sculpted wood grain and masonry export with the geometry. Preview colours do not export to STL. All thirteen STLs pass geometry validation; physical fit and supports still need a test print. Existing asset IDs and connector layouts remain unchanged.
+# Terrain Foundry 1.19.0 — Refined creative workshops and scene editor
+
+The opening workshop uses compact illustrated cards for campaigns, worlds, scenes, characters and scenery. Recent projects appear in their open dialogs. Character and scenery libraries show bounded thumbnail tiles. Settings group general, visual, AI and purchase options. AI providers have separate tabs, explicit consent and an option to retain or remove encrypted local keys when disabling AI.
+
+Character and scenery design keep one companion conversation through the brief, appearance and model steps. Text, native dictation and live voice use compact controls with a microphone mute toggle. Retain up to four concepts, choose a main image and approve the views sent to Meshy. Existing artwork and 3D models can be imported into the same named design. Each generated model is retained as a separate candidate with an inline preview; accepting one preserves previous versions. Task progress updates automatically, and the companion receives current design state. Generating with Meshy still requires explicit approval and uses your own provider account.
+
+Character cards and sheets preview in the client before saving a PDF, with clean, fantasy and technical styles. Compact cards have separate front and back faces. Non-D&D figures and scenery retain asset details without requiring a D&D sheet.
+
+The scene editor has a cleaner scenery picker, a movable library, grouped View & sizing controls, printer plate presets and a docked optional companion. Scene tools includes import, Export Scene and Print Estimator. Close editor and Exit app sit beside Save and offer to save unsaved work before leaving. Tutorial skip preferences persist across restarts. World tools retain saved encounter placement, level controls and proposed placement checks with undo.
+
+Client-only update: existing launcher and official free/premium scenery are unchanged. Willowbrook repair candidates are not included. Generated meshes, spacing suggestions and riser estimates still require geometry, slicing and physical-fit review.
+
+# Terrain Foundry 1.18.2 — Responsive browsing and connected content
+
+Purchased packs check existing device entitlements at startup without another activation code or activation slot. Signed updated manifests reuse unchanged verified entries and download changed or missing entries. An interrupted update preserves the previous installed pack.
+
+Terrain thumbnails are deferred between search results. The Content library links installed free/premium terrain, characters, personal scenery and campaign sounds. Campaign record cards explicitly select artwork and use compact forms. Current approved work and active undo snapshots are protected while recognised archived history has count and byte limits.
+
+Optional structured connection points and access constraints validate road/river seams, stair landing heights and rotated entrance clearance in proposed placement batches. Missing metadata produces warnings rather than a claim of geometric fit. Public pack suggestions use only available catalogue entries and exclude known owned packs. These checks do not certify structural support, print thickness or physical connector fit.
+
+AI settings now require explicit security/data-sharing acceptance before online requests, explain local encryption and its limits, and show dated provider tests. Account-credit and rate-limit errors are distinct. Resettable session usage retains all-time text, image, reported voice and Meshy usage.
+
+Client-only update: existing launcher and scenery files are unchanged. Willowbrook repair candidates are not included and remain under geometry/slicer review.
+
+# Terrain Foundry 1.18.1 â€” Required scenery planning metadata
+
+New scenery and imported personal assets carry a versioned required metadata draft covering purpose, style, environment, era, scale, materials, functional tags, dimensions, grid, floor datum, placement support, connectors, compatibility, seam rules, entrances, traversal, elevations, visual quality and spacing. The companion collects it progressively; a collapsed editor supports manual completion.
+
+Automatic placement refuses personal scenery with incomplete metadata. Measured model footprints remain authoritative and declared spacing is checked before a batch can be accepted. Metadata remains separate from geometry, thickness and physical-fit verification. New official scenery IDs and future premium delivery require complete per-piece metadata, while existing installed content remains compatible.
+
+Client-only update: existing launcher and official scenery are unchanged.
+
+# Terrain Foundry 1.18.0 â€” Connected library and terrain companion
+
+Worlds and encounters now have persistent companion conversations and one evolving plan. Proposed batches appear provisionally on the canvas: keep, retry, adjust manually or discard. The current layout stays unchanged until acceptance, which creates one undo step. Proposals validate asset identities, table bounds, levels and footprint collisions. Protect selected pieces from agent movement. The local library shelf offers available personal models and reusable saved encounters.
+
+Character and scenery designs support D&D, railway, racing and other purposes. Upload up to four active reference images; refine retained concepts with reference continuity or start fresh. Choose a main concept and explicitly approve retained views before Meshy submission. Inspect actual STL, OBJ and embedded GLB geometry and save a model thumbnail. Generated meshes still require geometry, wall-thickness, slicing and physical-fit review; this release does not certify generated OpenLOCK connections.
+
+Storage settings show campaigns, local models, installed packs, recovery, caches and logs. Export or restore personal asset backups and clear temporary library cache files. Recovery snapshots are bounded and duplicate snapshots are avoided.
+
+Uses your own OpenAI and Meshy API keys. Client-only update: the existing launcher and official scenery remain unchanged. Terrain suggestions do not certify routes, structural support or print fit; review the visible placement before acceptance.
+
+# Terrain Foundry 1.17.1 â€” One companion, three input modes
+
+Choose Text, Dictation or Live voice below the message box. Mode changes stop the previous microphone without clearing the conversation or draft. Native dictation transcribes into your draft; Send remains explicit. Live voice requires your own working OpenAI API key.
+
+Starting a new character or scenery design asks for its name and immediately creates its local folder. Reopen the saved asset to continue its brief, concepts, model, sheet and design discussion. When designing within a campaign, the same campaign companion stays active and only the new design discussion is retained with the asset.
+
+Client-only update; existing launcher and scenery remain unchanged.
+
+# Terrain Foundry 1.17.0 â€” Campaign and asset workspaces
+
+Characters and scenery now have reusable local libraries and guided design workspaces. The campaign companion keeps the same conversation and voice controls as it opens a designer, updates its brief and prepares visual concepts. Characters progress through Brief, Appearance, 3D model and Character sheet, with printable full sheets and compact cards. Scenery saves into named personal packs.
+
+OpenAI and Meshy use your own encrypted API keys. Retain or remove image concepts, select and approve the reference, then explicitly approve the paid Meshy submission. Tasks persist for safe resumption; raw geometry and textured previews are retained. Generated models remain candidates for geometry, thickness, orientation and slicing review. OpenLOCK design requirements are stored with the brief; an AI-generated connector is never represented as a verified official template.
+
+Import STL, OBJ, GLB and 3MF models, including ZIP scenery packs, and place saved models into scenes with stable library references and undo. Original provider files and licence text are retained. Export and restore personal asset backups; official free/premium pack references can be included without transferring activation credentials. Premium packs retain their activation requirements.
+
+This is a client-only release. Existing launcher and official scenery content remain independently versioned and are reused.
+
+# Terrain Foundry 1.16.1 â€” Client update
+
+The opening workshop now gives D&D campaigns, worlds and reusable encounters clear roles, original illustrated cards, and recent saved files. Each category opens its own local folder and can show the full saved list. Encounters include entries from the local scene library. AI and voice configuration is available from the settings cog in the workshop and campaign workspace.
+
+# Terrain Foundry Launcher 1.16.1
+
+The launcher uses a shorter, scene-backed window. Update checks and large file verification run without blocking the window. During installation, the progress header names the editor, scenery packs and final verification as distinct stages, and the progress bar resets at each stage.
+
+# Terrain Foundry 1.16.0
+
+Launcher, editor and scenery now have independent update components. Client-only and launcher-only releases skip scenery generation and packaging. Scenery is stored as individually hashed model files, so a content release downloads only changed or newly added models; installed matching files are reused and verified. Client files are also updated by hash. The one-time channel migration splits the already-published, checksum-verified scenery packs without regenerating their meshes. Existing installs migrate locally by reusing matching model data, avoiding a full scenery redownload.
+
+The old signed launcher channel remains available for existing launchers during migration. Failed or interrupted updates leave the previous verified editor and scenery available.
+
+# Terrain Foundry 1.15.2
+
+Scenery installation now shows overall progress, total data size and completed sections, including already installed content. Verification stays visible until each section is ready. The launcher also shows progress across the whole editor/scenery update.
+
+Pack activation displays the full model usage terms without Willowbrook pricing or promotional copy. Accept the unticked licence checkbox before activation. The native client validates acceptance and saves the accepted version locally. Existing purchase rights and OpenLOCK notices remain unchanged.
+
+# Terrain Foundry 1.15.0
+
+Optional Agent mode applies validated campaign documents, story records, illustrations and linked-world building without approval on each action. Activity history and undo preserve control. Dock the companion beside the terrain editor. Shared local game-style.md preferences guide artwork, pacing and beginner support across campaigns; campaign secrets stay separate. Images use the configured OpenAI image model even when Claude handles text. Voice and image requests use your own billed API account.
+
+
+AI settings now offer Realtime or GPT-Live conversational voice, using your protected OpenAI key. GPT-Live delegates campaign work to your selected text AI; both are billed separately.
+
+AI settings now offer Realtime or GPT-Live conversational voice, using your protected OpenAI key. GPT-Live delegates campaign work to your selected text AI; both are billed separately.
+
+The launcher has a scenery banner, clearer offline and publisher information, and rounded controls. It closes after the editor starts successfully and remains open if startup fails.
+Campaign workspaces link shared terrain revisions, preserve existing campaigns, retain conversation history and generate readable Markdown memory. Add offline Windows dictation (requires an installed Windows speech recognizer), optional OpenAI dictation and realtime voice conversation. API keys remain OS-protected; voice uses your API account and sends microphone audio/context to OpenAI. Voice sessions stop after ten minutes.
+
+The companion can propose validated campaign updates and linked-terrain moves with review and undo. Original terrain sources remain unchanged. Portable exports intentionally collect dependencies; ordinary workspaces share a revision cache.
+
+# Version 1.14.0
+
+Willowbrook collection activation downloads all 85 designs under one purchase code, with a separate STL download and a licence permitting physical print sales. Campaign guidance receives placed encounter identities, elevations and layout metadata; suggested answers can be edited before sending. Physical print fit remains unverified.
+
+# Terrain Foundry 1.13.0
+
+Adds a persistent coloured/unpainted appearance choice to the terrain library and editor. Both views retain the same asset identities, dimensions and OpenLOCK geometry. The expanded library keeps appearance and category controls together.
+
+Verified scenery print files up to 250 MB are supported for high-definition pieces, with bounded export validation. Existing scenes, worlds, campaigns and protected scenery keys are preserved.
+
+Willowbrook owner-preview delivery is separate from the free scenery update. Premium sales remain disabled; physical print fit remains unverified.
+
+# Terrain Foundry 1.12.0
+
+Build campaigns through a persistent AI conversation, with a live draft brief and clear next steps. Review and apply proposed characters, missions, saved-scene links and terrain layouts using your installed scenery.
+
+AI setup now offers friendly OpenAI and Claude defaults, an explicit API-key test, and private token and estimated USD cost tracking across restarts. Provider calls require your own key and may incur charges. Offline campaign editing remains available without a key.
+
+Premium scenery sales remain disabled. This update preserves saved campaigns, worlds, encounters and scenery.
+
+# Terrain Foundry 1.11.0
+
+Adds native premium pack activation: verify the purchase email, enter the emailed code, and download an encrypted pack. Signed inventories, device-bound entitlements, ciphertext and per-file hashes are checked before an atomic installation. Content keys use Windows protected storage; asset data is decrypted in memory when needed.
+
+Installed pieces appear in the existing categories and retain stable IDs in saved scenes and worlds. Updates cannot remove existing IDs or downgrade installed versions. Rendering and full-detail print reads work after an offline restart. Closing activation cancels pending network work without replacing a working pack.
+
+The free 50-piece Deepstone starter and Campaign Studio remain included. This client feature does not enable premium sales; collections become purchasable separately after their checks are complete. No paid model content is included in public client source or releases.
+
+# Terrain Foundry 1.10.0
+
+Adds local Campaign Studio with startup campaign/world/scene choices, saved story and session context, editable records, relationships, maps/pins and characters. Optional OpenAI/Claude requests use separately entered OS-encrypted API keys, explicit confirmation and reviewed encounter proposals.
+
+Run campaigns fullscreen with persistent inline audio cues, original starter sounds, dice/initiative and linked terrain. Export DM/player books, duplex cards and player-approved JSON. Online portal hosting is not configured; the portal handoff does not enable live invitations. No provider credits are included.
+
+Existing terrain scenes, worlds and installed asset identities are preserved. Includes the committed Deepstone floor-height corrections. Physical connector fit remains unverified.
+
+# Terrain Foundry 1.9.1
+
+Corrects the free Deepstone Caverns floor carriers: standard floor surfaces are lowered from 12 mm to 8.4 mm, and the concealed pit trap surface to 8.6 mm to preserve its printable mesh. The original 0â€“8 mm connector zone, port counts and port positions are retained, including six ports on the long floor. Editor geometry and all full-resolution print meshes are rebuilt from the pinned sculpts with matching height transforms and refreshed hashes. All 1,502 release tests pass; physical print fit remains to be verified.
+
+# Terrain Foundry 1.9.0
+
+Adds the free 50-piece Deepstone Cave & Grotto starter collection with integrated OpenLOCK sockets. Categorised, coloured editor meshes and full-resolution print STLs are cached locally. Door and pit-trap exports include separate inserts. Existing asset identities, saved scenes and worlds are preserved.
+
+Geometry, editor imports and nominal joining heights checked in software; physical print fit remains to be tested.
+
+# Terrain Foundry 1.8.1
+
+Saved encounters now appear in **Encounters & scenesâ€¦** with a rendered preview of their complete build. Save updates the same library entry; old scene files can be added with **Add existing sceneâ€¦**. The searchable library is paginated and persists locally across editor restarts.
+
+Click a library scene to place it in a world or reopen it as an editable encounter. Drag a preview onto a world for direct grouped placement. World encounter cards also display complete-build previews. Scene files embed PNG previews and the local library retains independent snapshots, including imported geometry. Existing world files remain compatible; scenery packs are unchanged.
+
+## Terrain Foundry 1.8.0
+
+
+Build a whole gaming table from reusable locally saved scenes. Add scenes to a world library and place independent encounter groups; move, rotate, duplicate and elevate complete buildings together, with individual scenery and roads between them.
+
+- Rectangular table presets and custom dimensions, with a Fit table camera.
+- Named elevation levels, independent visibility, and scene export for a complete level or selected encounter.
+- Local version-2 world files embed templates and imported meshes. Version-1 scenes remain supported; recovery and backups support both formats.
+- World grids retain the 25.4 mm OpenLOCK spacing. Group movement preserves internal connector alignment; sockets can still snap between individual pieces.
+- Three existing grotto walls are trimmed flat at the print plane; this is a print-preparation correction, not the pending detailed grotto remaster.
+
+World building and scene reuse work without internet. Hidden levels remain in print packs. Print a connector fit test before a full build; physical fit remains unverified. The detailed grotto remaster and replacement website animation assets are still awaiting an actual-mesh quality prototype.
+
+# Terrain Foundry 1.7.0
+
+Adds Ironbrook blacksmith: thirteen original modular pieces and an assembled example scene. Includes worn flagstone, braced walls, doorway and service window, two removable tiled roof variants, gable, forge/chimney, anvil, workbench, quenching trough, tool rack and yard canopy.
+
+Search **blacksmith** or load **Ironbrook blacksmith** from Example scenes. Floors and walls use integrated OpenLOCK; furniture is freestanding and roofs rest on the walls. Sculpted wood grain and masonry export with the geometry. Preview colours do not export to STL. All thirteen STLs pass geometry validation; physical fit and supports still need a test print. Existing asset IDs and connector layouts remain unchanged.

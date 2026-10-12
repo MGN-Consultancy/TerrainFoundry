@@ -1,7 +1,11 @@
 {
-  "version": "1.19.0",
-  "title": "Clearer creative workshops and scene tools",
+  "version": "1.19.1",
+  "title": "Premium scenery updates in the background",
   "features": [
+    {
+      "title": "Keep purchased scenery current",
+      "description": "The editor checks for updates after it opens and downloads only changed files. You can keep working while the scenery library refreshes."
+    },
     {
       "title": "One companion through your design",
       "description": "Keep the same conversation while refining a brief, approving concept art and reviewing separate 3D model candidates. Use text, native dictation or live voice with compact controls."

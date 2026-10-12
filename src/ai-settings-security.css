@@ -1,3 +1,32 @@
 .ai-settings-security{border:1px solid #405b61;border-radius:12px;background:#10252d;padding:16px;margin:12px 0 24px}.ai-settings-security h3{margin:0 0 10px}.ai-settings-security p,.ai-settings-security li{font-size:12px;line-height:1.55;color:#b9cbd0}.ai-settings-security details{margin:10px 0}.ai-settings-security summary{cursor:pointer;color:#ddbe84;font-size:13px}.ai-settings-security a{color:#9ed3de}.ai-settings-security li{margin:8px 0}.ai-consent-choice{display:flex!important;align-items:flex-start;gap:10px!important;margin-top:18px!important;font-size:13px!important;line-height:1.5}.ai-consent-choice input{flex:0 0 18px;width:18px!important;min-height:18px;margin-top:2px}.ai-provider-tests{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.ai-provider-tests article{min-width:0;display:flex;flex-direction:column;background:#1b303a;border-radius:9px;padding:12px}.ai-provider-tests h4{margin:0 0 8px}.ai-provider-tests small{font-size:10px;color:#a9bac1;overflow-wrap:anywhere}.ai-provider-tests p{flex:1;margin:8px 0;font-size:11px}.ai-provider-tests button{width:auto;margin:0;padding:7px 10px}.ai-test-badge{font-size:11px;color:#c4cfd2;margin-bottom:5px}.ai-test-badge[data-result=passed]{color:#a2dfbc}.ai-test-badge[data-result=failed]{color:#ffb7a7}.ai-usage-reset{margin-top:12px!important;width:auto!important}@media(max-width:700px){.ai-provider-tests{grid-template-columns:1fr}}
 
 .ai-test-badge[data-result=warning]{color:#edca80}
+
+#campaign-setup-dialog{width:min(1180px,96vw);max-width:1180px;height:min(760px,94dvh);max-height:94dvh;padding:20px 26px;overflow:hidden}
+#campaign-setup-dialog[open]{display:flex;flex-direction:column;gap:12px}
+#campaign-setup-dialog .studio-heading{position:static;padding:0;flex:none}
+#campaign-setup-dialog .studio-heading h2{font-size:24px}
+.ai-settings-tabs{display:flex;gap:20px;border-bottom:1px solid #405b61;flex:none;overflow-x:auto}
+#campaign-setup-dialog .ai-settings-tabs button{border:0;border-bottom:2px solid transparent;background:none;border-radius:0;margin:0;padding:12px 0;color:#b8c9ce;white-space:nowrap;box-shadow:none}
+#campaign-setup-dialog .ai-settings-tabs button[aria-selected=true]{border-color:#dfb96c;color:#f6d68e}
+.ai-settings-body{flex:1;min-height:0;overflow:auto;padding:4px 2px}
+.ai-settings-body [role=tabpanel]{max-width:none}
+#campaign-setup-dialog form{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;margin:12px 0}
+#campaign-ai-advanced{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;grid-column:1/-1}
+#campaign-ai-advanced>summary{display:none}
+#campaign-ai-advanced>p{grid-column:1/-1}
+#campaign-setup-dialog p{font-size:12px;line-height:1.5;margin:8px 0;color:#bacbd0}
+#campaign-setup-dialog label{font-size:13px}
+#campaign-setup-dialog input,#campaign-setup-dialog select{padding:9px;min-height:38px}
+#campaign-setup-dialog .ai-provider-tests{display:block;margin:0 0 12px}
+#campaign-setup-dialog .ai-provider-tests article{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:12px 16px;border:1px solid #405b61}
+#campaign-setup-dialog .ai-provider-tests h4{margin:0;grid-column:1}
+#campaign-setup-dialog .ai-provider-tests small,#campaign-setup-dialog .ai-provider-tests p,#campaign-setup-dialog .ai-test-badge{grid-column:1;margin:0}
+#campaign-setup-dialog .ai-provider-tests button{grid-column:2;grid-row:1/5;align-self:center}
+#campaign-setup-dialog .campaign-key-actions{display:flex;flex-wrap:wrap;gap:8px}
+#campaign-setup-dialog .campaign-key-actions button{margin:0;padding:8px 12px}
+.ai-settings-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid #405b61;padding-top:10px;flex:none;font-size:12px;color:#aabec4}
+#campaign-setup-dialog .ai-settings-security{margin:0;padding:16px}
+#ai-panel-workspace{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px}
+#ai-panel-workspace>p{align-self:center}
+@media(max-width:720px){#campaign-setup-dialog{padding:14px}.ai-settings-tabs{gap:14px}#campaign-setup-dialog form,#campaign-ai-advanced,#ai-panel-workspace{grid-template-columns:1fr}.ai-settings-footer span{display:none}}

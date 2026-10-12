@@ -6,11 +6,12 @@ const string=(v,max)=>{if(typeof v!=='string'||v.length>max)throw Error('Assista
 const exact=(v,keys)=>{if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!keys.includes(k)))throw Error('Unsupported assistant action fields');};
 const tabs=['Story','Items','Connections','Timeline','Notes','Maps','Characters','Linked projects','GM screen','Soundboard','Playbook','Print'];
 export function assistantContext(v={}){
- exact(v,['activeTab','selectedCollection','selectedId','designer','terrain']);if(!tabs.includes(v.activeTab||'Story'))throw Error('Unknown campaign section');
+ exact(v,['activeTab','selectedCollection','selectedId','designer','terrain','terrainPieceId']);if(!tabs.includes(v.activeTab||'Story'))throw Error('Unknown campaign section');
+ if(v.terrainPieceId!==undefined&&v.terrainPieceId!==null&&(typeof v.terrainPieceId!=='string'||!/^[a-f0-9-]{16,40}$/.test(v.terrainPieceId)))throw Error('Invalid selected scenery');
  if(v.terrain&&!['world','scene'].includes(v.terrain))throw Error('Unknown terrain workspace');
  if(v.selectedCollection&&!['items','relationships','timeline','notes','characters','widgets','pins'].includes(v.selectedCollection))throw Error('Unknown selected campaign record');
  if(v.selectedId&& !/^[a-f0-9-]{16,40}$/.test(v.selectedId))throw Error('Invalid selected campaign record');
- return {activeTab:v.activeTab||'Story',selectedCollection:v.selectedCollection||null,selectedId:v.selectedId||null,...(v.terrain?{terrain:v.terrain}:{}),...(v.designer?{designer:designerView(v.designer)}:{})};
+ return {activeTab:v.activeTab||'Story',selectedCollection:v.selectedCollection||null,selectedId:v.selectedId||null,...(v.terrain?{terrain:v.terrain,terrainPieceId:v.terrainPieceId||null}:{}),...(v.designer?{designer:designerView(v.designer)}:{})};
 }
 export function briefCandidate(c,value){
  exact(value,['name','setup','summary','progress']);const candidate=structuredClone(validateCampaign(c));
@@ -28,9 +29,12 @@ export function validateLayout(value,inventory){
 export function validateAction(action,c,{inventory=[],savedScenes=[]}={}){
  if(!action||typeof action.type!=='string')throw Error('Invalid assistant action');
  if(creativeActionTypes.includes(action.type))return validateCreativeAction(action);
+ if(action.type==='placeSavedEncounter'){
+  exact(action,['type','name','sceneId','x','z','rotation']);string(action.name,120);if(!savedScenes.some(s=>s.id===action.sceneId)||!['x','z'].every(k=>Number.isFinite(action[k])&&Math.abs(action[k])<=10000)||![0,90,180,270].includes(action.rotation||0))throw Error('Choose an existing saved encounter and valid placement');return {...action,rotation:action.rotation||0};
+ }
  if(action.type==='proposeTerrain'){
-  exact(action,['type','name','items']);string(action.name,120);if(!Array.isArray(action.items)||!action.items.length||action.items.length>100)throw Error('Propose 1–100 pieces per batch');const known=new Set(inventory.map(x=>x.id));
-  for(const i of action.items){exact(i,['type','x','z','y','rotation']);if(!known.has(i.type)||!['x','z','y','rotation'].every(k=>Number.isFinite(i[k])&&Math.abs(i[k])<=10000)||i.y<0||![0,90,180,270].includes(i.rotation))throw Error('Invalid terrain batch');}
+  exact(action,['type','name','items','changes','removeIds']);string(action.name,120);const edits=action.changes||[],remove=action.removeIds||[];if(!Array.isArray(edits)||!Array.isArray(remove)||!Array.isArray(action.items||[])||!(action.items?.length||edits.length||remove.length)||(action.items?.length||0)+edits.length+remove.length>100)throw Error('Choose 1–100 terrain changes');for(const c of edits){exact(c,['pieceId','x','z','y','rotation','levelId']);if(typeof c.pieceId!=='string'||c.pieceId.length>100||c.levelId!==undefined&&typeof c.levelId!=='string')throw Error('Invalid piece or level');for(const k of ['x','z','y','rotation'])if(c[k]!==undefined&&!Number.isFinite(c[k]))throw Error('Invalid coordinate');}if(remove.some(id=>typeof id!=='string'||id.length>100))throw Error('Invalid removal');const known=new Set(inventory.map(x=>x.id));
+  for(const i of action.items||[]){exact(i,['type','x','z','y','rotation']);if(!known.has(i.type)||!['x','z','y','rotation'].every(k=>Number.isFinite(i[k])&&Math.abs(i[k])<=10000)||i.y<0||![0,90,180,270].includes(i.rotation))throw Error('Invalid terrain batch');}
   return structuredClone(action);
  }
  if(['findAssets','findSavedScenes'].includes(action.type)){exact(action,['type','query']);return {type:action.type,query:string(action.query||'',120)};}

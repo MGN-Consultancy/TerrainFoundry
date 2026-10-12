@@ -22,7 +22,7 @@ export async function premiumHandler(request,context,overrides){try{
  const origin=request.headers.get('origin');if(origin&&origin!==env.PREMIUM_SITE_ORIGIN)throw Object.assign(Error('Unapproved origin'),{status:403});
  const length=Number(request.headers.get('content-length'));if(!length||length>30000)throw Object.assign(Error('Invalid request size'),{status:413});
  const args=await request.json(),t=request.headers.get('authorization')?.replace(/^Bearer /,'')||'';let result;
- const peer=(request.headers.get('x-forwarded-for')||'unknown').split(',').at(-1).trim();if(['login-start','login-verify'].includes(action)){const {createHash}=await import('node:crypto');await store.budget('auth-peer-'+createHash('sha256').update(peer).digest('hex')+'-'+Math.floor(Date.now()/3600000),60);}
+ const peer=(request.headers.get('x-forwarded-for')||'unknown').split(',').at(-1).trim();if(['login-start','login-verify','key-challenge','key-activate','key-download-challenge','key-download'].includes(action)){const {createHash}=await import('node:crypto');const group=action.startsWith('key-')?'key-peer-':'auth-peer-';await store.budget(group+createHash('sha256').update(peer).digest('hex')+'-'+Math.floor(Date.now()/3600000),action.startsWith('key-')?120:60);}
  if(action==='login-start')result=await service.loginStart(args,peer);
  else if(action==='login-verify')result=await service.loginVerify(args);
  else if(action==='checkout')result=await service.checkout(t,args);
@@ -32,6 +32,10 @@ export async function premiumHandler(request,context,overrides){try{
  else if(action==='activate')result=await service.activate(t,args);
  else if(action==='download-challenge')result=await service.downloadChallenge(t,args);
  else if(action==='download')result=await service.download(t,args);
+ else if(action==='key-challenge')result=await service.keyChallenge(args);
+ else if(action==='key-activate')result=await service.keyActivate(args);
+ else if(action==='key-download-challenge')result=await service.keyDownloadChallenge(args);
+ else if(action==='key-download')result=await service.keyDownload(args);
  else if(action==='files')result=await service.files(t,args);
  else if(action==='resend')result=await service.resend(t,args);
  else if(action==='support-reset')result=await service.supportReset(t,args);

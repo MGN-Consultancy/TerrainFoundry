@@ -18,19 +18,44 @@ const steps=[
  {title:'Prepare a print pack',image:printing,alt:'The Prepare your print pack dialog showing quantities, connector counts and printer-size checks.',body:'<p>Check your printer build volume in the right-hand settings, then choose <strong>Prepare print pack</strong>.</p><p>The export contains STL models, a quantity list, your editable project, and the OpenLOCK clips and fit-test parts when connectors are enabled.</p><p>Open the STLs together in Bambu Studio, apply the listed quantities, arrange, slice and check supports. Print the small connector fit test first.</p><p><strong>Print estimate</strong> is an optional online service. Your scene is not uploaded automatically.</p>'}
 ];
 export function setupTutorial(onReady=()=>{}){
- const dialog=document.createElement('dialog');dialog.id='tutorial-dialog';dialog.setAttribute('aria-labelledby','tutorial-title');dialog.innerHTML='<div class="tutorial-heading"><div><div class="eyebrow">YOUR FIRST WORLD STARTS HERE</div><p class="tutorial-progress" aria-live="polite"></p></div><button id="tutorial-close" title="Close guide" aria-label="Close guide">×</button></div><div class="tutorial-layout"><div class="tutorial-visual"><button id="tutorial-enlarge" aria-label="Enlarge the example screenshot"><img id="tutorial-image" alt=""></button><span>Actual editor screenshots · Click to enlarge</span></div><div class="tutorial-copy"><h2 id="tutorial-title"></h2><div id="tutorial-body"></div></div></div><div class="tutorial-footer"><div class="tutorial-steps" aria-label="Guide steps"></div><div class="tutorial-navigation"><button id="tutorial-back">Back</button><button id="tutorial-next" class="primary">Next →</button></div></div><label class="tutorial-preference"><input id="tutorial-skip" type="checkbox"> Skip this tutorial next time</label><p class="tutorial-local">Always available from Guide or F1. Everything in this guide is included offline.</p>';
+ const dialog=document.createElement('dialog');dialog.id='tutorial-dialog';dialog.setAttribute('aria-labelledby','tutorial-title');dialog.innerHTML='<div class="tutorial-heading"><div><div class="eyebrow">YOUR FIRST WORLD STARTS HERE</div><p class="tutorial-progress" aria-live="polite"></p></div><button id="tutorial-close" title="Close guide" aria-label="Close guide">×</button></div><div class="tutorial-layout"><div class="tutorial-visual"><button id="tutorial-enlarge" aria-label="Enlarge the example screenshot"><img id="tutorial-image" alt=""></button><span>Actual editor screenshots · Click to enlarge</span></div><div class="tutorial-copy"><h2 id="tutorial-title"></h2><div id="tutorial-body"></div></div></div><div class="tutorial-footer"><div class="tutorial-steps" aria-label="Guide steps"></div><div class="tutorial-navigation"><button id="tutorial-back">Back</button><button id="tutorial-next" class="primary">Next →</button></div></div><label class="tutorial-preference"><input id="tutorial-skip" type="checkbox"> Skip this tutorial next time</label><p class="tutorial-local">Always available with F1. Everything in this guide is included offline.</p>';
  document.body.append(dialog);
  const zoom=document.createElement('dialog');zoom.id='tutorial-zoom';zoom.setAttribute('aria-label','Enlarged tutorial screenshot');zoom.innerHTML='<button id="tutorial-zoom-close" aria-label="Close enlarged screenshot">Close image</button><img alt="">';document.body.append(zoom);
- const find=id=>dialog.querySelector('#'+id);let current=0,returnFocus=null,startupPending=false;
+ const find=id=>dialog.querySelector('#'+id);let current=0,returnFocus=null,startupPending=false,skip=false,saving=Promise.resolve();
+ const preferenceNote=dialog.querySelector('.tutorial-local');
+ async function loadPreference(){
+  let legacy=null;try{legacy=localStorage.getItem(skipKey);}catch{}
+  if(window.desktop?.clientPreferencesRead){
+   const preferences=await window.desktop.clientPreferencesRead();
+   if(typeof preferences.tutorialSkip==='boolean')return preferences.tutorialSkip;
+   if(legacy!==null){await window.desktop.clientPreferencesSave({tutorialSkip:legacy==='true'});return legacy==='true';}
+   return false;
+  }
+  return legacy==='true';
+ }
+ const loaded=loadPreference().then(value=>{skip=value;}).catch(()=>{preferenceNote.textContent='Could not read your tutorial preference. Try again after restarting the client.';});
  function render(){const step=steps[current];find('tutorial-title').textContent=step.title;find('tutorial-body').innerHTML=step.body;find('tutorial-image').src=step.image;find('tutorial-image').alt=step.alt;dialog.querySelector('.tutorial-progress').textContent='Step '+(current+1)+' of '+steps.length;find('tutorial-back').disabled=current===0;find('tutorial-next').textContent=current===steps.length-1?'Start building':'Next →';for(const [i,b]of [...dialog.querySelectorAll('.tutorial-steps button')].entries()){b.classList.toggle('active',i===current);if(i===current)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');}}
- function open(){if(dialog.open)return;try{find('tutorial-skip').checked=localStorage.getItem(skipKey)==='true';}catch{}returnFocus=document.activeElement;current=0;render();dialog.showModal();find('tutorial-next').focus();}
- function close(){dialog.close();}
+ async function open(){await loaded;if(dialog.open)return;find('tutorial-skip').checked=skip;returnFocus=document.activeElement;current=0;render();dialog.showModal();find('tutorial-next').focus();}
+ async function close(){await saving;dialog.close();}
+ dialog.addEventListener('cancel',event=>{event.preventDefault();void close();});
  for(const [i,step]of steps.entries()){const b=document.createElement('button');b.textContent=String(i+1);b.title=step.title;b.setAttribute('aria-label','Step '+(i+1)+': '+step.title);b.onclick=()=>{current=i;render();};dialog.querySelector('.tutorial-steps').append(b);}
  find('tutorial-next').onclick=()=>{if(current===steps.length-1)close();else{current++;render();}};find('tutorial-back').onclick=()=>{if(current){current--;render();}};find('tutorial-close').onclick=close;
  dialog.addEventListener('close',()=>{if(zoom.open)zoom.close();if(returnFocus?.isConnected)returnFocus.focus();if(startupPending){startupPending=false;queueMicrotask(onReady);}});
  find('tutorial-enlarge').onclick=()=>{const image=zoom.querySelector('img');image.src=steps[current].image;image.alt=steps[current].alt;zoom.showModal();};zoom.querySelector('button').onclick=()=>zoom.close();
- find('tutorial-skip').addEventListener('change',()=>{try{localStorage.setItem(skipKey,String(find('tutorial-skip').checked));}catch{}});
+ find('tutorial-skip').addEventListener('change',()=>{
+  const value=find('tutorial-skip').checked;find('tutorial-skip').disabled=true;preferenceNote.textContent='Saving tutorial preference…';
+  saving=(async()=>{
+   try{
+    if(window.desktop?.clientPreferencesSave)await window.desktop.clientPreferencesSave({tutorialSkip:value});
+    else localStorage.setItem(skipKey,String(value));
+    skip=value;
+    try{localStorage.setItem(skipKey,String(value));}catch{}
+    preferenceNote.textContent='Preference saved on this PC. Reopen the guide with F1.';
+   }catch{find('tutorial-skip').checked=skip;preferenceNote.textContent='Could not save your preference. Please try again.';}
+   finally{find('tutorial-skip').disabled=false;}
+  })();
+ });
  document.getElementById('tutorial-help').onclick=open;
  document.addEventListener('keydown',e=>{if(e.key==='F1'){e.preventDefault();if(!document.querySelector('dialog[open]'))open();}if(!dialog.open||zoom.open)return;if(e.key==='ArrowRight'){e.preventDefault();if(current<steps.length-1){current++;render();}}if(e.key==='ArrowLeft'){e.preventDefault();if(current){current--;render();}}});
- if(!new URLSearchParams(location.search).has('demo'))showReleaseHighlights(()=>{let skip=false;try{skip=localStorage.getItem(skipKey)==='true';}catch{}if(!skip){startupPending=true;open();}else onReady();});
+ if(!new URLSearchParams(location.search).has('demo'))showReleaseHighlights(async()=>{await loaded;if(!skip){startupPending=true;void open();}else onReady();});
 }

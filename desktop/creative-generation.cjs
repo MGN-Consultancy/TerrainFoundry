@@ -105,7 +105,7 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
   async function exclusive(id,fn){if(busy.has(id))throw Error('A generation is already running for this design.');busy.add(id);try{return await fn();}finally{busy.delete(id);}}
   async function generateConcept(id,prompt,options={}) {return exclusive(id,async()=>{
     if(typeof prompt!=='string'||!prompt.trim()||prompt.length>6000)throw Error('Describe the concept in 1–6000 characters.');
-    const workspace=await library.load(id);
+    const workspace=await library.load(id);if((workspace.concepts||[]).filter(c=>c.retained!==false).length>=4)throw Error('Keep up to four retained concepts. Remove a concept before generating another.');
     if((workspace.concepts?.length||0)>=30)throw Error('Remove an unwanted concept before generating another; keep at most 30 per asset.');
     const references=conceptReferences(workspace,options),purpose=purposeFor(workspace);
     const key=await gate('openai'),status=await ai.status();
@@ -162,18 +162,19 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     }
     throw Error('Meshy is still processing. Resume this saved task later; no additional generation charge is needed.');
   }
-  async function generateModel(id,conceptSelection) {return exclusive(id,async()=>{
+  async function generateModel(id,conceptSelection,options={}) {return exclusive(id,async()=>{
     const workspace=await library.load(id),conceptIds=Array.isArray(conceptSelection)?conceptSelection:[conceptSelection];
     if(!conceptIds.length||conceptIds.length>4||conceptIds.some(id=>typeof id!=='string')||new Set(conceptIds).size!==conceptIds.length)throw Error('Choose one to four distinct approved concepts of the same model.');
     const concepts=conceptIds.map(conceptId=>{const concept=workspace.concepts?.find(c=>c.id===conceptId);if(!concept||concept.approved!==true||concept.retained!==true)throw Error('Lock in and retain every selected concept before submitting it to Meshy.');imageData(concept.image);return concept;});
     const conceptId=conceptIds[0],endpoint=conceptIds.length>1?'multi-image-to-3d':'image-to-3d',purpose=purposeFor(workspace);
+    if((workspace.model?.history||[]).length>=19)throw Error('This design has 20 model candidates. Save or export them before starting a new design.');
     const heightMm=workspace.design?.heightMm??workspace.heightMm;
     if(!Number.isFinite(heightMm)||heightMm<1||heightMm>1000)throw Error('Choose a model height from 1 to 1000 mm before generation.');
-    if(workspace.modelJob)throw Error('This design already has a Meshy submission. Resume or review its saved task before creating another paid model.');
+    if(workspace.modelJob&&(!options.newCandidate||!['installed','FAILED','CANCELED','rejected'].includes(workspace.modelJob.status)))throw Error('This design already has a Meshy submission. Resume or review its saved task before creating another paid model.');
     const upAxis=workspace.design?.upAxis||'y';if(!['y','z'].includes(upAxis))throw Error('Choose Y or Z as the source model up axis.');
     const key=await gate('meshy');
     const marker={conceptId,conceptIds,endpoint,purpose,status:'submitting',submissionId:crypto.randomUUID(),startedAt:new Date(now()).toISOString(),heightMm,upAxis,openlock:workspace.kind!=='character'&&!!workspace.design?.openlock};
-    await mutate(id,w=>{if(w.modelJob)throw Error('A model submission was already saved.');w.modelJob=marker;});
+    await mutate(id,w=>{if(w.modelJob&&!['installed','FAILED','CANCELED','rejected'].includes(w.modelJob.status))throw Error('A model submission was already saved.');w.modelJob=marker;});
     emit(id,'Submitting approved concept to Meshy',0);
     let created;
     const body={ai_model:'meshy-7.1',should_texture:true,enable_pbr:true,should_remesh:false,image_enhancement:false,target_formats:['stl','glb'],moderation:true,...(conceptIds.length>1?{image_urls:concepts.map(c=>c.image)}:{image_url:concepts[0].image,model_type:'standard'})};

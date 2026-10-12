@@ -1,0 +1,12 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs/promises'),os=require('node:os'),path=require('node:path');
+const {normalize,createClientPreferences}=require('../desktop/client-preferences.cjs');
+test('client preferences validate values and survive concurrent saves and reopening',async()=>{
+ const dir=await fs.mkdtemp(path.join(os.tmpdir(),'tf-client-preferences-'));
+ try{const store=createClientPreferences(dir);assert.deepEqual(await store.read(),{startupMode:'windowed',interfaceScale:1,reducedMotion:false,tutorialSkip:null});assert.deepEqual(normalize({startupMode:'invalid',interfaceScale:99,reducedMotion:'yes'}),normalize());await store.save({startupMode:'fullscreen',interfaceScale:1.1,reducedMotion:true});assert.deepEqual(await createClientPreferences(dir).read(),{startupMode:'fullscreen',interfaceScale:1.1,reducedMotion:true,tutorialSkip:null});await Promise.all([store.save({startupMode:'fullscreen'}),store.save({startupMode:'windowed',interfaceScale:1.25})]);assert.equal((await store.read()).interfaceScale,1.25);}finally{await fs.rm(dir,{recursive:true,force:true});}
+});
+test('editing a provider model does not switch the default companion',async()=>{
+ const dir=await fs.mkdtemp(path.join(os.tmpdir(),'tf-default-provider-'));
+ try{const {createCampaignAI}=require('../desktop/campaign-ai.cjs');const ai=createCampaignAI({directory:dir,safeStorage:{},inventory:async()=>[]});await ai.configure({provider:'openai',editProvider:'claude',model:'claude-test-draft'});const state=await ai.status();assert.equal(state.provider,'openai');assert.equal(state.providers.claude.model,'claude-test-draft');assert.equal(state.providers.openai.model,'gpt-6-luna');}finally{await fs.rm(dir,{recursive:true,force:true});}
+});
+
+test('tutorial opt-out survives reopening and unrelated partial settings saves',async()=>{const dir=await fs.mkdtemp(path.join(os.tmpdir(),'tf-tutorial-pref-'));try{const store=createClientPreferences(dir);await Promise.all([store.save({tutorialSkip:true}),store.save({startupMode:'fullscreen',interfaceScale:1.1})]);assert.equal((await createClientPreferences(dir).read()).tutorialSkip,true);await store.save({tutorialSkip:false});assert.equal((await store.read()).startupMode,'fullscreen');assert.equal((await createClientPreferences(dir).read()).tutorialSkip,false);}finally{await fs.rm(dir,{recursive:true,force:true});}});

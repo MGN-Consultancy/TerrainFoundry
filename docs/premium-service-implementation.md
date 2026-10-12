@@ -6,9 +6,9 @@ Nigel confirmed Willowbrook at GBP 9.99, two simultaneously activated computers 
 
 ## Customer flow
 
-Verify email with a ten-minute six-digit number, approve PayPal purchase, server confirms exact settled pack/currency/amount/merchant, durable outbox emails one activation code. Redeem in Packs, verify the purchase email, prove possession of the protected device key, then download. Retries and repairs on the same device reuse its slot. Support can release an old slot after verifying the purchase.
+For the desktop client, enter the high-entropy activation code from the purchase email, accept the scenery licence, and prove possession of the protected device key. The code identifies the licence; signed, short-lived challenges bind activation and each download to that computer. The server enforces the two-device allowance and checks that the licence remains issued. No email address or email verification step is required in the client. PayPal checkout and purchase-email delivery remain unchanged. Retries and repairs on the same device reuse its slot. Support can release an old slot after verifying the purchase.
 
-Requests use POST /api/premium/{action} with JSON and Authorization: Bearer <verified device-bound session> where required. Actions: login-start, login-verify, checkout, confirm, webhook, challenge, activate, download-challenge, download, files, resend, support-reset. Public GET config exposes only the issuer public key and public product terms. Client/browser tokens must not enter campaign/project exports or logs.
+Requests use POST /api/premium/{action} with JSON. Desktop redemption uses key-challenge, key-activate, key-download-challenge and key-download; the activation code is never returned or logged, device challenges expire and are one-use, and key redemption is rate-limited by peer. Existing email-session actions remain for checkout, customer account and STL delivery: login-start, login-verify, checkout, confirm, webhook, challenge, activate, download-challenge, download, files, resend and support-reset. Public GET config exposes only the issuer public key and public product terms. Client/browser tokens must not enter campaign/project exports or logs.
 
 ## Encrypted format
 

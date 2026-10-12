@@ -1,22 +1,22 @@
 {
-  "version": "1.18.2",
-  "title": "A more connected, responsive workshop",
+  "version": "1.19.0",
+  "title": "Clearer creative workshops and scene tools",
   "features": [
     {
-      "title": "Purchased packs stay current",
-      "description": "Already-activated packs check for updates at startup. Changed files download while verified unchanged files are reused; interrupted updates preserve the installed pack."
+      "title": "One companion through your design",
+      "description": "Keep the same conversation while refining a brief, approving concept art and reviewing separate 3D model candidates. Use text, native dictation or live voice with compact controls."
     },
     {
-      "title": "Browse and build more comfortably",
-      "description": "Terrain previews load progressively. A Content library brings terrain, characters, personal scenery and campaign sounds together, with artwork cards and compact campaign tools."
+      "title": "Preview character prints",
+      "description": "Preview full character sheets and compact two-sided cards before saving a PDF. Choose clean, fantasy or technical layouts."
     },
     {
-      "title": "Better planning and bounded history",
-      "description": "Structured roads, rivers, landings and access areas can be checked during placement. Campaign history has storage limits that preserve current work and active undo snapshots."
+      "title": "A cleaner editor and library",
+      "description": "Browse thumbnail libraries, move the floating scenery picker and find Scene tools beside View & sizing. Close editor and Exit app sit beside Save and warn about unsaved changes."
     },
     {
-      "title": "Understand and control online AI",
-      "description": "Review key encryption, data sharing and provider charges before enabling AI. Test OpenAI, Claude and Meshy separately, see account errors clearly, and reset session usage while retaining lifetime totals."
+      "title": "Settings that stay organised",
+      "description": "Separate general, visual, AI and purchase settings. Choose provider tabs, control online AI and decide whether encrypted API keys stay on this PC when you disable it. Tutorial skip preferences persist."
     }
   ]
 }

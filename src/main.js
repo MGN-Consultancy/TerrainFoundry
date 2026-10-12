@@ -1,7 +1,7 @@
 import {setupEditorLayout} from './editor-layout.js';
 import {setupEditorWindowControls} from './editor-window-controls.js';
 import './ai-settings-security.css';
-import {loadPremiumInventory,setupPremiumPacks} from './premium-packs.js';
+import {loadPremiumInventory,setupPremiumPacks,schedulePremiumPackSync} from './premium-packs.js';
 import {setupSceneLibrary} from './scene-library-ui.js';
 import {scenePreview} from './scene-preview.js';
 import {addEncounter,toWorld} from './world.js';
@@ -177,6 +177,9 @@ let confirmedWindowExit=false;
 window.addEventListener('beforeunload',e=>{if(dirty&&!confirmedWindowExit){e.preventDefault();e.returnValue='';}});
 new ResizeObserver(()=>{const r=$('stage').getBoundingClientRect();renderer.setSize(r.width,r.height);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();}).observe($('stage'));
 renderScene();library();fit();if(premiumInventory.warnings.length)setTimeout(()=>toast(premiumInventory.warnings[0],true),1000);renderer.setAnimationLoop(()=>{if(!drag)controls.update();renderer.render(scene,camera);});
+// Check activated packs after the editor is interactive. The request runs in
+// the background so large scenery deltas never hold up the window at launch.
+schedulePremiumPackSync({api:window.desktop,onUpdated:result=>{window.dispatchEvent(new Event('premium-assets-changed'));toast(`Purchased scenery updated (${result.updated} sections). Your scenery library is refreshed.`);},onError:error=>{console.warn('Purchased scenery update check failed',error);toast('Could not check purchased scenery updates. Your installed packs are still available.',true);}});
 
 
 

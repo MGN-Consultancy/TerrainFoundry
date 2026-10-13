@@ -8,6 +8,13 @@ import {fileURLToPath} from 'node:url';
 
 const repository = fileURLToPath(new URL('../', import.meta.url));
 const checker = path.join(repository, 'scripts/release/check-public-source.mjs');
+test('repository ignores working collections and generated outputs', () => {
+  const names=['work/fixture.bin','premium-assets/packs/fixture.glb','deliverables/fixture.stl',
+    'release/publish/fixture.bin','test-results/fixture.png','dist/fixture.js','node_modules/fixture.js',
+    '.tools/fixture.bin','site/dungeon-range/meshes.bin','result.json','scripts/__pycache__/fixture.pyc'];
+  const ignored=execFileSync('git',['check-ignore','--no-index','--stdin'],{cwd:repository,input:names.join('\n')+'\n',encoding:'utf8'}).trim().split(/\r?\n/);
+  assert.deepEqual(ignored,names);
+});
 test('public audit excludes ignored collections and rejects forced tracked working data and real key headers', async () => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'terrain-source-boundary-'));
   try {

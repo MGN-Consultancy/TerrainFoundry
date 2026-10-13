@@ -1,4 +1,6 @@
 node_modules/
+__pycache__/
+*.py[cod]
 **/local.settings.json
 **/.env
 **/.env.*
@@ -6,6 +8,12 @@ dist/
 /release/
 test-results/
 *.log
+
+# Authoring collections, delivery copies and local verification output stay local.
+/premium-assets/
+/deliverables/
+/site/dungeon-range/
+/result.json
 
 .tools/
 installer/build/

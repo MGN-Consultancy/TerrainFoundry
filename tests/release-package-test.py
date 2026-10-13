@@ -26,8 +26,11 @@ class ReleasePackaging(unittest.TestCase):
             put('launcher/TerrainFoundryLauncher.exe', b'launcher-fixture')
             put('release/desktop-1.0.0/TerrainFoundry-win32-x64/TerrainFoundry.exe', b'editor-fixture')
             payload = b'large-file-fixture' * 100000
-            put('release/asset-packs/starter/index.json', b'{"piece":{}}')
+            put('release/asset-packs/starter/index.json', b'{"piece":{"file":"models/piece.bin","printFiles":[{"pack":"print-pack","file":"piece.stl"}]}}')
             put('release/asset-packs/starter/models/piece.bin', payload)
+            put('release/asset-packs/starter/models/obsolete.bin', b'excluded')
+            put('release/asset-packs/starter/test-results/huge-fixture.bin', b'excluded')
+            put('release/asset-packs/starter/LICENSE.txt', b'licence-fixture')
             put('release/asset-packs/print-pack/index.json', b'{}')
             put('release/asset-packs/print-pack/print/piece.stl', b'stl-fixture')
             put('release/asset-packs/test-pack/private.txt', b'excluded')
@@ -41,6 +44,8 @@ class ReleasePackaging(unittest.TestCase):
             first = build()
             self.assertEqual(set(first['content']), {'starter', 'print-pack'})
             self.assertEqual(set(first['client']['files']), {'TerrainFoundry.exe'})
+            self.assertEqual(set(first['content']['starter']['files']), {'models/piece.bin','LICENSE.txt'})
+            self.assertEqual(set(first['content']['print-pack']['files']), {'print/piece.stl'})
             meta = first['content']['starter']['files']['models/piece.bin']
             self.assertEqual(meta['sha256'], hashlib.sha256(payload).hexdigest())
             self.assertEqual((root / 'release/publish' / meta['artifact']).read_bytes(), payload)

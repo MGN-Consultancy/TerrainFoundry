@@ -5,6 +5,7 @@
   "description": "Offline tabletop terrain designer",
   "main": "desktop/main.cjs",
   "scripts": {
+    "inventory:source": "node scripts/source-inventory.mjs",
     "start": "electron .",
     "build": "node scripts/sync-estimate-geometry.mjs && vite build",
     "dev": "vite --host 127.0.0.1",

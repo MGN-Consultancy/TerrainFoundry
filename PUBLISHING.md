@@ -1,5 +1,25 @@
 # Publishing Terrain Foundry
 
+## Source and working collection
+
+Use `pnpm inventory:source` to measure current tracked source without walking the local collection. At the official 1.19.1 baseline, the checkout contains approximately 49.6 MiB across 1,435 tracked files. Ignored working folders, generated geometry, dependencies, test results and old releases are not part of that source inventory. Keep them local; do not ZIP the checkout for customers or delete the collection to reduce Git size.
+
+The release package selects pack IDs from `desktop/builtin-index.json` and the pinned Deepstone archive list. This retains full-detail print packs and legacy scenery required by existing projects while excluding unrelated test-pack folders. Missing declared pack folders or indices stop packaging. Large artifacts are hashed and copied in bounded chunks.
+
+After signing, `node scripts/release/upload-files.mjs` verifies both channel signatures and selects only artifacts whose signed URLs belong to the current release tag, plus its current launcher MSI when applicable. Previously published unchanged components retain their immutable URLs; their files are not uploaded again. Stale local builds and debug files are excluded without being deleted. Missing or modified files, foreign repositories and oversized assets stop publication before a draft is created.
+
+The same check verifies that every built-in catalogue ID resolves to a declared scenery pack, that mesh ranges fit their declared files, and that full-detail print references match the signed file inventory. It checks metadata without loading geometry. A read-only check of the published 1.19.1 component channel on 13 October 2026 verified its signature and all 718 indexed entries (717 catalogue pieces plus the fit coupon), 21 packs and 52 full-detail print files. This establishes published inventory coverage, not a new runtime or physical-print acceptance test.
+
+Quick packaging checks need neither dependencies nor scenery regeneration:
+
+```
+node scripts/release/check-public-source.mjs
+python tests/release-package-test.py
+node --test tests/release-inventory.test.mjs tests/public-source-boundary.test.mjs
+```
+
+The public-source audit uses Git's tracked and non-ignored source list. It does not recursively inspect ignored authoring collections. The full release workflow still runs the checks required for its chosen component. The website is a separate Azure deployment; GitHub hosts the desktop channels and release artifacts.
+
 
 
 Official repository: `MGN-Consultancy/TerrainFoundry`. The repository is public. Public downloads and anonymous launcher updates become available when a non-prerelease GitHub Release is published. The Azure website is already public and handles an unavailable release gracefully.

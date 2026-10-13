@@ -45,6 +45,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Verify packaging boundaries without generating scenery
+        run: |
+          node scripts/release/check-public-source.mjs
+          if($LASTEXITCODE -ne 0){throw 'Public source boundary verification failed'}
+          python tests/release-package-test.py
+          if($LASTEXITCODE -ne 0){throw 'Release packaging regression failed'}
+          node --test tests/release-inventory.test.mjs tests/public-source-boundary.test.mjs
+          if($LASTEXITCODE -ne 0){throw 'Release inventory regression failed'}
       - uses: pnpm/action-setup@v4
         with:
           version: '11.19.0'
@@ -151,7 +159,9 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $v=(Get-Content package.json -Raw | ConvertFrom-Json).version
-          $files=@(Get-ChildItem release/publish -File | Where-Object Name -ne 'package-files.json' | Sort-Object Name)
+          $paths=@(node scripts/release/upload-files.mjs)
+          if($LASTEXITCODE -ne 0){throw 'Signed release inventory verification failed'}
+          $files=@($paths | ForEach-Object { Get-Item -LiteralPath $_ })
           if($files.Count -lt 1){throw 'No release files were packaged.'}
           if($files.Count -gt 1000){throw "GitHub release asset limit exceeded: $($files.Count) files."}
           $create=@('release','create',$env:TERRAIN_RELEASE_TAG,'--target',$env:GITHUB_SHA,'--title',"Terrain Foundry $v — $env:TERRAIN_COMPONENT update",'--notes-file','RELEASE-NOTES.md','--draft')

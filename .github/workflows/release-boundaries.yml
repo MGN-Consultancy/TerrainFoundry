@@ -1,0 +1,27 @@
+name: Check release boundaries
+on:
+  pull_request:
+    paths: ['scripts/release/**', 'scripts/source-inventory.mjs', 'scripts/package.cjs', 'tests/release-*', 'tests/public-source-boundary.test.mjs', '.gitignore', '.github/workflows/release*.yml']
+  push:
+    branches: [main]
+    paths: ['scripts/release/**', 'scripts/source-inventory.mjs', 'scripts/package.cjs', 'tests/release-*', 'tests/public-source-boundary.test.mjs', '.gitignore', '.github/workflows/release*.yml']
+permissions:
+  contents: read
+jobs:
+  boundaries:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: node scripts/release/check-public-source.mjs
+      - run: python tests/release-package-test.py
+      - run: node --test tests/release-inventory.test.mjs tests/public-source-boundary.test.mjs

@@ -3,13 +3,14 @@ import path from 'node:path';
 import os from 'node:os';
 import {createHash,sign,verify} from 'node:crypto';
 import {clientSourceHash} from './client-source-hash.mjs';
+import {createReadStream} from 'node:fs';
 const pkg=JSON.parse(await fs.readFile('package.json','utf8'));
 const repo='MGN-Consultancy/TerrainFoundry',tag=process.env.TERRAIN_RELEASE_TAG||'v'+pkg.version,root='release/publish';
 const component=(process.env.TERRAIN_COMPONENT||'full').toLowerCase();
 if(!['full','migration','launcher','client','content'].includes(component))throw Error('Unknown release component');
 const url=name=>`https://github.com/${repo}/releases/download/${tag}/${encodeURIComponent(name)}`;
 const filesMeta=JSON.parse(await fs.readFile(root+'/package-files.json','utf8'));
-async function entry(name,extra={}){const data=await fs.readFile(path.join(root,name));return {name,url:url(name),size:data.length,sha256:createHash('sha256').update(data).digest('hex'),...extra};}
+async function entry(name,extra={}){const file=path.join(root,name),stat=await fs.stat(file),digest=createHash('sha256');for await(const block of createReadStream(file))digest.update(block);return {name,url:url(name),size:stat.size,sha256:digest.digest('hex'),...extra};}
 async function readEnvelope(file){try{return JSON.parse(await fs.readFile(file,'utf8'));}catch{return null;}}
 const publicKey=await fs.readFile('release-config/update-public.pem');
 function verifyEnvelope(envelope){const payload=Buffer.from(envelope.payload,'base64');if(!verify('RSA-SHA256',payload,publicKey,Buffer.from(envelope.signature,'base64')))throw Error('Previous update channel signature invalid');const value=JSON.parse(payload);if(value.repository!==repo)throw Error('Previous channel repository mismatch');return value;}

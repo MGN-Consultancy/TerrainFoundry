@@ -74,6 +74,34 @@ const assert = require('node:assert/strict');
     await page.getByText('beacon-keepers.md', {exact: true}).waitFor();
     await page.locator('#studio-create button.primary').click();
     await page.waitForSelector('#campaign-tabs');
+    for (const [width, height] of [[1366, 768], [1024, 650], [2048, 1236], [760, 700]]) {
+      await app.evaluate(({BrowserWindow}, size) => {
+        const window = BrowserWindow.getAllWindows()[0];
+        window.setMinimumSize(640, 480);
+        window.setContentSize(...size);
+      }, [width, height]);
+      await page.waitForFunction(([width, height]) => innerWidth === width && innerHeight === height, [width, height]);
+      if (width <= 800) await page.locator('#campaign-show-content').click();
+      const sidebar = page.locator('#campaign-tabs');
+      const bounds = await sidebar.evaluate(nav => {
+        const box = nav.getBoundingClientRect(), pane = nav.closest('.campaign-content').getBoundingClientRect();
+        const style = getComputedStyle(nav);
+        return {bottom: box.bottom, paneBottom: pane.bottom, height: nav.clientHeight, contentHeight: nav.scrollHeight, wrap: style.flexWrap, direction: style.flexDirection, buttons: nav.querySelectorAll('button').length, widths: [nav.clientWidth, nav.scrollWidth]};
+      });
+      assert.ok(bounds.bottom <= bounds.paneBottom, `Section sidebar must fit its pane at ${width}×${height}: ${JSON.stringify(bounds)}`);
+      if (height < 800) {
+        assert.ok(bounds.contentHeight > bounds.height, `Short windows must have a scrollable section sidebar: ${JSON.stringify(bounds)}`);
+        await sidebar.hover();
+        await page.mouse.wheel(0, 1000);
+        await page.waitForFunction(() => document.querySelector('#campaign-tabs').scrollTop > 0);
+      }
+      const lastSection = sidebar.locator('button').last();
+      await lastSection.scrollIntoViewIfNeeded();
+      await lastSection.click();
+      await page.waitForSelector('#campaign-body[data-tab="Print"]');
+      await page.screenshot({path: path.join(artifacts, `sidebar-${width}x${height}.png`)});
+    }
+    await app.evaluate(({BrowserWindow}) => BrowserWindow.getAllWindows()[0].setContentSize(1440, 1000));
     await tab(page, 'Context');
     assert.match(await page.locator('#campaign-body #campaign-context-files').textContent(), /beacon-keepers.md/);
     await page.locator('#campaign-body #campaign-context-files summary').click();

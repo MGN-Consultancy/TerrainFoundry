@@ -1,7 +1,11 @@
 {
-  "version": "1.20.0",
-  "title": "Design your own tabletop game",
+  "version": "1.20.1",
+  "title": "Scroll through every campaign section",
   "features": [
+    {
+      "title": "A visible sidebar scrollbar",
+      "description": "The campaign section list stays inside its pane. Scroll to reach every section, including Print & share, at smaller window sizes. Narrow windows also keep the content reachable."
+    },
     {
       "title": "Your rules and source notes",
       "description": "Start Custom, DND or Warhammer projects. Upload Markdown context and develop characters, scenery, worlds and a rulebook with one companion."

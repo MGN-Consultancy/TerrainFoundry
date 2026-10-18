@@ -1,4 +1,8 @@
-# Terrain Foundry 1.20.0 — Universal Game Designer
+# Terrain Foundry 1.20.1 — Campaign sidebar scrolling
+
+The campaign section sidebar now stays within its pane and has a visible scrollbar. Scroll to reach every section at smaller window sizes, including Print & share. Narrow layouts also keep the campaign content reachable.
+
+## Universal Game Designer
 
 Start a Custom, DND or Warhammer project, upload Markdown source notes, and continue through rules, characters, scenery and worlds with one companion. Custom games use their own rules and vocabulary. Context stays local: requests retrieve relevant excerpts and recent dialogue within a bounded project context instead of resending the whole campaign.
 

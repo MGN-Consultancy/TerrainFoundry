@@ -4,7 +4,7 @@ import {creativeActionTypes,validateCreativeAction,designerView,creativeInstruct
 import {terrainInstructions} from './terrain-planner.mjs';
 const string=(v,max)=>{if(typeof v!=='string'||v.length>max)throw Error('Assistant text exceeds its limit');return v;};
 const exact=(v,keys)=>{if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!keys.includes(k)))throw Error('Unsupported assistant action fields');};
-const tabs=['Story','Items','Connections','Timeline','Notes','Maps','Characters','Linked projects','GM screen','Soundboard','Playbook','Print'];
+const tabs=['Story','Context','Rulebook','Items','Connections','Timeline','Notes','Maps','Characters','Linked projects','GM screen','Soundboard','Playbook','Print'];
 export function assistantContext(v={}){
  exact(v,['activeTab','selectedCollection','selectedId','designer','terrain','terrainPieceId']);if(!tabs.includes(v.activeTab||'Story'))throw Error('Unknown campaign section');
  if(v.terrainPieceId!==undefined&&v.terrainPieceId!==null&&(typeof v.terrainPieceId!=='string'||!/^[a-f0-9-]{16,40}$/.test(v.terrainPieceId)))throw Error('Invalid selected scenery');
@@ -51,6 +51,12 @@ export function validateAction(action,c,{inventory=[],savedScenes=[]}={}){
  if(action.type==='updateBrief'){
   exact(action,['type','brief']);const candidate=briefCandidate(c,action.brief);return {type:action.type,brief:{name:candidate.name,setup:candidate.setup,summary:candidate.summary,progress:candidate.progress}};
  }
+ if(action.type==='upsertRulebookChapter'){
+ exact(action,['type','chapter']);exact(action.chapter,['id','title','body','visible']);
+ const chapter=action.chapter;if(chapter.id&&!c.rulebook.chapters.some(item=>item.id===chapter.id))throw Error('Cannot edit an unavailable rulebook chapter');
+ string(chapter.title,160);string(chapter.body,20000);if(!chapter.title.trim()||typeof chapter.visible!=='boolean')throw Error('A chapter needs a title and explicit player visibility');
+ applyCampaignAction(c,action);return structuredClone(action);
+ }
  if(action.type==='upsertRecord'){
   exact(action,['type','collection','record']);const fields={items:['id','category','title','body','visible','artworkId'],characters:['id','name','details','abilities','equipment','spells','hp','ac','visible'],notes:['id','title','body','visible','itemId'],timeline:['id','date','title','body','visible','itemId'],relationships:['id','from','to','label','body','visible']};
   if(!fields[action.collection])throw Error('This campaign record action is unsupported');exact(action.record,fields[action.collection]);
@@ -86,6 +92,8 @@ const campaignInstructions=`For assistant mode return ONLY JSON {message,nextSte
 export const assistantInstructions=campaignInstructions+' '+creativeInstructions+' '+terrainInstructions;
 
 export function applyCampaignAction(c,action){
+ if(action.type==='upsertRulebookChapter'){const candidate=structuredClone(c),chapter={...action.chapter,id:action.chapter.id||crypto.randomUUID()},index=candidate.rulebook.chapters.findIndex(item=>item.id===chapter.id);if(index<0)candidate.rulebook.chapters.push(chapter);else candidate.rulebook.chapters[index]=chapter;return validateCampaign(candidate);}
+
  if(action.type==='updateBrief'){const next=briefCandidate(c,action.brief);next.assistant={phase:'studio',nextStep:'Brief saved. Ask your assistant to draft an opening mission or character.',draftBrief:null};return next;}
  if(action.type==='upsertRecord'){const record={...action.record,id:action.record.id||crypto.randomUUID()};if(action.collection==='characters'){const old=c.characters.find(x=>x.id===record.id);record.portrait=old?.portrait||null;record.modelFile=old?.modelFile||'';}return campaignRecordCandidate(c,action.collection,record);}
  throw Error('Action requires a project review');

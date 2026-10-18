@@ -162,7 +162,7 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     }
     throw Error('Meshy is still processing. Resume this saved task later; no additional generation charge is needed.');
   }
-  async function generateModel(id,conceptSelection,options={}) {return exclusive(id,async()=>{
+  async function generateModel(id,conceptSelection,options={}) {return exclusive(id,async()=>{if(ai.status){const {aiCapabilities}=await import('./ai-capabilities.mjs');const cap=aiCapabilities(await ai.status());if(!cap.models)throw Error(cap.modelReason);}
     const workspace=await library.load(id),conceptIds=Array.isArray(conceptSelection)?conceptSelection:[conceptSelection];
     if(!conceptIds.length||conceptIds.length>4||conceptIds.some(id=>typeof id!=='string')||new Set(conceptIds).size!==conceptIds.length)throw Error('Choose one to four distinct approved concepts of the same model.');
     const concepts=conceptIds.map(conceptId=>{const concept=workspace.concepts?.find(c=>c.id===conceptId);if(!concept||concept.approved!==true||concept.retained!==true)throw Error('Lock in and retain every selected concept before submitting it to Meshy.');imageData(concept.image);return concept;});

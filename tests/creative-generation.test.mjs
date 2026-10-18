@@ -14,9 +14,24 @@ function fixture(options={}){
   const library={load:async()=>structuredClone(workspace),save:async value=>{workspace=structuredClone(value);return workspace;},installModel:async(id,files)=>{installed.push(files);return workspace;}};
   const requests=[];
   const fetchImpl=async(url,init={})=>{requests.push({url:String(url),...init});if(options.fetch)return options.fetch(String(url),init,workspace);if(String(url).endsWith('/balance'))return response({balance:100});if(String(url).endsWith('/models'))return response({data:[]});if(/\/images\/(generations|edits)$/.test(String(url)))return response({data:[{b64_json:PNG.split(',')[1]}],usage:{total_tokens:3}});if(init.method==='POST')return response({result:'task-12345678'});if(/\/(multi-image-to-3d|image-to-3d)\//.test(String(url)))return response({status:'SUCCEEDED',progress:100,model_urls:{stl:'https://assets.meshy.ai/model.stl',glb:'https://assets.meshy.ai/model.glb'}});return new Response(String(url).endsWith('.glb')?Buffer.from('glTF'):tetra());};
-  const ai={voiceKey:async()=>{if(options.noKey)throw Error('secret failure');return 'private-openai-key';},meshyKey:async()=>{if(options.noKey)throw Error('secret failure');return 'private-meshy-key';},status:async()=>({providers:{openai:{imageModel:'gpt-image-1'}}})};
+  const ai={voiceKey:async()=>{if(options.noKey)throw Error('secret failure');return 'private-openai-key';},meshyKey:async()=>{if(options.noKey)throw Error('secret failure');return 'private-meshy-key';},status:async()=>({consent:{accepted:true},configured:{openai:true,meshy:true},providers:{openai:{imageModel:'gpt-image-1'}}})};
   return {library,ai,fetchImpl,requests,installed,get workspace(){return workspace;},set workspace(value){workspace=value;},service:createCreativeGeneration({library,ai,fetchImpl,wait:async()=>{},maxPolls:2})};
 }
+test('linked ChatGPT plus Meshy can use approved manual concept art without an OpenAI API key',async()=>{
+  const f=fixture();
+  f.ai.status=async()=>({consent:{accepted:true},chatgpt:{signedIn:true,enabled:true},configured:{openai:false,claude:false,meshy:true}});
+  f.ai.voiceKey=async()=>{throw Error('No OpenAI API key');};
+  f.workspace.concepts[0].provider='manual-upload';
+  await f.service.generateModel('test',['concept']);
+  assert.ok(f.requests.some(request=>request.method==='POST'&&request.url.startsWith('https://api.meshy.ai/')));
+  assert.ok(!f.requests.some(request=>request.url.startsWith('https://api.openai.com/')));
+});
+test('Meshy cannot submit a charged model request without a linked AI connection',async()=>{
+  const f=fixture();
+  f.ai.status=async()=>({consent:{accepted:true},chatgpt:{enabled:false},configured:{openai:false,claude:false,meshy:true}});
+  await assert.rejects(f.service.generateModel('test',['concept']),/Requires linked AI and a Meshy API key/);
+  assert.equal(f.requests.length,0);
+});
 test('scale follows Y height, not longest extent, and outputs centered grounded Z-up mesh',()=>{const result=scaleSTL(tetra(),32);assert.equal(result.scale,16);assert.deepEqual(result.sizeMm,[320,16,32]);assert.equal(result.bytes.readFloatLE(96),-160);assert.equal(result.bytes.readFloatLE(104),0);assert.throws(()=>scaleSTL(tetra(),0),/height/);assert.throws(()=>scaleSTL(tetra(),32,'x'),/axis/);});
 test('concept uses protected credential, checks key without generating, and appends an unapproved square',async()=>{const f=fixture();const saved=await f.service.generateConcept('test','A brave original knight');assert.equal(saved.concepts.length,2);assert.equal(saved.concepts[1].approved,false);assert.equal(saved.concepts[1].image,PNG);assert.equal(f.requests[0].url,'https://api.openai.com/v1/models');assert.equal(f.requests[1].url,'https://api.openai.com/v1/images/generations');assert.ok(!JSON.stringify(saved).includes('private-openai-key'));});
 test('missing key returns explicit status and never sends requests',async()=>{const f=fixture({noKey:true});assert.equal((await f.service.validateProvider('openai')).configured,false);await assert.rejects(f.service.generateConcept('test','knight'),/OpenAI API key/);assert.equal(f.requests.length,0);});

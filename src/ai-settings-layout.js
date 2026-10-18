@@ -10,6 +10,7 @@ export function setupAISettingsLayout(root,api,{onKeysChanged=async()=>{}}={}){
  }
  root.querySelector('.studio-heading').after(nav,body);
  const move=(node,panel)=>{if(node)panels[panel].append(node);};
+  move(root.querySelector('.game-linked-ai'),'openai');
  for(const id of ['campaign-agent-mode','campaign-shared-style']){const label=get(id).closest('label'),note=label.nextElementSibling;move(label,'workspace');move(note,'workspace');}
  get('campaign-shared-style').rows=4;
  const security=root.querySelector('.ai-settings-security'),tests=security.querySelector('.ai-provider-tests');move(security,'privacy');

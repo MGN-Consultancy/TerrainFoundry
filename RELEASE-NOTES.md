@@ -1,3 +1,17 @@
+# Terrain Foundry 1.20.0 — Universal Game Designer
+
+Start a Custom, DND or Warhammer project, upload Markdown source notes, and continue through rules, characters, scenery and worlds with one companion. Custom games use their own rules and vocabulary. Context stays local: requests retrieve relevant excerpts and recent dialogue within a bounded project context instead of resending the whole campaign.
+
+Link a ChatGPT account in Settings and retain that connection securely on this PC. Choose the conversation funding route explicitly. Project usage separates reported linked-account and API tokens; remaining account allowance and unknown monetary charges are not estimated. An optional combined text token limit stops requests before submission when the recorded budget is insufficient. A failed linked request does not silently switch to paid API access.
+
+Concept image generation needs an OpenAI API key. Linked conversation plus Meshy can use manually uploaded and approved artwork without that key. Image, voice and Meshy charges are separate from the project text token limit; their existing usage details remain in Settings.
+
+Build a rulebook with cover art, contents, editable chapters and page navigation, then export PDF or standalone HTML. Player exports include only player-visible chapters and exclude uploaded source documents. Companion chapter changes use the existing review, revision and undo workflow.
+
+Included free scenery gains rules-neutral planning hints from its catalogue categories and declared connector footprints. Unknown clearances and full model heights remain explicit. Newly created scenery retains its required editable planning metadata. These hints do not certify geometry, structural support or physical connector fit.
+
+Client-only update: existing launcher and published scenery packages are reused. Saved projects, purchases and device-bound activations remain compatible.
+
 # Terrain Foundry 1.19.0 — Refined creative workshops and scene editor
 
 The opening workshop uses compact illustrated cards for campaigns, worlds, scenes, characters and scenery. Recent projects appear in their open dialogs. Character and scenery libraries show bounded thumbnail tiles. Settings group general, visual, AI and purchase options. AI providers have separate tabs, explicit consent and an option to retain or remove encrypted local keys when disabling AI.

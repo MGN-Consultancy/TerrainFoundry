@@ -2,7 +2,7 @@ const fs=require('node:fs/promises'),path=require('node:path');
 function setupCreativeNative({app,win,ipcMain,dialog,BrowserWindow,ai,store,net,premiumInventory}){
  const directory=process.env.TERRAIN_CREATIVE_LIBRARY||path.join(app.getPath('documents'),'Terrain Foundry','Asset Library');
  const library=require('./creative-library.cjs').createCreativeLibrary({directory});
- const generation=require('./creative-generation.cjs').createCreativeGeneration({library,ai,fetchImpl:(...args)=>net.fetch(...args),onProgress:value=>{if(!win.isDestroyed())win.webContents.send('creative-progress',value);}});
+ const generation=require('./creative-generation.cjs').createCreativeGeneration({library,ai,projectForAsset:async id=>{await discussionQueue;return discussionBindings.get(id)?.campaignId||(await session(id)).id;},fetchImpl:(...args)=>net.fetch(...args),onProgress:value=>{if(!win.isDestroyed())win.webContents.send('creative-progress',value);}});
  const orchestrator=require('./creative-orchestrator.cjs').createCreativeOrchestrator({library,generation,conversationContext:async id=>{const c=await session(id);let size=0;const messages=[];for(const message of c.chat.slice(-20).reverse()){if(size+message.text.length>12000)break;messages.unshift(message);size+=message.text.length;}return {summary:c.summary,messages};}});
  const sessions=new Map(),confirming=new Set(),ownedFile=path.join(directory,'owned-packs.json');
  const discussionBindings=new Map();let discussionQueue=Promise.resolve();

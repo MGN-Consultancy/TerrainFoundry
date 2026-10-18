@@ -69,7 +69,7 @@ function scaleSTL(input, heightMm, upAxis = 'y') {
   return {bytes:out,scale:factor,heightMm,sourceUpAxis:upAxis,outputUpAxis:'z',sizeMm:max.map((n,j)=>(n-min[j])*factor)};
 }
 
-function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},pollIntervalMs=10000,maxPolls=180,wait=sleep,now=Date.now}) {
+function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},projectForAsset=()=>null,pollIntervalMs=10000,maxPolls=180,wait=sleep,now=Date.now}) {
   const busy=new Set(),verified=new Map();
   const emit=(id,phase,progress)=>{try{onProgress({id,phase,progress,percent:progress});}catch{}};
   async function bounded(response,limit) {
@@ -117,15 +117,20 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     const body={model:imageModel,prompt:(instructions+'\nAsset name: '+workspace.name+'\nExisting design description: '+workspace.description+'\nDesign brief: '+JSON.stringify(workspace.design||{}).slice(0,4000)+editGuide+'\nRequested change: '+safePrompt).split(key).join('[removed]'),n:1,size:'1024x1024',output_format:'png'};
     if(references.length)body.images=references.map(r=>({image_url:r.image}));
     emit(id,'Generating concept',0);
-    let usage=null,outcome='failed',requestSent=false;
+    const projectId=await projectForAsset(id);
+    let usage=null,outcome='failed',requestSent=false,projectUsageID=null;
     await ai.requireConsent?.();
     try{
+    if(projectId)projectUsageID=await ai.beginProjectImage?.(projectId);
     const result=await json(OPENAI+(references.length?'/images/edits':'/images/generations'),{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify(body)},IMAGE_LIMIT*1.4,()=>{requestSent=true;});
     usage=result.usage||null;outcome='unusable-output';
     const b64=result.data?.[0]?.b64_json;if(typeof b64!=='string')throw Error('OpenAI did not return an image. No automatic retry was made.');
     const concept={id:crypto.randomUUID(),name:'Concept '+((workspace.concepts?.length||0)+1),image:imageData('data:image/png;base64,'+b64),prompt:safePrompt,approved:false,retained:true,createdAt:now(),provider:'openai',model:imageModel,usage:result.usage||null,referenceIds:references.map(r=>r.id),...(references.find(r=>r.referenceType==='concept')?{parentConceptId:references.find(r=>r.referenceType==='concept').id}:{})};
     const saved=await mutate(id,w=>{w.concepts||=[];w.concepts.push(concept);});emit(id,'Concept ready for review',100);outcome='completed';return saved;
-    }finally{if(requestSent)await ai.recordUsage?.({provider:'openai',model:imageModel,kind:'image',usage,outcome});}
+    }finally{
+      try{if(projectUsageID)await ai.finishProjectImage?.(projectId,usage,outcome,projectUsageID);}
+      finally{if(requestSent)await ai.recordUsage?.({provider:'openai',model:imageModel,kind:'image',usage,outcome});}
+    }
   });}
   async function download(url) {
     let address;try{address=new URL(url);}catch{throw Error('Meshy returned an invalid download address.');}

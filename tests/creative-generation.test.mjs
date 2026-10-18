@@ -26,6 +26,21 @@ test('linked ChatGPT plus Meshy can use approved manual concept art without an O
   assert.ok(f.requests.some(request=>request.method==='POST'&&request.url.startsWith('https://api.meshy.ai/')));
   assert.ok(!f.requests.some(request=>request.url.startsWith('https://api.openai.com/')));
 });
+
+test('creative concept images reach the owning project meter before submission without inflating text tokens',async t=>{
+  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'tf-project-image-'));t.after(()=>fs.rm(directory,{recursive:true,force:true}));
+  const {createCampaignAI}=createRequire(import.meta.url)('../desktop/campaign-ai.cjs');
+  const safeStorage={isEncryptionAvailable:()=>true,encryptString:value=>Buffer.from(value),decryptString:value=>value.toString()};
+  const ai=createCampaignAI({directory,safeStorage,inventory:async()=>[]}),projectId=randomUUID(),f=fixture();
+  await ai.acceptConsent(true);await ai.configure({provider:'openai',imageModel:'gpt-image-1'});await ai.saveKey('openai','sk-fixture-image');
+  const service=createCreativeGeneration({library:f.library,ai,projectForAsset:async()=>projectId,fetchImpl:async(url,options)=>{
+    if(options.method==='POST')assert.equal((await ai.projectUsage(projectId)).imageRequests,1,'record the pending request before paid submission');
+    return f.fetchImpl(url,options);
+  }});
+  await service.generateConcept('test','An original lantern keeper');
+  const totals=await ai.projectUsage(projectId);assert.equal(totals.imageRequests,1);assert.equal(totals.requests,1);
+  assert.equal(totals.apiTokens,0);assert.equal(totals.allowanceTokens,0);assert.equal(f.requests.filter(request=>request.method==='POST').length,1);
+});
 test('Meshy cannot submit a charged model request without a linked AI connection',async()=>{
   const f=fixture();
   f.ai.status=async()=>({consent:{accepted:true},chatgpt:{enabled:false},configured:{openai:false,claude:false,meshy:true}});

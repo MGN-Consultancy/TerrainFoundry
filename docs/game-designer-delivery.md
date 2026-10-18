@@ -102,3 +102,13 @@ An automated linked-account live-check command was rejected by automatic approva
 ## Launcher runtime log recovery — 18 October 2026
 
 The official installed launcher rejected its signed client solely because Chromium created a root debug.log. The exact signed client folder was checked: 75 files, one unexpected path, debug.log. The launcher now permits only that regular root diagnostic file for client packages, retains signed-file hash checks and other extra-file rejection, and routes future diagnostics to launcher logs outside the immutable client. Sixteen compiled runtime-file checks and the existing startup lifecycle pass. Launcher version: 1.16.2. No installed files or scenery were changed by these tests.
+
+## Client 1.20.3 recovery candidate — 18 October 2026
+
+The installed client settings gear failed with safeStorage decryption while reading the saved ChatGPT connection. Status now reports that unreadable connection without blocking settings. Cancel sign-in enables immediate retry; explicit repair first preserves an exact encrypted backup and then creates a new local connection store. API key settings are untouched. Conversation cannot silently fall back to API billing from an unreadable ChatGPT connection; API key only must be chosen explicitly.
+
+The universal entry now uses Games, Create game and Open game, including creation/picker forms. Custom terminology remains separate from DND and Warhammer modes. Module sizing, OpenLOCK fitting and clone/adjust remain included from source commit 937d85b.
+
+Verification: 156 focused tests, security/recovery browser smoke, native generic-entry acceptance, and native unreadable-connection repair acceptance. Native repair preserves the original protected bytes in a recovery file and leaves API settings byte-for-byte unchanged, with zero provider/browser-auth requests. Production build and package/public-source checks pass. Real provider generation is not established by these fixtures.
+
+Launcher 1.16.2 is published as v1.20.2-launcher-52-1 (release 416560948), source cd291c759b86377ace6f1d19aeb04af71b303e8a. Public channel bytes and launcher hash match the verified signed candidate; Authenticode is valid for MGN CONSULTANCY LIMITED. Client 1.20.2 and scenery manifests are unchanged by that launcher release. Client 1.20.3 publication and live provider acceptance remain pending.

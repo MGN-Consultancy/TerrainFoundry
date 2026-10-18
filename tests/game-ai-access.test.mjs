@@ -233,3 +233,28 @@ test('real loopback sign-in verifies state and saves protected app-owned tokens 
     assert.doesNotMatch((await fs.readFile(path.join(directory,'chatgpt-accounts.protected'))).toString(),/secret-access-token|secret-refresh-token/);
   }finally{link.cancel();await fs.rm(directory,{recursive:true,force:true});}
 });
+
+test('cancelled browser sign-in can retry immediately without changing an active account',async()=>{const directory=await fs.mkdtemp(path.join(os.tmpdir(),'tf-link-cancel-'));let link,authorize,calls=0;try{const previous={id:crypto.randomUUID(),subject:'fixture-owner',client_id:'oaiapp_previous',email:'Previously linked',scopes:['chatgpt.tokens.use.direct'],access_token:'fixture-existing-token',expires:Date.now()+3600000};await fs.writeFile(path.join(directory,'chatgpt-accounts.protected'),storage.encryptString(JSON.stringify({host:'urn:uuid:'+crypto.randomUUID(),active:previous.id,accounts:[previous]})));link=createChatGPTConnection({directory,safeStorage:storage,fetchImpl:async()=>{calls++;throw Error('Unexpected provider call');},openExternal:async url=>{authorize=new URL(url);}});await link.start();const first=authorize;assert.equal((await link.status()).pending,true);link.cancel();const cancelled=await link.status();assert.equal(cancelled.pending,false);assert.equal(cancelled.active,previous.id);assert.equal(cancelled.enabled,true);assert.match(cancelled.message,/cancelled/);assert.equal(await link.token(),'fixture-existing-token');await link.start();assert.equal((await link.status()).pending,true);assert.notEqual(authorize.searchParams.get('state'),first.searchParams.get('state'));const stale=new URL(authorize.searchParams.get('redirect_uri'));stale.searchParams.set('state',first.searchParams.get('state'));stale.searchParams.set('code','stale-fixture-code');assert.equal((await fetch(stale)).status,400);assert.equal((await link.status()).pending,true);assert.equal((await link.status()).active,previous.id);assert.equal(calls,0);}finally{link?.cancel();await fs.rm(directory,{recursive:true,force:true});}});
+
+test('unreadable ChatGPT state stays recoverable without blocking settings or touching API keys',async()=>{
+ const directory=await fs.mkdtemp(path.join(os.tmpdir(),'tf-link-repair-'));let link,opened=0;
+ try{
+  const file=path.join(directory,'chatgpt-accounts.protected'),original=Buffer.from('unreadable encrypted fixture'),apiFile=path.join(directory,'ai-settings.json'),apiBytes=Buffer.from('{"fixture":"preserve API settings"}');
+  await fs.writeFile(file,original);await fs.writeFile(apiFile,apiBytes);
+  link=createChatGPTConnection({directory,safeStorage:storage,fetchImpl:async()=>{throw Error('Unexpected provider request');},openExternal:async()=>{opened++;}});
+  const broken=await link.status();assert.equal(broken.unreadable,true);assert.equal(broken.enabled,false);assert.deepEqual(await fs.readFile(file),original);
+  const repaired=await link.repair();assert.equal(repaired.unreadable,undefined);assert.equal(repaired.signedIn,false);
+  const backups=(await fs.readdir(directory)).filter(n=>n.startsWith('chatgpt-accounts.protected.recovery-'));assert.equal(backups.length,1);assert.deepEqual(await fs.readFile(path.join(directory,backups[0])),original);assert.deepEqual(await fs.readFile(apiFile),apiBytes);
+  await assert.rejects(link.repair(),/readable/);await link.start();assert.equal(opened,1);assert.equal((await link.status()).pending,true);await assert.rejects(link.repair(),/Cancel/);
+ }finally{link?.cancel();await fs.rm(directory,{recursive:true,force:true});}
+});
+test('unreadable ChatGPT state requires explicit API funding instead of silent fallback',async()=>{
+ const directory=await fs.mkdtemp(path.join(os.tmpdir(),'tf-link-funding-'));let calls=0;
+ try{
+  const ai=createCampaignAI({directory,safeStorage:storage,inventory:async()=>[],linked:{status:async()=>({signedIn:false,enabled:false,unreadable:true})},fetchImpl:async()=>{calls++;return new Response(JSON.stringify(requestResult));}});
+  await ai.acceptConsent(true);await ai.saveKey('openai','sk-fixture-not-used-fallback');await ai.configure({provider:'openai',route:'auto',model:'fixture-model'});
+  const c=createCampaign('Funding recovery',{gameType:'custom'}),status=await ai.status();assert.equal(status.configured.openai,true);assert.equal(aiCapabilities(status).conversation,false);
+  await assert.rejects(ai.generate(c,'One small scenery planning sentence.','story'),/API key only explicitly/);assert.equal(calls,0);
+  await ai.configure({provider:'openai',route:'api'});assert.equal(aiCapabilities(await ai.status()).conversation,true);await ai.generate(c,'One small scenery planning sentence.','story');assert.equal(calls,1);assert.equal((await ai.projectUsage(c.id)).apiTokens,120);
+ }finally{await fs.rm(directory,{recursive:true,force:true});}
+});

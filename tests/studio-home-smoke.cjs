@@ -11,10 +11,10 @@ const {_electron}=require('playwright'),fs=require('node:fs/promises'),path=requ
   assert.equal(await page.locator('#studio-home .studio-icon-button[aria-label="Settings"]').count(),1);
   assert.equal(await page.locator('#studio-home').getByText('Continue editor',{exact:true}).count(),0);
   assert.equal(await page.locator('#studio-home').getByText(/AI setup|Setup · AI/i).count(),0);
-  assert.match(await page.locator('#studio-home').innerText(),/D&D Campaigns[\s\S]*Worlds[\s\S]*Encounters & Scenes/);
+  assert.match(await page.locator('#studio-home').innerText(),/Game Designer[\s\S]*Worlds[\s\S]*Encounters & Scenes/);
   const images=await page.locator('#studio-home img').evaluateAll(items=>items.map(i=>({alt:i.alt,loaded:i.complete&&i.naturalWidth>0})));
   assert.equal(images.length,4);assert(images.every(i=>i.loaded),JSON.stringify(images));
-  await page.locator('[data-route=campaign]').click();assert.match(await page.locator('#studio-create-panel, #studio-route').innerText(),/D&D campaign|Campaign brief|Start a D&D campaign/);
+  await page.locator('[data-route=campaign]').click();assert.match(await page.locator('#studio-create-panel, #studio-route').innerText(),/Create game/);assert.equal(await page.locator('#campaign-game-type').inputValue(),'custom');
   await page.locator('#studio-create-close').click();await page.locator('[data-route=world]').click();assert.match(await page.locator('#studio-route').innerText(),/complete table layout/);
   await page.locator('#studio-create-close').click();await page.locator('[data-route=scene]').click();assert.match(await page.locator('#studio-route').innerText(),/smaller self-contained scene/);
   await page.locator('#studio-create-close').click();

@@ -1,7 +1,7 @@
 export function linkedAISettings({setup, api, run}) {
   const section = document.createElement('section');
   section.className = 'game-linked-ai';
-  section.innerHTML = '<h3>Linked ChatGPT account</h3><p>Use your linked account for companion conversation. Account usage follows your ChatGPT plan and credit settings. Concept image generation requires a separate OpenAI API key; you can upload your own art instead. Mesh generation uses Meshy separately.</p><label>Saved ChatGPT account<select data-account><option value="">Add a ChatGPT account</option></select></label><button type="button" data-connect>Continue with ChatGPT</button><button type="button" data-refresh>Refresh connection</button><button type="button" data-disconnect>Disconnect selected account</button><p data-status role="status"></p><label>ChatGPT conversation model<select data-model><option value="">Connect to see available models</option></select></label><label>Conversation funding<select data-route><option value="auto">Linked ChatGPT when connected; otherwise configured API</option><option value="chatgpt">Linked ChatGPT only</option><option value="api">API key only</option></select></label><button type="button" data-save>Save conversation route and model</button><p>No silent API-key fallback after a linked-account request fails. Token counts are recorded locally; remaining plan allowance and monetary charges are unknown. Review your app limits and credit settings in ChatGPT.</p>';
+  section.innerHTML = '<h3>Linked ChatGPT account</h3><p>Use your linked account for companion conversation. Account usage follows your ChatGPT plan and credit settings. Concept image generation requires a separate OpenAI API key; you can upload your own art instead. Mesh generation uses Meshy separately.</p><label>Saved ChatGPT account<select data-account><option value="">Add a ChatGPT account</option></select></label><button type="button" data-connect>Continue with ChatGPT</button><button type="button" data-repair hidden>Back up and repair saved connection</button><button type="button" data-cancel hidden>Cancel sign-in</button><button type="button" data-refresh>Refresh connection</button><button type="button" data-disconnect>Disconnect selected account</button><p data-status role="status"></p><label>ChatGPT conversation model<select data-model><option value="">Connect to see available models</option></select></label><label>Conversation funding<select data-route><option value="auto">Linked ChatGPT when connected; otherwise configured API</option><option value="chatgpt">Linked ChatGPT only</option><option value="api">API key only</option></select></label><button type="button" data-save>Save conversation route and model</button><p>No silent API-key fallback after a linked-account request fails. Token counts are recorded locally; remaining plan allowance and monetary charges are unknown. Review your app limits and credit settings in ChatGPT.</p>';
   (setup.querySelector('.studio-heading')||setup.firstElementChild).after(section);
   const find = selector => section.querySelector(selector);
   let savedModel = '', pendingRefresh;
@@ -14,7 +14,7 @@ export function linkedAISettings({setup, api, run}) {
     for (const item of account.accounts || []) choose.append(new Option(item.label + ' · ' + item.id.slice(0,8), item.id));
     choose.value = account.active || account.accounts?.find(item=>item.registeredOnly)?.id || '';
     find('[data-status]').textContent = account.message || (account.signedIn ? 'ChatGPT linked.' : 'No ChatGPT account connected.');
-    find('[data-connect]').disabled = !!account.pending;
+    find('[data-connect]').disabled = !!account.pending;find('[data-connect]').textContent=account.pending?'Waiting for browser…':'Continue with ChatGPT';find('[data-cancel]').hidden=!account.pending;find('[data-repair]').hidden=!account.unreadable;find('[data-repair]').disabled=!!account.pending;if(account.pending)find('[data-status]').textContent+=' If the browser fails, cancel sign-in here and try again.';
     find('[data-disconnect]').disabled = !account.active;
     find('[data-route]').value = status.route || 'auto';
     savedModel = status.chatgptModel || '';
@@ -30,7 +30,9 @@ export function linkedAISettings({setup, api, run}) {
     if(account.pending)pendingRefresh=setTimeout(()=>refresh().catch(error=>{find('[data-status]').textContent=error.message;}),1500);
   }
   find('[data-connect]').onclick = run(async () => { await api.campaignChatGPTStart(find('[data-account]').value || undefined); await refresh(); });
-  find('[data-refresh]').onclick = run(refresh);
+  find('[data-repair]').onclick = run(async () => { await api.campaignChatGPTRepair(); await refresh(); });
+  find('[data-cancel]').onclick = run(async () => { await api.campaignChatGPTCancel(); await refresh(); });
+ find('[data-refresh]').onclick = run(refresh);
   find('[data-disconnect]').onclick = run(async () => { await api.campaignChatGPTDisconnect(); await refresh(); });
   find('[data-account]').onchange = run(async () => { const id = find('[data-account]').value; if (id) { await api.campaignChatGPTSelect(id); await refresh(); } });
   find('[data-save]').onclick = run(async () => {

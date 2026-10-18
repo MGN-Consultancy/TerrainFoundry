@@ -78,7 +78,7 @@ function createChatGPTConnection({directory, safeStorage, fetchImpl = fetch, ope
   async function status() {
     // An unconfigured app can still show settings when OS storage is unavailable.
     try { await fs.access(filename); } catch (error) { if (error.code === 'ENOENT') return {signedIn: false, enabled: false, pending: !!pending, accounts: [], message}; throw error; }
-    const value = await read(), account = value.accounts.find(a => a.id === value.active);
+    let value;try { value = await read(); } catch { return {signedIn:false,enabled:false,pending:!!pending,accounts:[],unreadable:true,message:'The saved ChatGPT connection cannot be read. Repair its local connection, or choose API key only for conversation. The encrypted connection is preserved.'}; } const account = value.accounts.find(a => a.id === value.active);
     return {signedIn: !!account?.access_token, enabled: !!account?.access_token && account.scopes.includes('chatgpt.tokens.use.direct'), pending: !!pending, active: value.active,
       accounts: value.accounts.map(a => ({id: a.id, label: a.email || 'ChatGPT account', registeredOnly:!a.subject, enabled: !!a.access_token && a.scopes.includes('chatgpt.tokens.use.direct')})),
       message: message || (account?.access_token ? 'ChatGPT linked. Concept images still require an OpenAI API key.' : 'Continue with ChatGPT to use the companion.')};
@@ -204,6 +204,22 @@ function createChatGPTConnection({directory, safeStorage, fetchImpl = fetch, ope
     message = revoked ? 'ChatGPT disconnected. API settings are unchanged.' : 'Disconnected locally. Remote revocation was not confirmed; disconnect Terrain Foundry in ChatGPT Settings too.';
     return status();
   }
-  return {status, start, select, token, models, disconnect, cancel: () => { if (pending) finish(pending); }};
+  async function repair() {
+    if(pending||starting)throw Error('Cancel the current sign-in before repairing its saved connection.');
+    const task=mutation.then(async()=>{
+      if(pending||starting)throw Error('Cancel the current sign-in before repairing its saved connection.');
+      secure();
+      const stat=await fs.stat(filename);if(!stat.isFile()||stat.size>512000)throw Error('Saved ChatGPT connection cannot be repaired automatically.');
+      let readable=false;try{await read();readable=true;}catch{}
+      if(readable)throw Error('The saved ChatGPT connection is readable. Use normal sign-in instead.');
+      const fresh=safeStorage.encryptString(JSON.stringify({host:'urn:uuid:'+crypto.randomUUID(),accounts:[],active:null}));
+      const backup=filename+'.recovery-'+crypto.randomUUID();
+      await fs.copyFile(filename,backup,require('node:fs').constants.COPYFILE_EXCL);
+      await atomicWrite(filename,fresh);
+      message='The previous encrypted connection is backed up. Continue with ChatGPT to reconnect. API keys are unchanged.';
+    });
+    mutation=task.catch(()=>{});await task;return status();
+  }
+  return {status, start, select, token, models, disconnect, repair, cancel: () => { if (pending) { finish(pending); message = 'ChatGPT sign-in cancelled. Existing connections are unchanged.'; } }};
 }
 module.exports = {createChatGPTConnection, verifyIdentity};

@@ -39,7 +39,7 @@ Focused official campaign/context/action/workspace/native/creative-generation ch
 
 ## Verification and release status — 18 October 2026
 
-Official source is on existing main in MGN-Consultancy/TerrainFoundry. Client patch v1.20.1-client-50-1 is the latest stable release, verified anonymously on 18 October 2026 at 13:28 UTC. The original 1.20.0 delivery evidence follows, with the sidebar patch receipt at the end.
+Official source is on existing main in MGN-Consultancy/TerrainFoundry. Client patch v1.20.2-client-51-1 is the latest stable release, verified anonymously on 18 October 2026 at 14:08 UTC. Earlier release evidence and subsequent patch receipts follow.
 
 The client release selection passes 248 tests with one Windows file-symlink permission skip. The build, public-source audit, release packaging regression and public-source/release-inventory checks pass. Official Electron smoke covers Markdown retrieval, shared conversation, readable rulebook pages/reorder, private PDF/HTML/player exports, reviewed chapter Apply, saved chapters after restart, accessible account settings, image-key guidance before submission and separate project usage. These UI responses are mocked and do not prove real inference.
 
@@ -73,3 +73,12 @@ The extended Electron regression scrolls the actual sidebar and opens its last P
 Release `v1.20.1-client-50-1`, GitHub ID `416465581`, workflow `39131463282` succeeded. Source revision `67fbfbfa205502c2ba153cf9a9fd3198f79e5ab5`. Published 18 October 2026 at 13:28:26 UTC. Anonymous latest-release/channel verification passed, including changed artifact accessibility and identity with the tested candidate. Windows signature Valid, MGN CONSULTANCY LIMITED, product version 1.20.1. All 74 client files verified. Scenery and launcher references are unchanged from 1.20.0.
 
 Client aggregate SHA-256: `28e5c513a8e7ddc7cdcbf46e5ed806518c21a602d973dc2560605bfd47ffc74c`. Signed component-channel SHA-256: `79ea1acfc6bbe2dbee8a9ffb2e42e755a6eb072852f9dffe98040cce10e58b38`.
+## Game-type vocabulary patch — 1.20.2
+
+Custom projects use Player pieces, Game elements, Boards & layouts, design notes and neutral overview, review, progress and export wording. Piece descriptions support tokens, cards, units, vehicles or other components. The companion instructions map these terms to existing internal action keys without imposing established-game mechanics. DND retains character sheets and play aids; Warhammer uses units and operatives. Non-DND play aids hide hit points, advantage/disadvantage and preset d20 initiative; optional dice and turn-order tools remain available. Game-type changes refresh the presentation immediately. Long guidance has a separate grid row above the editor.
+
+Existing storage keys, records, asset/model references and identifiers are preserved. The extended UI test creates a non-humanoid player token, switches Custom → DND → Warhammer → Custom, checks appropriate labels and controls, and verifies the complete saved piece remains byte-for-byte equivalent as a parsed record. Existing sidebar reachability, Markdown, reviewed changes, exports and reopening assertions also pass on the downloaded signed executable. Client checks: 248 passed, one Windows permission-dependent skip. AI requests in UI tests were mocked; no real additional AI charges or requests were made.
+
+Release `v1.20.2-client-51-1`, GitHub ID `416485648`, workflow `39134390156` succeeded. Source revision `780caa1bb8174d8285f1224ed06c534c5a74342c`. Published 18 October 2026 at 14:08:57 UTC. Anonymous latest-release and signed-channel verification passed. Windows signature Valid, MGN CONSULTANCY LIMITED, product version 1.20.2. All 74 client files verified; scenery and launcher references unchanged from 1.20.1.
+
+Client aggregate SHA-256: `8a40e35b44b2b0b3bcac7efe4258197a11ad82754f504e2744762619b84f9813`. Component-channel SHA-256: `61731895c9b13e89de073ff2e9fd205bf63273fa2ed4f38392724e8acc3e8723`.

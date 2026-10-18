@@ -39,7 +39,7 @@ Focused official campaign/context/action/workspace/native/creative-generation ch
 
 ## Verification and release status — 18 October 2026
 
-Official source is on existing main in MGN-Consultancy/TerrainFoundry. No new release has yet been published for this work.
+Official source is on existing main in MGN-Consultancy/TerrainFoundry. Client release v1.20.0-client-49-1 is published as the latest stable release, verified anonymously on 18 October 2026 at 13:18 UTC.
 
 The client release selection passes 248 tests with one Windows file-symlink permission skip. The build, public-source audit, release packaging regression and public-source/release-inventory checks pass. Official Electron smoke covers Markdown retrieval, shared conversation, readable rulebook pages/reorder, private PDF/HTML/player exports, reviewed chapter Apply, saved chapters after restart, accessible account settings, image-key guidance before submission and separate project usage. These UI responses are mocked and do not prove real inference.
 
@@ -51,4 +51,16 @@ The real acceptance project has an unchanged 30,000 text-token limit. The final 
 
 The full geometry suite requires the declared release/asset-packs input unavailable in this checkout. Do not regenerate or scan working collections to fill this gap. Client-only publication reuses already-published signed scenery and runs its required client checks.
 
-Remaining: commit the final fixes, create and verify a signed client-only release candidate, publish the authorized release and verify the downloaded runtime. Source push and CI success alone do not establish Live or installed behavior. Preserve existing unrelated print-geometry and installer licence changes.
+## Published release evidence
+
+- Source revision: `3504bc2acb694884f5e71673b32ccf384203388a`, official main.
+- GitHub release: `v1.20.0-client-49-1`, release ID `416460396`, workflow run `39130671915`, success. Published 18 October 2026 at 13:18:02 UTC.
+- Client version: `1.20.0`. Windows Authenticode status Valid, publisher MGN CONSULTANCY LIMITED.
+- Signed client aggregate SHA-256: `8cd6beaff3d72789b12b1a2fc4781c62f91d6f6176935905af52cc8ea5801ce9`.
+- Signed component-channel file SHA-256: `484d425ed22c789917be72cdf0bcafad79102bc81600f985f307dfc80597e474`.
+- All 74 downloaded client files match their signed sizes/hashes. Candidate scenery and launcher references exactly match the previous signed 1.19.1 channel. No scenery collection rebuilt or included in the source release.
+- The downloaded signed executable, rather than the development Electron executable, passed the extended desktop smoke in an isolated profile with tiny geometry fixtures. This covers Game Designer flows and exports, not production geometry quality or a human acceptance verdict.
+- Anonymous latest-release lookup returns the published release, its signed channel is identical to the tested candidate, and the changed public client artifacts are accessible at their declared sizes. Existing launchers can discover the update.
+- Real linked inference and persistence evidence are documented above. Image/Meshy provider operations were mocked for capability/accounting tests; no image or Meshy credits were spent. No automatic API fallback or paid retries were made.
+
+The release is available for players to test. Updating Nigel's existing installed client and accepting its behavior remain user actions; no production activation, purchases, protected account files or existing projects were replaced by the isolated verification. Unrelated print-geometry and installer licence changes remain preserved outside these commits.

@@ -268,7 +268,8 @@ const campaignStudio=setupCampaignStudio({getProject:()=>project,replace,toast,i
 setupEditorWindowControls({api:window.desktop,onHome:()=>campaignStudio.home(),isDirty:()=>dirty,save,onExit:async()=>{confirmedWindowExit=true;try{await window.desktop.clientWindowAction('close');}catch(e){confirmedWindowExit=false;throw e;}},toast});
 const libraryStorage=setupLibraryStorage({api:window.desktop,toast});const storageButton=document.createElement('button');storageButton.textContent='Storage & backup';storageButton.onclick=()=>libraryStorage.open();document.getElementById('settings-storage-action')?.append(storageButton);
 const companionButton=document.createElement('button');companionButton.id='terrain-companion';companionButton.textContent='World / scene companion';companionButton.onclick=()=>campaignStudio.terrain().catch(e=>toast(e.message,true));document.querySelector('.header-actions').append(companionButton);
-setupTutorial(()=>campaignStudio.home());
+setupTutorial(async()=>{await campaignStudio.home();document.documentElement.removeAttribute('data-workshop-starting');});
+if(new URLSearchParams(location.search).has('demo'))document.documentElement.removeAttribute('data-workshop-starting');
 
 $('blacksmith-demo').onclick=()=>{if(!dirty||confirm('Replace this scene with Ironbrook blacksmith?')){roofsHidden=false;replace(blacksmithDemo());category='All';library();fit();}};
 

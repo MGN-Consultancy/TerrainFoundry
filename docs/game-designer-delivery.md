@@ -39,7 +39,7 @@ Focused official campaign/context/action/workspace/native/creative-generation ch
 
 ## Verification and release status — 18 October 2026
 
-Official source is on existing main in MGN-Consultancy/TerrainFoundry. Client release v1.20.0-client-49-1 is published as the latest stable release, verified anonymously on 18 October 2026 at 13:18 UTC.
+Official source is on existing main in MGN-Consultancy/TerrainFoundry. Client patch v1.20.1-client-50-1 is the latest stable release, verified anonymously on 18 October 2026 at 13:28 UTC. The original 1.20.0 delivery evidence follows, with the sidebar patch receipt at the end.
 
 The client release selection passes 248 tests with one Windows file-symlink permission skip. The build, public-source audit, release packaging regression and public-source/release-inventory checks pass. Official Electron smoke covers Markdown retrieval, shared conversation, readable rulebook pages/reorder, private PDF/HTML/player exports, reviewed chapter Apply, saved chapters after restart, accessible account settings, image-key guidance before submission and separate project usage. These UI responses are mocked and do not prove real inference.
 
@@ -64,3 +64,12 @@ The full geometry suite requires the declared release/asset-packs input unavaila
 - Real linked inference and persistence evidence are documented above. Image/Meshy provider operations were mocked for capability/accounting tests; no image or Meshy credits were spent. No automatic API fallback or paid retries were made.
 
 The release is available for players to test. Updating Nigel's existing installed client and accepting its behavior remain user actions; no production activation, purchases, protected account files or existing projects were replaced by the isolated verification. Unrelated print-geometry and installer licence changes remain preserved outside these commits.
+## Sidebar scrolling patch — 1.20.1
+
+User screenshot reproduced the section sidebar extending below its available pane at 1366×768. The fix constrains the sidebar to its grid row, prevents flex wrapping and item shrinking, and provides a visible scrollbar. Narrow layouts retain outer content scrolling with a bounded section list.
+
+The extended Electron regression scrolls the actual sidebar and opens its last Print & share section at 1366×768, 1024×650, 2048×1236 and 760×700. It failed before the fix and passes on the downloaded signed 1.20.1 executable. Existing campaign/export/reopen smoke also passes. Client checks: 248 passed, one Windows permission-dependent skip. No AI provider requests were made.
+
+Release `v1.20.1-client-50-1`, GitHub ID `416465581`, workflow `39131463282` succeeded. Source revision `67fbfbfa205502c2ba153cf9a9fd3198f79e5ab5`. Published 18 October 2026 at 13:28:26 UTC. Anonymous latest-release/channel verification passed, including changed artifact accessibility and identity with the tested candidate. Windows signature Valid, MGN CONSULTANCY LIMITED, product version 1.20.1. All 74 client files verified. Scenery and launcher references are unchanged from 1.20.0.
+
+Client aggregate SHA-256: `28e5c513a8e7ddc7cdcbf46e5ed806518c21a602d973dc2560605bfd47ffc74c`. Signed component-channel SHA-256: `79ea1acfc6bbe2dbee8a9ffb2e42e755a6eb072852f9dffe98040cce10e58b38`.

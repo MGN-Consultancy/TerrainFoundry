@@ -98,3 +98,7 @@ The security-settings browser smoke passed using the installed Edge executable, 
 Native Electron acceptance passed after repairing imported-model optional provenance and preview up-axis handling. Actual UI/preload/IPC exercised a synthetic 2×3 piece (50.8×76.2×24 mm), acceptance, cloning, and a local 1×1 variant (25.4×25.4×24 mm), preserving the original. A mocked companion reply traversed the real response parser and clone+patch dispatcher. Receipt: test-results/game-designer/scenery-native/receipt.json. No real provider requests were made.
 
 An automated linked-account live-check command was rejected by automatic approval review, returning only blocked by policy. It was not retried by another route. Live acceptance requires a request initiated in the client and usable provider credentials; no live success or publication is claimed.
+
+## Launcher runtime log recovery — 18 October 2026
+
+The official installed launcher rejected its signed client solely because Chromium created a root debug.log. The exact signed client folder was checked: 75 files, one unexpected path, debug.log. The launcher now permits only that regular root diagnostic file for client packages, retains signed-file hash checks and other extra-file rejection, and routes future diagnostics to launcher logs outside the immutable client. Sixteen compiled runtime-file checks and the existing startup lifecycle pass. Launcher version: 1.16.2. No installed files or scenery were changed by these tests.

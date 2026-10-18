@@ -82,3 +82,19 @@ Existing storage keys, records, asset/model references and identifiers are prese
 Release `v1.20.2-client-51-1`, GitHub ID `416485648`, workflow `39134390156` succeeded. Source revision `780caa1bb8174d8285f1224ed06c534c5a74342c`. Published 18 October 2026 at 14:08:57 UTC. Anonymous latest-release and signed-channel verification passed. Windows signature Valid, MGN CONSULTANCY LIMITED, product version 1.20.2. All 74 client files verified; scenery and launcher references unchanged from 1.20.1.
 
 Client aggregate SHA-256: `8a40e35b44b2b0b3bcac7efe4258197a11ad82754f504e2744762619b84f9813`. Component-channel SHA-256: `61731895c9b13e89de073ff2e9fd205bf63273fa2ed4f38392724e8acc3e8723`.
+
+## Connected scenery workflow — 18 October 2026 (unpublished)
+
+The current working changes add module presets (1×1, 2×2, 2×3), whole-module sizing from 1 to 16, local OpenLOCK adaptation of retained raw Meshy STL, and Clone & adjust. The official 8 mm socket carrier is included inside the requested total height. Cloning preserves the selected source/art and brief, creates independent identities, and does not submit a paid generation job. Changed footprints must be adapted again before use. Physical connector fit remains unverified.
+
+Local verification: 109 tests passed in test-results/game-designer/scenery-final-local-tests.log; the Vite production build passed. These checks use synthetic inputs and do not establish live-provider success.
+
+Live verification remains pending: saved OpenAI and Meshy keys were unreadable in the signed installed client. Stored encrypted values are preserved; the owner must re-enter keys through secure Settings dialogs. Status now distinguishes a saved but unreadable key from a usable key. No live generation has been submitted for this goal. Planned bounded acceptance uses one original Meshy model and reuses its raw source for local module variants, recording provider usage and task identities.
+
+Broader suite attempted: 1,076 tests, 342 passed, 733 failed, 1 skipped. Failures include missing release/asset-packs meshes.bin and absent generated pack directory; this checkout lacks the generated collection required by those tests. No collection was regenerated. Full log: test-results/game-designer/scenery-full-tests.log. The focused suite subsequently passed all 109 tests.
+
+The security-settings browser smoke passed using the installed Edge executable, including saved-but-unreadable Meshy status, disabled provider checks until re-entry, and usable secure key entry. No real provider requests were made by this smoke. Log: test-results/game-designer/scenery-key-status-ui.log.
+
+Native Electron acceptance passed after repairing imported-model optional provenance and preview up-axis handling. Actual UI/preload/IPC exercised a synthetic 2×3 piece (50.8×76.2×24 mm), acceptance, cloning, and a local 1×1 variant (25.4×25.4×24 mm), preserving the original. A mocked companion reply traversed the real response parser and clone+patch dispatcher. Receipt: test-results/game-designer/scenery-native/receipt.json. No real provider requests were made.
+
+An automated linked-account live-check command was rejected by automatic approval review, returning only blocked by policy. It was not retried by another route. Live acceptance requires a request initiated in the client and usable provider credentials; no live success or publication is claimed.

@@ -4,7 +4,7 @@ Terrain Foundry application code is MIT licensed except the separately attribute
 
 - Three.js: MIT (https://github.com/mrdoob/three.js).
 - Electron: MIT, with Chromium and other third-party notices included in the distributed client (https://github.com/electron/electron).
-- Manifold: Apache-2.0 (https://github.com/elalish/manifold). Used for geometry generation and imported-mesh processing.
+- Manifold: Apache-2.0 (https://github.com/elalish/manifold). Used for geometry generation and imported-mesh processing. The desktop runtime includes its JavaScript/WASM and `desktop/vendor/manifold-LICENSE.txt`.
 - Vite: MIT (https://github.com/vitejs/vite). Build tool.
 - WiX 3: Microsoft Reciprocal License (https://github.com/wixtoolset/wix3). Installer build tool; not bundled as a library in the editor.
 - Microsoft Artifact Signing client and Windows SDK tools: Microsoft tool licences. Used only for signing official builds; not redistributed in the source repository or launcher.

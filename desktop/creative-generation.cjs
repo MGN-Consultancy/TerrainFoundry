@@ -155,14 +155,17 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
       if(task.status!=='SUCCEEDED')continue;
       if(typeof task.model_urls?.stl!=='string')throw Error('Completed Meshy task has no STL. Its task ID remains saved for recovery.');
       const rawStl=await download(task.model_urls.stl);
-      let stl=null,validation,scale;
-      try{scale=scaleSTL(rawStl,job.heightMm,job.upAxis);stl=scale.bytes;const {inspectSTL}=await import('./print-geometry.mjs');validation={geometry:inspectSTL(stl,[1000,1000,1000]),status:'needs-print-review',physicalFitVerified:false,minimumWallThicknessVerified:false};}
-      catch(e){validation={status:'needs-repair',message:e.message,physicalFitVerified:false,minimumWallThicknessVerified:false};}
+      let stl=null,validation,scale,adapted,adapterError;
+      try{if(workspace.kind==='scenery'){
+        if(!job.scenerySpec)throw Error('This saved scenery job has no snapshotted module footprint. Adapt the retained provider source locally before print use.');
+        adapted=await (await import('./scenery-adapter.mjs')).adaptScenerySTL(rawStl,job.scenerySpec);stl=adapted.bytes;validation=adapted.validation;
+      }else{scale=scaleSTL(rawStl,job.heightMm,job.upAxis);stl=scale.bytes;const {inspectSTL}=await import('./print-geometry.mjs');validation={geometry:inspectSTL(stl,[1000,1000,1000]),status:'needs-print-review',physicalFitVerified:false,minimumWallThicknessVerified:false};}}
+      catch(e){stl=null;adapterError=e.message;validation={status:'needs-repair',message:e.message,physicalFitVerified:false,minimumWallThicknessVerified:false};}
       let glb;try{if(task.model_urls.glb)glb=await download(task.model_urls.glb);}catch{validation.previewDownloadFailed=true;}
-      const metadata=JSON.parse(JSON.stringify({provider:'meshy',taskId:job.taskId,conceptId:job.conceptId,conceptIds:job.conceptIds||[job.conceptId],endpoint:job.endpoint||'image-to-3d',purpose:job.purpose||purposeFor(workspace),heightMm:job.heightMm,sourceUpAxis:job.upAxis,outputUpAxis:'z',orientationVerified:false,scaleFactor:scale?.scale,sizeMm:scale?.sizeMm,validation,printReady:false,openlock:job.openlock?{requested:true,status:'adapter-required',floorDatumMm:8,profile:'official-template',message:'Generated geometry has no certified sockets. Assemble and validate deterministic OpenLOCK templates separately.'}:{requested:false},usage:task.credits??task.usage??null,createdAt:new Date(now()).toISOString()}));
+      const metadata=JSON.parse(JSON.stringify({provider:'meshy',taskId:job.taskId,conceptId:job.conceptId,conceptIds:job.conceptIds||[job.conceptId],endpoint:job.endpoint||'image-to-3d',purpose:job.purpose||purposeFor(workspace),heightMm:job.heightMm,sourceUpAxis:job.upAxis,outputUpAxis:'z',orientationVerified:false,scaleFactor:scale?.scale,sizeMm:adapted?.sizeMm||scale?.sizeMm,adapter:workspace.kind==='scenery'?(adapted?.metadata||{status:'failed',message:adapterError,spec:job.scenerySpec,physicalFitVerified:false}):undefined,validation,printReady:false,openlock:adapted?adapted.metadata.openlock:job.openlock?{requested:true,status:'adapter-failed',floorDatumMm:8,profile:'official-template',message:adapterError||'Local connector assembly failed; the provider source is retained.'}:{requested:false},usage:task.credits??task.usage??null,createdAt:new Date(now()).toISOString()}));
       // Even invalid/too-complex paid outputs are installed as raw candidates for repair.
       await library.installModel(id,{...metadata,rawStl,stl,glb,metadata});
-      const saved=await mutate(id,w=>{if(w.modelJob?.taskId===job.taskId)Object.assign(w.modelJob,{status:'installed',progress:100,metadata});});
+      const saved=await mutate(id,w=>{if(w.modelJob?.taskId===job.taskId){Object.assign(w.modelJob,{status:'installed',progress:100,metadata});if(adapted){w.design||={};w.design.scenery={...(w.design.scenery||{}),widthMm:job.scenerySpec.widthMm,depthMm:job.scenerySpec.depthMm,heightMm:job.scenerySpec.heightMm,gridMm:job.scenerySpec.gridMm,floorDatumMm:job.scenerySpec.floorDatumMm,connectorSystem:job.scenerySpec.openlock?'openlock':'none'};}}});
       emit(id,validation.status==='needs-repair'?'Model saved for repair':'Model saved for print review',100);return saved;
     }
     throw Error('Meshy is still processing. Resume this saved task later; no additional generation charge is needed.');
@@ -177,8 +180,9 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     if(!Number.isFinite(heightMm)||heightMm<1||heightMm>1000)throw Error('Choose a model height from 1 to 1000 mm before generation.');
     if(workspace.modelJob&&(!options.newCandidate||!['installed','FAILED','CANCELED','rejected'].includes(workspace.modelJob.status)))throw Error('This design already has a Meshy submission. Resume or review its saved task before creating another paid model.');
     const upAxis=workspace.design?.upAxis||'y';if(!['y','z'].includes(upAxis))throw Error('Choose Y or Z as the source model up axis.');
+    const scenerySpec=workspace.kind==='scenery'?(await import('./scenery-adapter.mjs')).scenerySpecForDesign(workspace.design):null;
     const key=await gate('meshy');
-    const marker={conceptId,conceptIds,endpoint,purpose,status:'submitting',submissionId:crypto.randomUUID(),startedAt:new Date(now()).toISOString(),heightMm,upAxis,openlock:workspace.kind!=='character'&&!!workspace.design?.openlock};
+    const marker={conceptId,conceptIds,endpoint,purpose,status:'submitting',submissionId:crypto.randomUUID(),startedAt:new Date(now()).toISOString(),heightMm,upAxis,openlock:workspace.kind!=='character'&&!!workspace.design?.openlock,...(scenerySpec?{scenerySpec}:{} )};
     await mutate(id,w=>{if(w.modelJob&&!['installed','FAILED','CANCELED','rejected'].includes(w.modelJob.status))throw Error('A model submission was already saved.');w.modelJob=marker;});
     emit(id,'Submitting approved concept to Meshy',0);
     let created;
@@ -189,7 +193,18 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     await mutate(id,w=>{Object.assign(w.modelJob,{taskId:created.result,status:'PENDING',progress:0});});
     return poll(id,key);
   });}
+  async function adaptModel(id,candidateId){return exclusive(id,async()=>{
+    const workspace=await library.load(id);if(workspace.kind!=='scenery')throw Error('Local module adaptation is for scenery.');
+    const {adaptScenerySTL,scenerySpecForDesign}=await import('./scenery-adapter.mjs'),spec=scenerySpecForDesign(workspace.design);
+    const artifact=await library.readModelArtifacts(id,candidateId),rawStl=artifact.rawStl||(artifact.ext==='stl'&&!artifact.metadata?.validation?.adapterStatus?artifact.bytes:null);
+    if(!rawStl)throw Error('This candidate has no retained source STL. Import its original source before adapting it.');
+    const adapted=await adaptScenerySTL(Buffer.from(rawStl),spec),previous=artifact.metadata;
+    const sourceTaskId=previous.sourceTaskId||previous.taskId;
+    const metadata={provider:'local-adapter',sourceProvider:previous.sourceProvider||previous.provider||'import',...(sourceTaskId?{sourceTaskId}:{}),sourceCandidateId:previous.id,heightMm:spec.heightMm,sourceUpAxis:spec.sourceUpAxis,outputUpAxis:'z',orientationVerified:false,sizeMm:adapted.sizeMm,adapter:adapted.metadata,openlock:adapted.metadata.openlock,validation:adapted.validation,printReady:false,createdAt:new Date(now()).toISOString()};
+    await library.installModel(id,{...metadata,rawStl,stl:adapted.bytes,glb:artifact.glb,metadata});
+    return mutate(id,w=>{w.design||={};w.design.scenery={...(w.design.scenery||{}),widthMm:spec.widthMm,depthMm:spec.depthMm,heightMm:spec.heightMm,gridMm:spec.gridMm,floorDatumMm:spec.floorDatumMm,connectorSystem:spec.openlock?'openlock':'none'};});
+  });}
   async function resumeModel(id){return exclusive(id,async()=>poll(id,await gate('meshy')));}
-  return {generateConcept,generateModel,resumeModel,validateProvider,providerStatus:validateProvider};
+  return {generateConcept,generateModel,resumeModel,adaptModel,validateProvider,providerStatus:validateProvider};
 }
 module.exports={createCreativeGeneration,scaleSTL};

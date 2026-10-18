@@ -1,7 +1,11 @@
 {
-  "version": "1.20.1",
-  "title": "Scroll through every campaign section",
+  "version": "1.20.2",
+  "title": "Your game, your terminology",
   "features": [
+    {
+      "title": "Player pieces for custom games",
+      "description": "Custom games use player pieces, game elements and board layouts. DND keeps character sheets; Warhammer uses units and operatives. Your saved pieces and their identifiers stay intact."
+    },
     {
       "title": "A visible sidebar scrollbar",
       "description": "The campaign section list stays inside its pane. Scroll to reach every section, including Print & share, at smaller window sizes. Narrow windows also keep the content reachable."

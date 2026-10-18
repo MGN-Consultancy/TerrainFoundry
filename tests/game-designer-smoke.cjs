@@ -47,7 +47,7 @@ const assert = require('node:assert/strict');
     if (create) await page.locator('[data-route=campaign]').click();
     return page;
   };
-  const tab = (page, name) => page.locator('#campaign-tabs').getByRole('button', {name: {Story: 'Campaign overview', Context: 'Game context', Rulebook: 'Rulebook', Print: 'Print & share'}[name] || name, exact: true}).click();
+  const tab = (page, name) => page.locator(`#campaign-tabs button[data-section="${name}"]`).click();
   const savedCampaign = async () => {
     const page = await app.firstWindow();
     return page.evaluate(async () => {
@@ -74,6 +74,10 @@ const assert = require('node:assert/strict');
     await page.getByText('beacon-keepers.md', {exact: true}).waitFor();
     await page.locator('#studio-create button.primary').click();
     await page.waitForSelector('#campaign-tabs');
+    assert.equal(await page.locator('#campaign-tabs [data-section="Characters"]').textContent(), 'Player pieces');
+    assert.equal(await page.locator('#campaign-tabs [data-section="Story"]').textContent(), 'Game overview');
+    assert.doesNotMatch(await page.locator('#campaign-tabs').innerText(), /character sheets|adventure|dungeon master|quests/i);
+    assert.match(await page.locator('#campaign-progress-strip').textContent(), /0 player pieces/);
     for (const [width, height] of [[1366, 768], [1024, 650], [2048, 1236], [760, 700]]) {
       await app.evaluate(({BrowserWindow}, size) => {
         const window = BrowserWindow.getAllWindows()[0];
@@ -218,7 +222,7 @@ const assert = require('node:assert/strict');
     await page.locator('#campaign-apply-action').click();
     await page.locator('.campaign-review[open]').waitFor({state: 'detached'});
     assert.equal((await savedCampaign()).rulebook.chapters.length, 3);
-    for (const [prompt, destination] of [["Let's work on characters again", 'Characters'], ['Back to the rulebook', 'Rulebook']]) {
+    for (const [prompt, destination] of [["Let's work on player pieces again", 'Characters'], ['Back to the rulebook', 'Rulebook']]) {
       await page.locator('#campaign-prompt').fill(prompt);
       await page.locator('#campaign-prompt-form button.primary').click();
       await page.waitForFunction(destination => document.querySelector('#campaign-body').dataset.tab === destination && !document.querySelector('#campaign-chat-fields').disabled, destination);
@@ -270,6 +274,35 @@ const assert = require('node:assert/strict');
     await page.getByRole('button', {name: 'Next page', exact: true}).click();
     await page.locator('#game-rulebook-page').scrollIntoViewIfNeeded();
     await page.screenshot({path: path.join(artifacts, 'reopened-contents.png')});
+    await tab(page, 'Characters');
+    assert.match(await page.locator('#campaign-section-help').textContent(), /tokens, cards, units/);
+    const guidance = await page.evaluate(() => ({helpBottom:document.querySelector('#campaign-section-help').getBoundingClientRect().bottom,editorTop:document.querySelector('#campaign-body').getBoundingClientRect().top}));
+    assert.ok(guidance.helpBottom <= guidance.editorTop, 'Game-specific guidance must not overlap the editor');
+    assert.doesNotMatch(await page.locator('#campaign-record-form').innerText(), /spells|hit points|armour class|character sheet/i);
+    await page.locator('#campaign-record-form [name="name"]').fill('Copper marker');
+    await page.locator('#campaign-record-form [name="details"]').fill('A round wooden player token, not a humanoid figure.');
+    await page.locator('#campaign-record-form [name="abilities"]').fill('Move one connection or spend one resource.');
+    await page.locator('#campaign-record-form button.primary').click();
+    await page.waitForFunction(() => document.querySelector('#campaign-record option:checked')?.textContent.includes('Copper marker'));
+    const pieceBefore = (await savedCampaign()).characters[0];
+    for (const [type, label] of [['dnd', 'Character sheets'], ['warhammer', 'Units & operatives'], ['custom', 'Player pieces']]) {
+      await tab(page, 'Context');
+      await page.locator('#campaign-body #campaign-game-type').selectOption(type);
+      await page.waitForFunction(label => document.querySelector('#campaign-tabs [data-section="Characters"]').textContent === label, label);
+      assert.deepEqual((await savedCampaign()).characters[0], pieceBefore, 'Changing terminology must preserve existing pieces and IDs');
+      await tab(page, 'GM screen');
+      assert.equal(await page.locator('#campaign-dice-mode').isVisible(), type === 'dnd');
+      assert.equal(await page.locator('#campaign-initiative-roll').isVisible(), type === 'dnd');
+      assert.equal(await page.locator('#campaign-initiative-hp').isVisible(), type === 'dnd');
+    }
+    await tab(page, 'Print');
+    assert.match(await page.locator('#campaign-print-audience option[value="dm"]').textContent(), /Design book/);
+    await tab(page, 'Items');
+    assert.equal(await page.locator('#campaign-body h3').first().textContent(), 'Game elements');
+    await tab(page, 'Characters');
+    await page.locator('#campaign-record').selectOption(pieceBefore.id);
+    await page.waitForFunction(() => document.querySelector('#campaign-record-form [name="name"]').value === 'Copper marker');
+    await page.screenshot({path: path.join(artifacts, 'custom-player-pieces.png')});
     console.log('PASS: official custom Markdown/context containment, shared conversation, rulebook/pages, private PDF/HTML exports and reopen. Artifacts: ' + artifacts);
   } catch (error) {
     try { const page = await app.firstWindow(); await page.screenshot({path: path.join(artifacts, 'failure.png')}); console.error((await page.locator('body').innerText()).slice(-3500)); } catch {}

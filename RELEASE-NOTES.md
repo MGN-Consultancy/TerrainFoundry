@@ -1,4 +1,10 @@
-# Terrain Foundry 1.20.1 — Campaign sidebar scrolling
+# Terrain Foundry 1.20.2 — Your game’s terminology
+
+Custom games now use Player pieces, Game elements, Boards & layouts and design notes throughout their editor guidance, progress, review labels and export choices. Pieces can be tokens, cards, units or other components. DND retains character sheets and its play aids; Warhammer uses units and operatives. Non-DND play aids do not assume hit points, advantage or d20 initiative. Existing saved records and identifiers are preserved.
+
+The companion is instructed to use the custom game’s own terms and rules. Longer game-specific guidance now has its own space above the editor.
+
+## Campaign sidebar scrolling
 
 The campaign section sidebar now stays within its pane and has a visible scrollbar. Scroll to reach every section at smaller window sizes, including Print & share. Narrow layouts also keep the campaign content reachable.
 

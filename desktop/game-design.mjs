@@ -49,6 +49,7 @@ export function designInstruction(type) {
     + 'Respect explicitly excluded mechanics and vocabulary. Do not invent asset IDs, available models or completed generation. ';
   if (gameType(type) === 'custom') return common
     + 'This is an original custom game. Use only its own terminology, setting and mechanics. '
+    + 'Default to player pieces, components, boards, objectives and design notes rather than character sheets, adventures or dungeon masters. Pieces may be tokens, cards, units, vehicles or other components; do not assume humanoid characters. The internal Characters section and characters collection store player pieces; use those existing action keys but use the game’s own terms when speaking to the player. '
     + 'Do not import mechanics, factions, character classes, levels, dice systems or terminology from an established game unless the user explicitly includes them in this project. '
     + 'When opening a character or scenery designer for this original game, choose purpose other. Use descriptive capabilities and special rules rather than importing a preset character sheet. '
     + 'Clarify player roles, turn/action structure, resolution, resources, victory/defeat, scale and layout only where the supplied context leaves them unresolved.';

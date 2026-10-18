@@ -7,6 +7,17 @@ import {createRequire} from 'node:module';
 import {createCampaign,validateCampaign,playerCampaign} from '../desktop/campaign-schema.mjs';
 import {contextDocuments,mergeContext,designInstruction,characterGameFields} from '../desktop/game-design.mjs';
 import {gameDesignContext} from '../desktop/game-design-context.mjs';
+import {assistantInstructions,assistantInstructionsFor} from '../desktop/campaign-actions.mjs';
+
+test('routine game writing omits unrelated 3D and terrain action instructions',()=>{
+  const rules=assistantInstructionsFor('Help draft the rulebook.');
+  assert.ok(Buffer.byteLength(rules)<Buffer.byteLength(assistantInstructions)*0.5);
+  assert.match(rules,/upsertRecord/);assert.doesNotMatch(rules,/generateDesignConcept|proposeTerrain/);
+  assert.match(assistantInstructionsFor('Refine the concept.'),/generateDesignConcept/);
+  assert.match(assistantInstructionsFor('Place a bridge in this encounter.'),/proposeTerrain/);
+  assert.match(assistantInstructionsFor('Make it wider.',{designer:{}}),/generateDesignConcept/);
+  assert.match(assistantInstructionsFor('Continue.',{terrain:{}}),/proposeTerrain/);
+});
 import {validateAction,applyCampaignAction} from '../desktop/campaign-actions.mjs';
 const require=createRequire(import.meta.url);
 const {createCampaignStore}=require('../desktop/campaign-store.cjs');

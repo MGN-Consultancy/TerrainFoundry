@@ -21,7 +21,7 @@ export function gameDesignContext(raw,campaign,prompt,mode) {
     designerAsset: design ? raw.designerAsset : undefined, designerLibrary: design ? raw.designerLibrary : undefined,
     artwork: /\b(art|image|cover|portrait|illustration)\b/i.test(prompt) ? raw.artwork : undefined, savedScenes: world ? raw.savedScenes : undefined,
     sharedGameStyle: raw.sharedGameStyle, workspace: raw.workspace,
-    packDiscovery: raw.packDiscovery, agentMode: raw.agentMode
+    packDiscovery: raw.packDiscovery?.total>0||/\b(packs?|purchas\w*|buy|store)\b/i.test(prompt)?raw.packDiscovery:undefined, agentMode: raw.agentMode
   };
   base.retrieval.additionalContext = 'Editor capabilities and selections are bounded excerpts. Geometry, images, complete conversations and unrelated project documents stay local. Missing fields must not be inferred. A field marked excerpt is incomplete: do not propose replacing that whole field; ask for a focused source edit instead.';
   // Selection/capability facts have priority over incidental history and catalogue rows.

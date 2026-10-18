@@ -8,7 +8,7 @@ import {createRequire} from 'node:module';
 import {createCampaign} from '../desktop/campaign-schema.mjs';
 import {campaignContext,MAX_CONTEXT_BYTES} from '../desktop/campaign-context.mjs';
 import {requestedSection} from '../desktop/game-design.mjs';
-import {aiCapabilities} from '../desktop/ai-capabilities.mjs';
+import {aiCapabilities,generationConfirmation} from '../desktop/ai-capabilities.mjs';
 const require = createRequire(import.meta.url);
 const {createCampaignAI} = require('../desktop/campaign-ai.cjs');
 const {createCampaignUsage} = require('../desktop/campaign-project-usage.cjs');
@@ -16,6 +16,53 @@ const {createChatGPTConnection,verifyIdentity} = require('../desktop/chatgpt-con
 const storage = {isEncryptionAvailable: () => true, encryptString: value => Buffer.from(value).reverse(), decryptString: value => Buffer.from(value).reverse().toString()};
 const requestResult = {status: 'completed',output: [{content: [{type: 'output_text',text: 'Ask about the storm track.'}]}],usage: {input_tokens: 100,output_tokens: 20,total_tokens: 120}};
 const stream = value => new Response('data: '+JSON.stringify({type:'response.completed',response:value})+'\n\ndata: [DONE]\n');
+
+test('confirmation names the actual linked or API funding route',()=>{
+  const linked={provider:'claude',route:'auto',chatgpt:{signedIn:true}};
+  assert.equal(generationConfirmation(linked).title,'Linked ChatGPT request');
+  assert.match(generationConfirmation(linked).buttons[1],/linked ChatGPT/);
+  assert.match(generationConfirmation({...linked,route:'api'}).detail,/claude API account/);
+  assert.match(generationConfirmation(linked,'illustration').detail,/openai API account/);
+});
+
+test('incomplete linked replies retain bounded partial text locally and preserve reported usage',async()=>{
+  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'tf-partial-draft-'));
+  try{
+    const raw='data: '+JSON.stringify({type:'response.output_text.delta',delta:'A partial chapter'})+'\n\ndata: '+JSON.stringify({type:'response.incomplete',response:{incomplete_details:{reason:'max_output_tokens'},usage:{input_tokens:100,output_tokens:20}}})+'\n\n';
+    const ai=createCampaignAI({directory,safeStorage:storage,inventory:async()=>[],linked:{status:async()=>({signedIn:true,enabled:true}),models:async()=>[{id:'fixture-chat'}],token:async()=>'oauth'},fetchImpl:async()=>new Response(raw)});
+    await ai.acceptConsent(true);await ai.configure({provider:'openai',route:'chatgpt',chatgptModel:'fixture-chat'});
+    const campaign=createCampaign('Beacon Keepers',{gameType:'custom'});let failure;
+    await assert.rejects(ai.generate(campaign,'Draft a chapter','assistant'),error=>{failure=error;return /max_output_tokens/.test(error.message);});
+    assert.equal(JSON.parse(await fs.readFile(failure.draftPath,'utf8')).reply,'A partial chapter');
+    assert.equal((await ai.projectUsage(campaign.id)).allowanceTokens,120);
+  }finally{await fs.rm(directory,{recursive:true,force:true});}
+});
+
+test('invalid model drafts retain a redacted local reply and schema reason without another request',async()=>{
+  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'tf-retained-draft-'));
+  try{
+    let calls=0;
+    const secret='sk-fixture-retained-draft-secret',output=JSON.stringify({message:'Storm draft '+secret,nextStep:'Review',choices:[],draftBrief:null,actions:[{type:'unsupported-fixture-action'}]});
+    const ai=createCampaignAI({directory,safeStorage:storage,inventory:async()=>[],linked:{status:async()=>({signedIn:true,enabled:true}),models:async()=>[{id:'fixture-chat'}],token:async()=>'oauth'},fetchImpl:async()=>{calls++;return stream({...requestResult,output:[{content:[{type:'output_text',text:output}]}]});}});
+    await ai.acceptConsent(true);await ai.configure({provider:'openai',route:'chatgpt',chatgptModel:'fixture-chat'});
+    await ai.saveKey('openai',secret);
+    const campaign=createCampaign('Beacon Keepers',{gameType:'custom'});let failure;
+    await assert.rejects(ai.generate(campaign,'Draft our rules','assistant'),error=>{failure=error;return /local copy was retained/.test(error.message);});
+    assert.ok(failure.draftPath.startsWith(directory+path.sep));
+    const saved=JSON.parse(await fs.readFile(failure.draftPath,'utf8'));assert.match(saved.reply,/Storm draft/);assert.ok(!saved.reply.includes(secret));assert.ok(saved.validation);assert.equal(saved.project,campaign.id);
+    assert.equal(calls,1);assert.equal((await ai.projectUsage(campaign.id)).allowanceTokens,120);
+  }finally{await fs.rm(directory,{recursive:true,force:true});}
+});
+
+test('linked service reads the documented text-delta stream without repeated terminal output',async()=>{
+  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'tf-linked-delta-'));
+  try{
+    const ai=createCampaignAI({directory,safeStorage:storage,inventory:async()=>[],linked:{status:async()=>({signedIn:true,enabled:true}),models:async()=>[{id:'fixture-chat'}],token:async()=>'oauth'},fetchImpl:async()=>new Response('data: '+JSON.stringify({type:'response.output_text.delta',delta:'Ask about the storm.'})+'\n\ndata: '+JSON.stringify({type:'response.completed',response:{...requestResult,output:[]}})+'\n\n')});
+    await ai.acceptConsent(true);await ai.configure({provider:'openai',route:'chatgpt',chatgptModel:'fixture-chat'});
+    const campaign=createCampaign('Beacon Keepers',{gameType:'custom'}),result=await ai.generate(campaign,'Explain the storm.');
+    assert.equal(result.text,'Ask about the storm.');assert.equal(result.route,'allowance');assert.equal((await ai.projectUsage(campaign.id)).allowanceTokens,120);
+  }finally{await fs.rm(directory,{recursive:true,force:true});}
+});
 
 test('failed exchange retains the issued registration, reports only safe diagnostics and preserves the active account',async()=>{
   const directory=await fs.mkdtemp(path.join(os.tmpdir(),'tf-link-retry-'));

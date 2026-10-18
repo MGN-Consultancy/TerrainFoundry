@@ -19,7 +19,8 @@ const assert = require('node:assert/strict');
   const part = {vertices: 4, indices: 12, length: data.length};
   await fs.writeFile(path.join(fixture, 'index.json'), JSON.stringify(Object.fromEntries(ids.map(id => [id, {offset: 0, raw: part, connected: part}]))));
   const packs = {test: fixture};
-  await fs.writeFile(path.join(artifacts, 'fixture-receipt.json'), JSON.stringify({version: '1.19.1', fixture: true, packs}));
+  const version = JSON.parse(await fs.readFile('package.json', 'utf8')).version;
+  await fs.writeFile(path.join(artifacts, 'fixture-receipt.json'), JSON.stringify({version, fixture: true, packs}));
   const markdown = '# Beacon Keepers\nCooperative game for three players. Each player gets two actions per round. Movement follows connected locations. Resolve uncertainty with a bag of coloured stones. No dice, character levels, classes, spell slots or game master. Relight three beacons before the storm track reaches eight.\nPRIVATE-SOURCE-BEACON-773' + Array.from({length: 40}, (_, index) => '\n\n# Purple archive ' + index + '\n' + 'Old harmless purple archive material. '.repeat(15)).join('') + '\nARCHIVE-SENTINEL-778';
   const source = path.join(root, 'beacon-keepers.md');
   await fs.writeFile(source, markdown);
@@ -149,7 +150,9 @@ const assert = require('node:assert/strict');
         globalThis.gameDesignerRequests.push(JSON.parse(options.body));
         const reply = globalThis.gameDesignerRequests.length === 1
           ? {message: 'Beacon Keepers has two actions and coloured stones. What bag composition, starting resources and defeat rules do you want?', nextStep: 'Choose the missing mechanics.', draftBrief: null, actions: []}
-          : {message: 'Review this original beacon procedure.', nextStep: 'Review the proposed chapter.', draftBrief: null, actions: [{type: 'upsertRulebookChapter', chapter: {id: null, title: 'Beacon ritual', body: 'Use two actions and coloured stones to relight a beacon.', visible: true}}]};
+          : globalThis.gameDesignerRequests.length === 2
+            ? {message: 'Review this original beacon procedure.', nextStep: 'Review the proposed chapter.', draftBrief: null, actions: [{type: 'upsertRulebookChapter', chapter: {id: null, title: 'Beacon ritual', body: 'Use two actions and coloured stones to relight a beacon.', visible: true}}]}
+            : {message: 'Opened the requested section.', nextStep: '', draftBrief: null, actions: [{type:'navigate', tab:globalThis.gameDesignerRequests.length === 3 ? 'Characters' : 'Rulebook'}]};
         return new Response(JSON.stringify({output: [{content: [{type: 'output_text', text: JSON.stringify(reply)}]}], usage: {input_tokens: 30, output_tokens: 25}}));
       };
     });
@@ -187,6 +190,16 @@ const assert = require('node:assert/strict');
     await page.locator('#campaign-apply-action').click();
     await page.locator('.campaign-review[open]').waitFor({state: 'detached'});
     assert.equal((await savedCampaign()).rulebook.chapters.length, 3);
+    for (const [prompt, destination] of [["Let's work on characters again", 'Characters'], ['Back to the rulebook', 'Rulebook']]) {
+      await page.locator('#campaign-prompt').fill(prompt);
+      await page.locator('#campaign-prompt-form button.primary').click();
+      await page.waitForFunction(destination => document.querySelector('#campaign-body').dataset.tab === destination && !document.querySelector('#campaign-chat-fields').disabled, destination);
+      assert.equal(await page.locator('#campaign-action-drafts button').count(), 0, 'Navigation must not require content approval');
+      assert.equal(await page.locator('.campaign-review[open]').count(), 0);
+      const saved = await savedCampaign();
+      assert.equal(saved.rulebook.chapters.length, 3);
+      assert.equal(saved.characters.length, 0);
+    }
     await tab(page, 'Print');
     for (const [format, audience, filename] of [['rulebook-html', 'dm', 'gm-rulebook.html'], ['rulebook-html', 'player', 'player-rulebook.html'], ['rulebook', 'player', 'player-rulebook.pdf'], ['player-json', 'player', 'player.json']]) {
       const output = path.join(artifacts, filename);

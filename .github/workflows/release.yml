@@ -89,6 +89,9 @@ jobs:
       - name: Verify campaign orchestration and reusable creative libraries
         if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
         run: node --test tests/campaign*.test.mjs tests/creative*.test.mjs tests/game-*.test.mjs tests/terrain*.test.mjs tests/storage-audit.test.mjs tests/project-store.test.mjs tests/scenery-metadata.test.mjs tests/premium*.test.mjs
+      - name: Verify local scenery fitting and recovery
+        if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
+        run: node --test tests/scenery-adapter.test.mjs tests/scenery-simplifier.test.mjs tests/scenery-glb-source.test.mjs
       - run: pnpm build
         if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
       - run: node scripts/package.cjs

@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
 import crypto from 'node:crypto';
 import {inspectSTL} from './print-geometry.mjs';
+import {needsScenerySimplification,prepareScenerySolid} from './scenery-simplifier.mjs';
+
 
 const GRID = 25.4, DATUM = 8, OVERLAP = .2, MAX_TRIANGLES = 600000;
 let runtime;
@@ -95,22 +97,24 @@ function stlFromTriangles(values) {
   return bytes;
 }
 
-export async function adaptScenerySTL(input, options) {
-  const spec = sceneryAdapterSpec(options), source = vertices(input, spec.sourceUpAxis);
-  const centerX = (source.min[0]+source.max[0])/2, centerZ = (source.min[2]+source.max[2])/2;
-  const horizontal = Math.min((spec.widthMm-.1)/source.size[0], (spec.depthMm-.1)/source.size[2]);
-  const scales = spec.openlock ? [horizontal,(spec.heightMm-DATUM+OVERLAP)/source.size[1],horizontal] : [spec.widthMm/source.size[0],spec.heightMm/source.size[1],spec.depthMm/source.size[2]];
-  const bottom = spec.openlock ? DATUM-OVERLAP : 0;
-  const fitted = source.values.map((n,i) => (n-[centerX,source.min[1],centerZ][i%3])*scales[i%3] + (i%3===1 ? bottom : 0));
-  // Check closed, consistently oriented shells before handing a provider mesh to the boolean engine.
-  inspectSTL(stlFromTriangles(fitted), [1000,1000,1000]);
+export async function adaptScenerySTL(input, options, {sourceGLB} = {}) {
+  const spec = sceneryAdapterSpec(options);
   const {wasm, socketBase, repairMeshData} = await productionRuntime(), owned = new Set();
   const keep = solid => { owned.add(solid); return solid; };
+  let scales,recovery,sculpt;
   try {
-    const mesh = new wasm.Mesh({numProp:3,vertProperties:Float32Array.from(fitted),triVerts:Uint32Array.from({length:fitted.length/3},(_,i)=>i),tolerance:.00005});
-    mesh.merge();
-    const sculpt = keep(new wasm.Manifold(mesh));
-    if (sculpt.status() !== 'NoError' || sculpt.volume() <= 0) throw Error('The provider scenery is not a closed, outward-facing solid.');
+    if(sourceGLB||needsScenerySimplification(input)){
+      recovery=await prepareScenerySolid(input,spec,wasm,{sourceGLB});sculpt=keep(recovery.solid);scales=recovery.scales;
+    }else{
+      const source=vertices(input,spec.sourceUpAxis),centerX=(source.min[0]+source.max[0])/2,centerZ=(source.min[2]+source.max[2])/2;
+      const horizontal=Math.min((spec.widthMm-.1)/source.size[0],(spec.depthMm-.1)/source.size[2]);
+      scales=spec.openlock?[horizontal,(spec.heightMm-DATUM+OVERLAP)/source.size[1],horizontal]:[spec.widthMm/source.size[0],spec.heightMm/source.size[1],spec.depthMm/source.size[2]];
+      const fitted=source.values.map((n,i)=>(n-[centerX,source.min[1],centerZ][i%3])*scales[i%3]+(i%3===1?(spec.openlock?DATUM-OVERLAP:0):0));
+      inspectSTL(stlFromTriangles(fitted),[1000,1000,1000]);
+      const mesh=new wasm.Mesh({numProp:3,vertProperties:Float32Array.from(fitted),triVerts:Uint32Array.from({length:fitted.length/3},(_,i)=>i),tolerance:.00005});mesh.merge();
+      sculpt=keep(new wasm.Manifold(mesh));
+      if(sculpt.status()!=='NoError'||sculpt.volume()<=0)throw Error('The provider scenery is not a closed, outward-facing solid.');
+    }
     const ports = [
       {x:spec.widthMm/2,z:0,nx:1,nz:0,angle:0}, {x:-spec.widthMm/2,z:0,nx:-1,nz:0,angle:180},
       {x:0,z:spec.depthMm/2,nx:0,nz:1,angle:-90}, {x:0,z:-spec.depthMm/2,nx:0,nz:-1,angle:90},
@@ -124,10 +128,11 @@ export async function adaptScenerySTL(input, options) {
     for(let i=0;i<final.vertProperties.length;i+=final.numProp){positions.push(...final.vertProperties.slice(i,i+3));colors.push(.5,.5,.5);}
     const repaired = repairMeshData({positions,colors,indices:Array.from(final.triVerts)},wasm);
     for (const index of repaired.indices) triangles.push(...repaired.positions.slice(index*3,index*3+3));
+    if(recovery&&triangles.length/9>300000)throw Error('Adapted scenery exceeds the 300,000 project triangle limit.');
     const bytes = stlFromTriangles(triangles), geometry = inspectSTL(bytes,[1000,1000,1000]);
     const expected = [spec.widthMm,spec.depthMm,spec.heightMm];
     if (geometry.sizeMm.some((n,k) => Math.abs(n-expected[k]) > .005)) throw Error('Adapted scenery did not retain its exact requested dimensions.');
-    const metadata = {...spec,status:'completed',sourceSHA256:crypto.createHash('sha256').update(input).digest('hex'),outputUpAxis:'z',sculptScale:scales,
+    const metadata = {...spec,status:'completed',sourceSHA256:crypto.createHash('sha256').update(input).digest('hex'),outputUpAxis:'z',sculptScale:scales,...(recovery?{simplification:recovery.metadata}:{}),...(recovery?.sourceRecovery?{sourceRecovery:recovery.sourceRecovery}:{}),
       openlock:spec.openlock ? {requested:true,status:'completed',floorDatumMm:DATUM,profile:'official-template',coordinateFrame:'y-up-mm',ports} : {requested:false},physicalFitVerified:false};
     return {bytes,spec,sizeMm:geometry.sizeMm,metadata,validation:{geometry,status:'needs-print-review',physicalFitVerified:false,minimumWallThicknessVerified:false,moduleSpec:spec,adapterStatus:'completed',adapter:metadata}};
   } finally { for (const solid of owned) solid.delete(); }

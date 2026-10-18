@@ -155,14 +155,15 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
       if(task.status!=='SUCCEEDED')continue;
       if(typeof task.model_urls?.stl!=='string')throw Error('Completed Meshy task has no STL. Its task ID remains saved for recovery.');
       const rawStl=await download(task.model_urls.stl);
+      let glb,previewDownloadFailed=false;try{if(task.model_urls.glb)glb=await download(task.model_urls.glb);}catch{previewDownloadFailed=true;}
       let stl=null,validation,scale,adapted,adapterError;
       try{if(workspace.kind==='scenery'){
         if(!job.scenerySpec)throw Error('This saved scenery job has no snapshotted module footprint. Adapt the retained provider source locally before print use.');
-        adapted=await (await import('./scenery-adapter.mjs')).adaptScenerySTL(rawStl,job.scenerySpec);stl=adapted.bytes;validation=adapted.validation;
+        adapted=await (await import('./scenery-adapter.mjs')).adaptScenerySTL(rawStl,job.scenerySpec,{sourceGLB:glb});stl=adapted.bytes;validation=adapted.validation;
       }else{scale=scaleSTL(rawStl,job.heightMm,job.upAxis);stl=scale.bytes;const {inspectSTL}=await import('./print-geometry.mjs');validation={geometry:inspectSTL(stl,[1000,1000,1000]),status:'needs-print-review',physicalFitVerified:false,minimumWallThicknessVerified:false};}}
       catch(e){stl=null;adapterError=e.message;validation={status:'needs-repair',message:e.message,physicalFitVerified:false,minimumWallThicknessVerified:false};}
-      let glb;try{if(task.model_urls.glb)glb=await download(task.model_urls.glb);}catch{validation.previewDownloadFailed=true;}
-      const metadata=JSON.parse(JSON.stringify({provider:'meshy',taskId:job.taskId,conceptId:job.conceptId,conceptIds:job.conceptIds||[job.conceptId],endpoint:job.endpoint||'image-to-3d',purpose:job.purpose||purposeFor(workspace),heightMm:job.heightMm,sourceUpAxis:job.upAxis,outputUpAxis:'z',orientationVerified:false,scaleFactor:scale?.scale,sizeMm:adapted?.sizeMm||scale?.sizeMm,adapter:workspace.kind==='scenery'?(adapted?.metadata||{status:'failed',message:adapterError,spec:job.scenerySpec,physicalFitVerified:false}):undefined,validation,printReady:false,openlock:adapted?adapted.metadata.openlock:job.openlock?{requested:true,status:'adapter-failed',floorDatumMm:8,profile:'official-template',message:adapterError||'Local connector assembly failed; the provider source is retained.'}:{requested:false},usage:task.credits??task.usage??null,createdAt:new Date(now()).toISOString()}));
+      if(previewDownloadFailed)validation.previewDownloadFailed=true;
+      const metadata=JSON.parse(JSON.stringify({provider:'meshy',taskId:job.taskId,geometryRequest:job.geometryRequest,conceptId:job.conceptId,conceptIds:job.conceptIds||[job.conceptId],endpoint:job.endpoint||'image-to-3d',purpose:job.purpose||purposeFor(workspace),heightMm:job.heightMm,sourceUpAxis:job.upAxis,outputUpAxis:'z',orientationVerified:false,scaleFactor:scale?.scale,sizeMm:adapted?.sizeMm||scale?.sizeMm,adapter:workspace.kind==='scenery'?(adapted?.metadata||{status:'failed',message:adapterError,spec:job.scenerySpec,physicalFitVerified:false}):undefined,validation,printReady:false,openlock:adapted?adapted.metadata.openlock:job.openlock?{requested:true,status:'adapter-failed',floorDatumMm:8,profile:'official-template',message:adapterError||'Local connector assembly failed; the provider source is retained.'}:{requested:false},usage:task.credits??task.usage??null,createdAt:new Date(now()).toISOString()}));
       // Even invalid/too-complex paid outputs are installed as raw candidates for repair.
       await library.installModel(id,{...metadata,rawStl,stl,glb,metadata});
       const saved=await mutate(id,w=>{if(w.modelJob?.taskId===job.taskId){Object.assign(w.modelJob,{status:'installed',progress:100,metadata});if(adapted){w.design||={};w.design.scenery={...(w.design.scenery||{}),widthMm:job.scenerySpec.widthMm,depthMm:job.scenerySpec.depthMm,heightMm:job.scenerySpec.heightMm,gridMm:job.scenerySpec.gridMm,floorDatumMm:job.scenerySpec.floorDatumMm,connectorSystem:job.scenerySpec.openlock?'openlock':'none'};}}});
@@ -182,11 +183,11 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     const upAxis=workspace.design?.upAxis||'y';if(!['y','z'].includes(upAxis))throw Error('Choose Y or Z as the source model up axis.');
     const scenerySpec=workspace.kind==='scenery'?(await import('./scenery-adapter.mjs')).scenerySpecForDesign(workspace.design):null;
     const key=await gate('meshy');
-    const marker={conceptId,conceptIds,endpoint,purpose,status:'submitting',submissionId:crypto.randomUUID(),startedAt:new Date(now()).toISOString(),heightMm,upAxis,openlock:workspace.kind!=='character'&&!!workspace.design?.openlock,...(scenerySpec?{scenerySpec}:{} )};
+    const marker={conceptId,conceptIds,endpoint,purpose,status:'submitting',geometryRequest:{should_remesh:true,topology:'triangle',target_polycount:100000},submissionId:crypto.randomUUID(),startedAt:new Date(now()).toISOString(),heightMm,upAxis,openlock:workspace.kind!=='character'&&!!workspace.design?.openlock,...(scenerySpec?{scenerySpec}:{} )};
     await mutate(id,w=>{if(w.modelJob&&!['installed','FAILED','CANCELED','rejected'].includes(w.modelJob.status))throw Error('A model submission was already saved.');w.modelJob=marker;});
     emit(id,'Submitting approved concept to Meshy',0);
     let created;
-    const body={ai_model:'meshy-7.1',should_texture:true,enable_pbr:true,should_remesh:false,image_enhancement:false,target_formats:['stl','glb'],moderation:true,...(conceptIds.length>1?{image_urls:concepts.map(c=>c.image)}:{image_url:concepts[0].image,model_type:'standard'})};
+    const body={ai_model:'meshy-7.1',should_texture:true,enable_pbr:true,should_remesh:true,topology:'triangle',target_polycount:100000,image_enhancement:false,target_formats:['stl','glb'],moderation:true,...(conceptIds.length>1?{image_urls:concepts.map(c=>c.image)}:{image_url:concepts[0].image,model_type:'standard'})};
     try{created=await json(MESHY+'/'+endpoint,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify(body)});}
     catch(e){await mutate(id,w=>{w.modelJob.status=e.httpStatus&&e.httpStatus<500?'rejected':'submission-uncertain';w.modelJob.message='No automatic resubmission. '+e.message;});throw e;}
     if(typeof created.result!=='string'||!/^[A-Za-z0-9-]{8,100}$/.test(created.result)){await mutate(id,w=>{w.modelJob.status='submission-uncertain';});throw Error('Meshy returned no valid task ID. Check its task history before submitting again.');}
@@ -198,7 +199,7 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     const {adaptScenerySTL,scenerySpecForDesign}=await import('./scenery-adapter.mjs'),spec=scenerySpecForDesign(workspace.design);
     const artifact=await library.readModelArtifacts(id,candidateId),rawStl=artifact.rawStl||(artifact.ext==='stl'&&!artifact.metadata?.validation?.adapterStatus?artifact.bytes:null);
     if(!rawStl)throw Error('This candidate has no retained source STL. Import its original source before adapting it.');
-    const adapted=await adaptScenerySTL(Buffer.from(rawStl),spec),previous=artifact.metadata;
+    const adapted=await adaptScenerySTL(Buffer.from(rawStl),spec,{sourceGLB:artifact.glb}),previous=artifact.metadata;
     const sourceTaskId=previous.sourceTaskId||previous.taskId;
     const metadata={provider:'local-adapter',sourceProvider:previous.sourceProvider||previous.provider||'import',...(sourceTaskId?{sourceTaskId}:{}),sourceCandidateId:previous.id,heightMm:spec.heightMm,sourceUpAxis:spec.sourceUpAxis,outputUpAxis:'z',orientationVerified:false,sizeMm:adapted.sizeMm,adapter:adapted.metadata,openlock:adapted.metadata.openlock,validation:adapted.validation,printReady:false,createdAt:new Date(now()).toISOString()};
     await library.installModel(id,{...metadata,rawStl,stl:adapted.bytes,glb:artifact.glb,metadata});

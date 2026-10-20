@@ -1,5 +1,7 @@
-const $=id=>document.getElementById(id);let busy=false,licenceVersion;
-function controls(){document.querySelectorAll('button,input').forEach(e=>e.disabled=busy);$('activate').disabled=busy||!licenceVersion||!$('accept-licence').checked;}
+const $=id=>document.getElementById(id);let busy=false,licenceVersion,identityUnreadable=false;
+function controls(){document.querySelectorAll('button,input').forEach(e=>e.disabled=busy);$('activate').disabled=busy||identityUnreadable||!licenceVersion||!$('accept-licence').checked;}
+window.packEntry.deviceStatus().then(status=>{identityUnreadable=status.unreadable;$('device-recovery').hidden=!identityUnreadable;controls();}).catch(error=>{$('status').textContent=error.message;});
+$('repair-device').onclick=()=>run(async()=>{const result=await window.packEntry.repairDevice();if(result.cancelled)return;identityUnreadable=false;$('device-recovery').hidden=true;$('status').textContent='Pack identity backed up and repaired. Enter your pack code to restore the latest scenery.';});
 window.packEntry.licence().then(licence=>{licenceVersion=licence.version;$('licence-text').textContent=licence.text;controls();}).catch(()=>{$('licence-text').textContent='The licence could not be loaded. Close this window and try again.';controls();});
 async function run(task){if(busy)return;busy=true;controls();try{await task();}catch(e){$('status').textContent=e.message||'Activation could not be completed.';}finally{busy=false;controls();}}
 $('accept-licence').onchange=controls;

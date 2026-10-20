@@ -32,7 +32,11 @@ Worlds save as `.world.terrain`, include their encounter templates and imported 
 
 Download the launcher MSI from Releases. The verified publisher must be **MGN CONSULTANCY LIMITED**. Follow the welcome, licence and folder-selection wizard. It adds desktop and Start menu shortcuts. When opened, the launcher automatically checks for updates. If one is available, choose **Update now** or **Not now**. A progress bar describes the download and verification, then the compact **Open Editor** button becomes available. The first run offers **Install now** and needs internet. You can continue with the installed editor after declining an update or when offline. Updates do not overwrite saved projects.
 
-The launcher stores downloaded versions and self-updates in the installation folder selected in the wizard (default `%LOCALAPPDATA%\TerrainFoundryLauncher`). MSI upgrades remember that folder. Projects use your Documents\Terrain Foundry\Projects folder, or another location you choose. The editor preserves the historical `%APPDATA%\dnd-terrain-builder` recovery profile. The launcher installs alongside older standalone MSI versions; it does not silently uninstall them.
+The launcher installs in the folder selected in the MSI wizard (default `%LOCALAPPDATA%\TerrainFoundryLauncher`). Its About dialog shows publisher and installation details. Editor binaries and free content live beneath that installation; verified updates remove obsolete managed versions. Repair checks and restores the current signed installation. Windows Installed apps can uninstall the launcher and its managed downloads while retaining personal data. Separately installed legacy editor products remain separate Windows applications.
+
+In Settings → Storage & backup, choose an editor data folder and restart after saving. Terrain Foundry copies and verifies managed games, worlds, encounters, scenery, characters, premium packs and recovery data before switching. Originals remain as a safety copy. Separately chosen external game folders stay in place. Folder buttons open each location in Explorer. The stable `%APPDATA%\dnd-terrain-builder` profile retains protected account connections and device identity. Opening Storage does not scan the collection; use Measure disk usage explicitly. Clear disposable cache retains models, projects, conversations and credentials.
+
+Use Packs to enter a premium collection code and download its current scenery without email verification. Sync purchases checks saved activations for updates. If a protected pack identity cannot be read, Packs offers an explicit backup and repair action; a healthy identity is never reset. Keep the pack code for another permitted computer or reinstall. Code activation does not make a collection publicly available for sale.
 
 ## Open source and connectors
 
@@ -76,7 +80,7 @@ If offline, only an identical previously checked pack and print selection can sh
 
 ## Free Deepstone starter
 
-Version 1.9.0 adds 50 original cave and grotto pieces. The launcher caches the coloured editor meshes and full-resolution STL files locally, in six separately verified downloads (about 1.9 GB total). Download once, then build, save and print-export offline. Door and pit trap exports use separate inserts. Physical print-fit testing remains pending. The pinned free geometry is restored by `scripts/release/fetch-deepstone.py`; model binaries stay in GitHub Releases rather than Git. Future premium collections are separate and currently unavailable.
+Version 1.9.0 adds 50 original cave and grotto pieces. The launcher caches the coloured editor meshes and full-resolution STL files locally, in six separately verified downloads (about 1.9 GB total). Download once, then build, save and print-export offline. Door and pit trap exports use separate inserts. Physical print-fit testing remains pending. The pinned free geometry is restored by `scripts/release/fetch-deepstone.py`; model binaries stay in GitHub Releases rather than Git. Premium collections remain separate from the free download; availability and activation are controlled by the signed premium service.
 
 ## Campaign Studio
 

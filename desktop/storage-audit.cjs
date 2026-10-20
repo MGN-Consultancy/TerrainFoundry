@@ -7,7 +7,7 @@ async function noLinks(file){let current=path.resolve(file),parts=[];for(;;){par
 // Work is bounded and yields regularly so an audit cannot freeze the editor.
 async function auditStorage(options={}){
  const {installRoot,userData,documents}=options;if(![installRoot,userData,documents].every(p=>typeof p==='string'&&p.length))throw Error('Storage audit requires application and user directories');
- const campaign=options.campaignDirectory||process.env.TERRAIN_CAMPAIGN_DIR||path.join(documents,'Terrain Foundry','Campaigns'),library=options.creativeDirectory||process.env.TERRAIN_CREATIVE_LIBRARY||path.join(documents,'Terrain Foundry','Asset Library'),scenes=options.sceneDirectory||process.env.TERRAIN_SCENE_LIBRARY||path.join(documents,'Terrain Foundry','Encounter Library'),projects=path.join(documents,'Terrain Foundry','Projects');
+ const campaign=options.campaignDirectory||process.env.TERRAIN_CAMPAIGN_DIR||path.join(documents,'Terrain Foundry','Campaigns'),library=options.creativeDirectory||process.env.TERRAIN_CREATIVE_LIBRARY||path.join(documents,'Terrain Foundry','Asset Library'),scenes=options.sceneDirectory||process.env.TERRAIN_SCENE_LIBRARY||path.join(documents,'Terrain Foundry','Encounter Library'),projects=options.projectsDirectory||path.join(documents,'Terrain Foundry','Projects');
  const result={totalBytes:0,totalFiles:0,categories:Object.entries(labels).map(([id,label])=>({id,label,bytes:0,files:0})),partial:false,skippedSymlinks:0,skippedOutsideRoots:0,measuredAt:new Date().toISOString()};
  const categories=new Map(result.categories.map(c=>[c.id,c])),seen=new Set(),visited=new Set(),roots=[];
  const limits={maxFiles:100000,maxDirectories:20000,maxMs:10000,...options.limits};for(const key of Object.keys(limits))if(!Number.isFinite(limits[key])||limits[key]<1)throw Error('Invalid storage audit limits');
@@ -23,7 +23,7 @@ async function auditStorage(options={}){
  if(typeof packs==='string'){try{packs=JSON.parse(packs);}catch{result.partial=true;packs={};}}
  if(packs&&typeof packs==='object'&&!Array.isArray(packs))for(const folder of Object.values(packs).slice(0,2000))add('free',folder);
  else if(packs==null)add('free',path.join(installRoot,'release','asset-packs'));
- add('premium',path.join(userData,'premium','packs'));add('recovery',path.join(userData,'projects'));add('cache',path.join(library,'Cache'));add('logs',path.join(userData,'logs'));
+ add('premium',options.premiumDirectory||path.join(userData,'premium','packs'));add('recovery',options.recoveryDirectory||path.join(userData,'projects'));add('cache',options.cacheDirectory||path.join(library,'Cache'));add('cache',path.join(library,'Cache'));add('logs',path.join(userData,'logs'));
  for(const name of ['Cache','Code Cache','GPUCache','DawnCache','Session Storage'])add('cache',path.join(userData,name));
  add('campaigns',campaign);add('projects',projects);add('projects',scenes);add('library',library);add('indexes',path.join(documents,'Terrain Foundry','Preferences'));add('profile',userData);add('editor',installRoot);
  function classify(id,file){if(id==='library'&&['library.json','owned-packs.json'].includes(path.basename(file)))return 'indexes';if(id==='profile'&&/\.(?:json|db|sqlite)$/i.test(file))return 'indexes';if(id==='profile'&&/\.(?:log|old)$/i.test(file))return 'logs';return id;}

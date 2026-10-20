@@ -59,4 +59,3 @@ $exe=Row 'SELECT \`Component_\` FROM \`File\` WHERE \`File\` = ''LauncherExe'''
  assert.ok(Number(table.cleanup)>Number(table.initialize)&&Number(table.cleanup)<Number(table.remove),'cleanup before file removal, while marker and executable exist');
  assert.equal(table.markerComponent,table.exeComponent,'MSI marker shares launcher lifetime');
 });
-

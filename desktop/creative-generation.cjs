@@ -69,7 +69,7 @@ function scaleSTL(input, heightMm, upAxis = 'y') {
   return {bytes:out,scale:factor,heightMm,sourceUpAxis:upAxis,outputUpAxis:'z',sizeMm:max.map((n,j)=>(n-min[j])*factor)};
 }
 
-function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},projectForAsset=()=>null,pollIntervalMs=10000,maxPolls=180,wait=sleep,now=Date.now}) {
+function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},afterModelInstalled=async()=>null,projectForAsset=()=>null,pollIntervalMs=10000,maxPolls=180,wait=sleep,now=Date.now}) {
   const busy=new Set(),verified=new Map();
   const emit=(id,phase,progress)=>{try{onProgress({id,phase,progress,percent:progress});}catch{}};
   async function bounded(response,limit) {
@@ -167,11 +167,11 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
       // Even invalid/too-complex paid outputs are installed as raw candidates for repair.
       await library.installModel(id,{...metadata,rawStl,stl,glb,metadata});
       const saved=await mutate(id,w=>{if(w.modelJob?.taskId===job.taskId){Object.assign(w.modelJob,{status:'installed',progress:100,metadata});if(adapted){w.design||={};w.design.scenery={...(w.design.scenery||{}),widthMm:job.scenerySpec.widthMm,depthMm:job.scenerySpec.depthMm,heightMm:job.scenerySpec.heightMm,gridMm:job.scenerySpec.gridMm,floorDatumMm:job.scenerySpec.floorDatumMm,connectorSystem:job.scenerySpec.openlock?'openlock':'none'};}}});
-      emit(id,validation.status==='needs-repair'?'Model saved for repair':'Model saved for print review',100);return saved;
+      emit(id,validation.status==='needs-repair'?'Model saved for repair':'Model saved for print review',100);return await afterModelInstalled(id)||saved;
     }
     throw Error('Meshy is still processing. Resume this saved task later; no additional generation charge is needed.');
   }
-  async function generateModel(id,conceptSelection,options={}) {return exclusive(id,async()=>{if(ai.status){const {aiCapabilities}=await import('./ai-capabilities.mjs');const cap=aiCapabilities(await ai.status());if(!cap.models)throw Error(cap.modelReason);}
+  async function generateModel(id,conceptSelection,options={}) {return exclusive(id,async()=>{const providerSettings=ai.status?await ai.status():null;if(providerSettings){const {aiCapabilities}=await import('./ai-capabilities.mjs');const cap=aiCapabilities(providerSettings);if(!cap.models)throw Error(cap.modelReason);}
     const workspace=await library.load(id),conceptIds=Array.isArray(conceptSelection)?conceptSelection:[conceptSelection];
     if(!conceptIds.length||conceptIds.length>4||conceptIds.some(id=>typeof id!=='string')||new Set(conceptIds).size!==conceptIds.length)throw Error('Choose one to four distinct approved concepts of the same model.');
     const concepts=conceptIds.map(conceptId=>{const concept=workspace.concepts?.find(c=>c.id===conceptId);if(!concept||concept.approved!==true||concept.retained!==true)throw Error('Lock in and retain every selected concept before submitting it to Meshy.');imageData(concept.image);return concept;});
@@ -182,12 +182,12 @@ function createCreativeGeneration({library,ai,fetchImpl=fetch,onProgress=()=>{},
     if(workspace.modelJob&&(!options.newCandidate||!['installed','FAILED','CANCELED','rejected'].includes(workspace.modelJob.status)))throw Error('This design already has a Meshy submission. Resume or review its saved task before creating another paid model.');
     const upAxis=workspace.design?.upAxis||'y';if(!['y','z'].includes(upAxis))throw Error('Choose Y or Z as the source model up axis.');
     const scenerySpec=workspace.kind==='scenery'?(await import('./scenery-adapter.mjs')).scenerySpecForDesign(workspace.design):null;
-    const key=await gate('meshy');
-    const marker={conceptId,conceptIds,endpoint,purpose,status:'submitting',geometryRequest:{should_remesh:true,topology:'triangle',target_polycount:100000},submissionId:crypto.randomUUID(),startedAt:new Date(now()).toISOString(),heightMm,upAxis,openlock:workspace.kind!=='character'&&!!workspace.design?.openlock,...(scenerySpec?{scenerySpec}:{} )};
+    const key=await gate('meshy'),printOptions=require('./meshy-print-settings.cjs').normalizeMeshyPrint(workspace.design?.meshyPrintOptions||providerSettings?.meshyPrint,{strict:true});
+    const marker={conceptId,conceptIds,endpoint,purpose,status:'submitting',geometryRequest:{should_remesh:true,topology:'triangle',target_polycount:printOptions.targetPolycount},submissionId:crypto.randomUUID(),startedAt:new Date(now()).toISOString(),heightMm,upAxis,openlock:workspace.kind!=='character'&&!!workspace.design?.openlock,...(scenerySpec?{scenerySpec}:{} )};
     await mutate(id,w=>{if(w.modelJob&&!['installed','FAILED','CANCELED','rejected'].includes(w.modelJob.status))throw Error('A model submission was already saved.');w.modelJob=marker;});
     emit(id,'Submitting approved concept to Meshy',0);
     let created;
-    const body={ai_model:'meshy-7.1',should_texture:true,enable_pbr:true,should_remesh:true,topology:'triangle',target_polycount:100000,image_enhancement:false,target_formats:['stl','glb'],moderation:true,...(conceptIds.length>1?{image_urls:concepts.map(c=>c.image)}:{image_url:concepts[0].image,model_type:'standard'})};
+    const body={ai_model:'meshy-7.1',should_texture:true,enable_pbr:true,should_remesh:true,topology:'triangle',target_polycount:printOptions.targetPolycount,image_enhancement:false,target_formats:['stl','glb'],moderation:true,...(conceptIds.length>1?{image_urls:concepts.map(c=>c.image)}:{image_url:concepts[0].image,model_type:'standard'})};
     try{created=await json(MESHY+'/'+endpoint,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify(body)});}
     catch(e){await mutate(id,w=>{w.modelJob.status=e.httpStatus&&e.httpStatus<500?'rejected':'submission-uncertain';w.modelJob.message='No automatic resubmission. '+e.message;});throw e;}
     if(typeof created.result!=='string'||!/^[A-Za-z0-9-]{8,100}$/.test(created.result)){await mutate(id,w=>{w.modelJob.status='submission-uncertain';});throw Error('Meshy returned no valid task ID. Check its task history before submitting again.');}

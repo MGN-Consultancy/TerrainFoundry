@@ -72,6 +72,7 @@ function createCreativeLibrary({directory}){
    references:[...original.references.filter(value=>value.type!=='design-conversation'),{type:'cloned-from',assetId:id,...(model?{candidateId:model.metadata.id}:{})}],
    source:{...structuredClone(original.source&&typeof original.source==='object'&&!Array.isArray(original.source)?original.source:{}),clonedFromAssetId:id,...(model?{clonedFromCandidateId:model.metadata.id}:{})}
   };
+  delete copy.design.meshyPrintWorkflow;delete copy.design.meshyPrintReport;
   (await schema).validateRecord(copy);
   const created=await put(copy);
   if(!model)return created;

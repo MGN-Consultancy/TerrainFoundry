@@ -13,6 +13,15 @@ function tetraGLB(){
  const doc={asset:{version:'2.0'},buffers:[{byteLength:72}],bufferViews:[{buffer:0,byteLength:48},{buffer:0,byteOffset:48,byteLength:24}],accessors:[{bufferView:0,componentType:5126,count:4,type:'VEC3'},{bufferView:1,componentType:5123,count:12,type:'SCALAR'}],meshes:[{primitives:[{attributes:{POSITION:0},indices:1}]}],nodes:[{mesh:0}],scenes:[{nodes:[0]}],scene:0};let json=Buffer.from(JSON.stringify(doc));json=Buffer.concat([json,Buffer.alloc((4-json.length%4)%4,32)]);const bytes=Buffer.alloc(28+json.length+bin.length);bytes.write('glTF');bytes.writeUInt32LE(2,4);bytes.writeUInt32LE(bytes.length,8);bytes.writeUInt32LE(json.length,12);bytes.writeUInt32LE(0x4e4f534a,16);json.copy(bytes,20);const at=20+json.length;bytes.writeUInt32LE(bin.length,at);bytes.writeUInt32LE(0x004e4942,at+4);bin.copy(bytes,at+8);return bytes;
 }
 const response=(body,status=200)=>new Response(JSON.stringify(body),{status});
+test('Meshy remesh density uses global defaults or per-asset override and records the exact request',async()=>{
+ for(const override of [undefined,65000]){
+  const f=fixture(),status=await f.ai.status();f.ai.status=async()=>({...status,meshyPrint:{targetPolycount:80000}});if(override)f.workspace.design.meshyPrintOptions={targetPolycount:override};await f.service.generateModel('test','concept');
+  const body=JSON.parse(f.requests.find(r=>r.method==='POST'&&r.url.endsWith('/image-to-3d')).body);assert.equal(body.target_polycount,override||80000);assert.equal(f.workspace.modelJob.geometryRequest.target_polycount,body.target_polycount);assert.equal(body.should_remesh,true);assert.equal(body.topology,'triangle');
+ }
+});
+test('model completion hands off once for optional free analysis while an installed-task resume never resubmits',async()=>{
+ const f=fixture(),calls=[],generation=createCreativeGeneration({...f,library:f.library,ai:f.ai,fetchImpl:f.fetchImpl,wait:async()=>{},maxPolls:2,afterModelInstalled:async id=>{calls.push(id);return f.workspace;}});await generation.generateModel('test','concept');await generation.resumeModel('test');assert.deepEqual(calls,['test']);assert.equal(f.requests.filter(r=>r.method==='POST'&&r.url.endsWith('/image-to-3d')).length,1);
+});
 test('Meshy requests a bounded triangle remesh for single and multiple approved concepts',async()=>{
  for(const multiple of [false,true]){
   const f=fixture();if(multiple)f.workspace.concepts.push({id:'rear',image:PNG,approved:true,retained:true});

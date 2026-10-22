@@ -88,7 +88,7 @@ jobs:
         run: node --test tests/incremental-content-layout.test.mjs tests/builtin-shapes.test.mjs tests/scenery-store.test.mjs tests/legacy-content-migration.test.mjs
       - name: Verify campaign orchestration and reusable creative libraries
         if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
-        run: node --test tests/campaign*.test.mjs tests/creative*.test.mjs tests/game-*.test.mjs tests/terrain*.test.mjs tests/storage-audit.test.mjs tests/project-store.test.mjs tests/scenery-metadata.test.mjs tests/premium*.test.mjs
+        run: node --test tests/campaign*.test.mjs tests/creative*.test.mjs tests/game-*.test.mjs tests/terrain*.test.mjs tests/storage-audit.test.mjs tests/project-store.test.mjs tests/scenery-metadata.test.mjs tests/premium*.test.mjs tests/meshy*.test.mjs tests/printability-geometry.test.mjs
       - name: Verify local scenery fitting and recovery
         if: inputs.component == 'full' || inputs.component == 'migration' || inputs.component == 'client'
         run: node --test tests/scenery-adapter.test.mjs tests/scenery-simplifier.test.mjs tests/scenery-glb-source.test.mjs

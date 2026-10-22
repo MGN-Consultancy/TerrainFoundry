@@ -85,3 +85,11 @@ Version 1.9.0 adds 50 original cave and grotto pieces. The launcher caches the c
 ## Campaign Studio
 
 Version 1.10.0 adds local campaign planning, a fullscreen live playbook with sound cues and printable books/cards. Optional AI uses your provider API account and encrypted local keys. See [desktop/CAMPAIGNS.md](desktop/CAMPAIGNS.md). Online portal hosting is not configured; player JSON export is a manual handoff.
+
+### Meshy printability options
+
+In Settings → AI integration → Meshy, expand **Advanced Meshy options**. Defaults are free analysis after generation, FDM, the working model’s dimensions and a 100,000-triangle remesh target. Choose SLA or full-color, a custom print height/longest side, or a bounded triangle target. Each asset’s 3D step can override these defaults and check a selected current or historical STL/GLB model.
+
+**Check printability** is free. **Repair printability · Meshy credits** requires explicit credit approval and creates a new model candidate; originals remain available. For fitted scenery, repair uses the retained sculpt, rebuilds the OpenLOCK base locally, then checks the assembled result. Repairs can remove textures. Paused jobs resume with their original parameters without another submission. Reported repair credits appear in local usage; missing credits stay unknown.
+
+Meshy uses fixed printer thresholds (FDM 1.0 mm, SLA 0.8 mm, full-color 2.0 mm), rounds check sizes to the nearest millimeter, and only thickens walls when more than 5% of the surface is thin. A “healthy” result can therefore still contain thin geometry. Watertightness, module/connector checks, slicer review and physical fit remain separate. These options do not automatically modify installed premium packs. See the [Analyze Printability](https://docs.meshy.ai/en/api/analyze-printability) and [Repair Printability](https://docs.meshy.ai/en/api/repair-printability) API documentation.

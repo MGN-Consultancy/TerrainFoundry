@@ -4,7 +4,17 @@ function createPremiumDevice({userData,safeStorage,fsImpl=fs}){
  const file=path.join(userData,'premium','device-key.json');let cached,recovering;
  const unreadable=()=>Object.assign(Error('The protected device key could not be read. Recover the device connection, then use your pack code to download your scenery again.'),{code:'PREMIUM_IDENTITY_UNREADABLE'});
  const protectedStorage=()=>{if(!safeStorage.isEncryptionAvailable()||safeStorage.getSelectedStorageBackend?.()==='basic_text')throw Error('Windows protected storage is unavailable. Activation has not been changed.');};
- function decode(bytes){const saved=JSON.parse(bytes.toString('utf8'));if(saved.schemaVersion!==1||typeof saved.protectedKey!=='string')throw Error('Invalid protected device key');const key=crypto.createPrivateKey(safeStorage.decryptString(Buffer.from(saved.protectedKey,'base64')));if(key.asymmetricKeyType!=='ed25519')throw Error('Invalid device key type.');return key;}
+ function decode(bytes){
+  const saved=JSON.parse(bytes.toString('utf8'));if(saved.schemaVersion!==1||typeof saved.protectedKey!=='string')throw Error('Invalid protected device key');
+  const pem=safeStorage.decryptString(Buffer.from(saved.protectedKey,'base64'));let key;
+  try{key=crypto.createPrivateKey(pem);}catch(error){
+   // Electron auth failures can leave a stale BoringSSL error for Node's next key import.
+   // Retry only parsing the same successfully decrypted, unencrypted PKCS8 envelope once.
+   if(error.code!=='ERR_OSSL_BAD_DECRYPT'||typeof pem!=='string'||!pem.startsWith('-----BEGIN PRIVATE KEY-----')||!pem.trimEnd().endsWith('-----END PRIVATE KEY-----'))throw error;
+   key=crypto.createPrivateKey(pem);
+  }
+  if(key.asymmetricKeyType!=='ed25519')throw Error('Invalid device key type.');return key;
+ }
  function publicFor(privateKey){const key=crypto.createPublicKey(privateKey),publicKey=key.export({type:'spki',format:'pem'}),fingerprint=crypto.createHash('sha256').update(key.export({type:'spki',format:'der'})).digest('hex');return {publicKey,fingerprint};}
  async function identity(){
   if(cached)return cached;

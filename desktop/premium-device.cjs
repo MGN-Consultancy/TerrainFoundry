@@ -10,7 +10,7 @@ function createPremiumDevice({userData,safeStorage,fsImpl=fs}){
   try{key=crypto.createPrivateKey(pem);}catch(error){
    // Electron auth failures can leave a stale BoringSSL error for Node's next key import.
    // Retry only parsing the same successfully decrypted, unencrypted PKCS8 envelope once.
-   if(error.code!=='ERR_OSSL_BAD_DECRYPT'||typeof pem!=='string'||!pem.startsWith('-----BEGIN PRIVATE KEY-----')||!pem.trimEnd().endsWith('-----END PRIVATE KEY-----'))throw error;
+   if(error.code!=='ERR_OSSL_BAD_DECRYPT'||typeof pem!=='string'||!/^[-]{5}BEGIN PRIVATE KEY[-]{5}\r?\n[A-Za-z0-9+/=\r\n]+[-]{5}END PRIVATE KEY[-]{5}\s*$/.test(pem))throw error;
    key=crypto.createPrivateKey(pem);
   }
   if(key.asymmetricKeyType!=='ed25519')throw Error('Invalid device key type.');return key;

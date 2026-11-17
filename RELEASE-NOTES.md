@@ -1,3 +1,7 @@
+# Terrain Foundry 1.22.1
+
+Import scenery ZIPs from Your library without leaving an encounter or scene. Place asset now uses the normal board placement tool. Library card buttons stay reachable when asset names wrap.
+
 # Terrain Foundry 1.20.2 — Your game’s terminology
 
 Custom games now use Player pieces, Game elements, Boards & layouts and design notes throughout their editor guidance, progress, review labels and export choices. Pieces can be tokens, cards, units or other components. DND retains character sheets and its play aids; Warhammer uses units and operatives. Non-DND play aids do not assume hit points, advantage or d20 initiative. Existing saved records and identifiers are preserved.

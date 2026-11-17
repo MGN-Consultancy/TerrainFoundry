@@ -99,7 +99,7 @@ function setTool(type){encounterTool=null;tool=type;if(ghost){dispose(ghost);gho
 function cast(e){const r=renderer.domElement.getBoundingClientRect();mouse.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mouse,camera);}
 function groundCandidates(){return models.children.filter(m=>m.visible&&(project.kind!=='world'||m.userData.levelId===project.world.activeLevel)&&['Terrain','Floors','Bridges'].includes(m.userData.category));}
 function boardPoint(e,type=tool){cast(e);const pt=new THREE.Vector3();const y=encounterTool?(activeLevel(project)?.elevation||0):(Number($('place-height').value)||0);if(!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-y),pt))return null;if(type?.startsWith('w-')){const hit=ray.intersectObjects(groundCandidates(),false)[0];if(hit)pt.copy(hit.point);}const s=Number($('snap').value);const x=Math.round(pt.x/project.grid/s)*s,z=Math.round(pt.z/project.grid/s)*s;const [w,d]=tableSize(project);if(Math.abs(x)>w/project.grid/2||Math.abs(z)>d/project.grid/2)return null;if(type?.startsWith('w-')){const groundMeshes=groundCandidates();const vertical=new THREE.Raycaster(new THREE.Vector3(x*project.grid,10000,z*project.grid),new THREE.Vector3(0,-1,0));const hit=vertical.intersectObjects(groundMeshes,false)[0];return {x,z,y:hit?Math.max(y,hit.point.y-.4):y};}return snapPlacement(project,type,{x,z,y});}
-function place(e,type=tool){if(project.kind==='world'&&!activeLevel(project).visible){toast('Show the active level before placing pieces.',true);return;}if(encounterTool){const p=boardPoint(e,null);if(!p)return;try{const template=encounterTool;worldChange(()=>selected=placeEncounter(project,template,p.x,p.z));if(!e.shiftKey)setTool(null);}catch(e){toast(e.message,true);}return;}if(!type)return;if(project.items.length>=5000){toast('Project limit is 5,000 pieces.',true);return;}const p=boardPoint(e,type);if(!p)return;checkpoint();const i=piece(type,p.x,p.z,p.rotation||0,p.y);if(project.kind==='world')i.levelId=project.world.activeLevel;project.items.push(i);if(/^[bdvuoqtcnrwa]-/.test(type))i.color='#ffffff';selected=e.shiftKey?i.id:null;changed();if(!e.shiftKey)setTool(null);else if(tool!==type)setTool(type);}
+function place(e,type=tool){if(project.kind==='world'&&!activeLevel(project).visible){toast('Show the active level before placing pieces.',true);return;}if(encounterTool){const p=boardPoint(e,null);if(!p)return;try{const template=encounterTool;worldChange(()=>selected=placeEncounter(project,template,p.x,p.z));if(!e.shiftKey)setTool(null);}catch(e){toast(e.message,true);}return;}if(!type)return;if(project.items.length>=5000){toast('Project limit is 5,000 pieces.',true);return;}const p=boardPoint(e,type);if(!p)return;checkpoint();const i=piece(type,p.x,p.z,p.rotation||0,p.y);if(project.kind==='world')i.levelId=project.world.activeLevel;project.items.push(i);if(project.assets?.[type]||/^[bdvuoqtcnrwa]-/.test(type))i.color='#ffffff';selected=e.shiftKey?i.id:null;changed();if(!e.shiftKey)setTool(null);else if(tool!==type)setTool(type);}
 // Capture piece gestures before OrbitControls receives pointerdown.
 let down=null,drag=null;
 const canvas=renderer.domElement;
@@ -237,7 +237,7 @@ for(const [id,create,prefix]of [['curves-demo',curveDemo,'a-'],['garden-demo',ga
 setupPrintEstimate({getProject:()=>project,makePrintFiles});
 
 setupEditorChrome();
-async function placeCreativeAsset(record){
+async function placeCreativeAsset(record,{arm=false}={}){
  if(!record?.id||!['character','scenery'].includes(record.kind))throw Error('Choose a saved character or scenery asset.');
  if(!window.desktop?.creativeReadModel)throw Error('Library models can be placed in the desktop client.');
  if(project.items.length>=5000)throw Error('Project limit is 5,000 pieces.');
@@ -250,6 +250,11 @@ async function placeCreativeAsset(record){
  if(!asset){if(Object.keys(project.assets||{}).length>=30)throw Error('A project supports 30 imported model revisions.');asset=await importCreativeMesh(model.bytes,model.ext,{name:record.name,kind:record.kind},gridSize);asset.libraryId=record.id;asset.libraryRevision=model.metadata.sha256;asset.packId=record.packId||null;}
  asset.assetKind=record.kind;asset.design=structuredClone(record.design||{});
  if(project!==target||project.grid!==gridSize)throw Error('The active project changed while importing. Place the asset again.');
+ if(arm){
+  if(!project.assets?.[assetId])worldChange(()=>{project.assets={...project.assets,[assetId]:asset};});
+  setTool(assetId);
+  return {assetId};
+ }
  let item;worldChange(()=>{project.assets={...project.assets,[assetId]:asset};item={...piece(assetId,0,0,0,project.kind==='world'?placementHeight(project):0),color:'#ffffff'};if(project.kind==='world')item.levelId=project.world.activeLevel;project.items.push(item);selected=item.id;});
  category='Imported';$('search').value='';$('family').value='All';setTool(null);inspectFront();toast(record.name+' added to the scene. Save the project to keep this model revision.');
  return {assetId,itemId:item.id};
@@ -286,7 +291,7 @@ sceneLibrary=setupSceneLibrary({toast,useScene:async(scene,entry,point)=>{
  if(point)place(point,null);else toast('Click the table to place '+scene.name+' · Shift places more');
 }});
 
-const terrainShelf=setupTerrainLibraryDrawer({api:window.desktop,toast,onPlaceAsset:placeCreativeAsset,onOpenScene:async({entry,mode,loaded})=>{
+const terrainShelf=setupTerrainLibraryDrawer({api:window.desktop,toast,onPlaceAsset:async record=>{await placeCreativeAsset(record,{arm:true});terrainShelf.close();},onOpenScene:async({entry,mode,loaded})=>{
  const saved=validateProject(JSON.parse(loaded.data));if(mode==='open'){if(dirty&&!confirm('Open this scene? Save your current terrain first if needed.'))return;replace(saved);return;}
  if(project.kind!=='world')throw Error('Open a world to place a reusable encounter, or choose Open scene.');
  let template;worldChange(()=>{template=addEncounter(project,saved);template.libraryId=entry.id;template.libraryRevision=loaded.revision;});document.querySelector(`[data-encounter="${template.id}"]`).click();toast('Click the table to place this independent scene copy.');

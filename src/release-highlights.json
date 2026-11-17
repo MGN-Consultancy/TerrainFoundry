@@ -1,1 +1,1 @@
-{"version":"1.22.3","title":"Keep Your library open while placing scenery","features":[{"title":"Place multiple pieces from your library","description":"After choosing Place asset, the library stays open. Click the board to place the piece, then select the next asset."}]}
+{"version":"1.22.4","title":"Hide identical scenery imports","features":[{"title":"One card per identical pack piece","description":"Your library hides identical scenery imports with the same pack and piece IDs while retaining saved references."}]}

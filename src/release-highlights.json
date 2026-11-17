@@ -1,1 +1,1 @@
-{"version":"1.22.2","title":"Update imported scenery in place","features":[{"title":"Keep one library entry per scenery import","description":"Scenery packs with update IDs can amend saved pieces in place. Repeat imports keep the same IDs and carry any supplied library previews."}]}
+{"version":"1.22.3","title":"Keep Your library open while placing scenery","features":[{"title":"Place multiple pieces from your library","description":"After choosing Place asset, the library stays open. Click the board to place the piece, then select the next asset."}]}

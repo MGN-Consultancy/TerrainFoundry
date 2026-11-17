@@ -291,7 +291,7 @@ sceneLibrary=setupSceneLibrary({toast,useScene:async(scene,entry,point)=>{
  if(point)place(point,null);else toast('Click the table to place '+scene.name+' · Shift places more');
 }});
 
-const terrainShelf=setupTerrainLibraryDrawer({api:window.desktop,toast,onPlaceAsset:async record=>{await placeCreativeAsset(record,{arm:true});terrainShelf.close();},onOpenScene:async({entry,mode,loaded})=>{
+const terrainShelf=setupTerrainLibraryDrawer({api:window.desktop,toast,onPlaceAsset:record=>placeCreativeAsset(record,{arm:true}),onOpenScene:async({entry,mode,loaded})=>{
  const saved=validateProject(JSON.parse(loaded.data));if(mode==='open'){if(dirty&&!confirm('Open this scene? Save your current terrain first if needed.'))return;replace(saved);return;}
  if(project.kind!=='world')throw Error('Open a world to place a reusable encounter, or choose Open scene.');
  let template;worldChange(()=>{template=addEncounter(project,saved);template.libraryId=entry.id;template.libraryRevision=loaded.revision;});document.querySelector(`[data-encounter="${template.id}"]`).click();toast('Click the table to place this independent scene copy.');

@@ -1,3 +1,7 @@
+# Terrain Foundry 1.22.3
+
+Your library stays open when you arm and place a personal scenery asset.
+
 # Terrain Foundry 1.22.2
 
 Versioned scenery ZIPs update matching library assets in place and can include thumbnails. Reimporting the same models does not create new entries or model revisions. Existing duplicate entries are preserved.

@@ -1,3 +1,7 @@
+# Terrain Foundry 1.22.2
+
+Versioned scenery ZIPs update matching library assets in place and can include thumbnails. Reimporting the same models does not create new entries or model revisions. Existing duplicate entries are preserved.
+
 # Terrain Foundry 1.22.1
 
 Import scenery ZIPs from Your library without leaving an encounter or scene. Place asset now uses the normal board placement tool. Library card buttons stay reachable when asset names wrap.

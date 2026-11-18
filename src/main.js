@@ -23,7 +23,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {printFiles as makePrintFiles} from './print-pack.js';
 import {connectionReport} from './connections.js';
-import {KIT,defaults,blacksmithDemo,caveDemo,demo,villageDemo,dungeonDemo,benchmarkDemo,openlockDemo,outdoorDemo,expansionDemo,piece,validateProject} from './model.js';
+import {KIT,MAX_IMPORTED_MODEL_REVISIONS,defaults,blacksmithDemo,caveDemo,demo,villageDemo,dungeonDemo,benchmarkDemo,openlockDemo,outdoorDemo,expansionDemo,piece,validateProject} from './model.js';
 import {geometry as buildGeometry,connectionSpec} from './geometry.js';
 const geometry=(type,g,assets)=>buildGeometry(type,g,assets,project.connectors==='openlock');
 import './style.css';
@@ -247,7 +247,7 @@ async function placeCreativeAsset(record,{arm=false}={}){
  if(!model?.metadata?.sha256||!/^[a-f0-9]{64}$/.test(model.metadata.sha256))throw Error('The model has no valid library revision.');
  const assetId='u-'+record.id+'-'+model.metadata.sha256.slice(0,12);
  let asset=project.assets?.[assetId];
- if(!asset){if(Object.keys(project.assets||{}).length>=30)throw Error('A project supports 30 imported model revisions.');asset=await importCreativeMesh(model.bytes,model.ext,{name:record.name,kind:record.kind},gridSize);asset.libraryId=record.id;asset.libraryRevision=model.metadata.sha256;asset.packId=record.packId||null;}
+ if(!asset){if(Object.keys(project.assets||{}).length>=MAX_IMPORTED_MODEL_REVISIONS)throw Error(`A project supports ${MAX_IMPORTED_MODEL_REVISIONS} imported model revisions.`);asset=await importCreativeMesh(model.bytes,model.ext,{name:record.name,kind:record.kind},gridSize);asset.libraryId=record.id;asset.libraryRevision=model.metadata.sha256;asset.packId=record.packId||null;}
  asset.assetKind=record.kind;asset.design=structuredClone(record.design||{});
  if(project!==target||project.grid!==gridSize)throw Error('The active project changed while importing. Place the asset again.');
  if(arm){

@@ -1,1 +1,1 @@
-{"version":"1.22.4","title":"Hide identical scenery imports","features":[{"title":"One card per identical pack piece","description":"Your library hides identical scenery imports with the same pack and piece IDs while retaining saved references."}]}
+{"version":"1.22.5","title":"Place larger scenery packs","features":["A scene can now retain up to 128 imported model revisions, including the full 44-piece Nightshift pack."]}

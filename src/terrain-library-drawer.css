@@ -4,3 +4,5 @@
 .terrain-library-shelf{align-items:flex-start}
 .terrain-library-tile{min-height:100%}
 .terrain-library-tile-info{flex:1 0 auto}
+
+.terrain-library-tile[draggable=true]{cursor:grab;user-select:none}.terrain-library-tile[draggable=true]:active{cursor:grabbing}

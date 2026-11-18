@@ -3,7 +3,23 @@ const path=require('node:path');
 const {randomUUID,createHash}=require('node:crypto');
 const MAX_PROJECT_BYTES=256_000_000;
 function check(data){if(typeof data!=='string'||Buffer.byteLength(data)>MAX_PROJECT_BYTES)throw Error('Project exceeds the 256 MB limit');const p=JSON.parse(data);if((![1,2].includes(p.version)||(p.version===2&&p.kind!=='world'))||!Array.isArray(p.items)||typeof p.name!=='string')throw Error('Invalid project');return data;}
-async function atomicWrite(file,data){const temp=file+'.'+randomUUID()+'.tmp';try{await fs.writeFile(temp,data,{flag:'wx'});await fs.rename(temp,file);}finally{await fs.unlink(temp).catch(()=>{});}}
+async function atomicWrite(file,data){
+ const temp=file+'.'+randomUUID()+'.tmp';
+ let created=false;
+ try{
+  await fs.writeFile(temp,data,{flag:'wx'});
+  created=true;
+  const delays=[40,80,160,320,640,1280];
+  for(const delay of [...delays,null]){
+   try{await fs.rename(temp,file);return;}
+   catch(error){
+    if(process.platform!=='win32'||!['EPERM','EACCES','EBUSY'].includes(error.code))throw error;
+    if(delay===null)throw Error(`Windows is blocking access to ${path.basename(file)}. If this folder is synced, pause syncing briefly and retry.`,{cause:error});
+    await new Promise(resolve=>setTimeout(resolve,delay));
+   }
+  }
+ }finally{if(created)await fs.unlink(temp).catch(()=>{});}
+}
 function createProjectStore({userData,documents,installRoot,projectsDirectory,recoveryDirectory}){
  const projects=projectsDirectory||path.join(documents,'Terrain Foundry','Projects'),recovery=path.join(recoveryDirectory||path.join(userData,'projects'),'recovery.terrain'),backups=path.join(recoveryDirectory||path.join(userData,'projects'),'backups');
  let queue=Promise.resolve();

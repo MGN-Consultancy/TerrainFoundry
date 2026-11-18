@@ -10,7 +10,7 @@ import {tableSize,activeLevel,placementHeight,visibleItem,placeEncounter,selecti
 import {CATEGORIES,classifyAsset,filterAssets} from './library-categories.js';
 import {setupLibraryBrowser} from './library-browser.js';
 import {setupCampaignStudio} from './campaign-studio.js';
-import {setupTerrainLibraryDrawer} from './terrain-library-drawer.js';
+import {LIBRARY_MODEL_DRAG,setupTerrainLibraryDrawer} from './terrain-library-drawer.js';
 import {setupLibraryStorage} from './library-storage.js';
 import {terrainBatch,validateEncounterPlacement} from '../desktop/terrain-planner.mjs';
 import {setupTutorial} from './tutorial.js';
@@ -151,7 +151,7 @@ canvas.addEventListener('pointercancel',()=>finishDrag(true));
 canvas.addEventListener('lostpointercapture',()=>finishDrag(true));
 window.addEventListener('blur',()=>finishDrag(true));
 document.addEventListener('keydown',e=>{if(!drag)return;e.preventDefault();e.stopImmediatePropagation();if(e.key==='Escape')finishDrag(true);},true);
-canvas.addEventListener('pointerleave',()=>{if(ghost)ghost.visible=false;});canvas.addEventListener('dragover',e=>e.preventDefault());canvas.addEventListener('drop',e=>{e.preventDefault();const saved=e.dataTransfer.getData('application/x-terrain-library-scene');if(saved){void sceneLibrary.drop(saved,{clientX:e.clientX,clientY:e.clientY,shiftKey:e.shiftKey});return;}const encounter=e.dataTransfer.getData('application/x-terrain-encounter');if(encounter){encounterTool=encounter;place(e,null);return;}const t=e.dataTransfer.getData('text/plain');if(allKit().some(k=>k.id===t))place(e,t);});
+canvas.addEventListener('pointerleave',()=>{if(ghost)ghost.visible=false;});canvas.addEventListener('dragover',e=>e.preventDefault());canvas.addEventListener('drop',e=>{e.preventDefault();const model=e.dataTransfer.getData(LIBRARY_MODEL_DRAG);if(model){const point=boardPoint(e,null);if(point)void terrainShelf.dropAsset(model,point);return;}const saved=e.dataTransfer.getData('application/x-terrain-library-scene');if(saved){void sceneLibrary.drop(saved,{clientX:e.clientX,clientY:e.clientY,shiftKey:e.shiftKey});return;}const encounter=e.dataTransfer.getData('application/x-terrain-encounter');if(encounter){encounterTool=encounter;place(e,null);return;}const t=e.dataTransfer.getData('text/plain');if(allKit().some(k=>k.id===t))place(e,t);});
 function worldChange(fn){const before=JSON.stringify({project,selected});try{fn();validateProject(project,false);}catch(e){({project,selected}=JSON.parse(before));renderScene();throw e;}undo.push(before);if(undo.length>(Object.keys(project.assets||{}).length?2:80))undo.shift();redo=[];changed();}
 function edit(fn){const i=project.items.find(i=>i.id===selected);if(!i)return;try{worldChange(()=>{const old={...i};fn(i);if(old.encounterId&&project.items.includes(i)){const next={...i};Object.assign(i,old);transformSelection(project,i,next);if(next.color!==old.color)selectionItems(project,i).forEach(a=>a.color=next.color);}});}catch(e){toast(e.message,true);}}
 $('rotate').onclick=()=>edit(i=>i.rotation=(i.rotation+(connectionSpec(i.type)?.rotationStep||90))%360);$('delete').onclick=()=>{const item=project.items.find(i=>i.id===selected);if(!item)return;worldChange(()=>{const ids=new Set(selectionItems(project,item).map(i=>i.id));project.items=project.items.filter(i=>!ids.has(i.id));if(item.encounterId)project.world.instances=project.world.instances.filter(g=>g.id!==item.encounterId);selected=null;});};$('duplicate').onclick=()=>{const item=project.items.find(i=>i.id===selected);if(!item)return;try{worldChange(()=>{const members=selectionItems(project,item),groupId=item.encounterId?crypto.randomUUID():null;const copies=members.map(i=>({...i,id:crypto.randomUUID(),x:i.x+1,z:i.z+1,...(groupId?{encounterId:groupId}:{})}));if(groupId)project.world.instances.push({id:groupId,name:project.world.instances.find(g=>g.id===item.encounterId).name});project.items.push(...copies);selected=copies[0].id;});}catch(e){toast(e.message,true);}};$('select').onclick=()=>setTool(null);$('undo').onclick=()=>{if(!undo.length)return;redo.push(JSON.stringify({project,selected}));({project,selected}=JSON.parse(undo.pop()));changed();setTool(tool);};$('redo').onclick=()=>{if(!redo.length)return;undo.push(JSON.stringify({project,selected}));({project,selected}=JSON.parse(redo.pop()));changed();setTool(tool);};
@@ -237,25 +237,29 @@ for(const [id,create,prefix]of [['curves-demo',curveDemo,'a-'],['garden-demo',ga
 setupPrintEstimate({getProject:()=>project,makePrintFiles});
 
 setupEditorChrome();
-async function placeCreativeAsset(record,{arm=false}={}){
+async function placeCreativeAsset(record,{point}={}){
  if(!record?.id||!['character','scenery'].includes(record.kind))throw Error('Choose a saved character or scenery asset.');
  if(!window.desktop?.creativeReadModel)throw Error('Library models can be placed in the desktop client.');
  if(project.items.length>=5000)throw Error('Project limit is 5,000 pieces.');
  if(project.kind==='world'&&!activeLevel(project).visible)throw Error('Show the active world level before placing an asset.');
- const target=project,gridSize=project.grid;toast('Checking library model geometry...');
+ const target=project,gridSize=project.grid,level=project.world?.activeLevel;toast('Checking library model geometry...');
  const model=await window.desktop.creativeReadModel(record.id);
  if(!model?.metadata?.sha256||!/^[a-f0-9]{64}$/.test(model.metadata.sha256))throw Error('The model has no valid library revision.');
  const assetId='u-'+record.id+'-'+model.metadata.sha256.slice(0,12);
  let asset=project.assets?.[assetId];
  if(!asset){if(Object.keys(project.assets||{}).length>=MAX_IMPORTED_MODEL_REVISIONS)throw Error(`A project supports ${MAX_IMPORTED_MODEL_REVISIONS} imported model revisions.`);asset=await importCreativeMesh(model.bytes,model.ext,{name:record.name,kind:record.kind},gridSize);asset.libraryId=record.id;asset.libraryRevision=model.metadata.sha256;asset.packId=record.packId||null;}
  asset.assetKind=record.kind;asset.design=structuredClone(record.design||{});
- if(project!==target||project.grid!==gridSize)throw Error('The active project changed while importing. Place the asset again.');
- if(arm){
-  if(!project.assets?.[assetId])worldChange(()=>{project.assets={...project.assets,[assetId]:asset};});
-  setTool(assetId);
-  return {assetId};
- }
- let item;worldChange(()=>{project.assets={...project.assets,[assetId]:asset};item={...piece(assetId,0,0,0,project.kind==='world'?placementHeight(project):0),color:'#ffffff'};if(project.kind==='world')item.levelId=project.world.activeLevel;project.items.push(item);selected=item.id;});
+ if(project!==target||project.grid!==gridSize||(point&&project.world?.activeLevel!==level))throw Error('The active project changed while importing. Place the asset again.');
+ if(project.items.length>=5000)throw Error('Project limit is 5,000 pieces.');
+ if(project.kind==='world'&&!activeLevel(project).visible)throw Error('Show the active world level before placing an asset.');
+ let item;worldChange(()=>{
+  project.assets={...project.assets,[assetId]:project.assets?.[assetId]||asset};
+  const at=point?snapPlacement(project,assetId,point):{x:0,z:0,y:project.kind==='world'?placementHeight(project):0};
+  item={...piece(assetId,at.x,at.z,at.rotation||0,at.y),color:'#ffffff'};
+  if(project.kind==='world')item.levelId=project.world.activeLevel;
+  project.items.push(item);selected=item.id;
+ });
+ if(point){setTool(null);toast(record.name+' added to the scene.');return {assetId,itemId:item.id};}
  category='Imported';$('search').value='';$('family').value='All';setTool(null);inspectFront();toast(record.name+' added to the scene. Save the project to keep this model revision.');
  return {assetId,itemId:item.id};
 }
@@ -291,7 +295,7 @@ sceneLibrary=setupSceneLibrary({toast,useScene:async(scene,entry,point)=>{
  if(point)place(point,null);else toast('Click the table to place '+scene.name+' · Shift places more');
 }});
 
-const terrainShelf=setupTerrainLibraryDrawer({api:window.desktop,toast,onPlaceAsset:record=>placeCreativeAsset(record,{arm:true}),onOpenScene:async({entry,mode,loaded})=>{
+const terrainShelf=setupTerrainLibraryDrawer({api:window.desktop,toast,onDropAsset:(record,point)=>placeCreativeAsset(record,{point}),onOpenScene:async({entry,mode,loaded})=>{
  const saved=validateProject(JSON.parse(loaded.data));if(mode==='open'){if(dirty&&!confirm('Open this scene? Save your current terrain first if needed.'))return;replace(saved);return;}
  if(project.kind!=='world')throw Error('Open a world to place a reusable encounter, or choose Open scene.');
  let template;worldChange(()=>{template=addEncounter(project,saved);template.libraryId=entry.id;template.libraryRevision=loaded.revision;});document.querySelector(`[data-encounter="${template.id}"]`).click();toast('Click the table to place this independent scene copy.');

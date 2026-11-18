@@ -50,3 +50,24 @@ test('backup retention caps global files and leaves unrelated files untouched',a
  for(let i=0;i<105;i++){const key=i.toString(16).padStart(12,'0');await fs.writeFile(path.join(store.backups,`Fixture-${key}-${'a'.repeat(64)}.terrain`),'retained backup');}
  await fs.writeFile(path.join(store.backups,'README.txt'),'keep this');const file=path.join(store.projects,'Trigger.terrain');await store.save(file,project('First'));await store.save(file,project('Second'));const files=await fs.readdir(store.backups);assert.equal(files.filter(f=>f.endsWith('.terrain')).length,100);assert.equal(await fs.readFile(path.join(store.backups,'README.txt'),'utf8'),'keep this');
 });
+
+test('atomic project write retries a temporary Windows rename lock', {skip:process.platform!=='win32'},async t=>{
+ const {atomicWrite}=await import('../desktop/project-store.cjs');
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'terrain-rename-lock-'));
+ const file=path.join(root,'library.json');
+ await fs.writeFile(file,'original');
+ const rename=fs.rename;
+ let attempts=0;
+ t.mock.method(fs,'rename',async (source,target)=>{
+  assert.equal(target,file);
+  assert.equal(await fs.readFile(file,'utf8'),'original');
+  if(++attempts<=2)throw Object.assign(Error('locked'),{code:'EPERM'});
+  return rename(source,target);
+ });
+ try{
+  await atomicWrite(file,'updated');
+  assert.equal(attempts,3);
+  assert.equal(await fs.readFile(file,'utf8'),'updated');
+  assert.deepEqual(await fs.readdir(root),['library.json']);
+ }finally{await fs.unlink(file);await fs.rmdir(root);}
+});
